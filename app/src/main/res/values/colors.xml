@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pome_grey_1">#f2f5f5</color>
+    <color name="pome_grey_3">#e2e4e6</color>
+    <color name="pome_grey_4">#cfd3d6</color>
+    <color name="pome_grey_5">#aaafb3</color>
+    <color name="pome_grey_6">#888d91</color>
+    <color name="pome_grey_7">#4e5256</color>
+    <color name="pome_grey_9">#292a2b</color>
+    <color name="pome_grey_8">#373a3c</color>
+    <color name="pome_grey_2">#ebeeef</color>
+    <color name="pome_red">#fb5e5e</color>
+    <color name="pome_sub">#ff908a</color>
+    <color name="pome_grey_0">#f8fafb</color>
+    <color name="pome_white">#ffffff</color>
+    <color name="pome_disabled_mint">#b0efbc</color>
+    <color name="pome_main">#7be48f</color>
 </resources>
