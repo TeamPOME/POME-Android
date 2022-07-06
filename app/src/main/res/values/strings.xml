@@ -4,4 +4,8 @@
     <string name="menu_recollect">회고</string>
     <string name="menu_friends">친구</string>
     <string name="menu_mypage">마이</string>
+    <string name="profile_title">나만의 프로필을 \n만들어 볼까요?</string>
+    <string name="finish">만들었어요</string>
+    <string name="nickname_hint">영어, 한국어 최대 10자 이내 입력</string>
+    <string name="profile_content">입력한 정보는 회원을 식별하고 친구간 커뮤니케이션을 위한 \n동의 목적으로만 사용되며 포미 이용기간 동안 보관돼요</string>
 </resources>
