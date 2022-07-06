@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/background.xml" value="0.1700592041015625" />
+        <entry key="app/src/main/res/drawable/ic_record.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_smile_mint.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/iconbackground.xml" value="0.118" />
         <entry key="app/src/main/res/drawable/shadow.xml" value="0.4303760986328125" />
