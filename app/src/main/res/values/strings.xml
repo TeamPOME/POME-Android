@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PomeAndroid</string>
+    <string name="menu_record">기록</string>
+    <string name="menu_recollect">회고</string>
+    <string name="menu_friends">친구</string>
+    <string name="menu_mypage">마이</string>
 </resources>
