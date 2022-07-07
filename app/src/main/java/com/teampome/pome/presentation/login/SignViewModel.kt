@@ -23,7 +23,7 @@ class SignViewModel : ViewModel() {
 
     private fun checkNicknameFormat() {
         val passwordPattern =
-            Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{3,10}.$")
+            Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[-._])(?=.*[가-힣]).{4,10}.$")
         isVaildNickname.value = passwordPattern.matcher(userNickname.value).matches()
     }
 
