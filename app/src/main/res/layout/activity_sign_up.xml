@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.teampome.pome.presentation.login.SignViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp"
+        tools:context=".presentation.login.SignUpActivity">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/PomeB22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/profile_title"
+            android:textColor="@color/pome_grey_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="53dp"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_profile_empty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile">
+
+            <EditText
+                android:id="@+id/et_nickname"
+                style="@style/PomeM16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_grey_round_6"
+                android:hint="@string/nickname_hint"
+                android:onTextChanged="@{viewModel::onNicknameTextChanged}"
+                android:paddingVertical="16dp"
+                android:paddingStart="16dp"
+                android:text="@{viewModel.userNickname}"
+                android:textCursorDrawable="@drawable/cursor_custom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_detail"
+                style="@style/PomeM14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:invisibility="@{viewModel.vaildNickname}"
+                android:text="@string/sign_password_detail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_nickname" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/pome_grey_0"
+                android:src="@drawable/ic_delete"
+                android:stateListAnimator="@null"
+                app:layout_constraintBottom_toBottomOf="@+id/et_nickname"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            style="@style/PomeM12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="@string/profile_content"
+            android:textColor="@color/pome_grey_5"
+            app:layout_constraintBottom_toTopOf="@+id/btn_finish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_finish"
+            style="@style/PomeB18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@{viewModel.vaildNickname ? @color/pome_main : @color/pome_disabled_mint}"
+            android:onClick="@{() -> viewModel.signUp()}"
+            android:paddingVertical="16dp"
+            android:text="@string/finish"
+            android:textColor="@color/pome_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
