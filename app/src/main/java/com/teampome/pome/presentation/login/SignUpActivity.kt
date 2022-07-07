@@ -5,17 +5,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import coil.load
+import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivitySignUpBinding
 import timber.log.Timber
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
+    private val viewModel: SignViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this@SignUpActivity
+        goToAddFriendActivity()
         btnClickEvent()
+    }
+
+    private fun goToAddFriendActivity() {
+        viewModel.getCompleteSignUp().observe(this) { isCompleted ->
+            if (!isCompleted) return@observe
+            Intent(this, SignUpContentActivity::class.java).run {
+                startActivity(this)
+                finish()
+            }
+        }
     }
 
     private fun btnClickEvent() {
