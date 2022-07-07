@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.teampome.pome">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".PomeApp"
         android:allowBackup="false"
@@ -12,7 +15,10 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".presentation.login.SignUpContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
 
         <provider
@@ -26,7 +32,7 @@
         </provider>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.login.SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="16dp"
-    tools:context=".SignUpActivity">
+    android:paddingHorizontal="16dp"
+    tools:context=".presentation.login.SignUpActivity">
 
     <TextView
         android:id="@+id/tv_title"
@@ -23,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="53dp"
+        android:background="@color/white"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_profile_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
