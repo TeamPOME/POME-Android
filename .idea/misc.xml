@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/background.xml" value="0.1700592041015625" />
         <entry key="app/src/main/res/drawable/cursor_custom.xml" value="0.1415" />
+        <entry key="app/src/main/res/drawable/ic_add_complete.xml" value="0.202" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/ic_record.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1955" />

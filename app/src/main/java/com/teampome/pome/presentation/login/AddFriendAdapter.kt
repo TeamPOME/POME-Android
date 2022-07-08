@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendListBinding
 
 class AddFriendAdapter : ListAdapter<AddFriendData, AddFriendAdapter.RepoViewHolder>(
@@ -26,6 +27,9 @@ class AddFriendAdapter : ListAdapter<AddFriendData, AddFriendAdapter.RepoViewHol
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendData: AddFriendData) {
             binding.friend = friendData
+            binding.btnAdd.setOnClickListener{
+                binding.btnAdd.setImageResource(R.drawable.ic_add_complete)
+            }
         }
     }
 
