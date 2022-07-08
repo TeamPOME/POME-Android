@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_alarm_off_24.xml" value="0.2535" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_goal_category.xml" value="0.189" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.2535" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/rectangle_white_round_6.xml" value="0.318" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_record.xml" value="0.25" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/menu/menu.xml" value="0.36614583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/drawable/background.xml" value="0.1700592041015625" />
         <entry key="app/src/main/res/drawable/cursor_custom.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/ic_add_complete.xml" value="0.202" />
