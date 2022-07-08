@@ -22,4 +22,5 @@
     <color name="pome_white">#ffffff</color>
     <color name="pome_disabled_mint">#b0efbc</color>
     <color name="pome_main">#7be48f</color>
+    <color name="pome_light_mint">#e2fce7</color>
 </resources>
