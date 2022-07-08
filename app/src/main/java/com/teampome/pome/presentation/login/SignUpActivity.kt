@@ -39,6 +39,9 @@ class SignUpActivity : AppCompatActivity() {
         binding.ivPlus.setOnClickListener {
             goGallery()
         }
+        binding.btnDelete.setOnClickListener {
+            binding.etNickname.text.clear()
+        }
     }
 
     private val activityLauncher: ActivityResultLauncher<Intent> =

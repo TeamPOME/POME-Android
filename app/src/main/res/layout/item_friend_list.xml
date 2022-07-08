@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="friend"
+            type="com.teampome.pome.presentation.login.AddFriendData" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="25dp"
+            android:src="@{friend.profile}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_friend_profile" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/PomeM16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="15dp"
+            android:text="@{friend.name}"
+            android:textColor="@color/pome_grey_9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="미미" />
+
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginEnd="7dp"
+            android:background="@color/pome_white"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
