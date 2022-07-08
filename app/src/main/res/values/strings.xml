@@ -9,6 +9,7 @@
     <string name="complete">완료했어요</string>
     <string name="next">다음에 할래요</string>
     <string name="addfriend">친구 추가</string>
+    <string name="noresult">검색 결과가 없어요 \n다른 닉네임으로 검색해볼까요?</string>
     <string name="findfriend">친구의 닉네임을 검색해보세요</string>
     <string name="signup_finish">회원가입 완료! \n친구를 추가해볼까요?</string>
     <string name="cheer_coment">친구의 소비 기록을 확인하고 \n서로 응원할 수 있어요</string>

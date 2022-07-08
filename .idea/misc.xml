@@ -14,12 +14,12 @@
         <entry key="app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.228" />
         <entry key="app/src/main/res/drawable/shadow.xml" value="0.4303760986328125" />
         <entry key="app/src/main/res/font/pretendard.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_add_friend.xml" value="0.2563995361328125" />
+        <entry key="app/src/main/res/layout/activity_add_friend.xml" value="0.30431976318359377" />
         <entry key="app/src/main/res/layout/activity_friend_add.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11094360351562502" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.15522155761718748" />
         <entry key="app/src/main/res/layout/activity_sign_up_content.xml" value="0.2633326400945216" />
-        <entry key="app/src/main/res/layout/item_friend_list.xml" value="0.3260693123577962" />
+        <entry key="app/src/main/res/layout/item_friend_list.xml" value="0.34425048828125004" />
         <entry key="app/src/main/res/layout/item_icon_list.xml" value="0.5420580028159037" />
         <entry key="app/src/main/res/layout/shadow.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.3098958333333333" />
