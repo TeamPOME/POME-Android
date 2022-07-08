@@ -39,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.ivPlus.setOnClickListener {
             goGallery()
         }
-        binding.btnFinish.setOnClickListener {
+        binding.btnDelete.setOnClickListener {
             binding.etNickname.text.clear()
         }
     }
