@@ -22,10 +22,11 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/rectangle_white_round_6.xml" value="0.2265" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/round_tvtag.xml" value="0.1505" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/activity_add_friend.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_friends.xml" value="0.12" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_friends.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_record.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_friend_consume_list.xml" value="0.264" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_friend_consume_list.xml" value="0.2" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_friend_list.xml" value="0.2234375" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_friend_profile_list.xml" value="0.2484375" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/menu/menu.xml" value="0.159375" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_alarm_off_24.xml" value="0.2535" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_goal_category.xml" value="0.189" />
