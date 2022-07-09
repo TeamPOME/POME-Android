@@ -13,8 +13,9 @@ class FriendsConsumeAdapter :
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsConsumeViewHolder {
-        val binding=ItemFriendConsumeListBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFriendConsumeListBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return FriendsConsumeViewHolder(binding)
     }
 
@@ -29,7 +30,7 @@ class FriendsConsumeAdapter :
             binding.tvFrienddate.text = friendsConsumeData.date
             binding.tvFrienddes.text = friendsConsumeData.description
             binding.tvFriendprice.text = friendsConsumeData.price
-            binding.tvFriendtag.text=friendsConsumeData.tag
+            binding.tvFriendtag.text = friendsConsumeData.tag
             //프로필 이미지, 반응들, 처음감정과 나중감정
 
         }
