@@ -38,16 +38,6 @@
             app:layout_constraintTop_toBottomOf="@id/cl_topappbar"
             android:layout_marginVertical="7dp"/>
 
-        <ImageButton
-            android:id="@+id/btn_folder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_folder"
-            android:background="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_topappbar"
-            android:layout_marginVertical="9dp"/>
-
     <ScrollView
         android:id="@+id/sv_record"
         android:layout_width="match_parent"
@@ -100,17 +90,26 @@
                 android:background="@drawable/rectangle_white_round_6"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/iv_lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_lock_all"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/PomeB18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="4dp"
                     android:text="술은 한달에 적당히 무"
                     android:textColor="@color/pome_grey_9"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/iv_lock"
+                    app:layout_constraintTop_toTopOf="@id/iv_lock" />
 
                 <ImageButton
                     android:id="@+id/btn_more"
@@ -131,6 +130,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="26dp"
                     android:text="사용 금액"
+                    android:textColor="@color/pome_grey_6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -140,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
                     android:text="30,000원"
                     android:textColor="@color/pome_grey_9"
                     app:layout_constraintStart_toStartOf="parent"
@@ -153,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="/"
+                    android:textColor="@color/pome_grey_5"
                     app:layout_constraintBottom_toBottomOf="@id/tv_useamount"
                     app:layout_constraintStart_toEndOf="@id/tv_useamount"
                     app:layout_constraintTop_toTopOf="@id/tv_useamount" />
@@ -162,11 +162,39 @@
                     style="@style/PomeB14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
+                    android:layout_marginStart="4dp"
                     android:text="100,000원"
+                    android:textColor="@color/pome_grey_5"
                     app:layout_constraintBottom_toBottomOf="@id/tv_slash"
                     app:layout_constraintStart_toEndOf="@id/tv_slash"
                     app:layout_constraintTop_toTopOf="@id/tv_slash" />
+
+                <SeekBar
+                    android:id="@+id/sb_goal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="6dp"
+                    android:minHeight="6dp"
+                    android:max="110"
+                    android:progress="5"
+                    android:progressDrawable="@drawable/seekbar_custom"
+                    android:thumb="@drawable/seekbar_thumb_custom"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_useamount"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_seekbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/PomeB12"
+                    android:text="0%"
+                    android:textColor="@color/pome_white"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintTop_toTopOf="@id/sb_goal"
+                    app:layout_constraintBottom_toBottomOf="@id/sb_goal"
+                    app:layout_constraintStart_toStartOf="@id/sb_goal"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -277,6 +305,7 @@
         android:id="@+id/fab_write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/pome_main"
         android:src="@drawable/ic_pencil"
