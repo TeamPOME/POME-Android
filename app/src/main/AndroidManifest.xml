@@ -37,7 +37,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.teampome.pome.TimberInitializer"
+                android:name="com.teampome.pome.util.TimberInitializer"
                 android:value="androidx.startup" />
         </provider>
 

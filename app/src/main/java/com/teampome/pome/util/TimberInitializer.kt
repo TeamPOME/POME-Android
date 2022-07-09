@@ -1,4 +1,4 @@
-package com.teampome.pome
+package com.teampome.pome.util
 
 import android.content.Context
 import androidx.startup.Initializer
