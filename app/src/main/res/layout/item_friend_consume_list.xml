@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="friendConsumeData"
+            type="com.teampome.pome.presentation.friends.FriendsConsumeData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_friendconsume"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/iv_friendimage"
+            android:layout_width="32dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_profile_empty"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ly_friendconsume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/iv_friendimage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_friendname"
+                style="@style/PomeM14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{friendConsumeData.name}"
+                android:textColor="@color/pome_grey_6"
+                tools:text="양지영입니다람지" />
+
+            <TextView
+                android:id="@+id/tv_friendprice"
+                style="@style/PomeSb18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{friendConsumeData.price}"
+                android:textColor="@color/pome_grey_9"
+
+                tools:text="50,000원" />
+
+            <TextView
+                android:id="@+id/tv_frienddes"
+                style="@style/PomeM14"
+                android:layout_width="wrap_content"
+                android:maxLength="13"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@{friendConsumeData.description}"
+                android:textColor="@color/pome_grey_8"
+                tools:text="정말 비싸구나~" />
+
+            <TextView
+                android:id="@+id/tv_friendtag"
+                style="@style/PomeM12"
+                android:background="@drawable/round_tvtag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/pome_grey_5"
+                tools:text="스무디 대신 아아를 마시자" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/PomeM12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{friendConsumeData.date}"
+            android:textColor="@color/pome_grey_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="7.08" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
