@@ -15,9 +15,14 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+            android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.login.SignUpActivity"
             android:exported="false" />
-
         <activity
             android:name=".presentation.login.SignUpContentActivity"
             android:exported="false" />
@@ -44,7 +49,6 @@
         <activity
             android:name=".presentation.login.AddFriendActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
