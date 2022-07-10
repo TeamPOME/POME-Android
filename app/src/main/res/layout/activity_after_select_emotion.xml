@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.record.emotion.AfterSelectEmotionActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tb_back"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/pome_white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_back"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-120dp">
+
+        <TextView
+            android:id="@+id/tv_emotion_ment"
+            style="@style/PomeSb20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/emotion_ment"
+            android:textColor="@color/pome_grey_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pome_ment"
+            style="@style/PomeM14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/pome_ment"
+            android:textColor="@color/pome_grey_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_emotion_ment" />
+
+        <ImageButton
+            android:id="@+id/btn_happy"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="140dp"
+            android:background="@color/pome_white"
+            android:src="@drawable/ic_emoji_happy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pome_ment" />
+
+        <TextView
+            android:id="@+id/tv_happy"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="행복해요"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintBottom_toBottomOf="@id/btn_happy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btn_happy"
+            app:layout_constraintTop_toTopOf="@id/btn_happy" />
+
+        <ImageButton
+            android:id="@+id/btn_oh"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="140dp"
+            android:background="@color/pome_white"
+            android:src="@drawable/ic_emoji_oh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_happy" />
+
+        <TextView
+            android:id="@+id/tv_oh"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모르겠어요"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintBottom_toBottomOf="@id/btn_oh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btn_oh"
+            app:layout_constraintTop_toTopOf="@+id/btn_oh" />
+
+        <ImageButton
+            android:id="@+id/btn_sad"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="140dp"
+            android:background="@color/pome_white"
+            android:src="@drawable/ic_emoji_sad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_oh" />
+
+        <TextView
+            android:id="@+id/tv_sad"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="후회해요"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintBottom_toBottomOf="@id/btn_sad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btn_sad"
+            app:layout_constraintTop_toTopOf="@+id/btn_sad" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_complete"
+            style="@style/PomeB18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rectangle_disable_round_6"
+            android:paddingVertical="15dp"
+            android:text="@string/emotion_select"
+            android:textColor="@color/pome_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
