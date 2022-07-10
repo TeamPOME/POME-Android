@@ -125,9 +125,10 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     }
 
     private fun getFriendProfileList() {
+        binding.rcvFriends.visibility=View.VISIBLE
         friendsProfileAdapter.submitList(
             listOf(
-                FriendsProfileData("황연진","tmp"),
+                FriendsProfileData("황연진입니다","tmp"),
                 FriendsProfileData("김수빈","tmp"),
                 FriendsProfileData("양지영","tmp"),
                 FriendsProfileData("황연진","tmp"),

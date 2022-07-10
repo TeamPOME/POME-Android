@@ -42,7 +42,6 @@
                 style="@style/PomeM14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textColor="@color/pome_grey_6"
                 tools:text="양지영입니다람지" />
 
@@ -52,19 +51,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
                 android:textColor="@color/pome_grey_9"
-
                 tools:text="50,000원" />
 
             <TextView
                 android:id="@+id/tv_frienddes"
                 style="@style/PomeM14"
-                android:layout_width="wrap_content"
-                android:maxLength="13"
+                android:layout_width="161dp"
+                android:maxLines="2"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-
                 android:textColor="@color/pome_grey_8"
                 tools:text="정말 비싸구나~" />
 
