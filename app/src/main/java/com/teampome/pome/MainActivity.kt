@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.teampome.pome.databinding.ActivityMainBinding
+import com.teampome.pome.presentation.friends.FriendsFragment
 import com.teampome.pome.presentation.record.RecordFragment
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val recordFragment by lazy { RecordFragment() }
-    private lateinit var binding: ActivityMainBinding
+    private val friendsFragment by lazy { FriendsFragment() }
+    private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,9 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.menu_record -> {
                     changeFragment(recordFragment)
+                }
+                R.id.menu_friends -> {
+                    changeFragment(friendsFragment)
                 }
             }
             true
