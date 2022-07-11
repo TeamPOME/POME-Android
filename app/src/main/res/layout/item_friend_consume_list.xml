@@ -57,8 +57,9 @@
             <TextView
                 android:id="@+id/tv_frienddes"
                 style="@style/PomeM14"
-                android:layout_width="161dp"
+                android:layout_width="wrap_content"
                 android:maxLines="2"
+                android:maxLength="13"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/pome_grey_8"

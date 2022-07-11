@@ -44,35 +44,16 @@
             android:paddingStart="16dp"
             app:layout_constraintTop_toBottomOf="@id/tv_title">
 
-            <ImageView
-                android:id="@+id/iv_friendprofile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_friend_profile_empty"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_whole"
-                style="@style/PomeSb12"
-                android:textColor="@color/pome_grey_8"
-                android:text="@string/whole_friends"
-                app:layout_constraintTop_toBottomOf="@id/iv_friendprofile"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@id/iv_friendprofile"
-                app:layout_constraintEnd_toEndOf="@id/iv_friendprofile" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_friends"
                 android:layout_width="0dp"
                 android:visibility="invisible"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toEndOf="@id/iv_friendprofile"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

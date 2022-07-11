@@ -18,6 +18,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         initConsumeAdapter()
         initListAdapter()
         getFriendsConsumeData()
+
         getFriendProfileList()
     }
 
@@ -125,20 +126,20 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     }
 
     private fun getFriendProfileList() {
-        binding.rcvFriends.visibility=View.VISIBLE
-        friendsProfileAdapter.submitList(
+        binding.rcvFriends.visibility = View.VISIBLE
+        friendsProfileAdapter.friendsProfileList.addAll(
             listOf(
-                FriendsProfileData("황연진입니다","tmp"),
-                FriendsProfileData("김수빈","tmp"),
-                FriendsProfileData("양지영","tmp"),
-                FriendsProfileData("황연진","tmp"),
-                FriendsProfileData("김수빈","tmp"),
-                FriendsProfileData("양지영","tmp"),
-                FriendsProfileData("황연진","tmp"),
-                FriendsProfileData("김수빈","tmp"),
-                FriendsProfileData("양지영","tmp")
+                FriendsProfileWholeData("전체", "tmp"),
+                FriendsProfileData("황연진입니다", "tmp"),
+                FriendsProfileData("김수빈", "tmp"),
+                FriendsProfileData("양지영", "tmp"),
+                FriendsProfileData("황연진", "tmp"),
+                FriendsProfileData("김수빈", "tmp"),
+                FriendsProfileData("양지영", "tmp"),
+                FriendsProfileData("황연진", "tmp"),
+                FriendsProfileData("김수빈", "tmp"),
+                FriendsProfileData("양지영", "tmp")
             )
         )
     }
-
 }
