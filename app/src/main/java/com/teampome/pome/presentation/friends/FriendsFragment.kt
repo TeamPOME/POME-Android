@@ -5,6 +5,8 @@ import android.view.View
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentFriendsBinding
 import com.teampome.pome.util.BaseFragment
+import com.teampome.pome.util.FriendsConsumeItemDecorator
+import com.teampome.pome.util.FriendsProfileItemDecorator
 
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
@@ -17,9 +19,12 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         super.onViewCreated(view, savedInstanceState)
         initConsumeAdapter()
         initListAdapter()
-        getFriendsConsumeData()
 
+        //후에 서버통신 할 에정
+        getFriendsConsumeData()
         getFriendProfileList()
+
+        addFriendsDecoration()
     }
 
     private fun initConsumeAdapter() {
@@ -40,7 +45,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         friendsConsumeAdapter.submitList(
             listOf(
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ12",
                     description = "일이삼사오육칠팔구십일이삼사오육칠팔구",
                     date = "07.09",
                     price = "4,400",
@@ -49,7 +54,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ2",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -58,7 +63,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ3",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -67,7 +72,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ4",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -76,7 +81,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ5",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -85,7 +90,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ6",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -94,7 +99,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ7",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -103,7 +108,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ8",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -112,7 +117,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱"
                 ),
                 FriendsConsumeData(
-                    name = "ㅇㅈㅇ",
+                    name = "ㅇㅈㅇ9",
                     description = "탐탐민초 추천",
                     date = "07.09",
                     price = "4,400",
@@ -141,5 +146,10 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 FriendsProfileData("양지영", "tmp")
             )
         )
+    }
+
+    private fun addFriendsDecoration(){
+        binding.rcvFriendsconsumelist.addItemDecoration(FriendsConsumeItemDecorator(12))
+        binding.rcvFriends.addItemDecoration(FriendsProfileItemDecorator(18))
     }
 }
