@@ -1,5 +1,6 @@
 package com.teampome.pome.presentation.record
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +18,9 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initAdapter()
+        goLookBackActivity()
     }
 
     private fun initAdapter() {
@@ -30,6 +33,13 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     private fun initDecoration() {
         binding.rvRecord.addItemDecoration(CustomItemDecorator(12))
         binding.rvRecord.addItemDecoration(VerticalItemDecorator(6))
+    }
+
+    private fun goLookBackActivity() {
+        binding.clLookback.setOnClickListener {
+            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun addList() {
