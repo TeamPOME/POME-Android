@@ -7,24 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
+import com.teampome.pome.util.BaseFragment
 import com.teampome.pome.util.CustomItemDecorator
 import com.teampome.pome.util.VerticalItemDecorator
 
-class RecordFragment : Fragment() {
+class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
-    private var _binding: FragmentRecordBinding? = null
-    private val binding get() = _binding ?: error("Binding 초기화 x")
     private lateinit var recordAdapter: RecordAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentRecordBinding.inflate(layoutInflater, container, false)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initAdapter()
-
-        return binding.root
     }
 
     private fun initAdapter() {
@@ -50,10 +43,5 @@ class RecordFragment : Fragment() {
                 RecordData(1, "06.29", 1, "1,000,000원", "gg")
             )
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
