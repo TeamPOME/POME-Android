@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/rectangle_white_round_8"
+    android:insetLeft="36dp"
+    android:insetRight="36dp">
+</inset>

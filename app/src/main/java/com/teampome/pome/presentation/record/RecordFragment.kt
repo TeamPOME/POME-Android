@@ -1,30 +1,28 @@
 package com.teampome.pome.presentation.record
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
+import com.teampome.pome.util.BaseFragment
 import com.teampome.pome.util.CustomItemDecorator
 import com.teampome.pome.util.VerticalItemDecorator
 
-class RecordFragment : Fragment() {
+class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
-    private var _binding: FragmentRecordBinding? = null
-    private val binding get() = _binding ?: error("Binding 초기화 x")
     private lateinit var recordAdapter: RecordAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentRecordBinding.inflate(layoutInflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
-
-        return binding.root
+        noGoalClickEvent()
+        goLookBackActivity()
     }
 
     private fun initAdapter() {
@@ -37,6 +35,13 @@ class RecordFragment : Fragment() {
     private fun initDecoration() {
         binding.rvRecord.addItemDecoration(CustomItemDecorator(12))
         binding.rvRecord.addItemDecoration(VerticalItemDecorator(6))
+    }
+
+    private fun goLookBackActivity() {
+        binding.clLookback.setOnClickListener {
+            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun addList() {
@@ -52,8 +57,10 @@ class RecordFragment : Fragment() {
         )
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun noGoalClickEvent() {
+        binding.fabWrite.setOnClickListener {
+            val dialog = NoRecordDialogFragment()
+            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoRecordDialogFragment") }
+        }
     }
 }
