@@ -12,20 +12,23 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
 
-    private val friendsConsumeData = mutableListOf<FriendsConsumeData>()
-    private val friendsProfileData = mutableListOf<FriendsProfileData>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initConsumeAdapter()
         initListAdapter()
 
         //후에 서버통신 할 에정
-        getFriendsConsumeData()
+        initWholeData()
+
+
         getFriendProfileList()
+        getFriendsConsumeData()
 
         addFriendsDecoration()
     }
+
+    // 친구 프로필 리스트와 소비 리스트 한번에 보이고 안보이게
+
 
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter()
@@ -127,14 +130,20 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 )
             )
         )
+    }
 
+    private fun initWholeData() {
+        friendsProfileAdapter.friendsProfileList.add(
+            FriendsProfileWholeData("전체", "tmp")
+        )
     }
 
     private fun getFriendProfileList() {
         binding.rcvFriends.visibility = View.VISIBLE
+        binding.clFriendsempty.visibility = View.INVISIBLE
+        binding.ivEmptyfriends.setImageResource(R.drawable.ic_friend_profile_full)
         friendsProfileAdapter.friendsProfileList.addAll(
             listOf(
-                FriendsProfileWholeData("전체", "tmp"),
                 FriendsProfileData("황연진입니다", "tmp"),
                 FriendsProfileData("김수빈", "tmp"),
                 FriendsProfileData("양지영", "tmp"),
@@ -148,8 +157,19 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         )
     }
 
-    private fun addFriendsDecoration(){
+    private fun addFriendsDecoration() {
         binding.rcvFriendsconsumelist.addItemDecoration(FriendsConsumeItemDecorator(12))
         binding.rcvFriends.addItemDecoration(FriendsProfileItemDecorator(18))
     }
+
+//    private fun initProfileClick(){
+//        friendsProfileAdapter.setOnProfileListClickListener(object:FriendsProfileAdapter.FriendsListClickInterface{
+//            override fun onProfileListClick(v: View, data: FriendsProfileData, pos: Int) {
+//                bininding.rcv
+//            }
+//
+//
+//        })
+//    }
+
 }

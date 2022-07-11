@@ -6,6 +6,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/cursor_custom.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_add_complete.xml" value="0.1035" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_btn_emoji_add.xml" value="0.118" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_delete.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_background.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_fun.xml" value="0.1" />
@@ -19,6 +20,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_add_24.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_profile.xml" value="0.19" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_profile_empty.xml" value="0.19" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_profile_full.xml" value="0.1455" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friends.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_look_back.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_mypage.xml" value="0.1035" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.2265" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/rectangle_white_round_6.xml" value="0.2265" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/round_tvtag.xml" value="0.1505" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom_red.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/activity_add_friend.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/activity_sign_up.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/activity_sign_up_content.xml" value="0.24947916666666667" />
