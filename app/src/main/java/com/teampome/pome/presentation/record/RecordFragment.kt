@@ -12,7 +12,7 @@ import com.teampome.pome.util.VerticalItemDecorator
 
 class RecordFragment : Fragment() {
 
-    private var _binding : FragmentRecordBinding? = null
+    private var _binding: FragmentRecordBinding? = null
     private val binding get() = _binding ?: error("Binding 초기화 x")
     private lateinit var recordAdapter: RecordAdapter
 
@@ -38,12 +38,12 @@ class RecordFragment : Fragment() {
     private fun addList() {
         recordAdapter.submitList(
             listOf(
-                RecordData(1,"06.24", 1, "10,000원", "gg"),
-                RecordData(1,"06.25", 1, "100,000원", "gg"),
-                RecordData(1,"06.26", 1, "200,000원", "gg"),
-                RecordData(1,"06.27", 1, "300,000원", "gg"),
-                RecordData(1,"06.28", 1, "500,000원", "gg"),
-                RecordData(1,"06.29", 1, "1,000,000원", "gg")
+                RecordData(1, "06.24", 1, "10,000원", "gg"),
+                RecordData(1, "06.25", 1, "100,000원", "gg"),
+                RecordData(1, "06.26", 1, "200,000원", "gg"),
+                RecordData(1, "06.27", 1, "300,000원", "gg"),
+                RecordData(1, "06.28", 1, "500,000원", "gg"),
+                RecordData(1, "06.29", 1, "1,000,000원", "gg")
             )
         )
     }

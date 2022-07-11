@@ -10,7 +10,8 @@ import com.teampome.pome.databinding.ItemRecordListBinding
 class RecordAdapter : ListAdapter<RecordData, RecordAdapter.RecordViewHolder>(DiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordViewHolder {
-        val binding = ItemRecordListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRecordListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecordViewHolder(binding)
     }
 
@@ -21,7 +22,7 @@ class RecordAdapter : ListAdapter<RecordData, RecordAdapter.RecordViewHolder>(Di
     class RecordViewHolder(
         private val binding: ItemRecordListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: RecordData){
+        fun onBind(data: RecordData) {
             binding.tvDate.text = data.date
             binding.tvAmount.text = data.amount
             binding.tvDescription.text = data.description
@@ -33,6 +34,7 @@ class RecordAdapter : ListAdapter<RecordData, RecordAdapter.RecordViewHolder>(Di
             override fun areItemsTheSame(oldItem: RecordData, newItem: RecordData): Boolean {
                 return oldItem.id == newItem.id
             }
+
             override fun areContentsTheSame(oldItem: RecordData, newItem: RecordData): Boolean {
                 return oldItem == newItem
             }
