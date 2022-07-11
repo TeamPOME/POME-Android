@@ -31,6 +31,10 @@ class RecordFragment : Fragment() {
         recordAdapter = RecordAdapter()
         binding.rvRecord.adapter = recordAdapter
         addList()
+        initDecoration()
+    }
+
+    private fun initDecoration() {
         binding.rvRecord.addItemDecoration(CustomItemDecorator(12))
         binding.rvRecord.addItemDecoration(VerticalItemDecorator(6))
     }
