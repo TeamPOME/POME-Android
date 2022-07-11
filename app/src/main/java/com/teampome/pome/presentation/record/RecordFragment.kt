@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.util.BaseFragment
@@ -20,6 +21,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
+        noGoalClickEvent()
         goLookBackActivity()
     }
 
@@ -53,5 +55,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 RecordData(1, "06.29", 1, "1,000,000원", "gg")
             )
         )
+    }
+
+    private fun noGoalClickEvent() {
+        binding.fabWrite.setOnClickListener {
+            val dialog = NoRecordDialogFragment()
+            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoRecordDialogFragment") }
+        }
     }
 }
