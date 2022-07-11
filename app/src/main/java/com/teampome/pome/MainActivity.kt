@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
         initBottomNavi()
     }
 
-    private fun initBottomNavi(){
+    private fun initBottomNavi() {
         binding.bnvMain.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_record -> {
-                   changeFragment(recordFragment)
+                    changeFragment(recordFragment)
                 }
                 R.id.menu_friends -> {
                     changeFragment(friendsFragment)
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding.bnvMain.selectedItemId = R.id.menu_record
     }
 
-    private fun changeFragment(fragment: Fragment){
+    private fun changeFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.cl_main, fragment)
