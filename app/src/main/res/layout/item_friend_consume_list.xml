@@ -16,7 +16,6 @@
         android:background="@drawable/rectangle_friendconsume"
         android:paddingHorizontal="16dp"
         android:paddingTop="16dp"
-
         android:paddingBottom="20dp">
 
         <ImageView
@@ -58,20 +57,20 @@
                 android:id="@+id/tv_frienddes"
                 style="@style/PomeM14"
                 android:layout_width="wrap_content"
-                android:maxLines="2"
-                android:maxLength="13"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:maxLength="13"
+                android:maxLines="2"
                 android:textColor="@color/pome_grey_8"
                 tools:text="정말 비싸구나~" />
 
             <TextView
                 android:id="@+id/tv_friendtag"
                 style="@style/PomeM12"
-                android:background="@drawable/round_tvtag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:background="@drawable/round_tvtag"
                 android:textColor="@color/pome_grey_5"
                 tools:text="스무디 대신 아아를 마시자" />
 
@@ -88,6 +87,33 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="7.08" />
 
+        <ImageView
+            android:id="@+id/iv_friend_firstemotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="28dp"
+            android:src="@drawable/ic_emoji_mint_sad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_frienddate" />
+
+        <ImageView
+            android:id="@+id/iv_friend_secondemotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/ic_emoji_mint_smile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_frienddate" />
+
+        <ImageView
+            android:id="@+id/im_addemotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_btn_emoji_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
