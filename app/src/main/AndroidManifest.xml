@@ -15,6 +15,9 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+            android:name=".presentation.record.GoalPlusActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.record.GoalDetailActivity"
             android:exported="false" />
         <activity
@@ -28,7 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.record.RecordLookBackActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.login.SignUpActivity"
             android:exported="false" />
