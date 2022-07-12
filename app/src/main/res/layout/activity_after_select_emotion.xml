@@ -57,8 +57,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="140dp"
-            android:background="@color/pome_white"
-            android:src="@drawable/ic_emoji_happy"
+            android:background="@drawable/happy_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_pome_ment" />
@@ -81,8 +80,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="140dp"
-            android:background="@color/pome_white"
-            android:src="@drawable/ic_emoji_oh"
+            android:background="@drawable/oh_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_happy" />
@@ -105,8 +103,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="140dp"
-            android:background="@color/pome_white"
-            android:src="@drawable/ic_emoji_sad"
+            android:background="@drawable/sad_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_oh" />
@@ -130,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:background="@drawable/rectangle_disable_round_6"
+            android:clickable="false"
             android:paddingVertical="15dp"
             android:text="@string/emotion_select"
             android:textColor="@color/pome_white"
@@ -137,6 +135,4 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
