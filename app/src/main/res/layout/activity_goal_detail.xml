@@ -18,18 +18,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/btn_close"
-        style="@style/PomeM16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="7dp"
-        android:text="닫기"
-        android:textColor="@color/pome_grey_7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tv_makegoal"
         style="@style/PomeSb20"
         android:layout_width="wrap_content"
@@ -148,9 +136,9 @@
             android:layout_marginTop="16dp"
             android:text="목표 공개 설정"
             android:textColor="@color/pome_grey_8"
+            app:layout_constraintBottom_toTopOf="@id/tv_lockquestion"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_lockquestion"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_lockquestion"
@@ -161,18 +149,18 @@
             android:text="친구들에게 이 목표를 공개할까요?"
             android:textColor="@color/pome_grey_6"
             app:layout_constraintBottom_toBottomOf="@id/cl_goallock"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:track="@drawable/selector_toggle_color"
-            app:thumbTint="@color/pome_white"
-            app:thumbTintMode="src_atop"
             android:minHeight="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:thumbTint="@color/pome_white"
+            app:thumbTintMode="src_atop"
+            app:track="@drawable/selector_toggle_color" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
