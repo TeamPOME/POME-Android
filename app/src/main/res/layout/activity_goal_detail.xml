@@ -63,4 +63,131 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_fighting" />
 
+    <EditText
+        android:id="@+id/et_goalcategory"
+        style="@style/PomeM14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle_grey_round_8"
+        android:hint="택시/건강 (5자)"
+        android:paddingVertical="17dp"
+        android:paddingStart="16dp"
+        android:textColor="@color/pome_grey_9"
+        android:textColorHint="@color/pome_grey_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_goalstart" />
+
+    <TextView
+        android:id="@+id/tv_resolution"
+        style="@style/PomeSb14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="한 줄 다짐"
+        android:textColor="@color/pome_grey_7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_goalcategory" />
+
+    <EditText
+        android:id="@+id/et_resolution"
+        style="@style/PomeM14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle_grey_round_8"
+        android:hint="걸어다니기/건강관리에는 아끼지 말자 (20자)"
+        android:paddingVertical="17dp"
+        android:paddingStart="16dp"
+        android:textColor="@color/pome_grey_9"
+        android:textColorHint="@color/pome_grey_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_resolution" />
+
+    <TextView
+        android:id="@+id/tv_goalamount"
+        style="@style/PomeSb14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="목표 금액"
+        android:textColor="@color/pome_grey_7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_resolution" />
+
+    <EditText
+        android:id="@+id/et_goalamount"
+        style="@style/PomeM14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle_grey_round_8"
+        android:hint="50,000"
+        android:paddingVertical="17dp"
+        android:paddingStart="16dp"
+        android:textColor="@color/pome_grey_9"
+        android:textColorHint="@color/pome_grey_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_goalamount" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_goallock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rectangle_lightpink_round_8"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_write"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_goallock"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="목표 공개 설정"
+            android:textColor="@color/pome_grey_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_lockquestion"/>
+
+        <TextView
+            android:id="@+id/tv_lockquestion"
+            style="@style/PomeM12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="친구들에게 이 목표를 공개할까요?"
+            android:textColor="@color/pome_grey_6"
+            app:layout_constraintBottom_toBottomOf="@id/cl_goallock"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:track="@drawable/selector_toggle_color"
+            app:thumbTint="@color/pome_white"
+            app:thumbTintMode="src_atop"
+            android:minHeight="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_write"
+        style="@style/PomeB18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/rectangle_green_round_6"
+        android:paddingVertical="15dp"
+        android:text="작성했어요"
+        android:textColor="@color/pome_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
