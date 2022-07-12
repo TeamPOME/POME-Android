@@ -2,16 +2,16 @@ package com.teampome.pome.presentation.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.kakao.sdk.common.util.Utility
-import com.teampome.pome.R
-import timber.log.Timber
+import com.teampome.pome.databinding.ActivityKakaoLoginBinding
+
 
 class KakaoLoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityKakaoLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kakao_login)
+        binding = ActivityKakaoLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val keyHash = Utility.getKeyHash(this)
-        Timber.e("Key", "keyHash: ${keyHash}")
     }
-    }
+
+}
