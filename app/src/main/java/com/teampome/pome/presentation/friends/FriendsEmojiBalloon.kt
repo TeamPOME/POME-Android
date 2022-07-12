@@ -1,10 +1,12 @@
 package com.teampome.pome.presentation.friends
 
 import android.content.Context
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import com.skydoves.balloon.*
+import com.skydoves.balloon.ArrowOrientation
+import com.skydoves.balloon.Balloon
+import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.createBalloon
 import com.teampome.pome.R
 
 class FriendsEmojiBalloon : Balloon.Factory() {
@@ -15,7 +17,7 @@ class FriendsEmojiBalloon : Balloon.Factory() {
             setArrowOrientation(ArrowOrientation.BOTTOM)
             setArrowPosition(0.5f)
             setWidthRatio(0.55f)
-            setHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+            setHeight(54)
             setCornerRadius(4f)
             setBackgroundColor(ContextCompat.getColor(context, R.color.pome_white))
             setBalloonAnimation(BalloonAnimation.CIRCULAR)

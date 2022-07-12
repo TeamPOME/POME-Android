@@ -2,6 +2,7 @@ package com.teampome.pome.presentation.friends
 
 import android.os.Bundle
 import android.view.View
+import com.skydoves.balloon.balloon
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentFriendsBinding
 import com.teampome.pome.util.BaseFragment
@@ -12,6 +13,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
     private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
+    private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -176,12 +178,19 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private fun initConsumeClick() {
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {
-            override fun onClick(data: View, position: Int) {
+            override fun onClick(data: View, position: Int, addEmoji: Boolean) {
                 //bottom sheet로 반응 나오게 하기
-                friendsBottomSheetFragment.show(
-                    childFragmentManager,
-                    friendsBottomSheetFragment.tag
-                )
+                if (!addEmoji) {
+                    if(!friendsBottomSheetFragment.isAdded)
+                    friendsBottomSheetFragment.show(
+                        childFragmentManager,
+                        friendsBottomSheetFragment.tag
+                    )
+
+                }else{
+                    friendsEmojiBalloon.showAlignBottom(data)
+                }
+
             }
         })
 

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
-import timber.log.Timber
 
 class FriendsConsumeAdapter :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(
@@ -25,12 +24,19 @@ class FriendsConsumeAdapter :
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener {
-            listener.onClick(it, position)
+            listener.onClick(it, position,false)
         }
+        holder.addEmojiButton.setOnClickListener {
+            listener.onClick(it, position, true)
+        }
+
     }
 
      class FriendsConsumeViewHolder(private val binding: ItemFriendConsumeListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+         val addEmojiButton=binding.ivAddemotion
+
         fun bind(friendsConsumeData: FriendsConsumeData) {
             binding.tvFriendname.text = friendsConsumeData.name
             binding.tvFrienddate.text = friendsConsumeData.date
@@ -57,10 +63,10 @@ class FriendsConsumeAdapter :
     }
 
     interface FriendsConsumeListInterface {
-        fun onClick(data: View, position: Int)
+        fun onClick(data: View, position: Int, addEmoji:Boolean)
     }
 
-    fun setConsumeListClickListener(listener: FriendsConsumeAdapter.FriendsConsumeListInterface) {
+    fun setConsumeListClickListener(listener: FriendsConsumeListInterface) {
         this.listener = listener
     }
 }
