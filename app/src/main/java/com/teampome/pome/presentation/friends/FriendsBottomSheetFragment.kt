@@ -1,5 +1,6 @@
 package com.teampome.pome.presentation.friends
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,9 +19,18 @@ class FriendsBottomSheetFragment: BottomSheetDialogFragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFriendsBottomSheetBinding.inflate(layoutInflater, container, false)
-
+        initSetHeight()
         return binding.root
     }
+    private fun initSetHeight(){
+        //360으로
+        val bottomSheet=binding.clWholebottomsheet
+        bottomSheet.minHeight=360
+        bottomSheet.maxHeight=360
+    }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding=null
+    }
 }
