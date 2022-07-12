@@ -15,14 +15,12 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
-<<<<<<< HEAD
             android:name=".presentation.record.GoalDetailActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.record.GoalDateActivity"
             android:exported="false" />
         <activity
-=======
             android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
             android:exported="false" />
         <activity
