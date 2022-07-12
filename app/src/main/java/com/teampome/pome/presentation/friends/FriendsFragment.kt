@@ -11,10 +11,12 @@ import com.teampome.pome.util.FriendsProfileItemDecorator
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
+    private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initConsumeAdapter()
+
         initListAdapter()
 
         //후에 서버통신 할 에정
@@ -24,6 +26,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         getFriendProfileList()
         getFriendsConsumeData()
 
+        initConsumeClick()
         addFriendsDecoration()
     }
 
@@ -172,4 +175,15 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 //        })
 //    }
 
+    private fun initConsumeClick() {
+        friendsConsumeAdapter.setConsumeListClickListener(object :
+            FriendsConsumeAdapter.FriendsConsumeListInterface {
+            override fun onClick(data: View, position: Int) {
+                //bottom sheet로 반응 나오게 하기
+               friendsBottomSheetFragment.show(childFragmentManager,friendsBottomSheetFragment.tag)
+
+            }
+        })
+
+    }
 }
