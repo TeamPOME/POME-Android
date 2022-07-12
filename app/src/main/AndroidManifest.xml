@@ -15,12 +15,20 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+<<<<<<< HEAD
             android:name=".presentation.record.GoalDetailActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.record.GoalDateActivity"
             android:exported="false" />
         <activity
+=======
+            android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
+            android:exported="false" />
+>>>>>>> develop
             android:name=".presentation.record.RecordLookBackActivity"
             android:exported="false" />
         <activity
