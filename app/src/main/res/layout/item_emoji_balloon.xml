@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp">
+
+    <ImageView
+
+        android:id="@+id/iv_react_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_emoji_mint_heart_38" />
+
+    <ImageView
+        android:id="@+id/iv_react_smile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_emoji_mint_smile_38" />
+
+    <ImageView
+        android:id="@+id/iv_react_fun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_emoji_mint_fun_38" />
+
+    <ImageView
+        android:id="@+id/iv_react_flex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_emoji_mint_flex_38" />
+
+    <ImageView
+        android:id="@+id/iv_react_what"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_emoji_mint_what_38" />
+
+    <ImageView
+        android:id="@+id/iv_react_sad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_emoji_mint_sad_38" />
+</LinearLayout>
