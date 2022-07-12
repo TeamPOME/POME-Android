@@ -102,6 +102,6 @@
             android:id="@+id/fcv_bottomsheet"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="360dp"/>
+            android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

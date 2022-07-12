@@ -11,11 +11,14 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_background.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_fun.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_happy_mint_with_background.xml" value="0.1" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_mint_flex.xml" value="0.147" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_mint_fun.xml" value="0.147" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_mint_heart.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_mint_sad.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_mint_smile.xml" value="0.1425" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_mint_what.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_pink_what_34.xml" value="0.1" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_smile_mint_34.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_empty_goal_3_d_component.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_add_24.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_profile.xml" value="0.19" />
@@ -36,7 +39,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/activity_sign_up.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/activity_sign_up_content.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_friends.xml" value="0.12" />
-        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_friends_bottom_sheet.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_friends_bottom_sheet.xml" value="0.264" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_record.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_bottom_sheet.xml" value="0.255" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_friend_consume_list.xml" value="0.264" />

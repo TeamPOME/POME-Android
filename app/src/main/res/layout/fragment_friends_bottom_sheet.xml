@@ -1,17 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="360dp"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp">
+
+    <LinearLayout
+        android:id="@+id/ly_reactbottomsheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="3dp"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_wholeemotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_all_view_emoji_34" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_fun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_fun" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_flex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_flex" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_sad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_sad" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_smile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_smile_mint_34" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_heart" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_what"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_what" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/pome_grey_2"
+        app:layout_constraintTop_toBottomOf="@id/ly_reactbottomsheet" />
+
 
     <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="30sp"
         android:id="@+id/tv_whole"
+        style="@style/PomeM12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/whole_friends" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/whole_friends"
+        android:textColor="@color/pome_grey_6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ly_reactbottomsheet" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_reactionlist"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_whole"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
