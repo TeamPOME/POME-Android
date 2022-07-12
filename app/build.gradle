@@ -5,6 +5,9 @@ plugins {
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
 }
+//kakao login
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     compileSdk 32
@@ -16,7 +19,11 @@ android {
         versionCode 1
         versionName "1.0"
 
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //kakao key
+        //buildConfigField "String", "KAKAO_APP_KEY", properties['KAKAO_APP_KEY']
     }
 
     buildTypes {
@@ -51,7 +58,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //kakaologin
-    implementation "com.kakao.sdk:v2-user:2.10.0"
+    implementation "com.kakao.sdk:v2-user:2.11.0"
 
     def lifecycle_version = "2.4.1"
     // ViewModel
