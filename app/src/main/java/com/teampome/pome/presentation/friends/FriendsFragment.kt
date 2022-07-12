@@ -181,13 +181,12 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             override fun onClick(data: View, position: Int, addEmoji: Boolean) {
                 //bottom sheet로 반응 나오게 하기
                 if (!addEmoji) {
-                    if(!friendsBottomSheetFragment.isAdded)
-                    friendsBottomSheetFragment.show(
-                        childFragmentManager,
-                        friendsBottomSheetFragment.tag
-                    )
-
-                }else{
+                    if (!friendsBottomSheetFragment.isAdded)
+                        friendsBottomSheetFragment.show(
+                            childFragmentManager,
+                            friendsBottomSheetFragment.tag
+                        )
+                } else {
                     friendsEmojiBalloon.showAlignBottom(data)
                 }
 
