@@ -38,8 +38,8 @@
         <entry key="app/src/main/res/layout/activity_after_complete_emotion.xml" value="0.45411818863509534" />
         <entry key="app/src/main/res/layout/activity_after_select_emotion.xml" value="0.23224639892578125" />
         <entry key="app/src/main/res/layout/activity_friend_add.xml" value="0.15715579710144928" />
-        <entry key="app/src/main/res/layout/activity_kakao_login.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.9243578510899697" />
+        <entry key="app/src/main/res/layout/activity_kakao_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31645507812500007" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.15522155761718748" />
         <entry key="app/src/main/res/layout/activity_sign_up_content.xml" value="0.2633326400945216" />
         <entry key="app/src/main/res/layout/fragment_record.xml" value="0.24365942028985507" />
