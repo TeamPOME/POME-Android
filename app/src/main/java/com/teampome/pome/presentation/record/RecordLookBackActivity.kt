@@ -17,7 +17,7 @@ class RecordLookBackActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initAdapter()
-        initBackClick()
+        goBack()
     }
 
     private fun initAdapter(){
@@ -45,7 +45,7 @@ class RecordLookBackActivity : AppCompatActivity() {
         )
     }
 
-    private fun initBackClick() {
+    private fun goBack() {
         binding.btnBack.setOnClickListener {
             finish()
         }
