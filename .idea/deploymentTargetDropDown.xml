@@ -8,10 +8,13 @@
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
             <value value="$USER_HOME$/.android/avd/PomeAndroid.avd" />
+
+            <value value="C:\Users\82103\.android\avd\new_device_API_28.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
     <timeTargetWasSelectedWithDropDown value="2022-07-10T16:10:41.374155Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-07-11T08:31:45.324461700Z" />
   </component>
 </project>

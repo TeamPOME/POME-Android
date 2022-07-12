@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.teampome.pome.databinding.ActivityMainBinding
+import com.teampome.pome.presentation.friends.FriendsFragment
 import com.teampome.pome.presentation.record.RecordFragment
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val recordFragment by lazy { RecordFragment() }
+    private val friendsFragment by lazy { FriendsFragment() }
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +21,14 @@ class MainActivity : AppCompatActivity() {
         initBottomNavi()
     }
 
-    private fun initBottomNavi(){
+    private fun initBottomNavi() {
         binding.bnvMain.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_record -> {
-                   changeFragment(recordFragment)
+                    changeFragment(recordFragment)
+                }
+                R.id.menu_friends -> {
+                    changeFragment(friendsFragment)
                 }
             }
             true
@@ -31,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding.bnvMain.selectedItemId = R.id.menu_record
     }
 
-    private fun changeFragment(fragment: Fragment){
+    private fun changeFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.cl_main, fragment)

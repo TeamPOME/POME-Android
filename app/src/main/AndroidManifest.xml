@@ -19,7 +19,10 @@
             android:exported="false" />
         <activity
             android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
-            android:exported="true" />
+            android:exported="false" />
+            android:name=".presentation.record.RecordLookBackActivity"
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".presentation.login.SignUpActivity"
             android:exported="false" />
