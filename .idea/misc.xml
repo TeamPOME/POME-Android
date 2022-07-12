@@ -7,14 +7,17 @@
         <entry key="app/src/main/res/drawable/background.xml" value="0.1700592041015625" />
         <entry key="app/src/main/res/drawable/cursor_custom.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/emotion_select_background.xml" value="0.2185" />
+        <entry key="app/src/main/res/drawable/happy_icon.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/ic__d_trash_green_100.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_add_complete.xml" value="0.202" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/ic_click_emoji_happy.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_click_emoji_sad.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.111" />
+        <entry key="app/src/main/res/drawable/ic_emoji_background.xml" value="0.16" />
         <entry key="app/src/main/res/drawable/ic_emoji_happy.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_emoji_nor_110__5_.xml" value="0.1235" />
+        <entry key="app/src/main/res/drawable/ic_emoji_oh.xml" value="0.16" />
         <entry key="app/src/main/res/drawable/ic_emotion_happy.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_empty_goal_3_d_component.xml" value="0.109" />
         <entry key="app/src/main/res/drawable/ic_ex3d.xml" value="0.1235" />
@@ -22,16 +25,18 @@
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1955" />
         <entry key="app/src/main/res/drawable/ic_smile_mint.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/iconbackground.xml" value="0.118" />
+        <entry key="app/src/main/res/drawable/oh_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rectangle_disable_round_6.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/rectangle_green_round_6.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.228" />
         <entry key="app/src/main/res/drawable/rectangle_grey_round_8.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/rectangle_white_round_6.xml" value="0.1375" />
+        <entry key="app/src/main/res/drawable/sad_icon.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shadow.xml" value="0.4303760986328125" />
         <entry key="app/src/main/res/font/pretendard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_add_friend.xml" value="0.30431976318359377" />
-        <entry key="app/src/main/res/layout/activity_after_complete_emotion.xml" value="0.3111799562132203" />
-        <entry key="app/src/main/res/layout/activity_after_select_emotion.xml" value="0.34856692665501643" />
+        <entry key="app/src/main/res/layout/activity_after_complete_emotion.xml" value="0.45411818863509534" />
+        <entry key="app/src/main/res/layout/activity_after_select_emotion.xml" value="0.23224639892578125" />
         <entry key="app/src/main/res/layout/activity_friend_add.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.9243578510899697" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.15522155761718748" />
@@ -43,9 +48,6 @@
         <entry key="app/src/main/res/menu/menu.xml" value="0.3098958333333333" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/emoji_background.svg" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
