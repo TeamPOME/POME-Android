@@ -100,8 +100,8 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_bottomsheet"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

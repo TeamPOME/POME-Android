@@ -38,9 +38,6 @@ class FriendsConsumeAdapter :
             binding.tvFriendprice.text = friendsConsumeData.price
             binding.tvFriendtag.text = friendsConsumeData.tag
             //프로필 이미지, 반응들, 처음감정과 나중감정
-
-
-
         }
     }
 
@@ -56,7 +53,6 @@ class FriendsConsumeAdapter :
                 oldItem: FriendsConsumeData,
                 newItem: FriendsConsumeData
             ): Boolean = oldItem == newItem
-
         }
     }
 
@@ -67,6 +63,4 @@ class FriendsConsumeAdapter :
     fun setConsumeListClickListener(listener: FriendsConsumeAdapter.FriendsConsumeListInterface) {
         this.listener = listener
     }
-
-
 }

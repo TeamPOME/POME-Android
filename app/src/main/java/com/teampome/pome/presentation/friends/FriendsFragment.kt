@@ -22,7 +22,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         //후에 서버통신 할 에정
         initWholeData()
 
-
         getFriendProfileList()
         getFriendsConsumeData()
 
@@ -36,7 +35,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter()
         binding.rcvFriendsconsumelist.adapter = friendsConsumeAdapter
-
     }
 
     private fun initListAdapter() {
@@ -180,8 +178,10 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             FriendsConsumeAdapter.FriendsConsumeListInterface {
             override fun onClick(data: View, position: Int) {
                 //bottom sheet로 반응 나오게 하기
-               friendsBottomSheetFragment.show(childFragmentManager,friendsBottomSheetFragment.tag)
-
+                friendsBottomSheetFragment.show(
+                    childFragmentManager,
+                    friendsBottomSheetFragment.tag
+                )
             }
         })
 
