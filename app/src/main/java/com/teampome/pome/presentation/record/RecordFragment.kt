@@ -2,11 +2,7 @@ package com.teampome.pome.presentation.record
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.util.BaseFragment

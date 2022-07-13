@@ -58,6 +58,7 @@
             app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_goal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="1dp"
@@ -75,70 +76,6 @@
                     android:fontFamily="@font/pretendard"
                     android:includeFontPadding="false"
                     android:text="아메리카노"
-                    android:textColor="@color/selector_chip_text_color"
-                    android:textFontWeight="700"
-                    android:textSize="14sp"
-                    app:chipBackgroundColor="@color/selector_chip_background_color"
-                    app:chipMinHeight="33dp"
-                    app:chipStrokeColor="@null"
-                    app:rippleColor="@null" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_2"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:fontFamily="@font/pretendard"
-                    android:text="술"
-                    android:textColor="@color/selector_chip_text_color"
-                    android:textFontWeight="700"
-                    android:textSize="14sp"
-                    app:chipBackgroundColor="@color/selector_chip_background_color"
-                    app:chipMinHeight="33dp"
-                    app:chipStrokeColor="@null"
-                    app:rippleColor="@null" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_3"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:fontFamily="@font/pretendard"
-                    android:text="여행"
-                    android:textColor="@color/selector_chip_text_color"
-                    android:textFontWeight="700"
-                    android:textSize="14sp"
-                    app:chipBackgroundColor="@color/selector_chip_background_color"
-                    app:chipMinHeight="33dp"
-                    app:chipStrokeColor="@null"
-                    app:rippleColor="@null" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_4"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:fontFamily="@font/pretendard"
-                    android:text="화장품"
-                    android:textColor="@color/selector_chip_text_color"
-                    android:textFontWeight="700"
-                    android:textSize="14sp"
-                    app:chipBackgroundColor="@color/selector_chip_background_color"
-                    app:chipMinHeight="33dp"
-                    app:chipStrokeColor="@null"
-                    app:rippleColor="@null" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_5"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:fontFamily="@font/pretendard"
-                    android:text="가보자고"
                     android:textColor="@color/selector_chip_text_color"
                     android:textFontWeight="700"
                     android:textSize="14sp"
@@ -404,7 +341,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="102dp"
                         android:src="@drawable/ic_nothing"
-                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -417,7 +353,6 @@
                         android:layout_marginTop="12dp"
                         android:text="기록된 씀씀이가 없어요"
                         android:textColor="@color/pome_grey_5"
-                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/iv_nothing" />
@@ -428,6 +363,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="12dp"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
