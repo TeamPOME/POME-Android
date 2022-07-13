@@ -15,6 +15,12 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+            android:name=".RecordAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.record.screens.RecordWriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.record.screens.GoalAddActivity"
             android:exported="false" />
         <activity
@@ -64,7 +70,6 @@
         <activity
             android:name=".presentation.login.screens.AddFriendActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
