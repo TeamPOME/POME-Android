@@ -12,6 +12,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private lateinit var remindConsumeAdapter: RemindConsumeAdapter
     private val firstBottomSheet = RemindFirstBottomSheetFragment()
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
+    private val remindList = mutableListOf<FriendsConsumeData>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,6 +23,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
         initClickFirstEmotion()
         initClickSecondEmotion()
+        initClickReset()
     }
 
     private fun initAdapterDecoration() {
@@ -128,6 +130,12 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 secondBottomSheet.show(
                     childFragmentManager, secondBottomSheet.tag
                 )
+        }
+    }
+
+    private fun initClickReset() {
+        binding.ivReset.setOnClickListener {
+            //서버통신할 때 submitList로  다시 reset
         }
     }
 }
