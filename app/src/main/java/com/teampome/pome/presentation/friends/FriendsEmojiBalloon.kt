@@ -2,13 +2,16 @@ package com.teampome.pome.presentation.friends
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
 import com.skydoves.balloon.overlay.BalloonOverlayRoundRect
 import com.teampome.pome.R
+import com.teampome.pome.databinding.ItemEmojiBalloonBinding
 
 class FriendsEmojiBalloon : Balloon.Factory() {
     @SuppressLint("ResourceAsColor")
@@ -25,5 +28,4 @@ class FriendsEmojiBalloon : Balloon.Factory() {
             setOverlayColor(R.color.pome_grey_2)
         }
     }
-
 }
