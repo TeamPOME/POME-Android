@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityGoalDateBinding
 
@@ -17,12 +18,20 @@ class GoalDateActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         goBack()
+        calendarClickEvent()
         goGoalDetailActivity()
     }
 
     private fun goBack() {
         binding.btnBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun calendarClickEvent() {
+        binding.btnStartcalendar.setOnClickListener {
+            val bottomSheet = CalendarBottomSheet()
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }
 
