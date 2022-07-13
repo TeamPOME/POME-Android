@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.friends
+package com.teampome.pome.presentation.friends.screens
 
 import android.annotation.SuppressLint
 import android.content.Context

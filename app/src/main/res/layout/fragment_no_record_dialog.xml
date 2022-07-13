@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/inset_dialog_background"
-        tools:context=".presentation.record.NoRecordDialogFragment">
+        tools:context=".presentation.record.screens.NoRecordDialogFragment">
 
         <ImageButton
             android:id="@+id/btn_cancel"

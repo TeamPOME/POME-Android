@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.login
+package com.teampome.pome.presentation.login.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

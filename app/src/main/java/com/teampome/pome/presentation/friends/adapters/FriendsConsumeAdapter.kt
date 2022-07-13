@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.friends
+package com.teampome.pome.presentation.friends.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
+import com.teampome.pome.presentation.friends.FriendsConsumeData
 
 class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(

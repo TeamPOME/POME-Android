@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".PomeApp"
+        android:name=".application.PomeApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
-            android:name=".presentation.login.KakaoLoginActivity"
+            android:name=".presentation.login.screens.KakaoLoginActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
@@ -24,16 +24,16 @@
             android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.record.RecordLookBackActivity"
+            android:name=".presentation.record.screens.RecordLookBackActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.login.SignUpActivity"
+            android:name=".presentation.login.screens.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.login.SignUpContentActivity"
+            android:name=".presentation.login.screens.SignUpContentActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +53,7 @@
         </provider>
 
         <activity
-            android:name=".presentation.login.AddFriendActivity"
+            android:name=".presentation.login.screens.AddFriendActivity"
             android:exported="false" />
 
     </application>

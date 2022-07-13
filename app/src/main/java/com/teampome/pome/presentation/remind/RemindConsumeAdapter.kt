@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.databinding.ItemRemindConsumeBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
-import com.teampome.pome.presentation.friends.FriendsProfileAdapter
 
 class RemindConsumeAdapter :
     ListAdapter<FriendsConsumeData, RemindConsumeAdapter.RemindConsumeViewHolder>(

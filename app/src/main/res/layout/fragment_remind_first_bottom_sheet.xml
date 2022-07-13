@@ -7,7 +7,7 @@
     android:layout_height="259dp"
     android:paddingHorizontal="20dp"
     android:paddingTop="20dp"
-    tools:context=".presentation.remind.RemindFirstBottomSheetFragment">
+    tools:context=".presentation.remind.screens.RemindFirstBottomSheetFragment">
 
 
     <TextView

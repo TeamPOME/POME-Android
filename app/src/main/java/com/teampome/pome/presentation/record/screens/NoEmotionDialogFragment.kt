@@ -1,29 +1,28 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.teampome.pome.R
-import com.teampome.pome.databinding.FragmentNoRecordDialogBinding
+import com.teampome.pome.databinding.FragmentNoEmotionDialogBinding
 
-class NoRecordDialogFragment : DialogFragment() {
+class NoEmotionDialogFragment : DialogFragment() {
 
-    private var _binding: FragmentNoRecordDialogBinding? = null
+    private var _binding: FragmentNoEmotionDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNoRecordDialogBinding.inflate(layoutInflater, container, false)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        _binding = FragmentNoEmotionDialogBinding.inflate(layoutInflater, container, false)
         cancelDialog()
-        return binding.root    }
+        return binding.root
+    }
 
     private fun cancelDialog() {
         binding.btnCancel.setOnClickListener {

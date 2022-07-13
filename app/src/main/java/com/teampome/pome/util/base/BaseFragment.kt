@@ -1,4 +1,4 @@
-package com.teampome.pome.util
+package com.teampome.pome.util.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

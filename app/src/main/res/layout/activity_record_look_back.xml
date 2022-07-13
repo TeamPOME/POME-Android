@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/pome_grey_0"
         android:paddingHorizontal="16dp"
-        tools:context=".presentation.record.RecordLookBackActivity">
+        tools:context=".presentation.record.screens.RecordLookBackActivity">
 
         <ImageButton
             android:id="@+id/btn_back"

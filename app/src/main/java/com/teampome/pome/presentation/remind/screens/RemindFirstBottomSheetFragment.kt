@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.remind
+package com.teampome.pome.presentation.remind.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater

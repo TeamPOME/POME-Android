@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.remind
+package com.teampome.pome.presentation.remind.screens
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,8 +7,9 @@ import com.google.android.material.chip.Chip
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
-import com.teampome.pome.util.BaseFragment
-import com.teampome.pome.util.FriendsConsumeItemDecorator
+import com.teampome.pome.presentation.remind.RemindConsumeAdapter
+import com.teampome.pome.util.base.BaseFragment
+import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 
 class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_remind) {
     private lateinit var remindConsumeAdapter: RemindConsumeAdapter
