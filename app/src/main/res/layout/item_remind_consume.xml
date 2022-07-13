@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="157dp"
+    android:padding="20dp">
+
+    <TextView
+        style="@style/PomeM12"
+        android:textColor="@color/pome_grey_5"
+        android:id="@+id/tv_remind_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_tvtag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="커피 대신 물을 마시자" />
+
+    <TextView
+        android:id="@+id/tv_remind_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        style="@style/PomeSb18"
+        android:textColor="@color/pome_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remind_tag"
+        tools:text="320,000원" />
+
+    <TextView
+        android:id="@+id/tv_remind_content"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:maxLength="13"
+        android:maxLines="2"
+        style="@style/PomeM14"
+        android:textColor="@color/pome_grey_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remind_price"
+        tools:text="와ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ" />
+
+    <TextView
+        android:id="@+id/tv_remind_date"
+        style="@style/PomeM12"
+        android:textColor="@color/pome_grey_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1시간전" />
+
+
+    <ImageView
+        android:id="@+id/iv_first_emotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/ic_emoji_mint_sad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remind_date" />
+
+    <ImageView
+        android:id="@+id/iv_second_emotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_emoji_sad_pink_34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remind_date" />
+
+    <ImageView
+        android:src="@drawable/ic_emoji_smile_mint_28"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

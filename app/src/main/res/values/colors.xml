@@ -19,6 +19,7 @@
     <color name="pome_red">#fb5e5e</color>
     <color name="pome_sub">#ff908a</color>
     <color name="pome_grey_0">#f8fafb</color>
+    <color name="pome_black">#000000</color>
     <color name="pome_white">#ffffff</color>
     <color name="pome_disabled_mint">#b0efbc</color>
     <color name="pome_main">#7be48f</color>
