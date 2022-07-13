@@ -7,14 +7,12 @@
 
     </data>
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="17dp"
+        android:background="@color/pome_grey_0"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="17dp"
         tools:context=".ui.main.remind.RemindFragment">
 
         <ImageView
@@ -39,6 +37,8 @@
             android:id="@+id/cl_goal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/goal_custom"
             app:layout_constraintTop_toBottomOf="@id/rv_goals">
 
             <ImageView
@@ -51,21 +51,26 @@
 
             <TextView
                 android:id="@+id/tv_goal"
+                style="@style/PomeB16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:textColor="@color/pome_grey_8"
+                app:layout_constraintBottom_toBottomOf="@id/iv_lock_check"
                 app:layout_constraintStart_toEndOf="@id/iv_lock_check"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_lock_check"
                 tools:text="술은 하루에 얼만큼만 마시려 " />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_remind_h1"
+            style="@style/PomeB18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:text="@string/remind_h1"
+            android:textColor="@color/pome_grey_9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_goal" />
 
@@ -76,28 +81,28 @@
             android:layout_marginTop="13dp"
             app:layout_constraintTop_toBottomOf="@id/tv_remind_h1">
 
-            <TextView
-                android:id="@+id/tv_first_emotion"
+            <ImageView
+                android:id="@+id/iv_first_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/remind_firstemotion"
+                android:src="@drawable/ic_first_emotion_filter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_second_emotion"
+            <ImageView
+                android:id="@+id/iv_second_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="@string/remind_secondemotion"
-                app:layout_constraintStart_toEndOf="@id/tv_first_emotion"
+                android:src="@drawable/ic_second_emotion_filter"
+                app:layout_constraintStart_toEndOf="@id/iv_first_emotion"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_reset"
+            <ImageView
+                android:id="@+id/iv_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="초기화"
+                android:src="@drawable/ic_filter_reset"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

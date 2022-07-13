@@ -7,6 +7,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/balloon_custom.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/bottomsheet_round.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/cursor_custom.xml" value="0.1035" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/goal_custom.xml" value="0.1715" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/happy_icon.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_add_complete.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_alarm_off.xml" value="0.1" />
@@ -27,6 +28,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_emoji_smile_mint_34.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_empty_goal_3_d_component.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_ex3d.xml" value="0.1" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_filter_reset.xml" value="0.1715" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_add.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_add_24.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_friend_profile.xml" value="0.19" />
@@ -39,6 +41,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_plus.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_plus_with_background.xml" value="0.1475" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_profile_empty.xml" value="0.1035" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/ic_second_emotion_filter.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/rectangle_friendconsume.xml" value="0.2255" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/rectangle_green_round_6.xml" value="0.2265" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.2265" />
@@ -55,7 +58,7 @@
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_no_emotion_dialog.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_no_record_dialog.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_record.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_remind.xml" value="0.264" />
+        <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/fragment_remind.xml" value="0.2" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_bottom_sheet.xml" value="0.255" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_emoji_balloon.xml" value="0.264" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/layout/item_friend_consume_list.xml" value="0.264" />
