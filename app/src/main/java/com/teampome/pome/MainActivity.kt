@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import com.teampome.pome.databinding.ActivityMainBinding
 import com.teampome.pome.presentation.friends.FriendsFragment
 import com.teampome.pome.presentation.record.RecordFragment
+import com.teampome.pome.presentation.remind.RemindFragment
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private val recordFragment by lazy { RecordFragment() }
     private val friendsFragment by lazy { FriendsFragment() }
+    private val remindFragment by lazy { RemindFragment() }
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +31,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_friends -> {
                     changeFragment(friendsFragment)
+                }
+                R.id.menu_remind -> {
+                    changeFragment(remindFragment)
                 }
             }
             true
