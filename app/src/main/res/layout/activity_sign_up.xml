@@ -115,7 +115,7 @@
             android:layout_marginBottom="15dp"
             android:backgroundTint="@{viewModel.vaildNickname ? @color/pome_main : @color/pome_disabled_mint}"
             android:onClick="@{() -> viewModel.signUp()}"
-            android:paddingVertical="16dp"
+            android:paddingVertical="20dp"
             android:text="@string/finish"
             android:textColor="@color/pome_white"
             app:layout_constraintBottom_toBottomOf="parent"
