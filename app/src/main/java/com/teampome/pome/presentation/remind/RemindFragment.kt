@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.teampome.pome.R
+import com.teampome.pome.databinding.FragmentRemindBinding
+import com.teampome.pome.util.BaseFragment
 
-class RemindFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_remind, container, false)
+class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_remind) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }
