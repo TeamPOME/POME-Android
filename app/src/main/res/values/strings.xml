@@ -25,7 +25,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-<!--    FriendsFragment-->
+    <!--    FriendsFragment-->
     <string name="cheer_friends">친구 응원하기</string>
     <string name="whole_friends">전체</string>
     <string name="empty_friends">아직 추가한 친구가 없어요</string>
