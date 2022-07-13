@@ -24,14 +24,131 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_goals"
+        <HorizontalScrollView
+            android:id="@+id/hsv_goals"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/iv_alarm" />
+            android:scrollbars="none"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_alarm">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_goals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:checkedChip="@id/chip_1"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_1"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="true"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:includeFontPadding="false"-->
+<!--                    android:text="아메리카노"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_2"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="false"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:text="술"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    android:textFontWeight="700"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_3"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="false"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:text="여행"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    android:textFontWeight="700"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_4"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="false"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:text="화장품"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_5"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="false"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:text="가보자고"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_6"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="false"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:text="화장품"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_7"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:checked="false"-->
+<!--                    android:fontFamily="@font/pretendard"-->
+<!--                    android:text="가보자고"-->
+<!--                    android:textColor="@color/selector_chip_text_color"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:chipBackgroundColor="@color/selector_chip_background_color"-->
+<!--                    app:chipMinHeight="33dp"-->
+<!--                    app:chipStrokeColor="@null"-->
+<!--                    app:rippleColor="@null" />-->
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_goal"
@@ -39,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/goal_custom"
-            app:layout_constraintTop_toBottomOf="@id/rv_goals">
+            app:layout_constraintTop_toBottomOf="@id/hsv_goals">
 
             <ImageView
                 android:id="@+id/iv_lock_check"
