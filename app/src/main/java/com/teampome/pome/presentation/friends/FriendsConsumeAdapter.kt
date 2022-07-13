@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
-import timber.log.Timber
 
 class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(
         DIFFUTIL
-    ){
+    ) {
 
     private lateinit var listener: FriendsConsumeListInterface
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsConsumeViewHolder {
@@ -34,8 +33,10 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
         holder.setEmoji(getEmojiPosition())
     }
 
-    class FriendsConsumeViewHolder(private val binding: ItemFriendConsumeListBinding,
-    private val  emojiClick: (Int) -> (Unit)) :
+    class FriendsConsumeViewHolder(
+        private val binding: ItemFriendConsumeListBinding,
+        private val emojiClick: (Int) -> (Unit)
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         val addEmojiButton = binding.ivAddemotion
@@ -47,12 +48,11 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
             binding.tvFriendprice.text = friendsConsumeData.price
             binding.tvFriendtag.text = friendsConsumeData.tag
             //프로필 이미지, 반응들, 처음감정과 나중감정
-
         }
 
-        fun setEmoji(position:Int){
-            when(position){
-                0->{
+        fun setEmoji(position: Int) {
+            when (position) {
+                0 -> {
                     binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_happy_mint_28)
                 }
                 1 -> {
@@ -106,4 +106,4 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
     }//받은 값을 설정
 
     fun getEmojiPosition(): Int = emoji_position
-    }
+}

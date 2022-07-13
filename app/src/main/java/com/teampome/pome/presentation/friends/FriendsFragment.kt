@@ -33,9 +33,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     }
 
-    // 친구 프로필 리스트와 소비 리스트 한번에 보이고 안보이게
-
-
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter {
             addEmoji()
@@ -210,15 +207,12 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                             childFragmentManager,
                             friendsBottomSheetFragment.tag
                         )
-
                 } else {
                     friendsEmojiBalloon.showAlignBottom(data)
 
                     friendsEmojiBalloon.dismiss()
                 }
-
             }
         })
-
     }
 }

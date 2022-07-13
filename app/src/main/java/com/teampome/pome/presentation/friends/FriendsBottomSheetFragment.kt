@@ -20,7 +20,8 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         initSetHeight()
         return binding.root
     }
-    private fun initSetHeight(){
+
+    private fun initSetHeight() {
         //360으로
         val bottomSheet = binding.clWholebottomsheet
         bottomSheet.minHeight = 360
