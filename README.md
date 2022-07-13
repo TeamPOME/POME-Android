@@ -22,10 +22,20 @@
 <br>
 
 ## 📂 폴더링 구조
->
->
->
->
+
+         ┣ 📂application
+         ┣ 📂util
+         ┣ 📂network
+         ┣ 📂data ┣ 📂local
+                  ┗ 📂remote
+         ┣ 📂presentation
+            ┣ 📂main
+            ┣ 📂login ┣ 📂adapters
+                      ┣ 📂screens
+                      ┗ 📂viewmodels
+            ┣ 📂friends
+            ┣ 📂mypage
+            ┗ 📂record
 
 
 <br>
