@@ -1,16 +1,14 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentGoalLimitDialogBinding

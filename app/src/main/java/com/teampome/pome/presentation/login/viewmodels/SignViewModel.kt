@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.login
+package com.teampome.pome.presentation.login.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

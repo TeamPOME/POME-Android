@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/pome_grey_0"
         android:paddingTop="16dp"
-        tools:context=".presentation.friends.FriendsFragment">
+        tools:context=".presentation.friends.screens.FriendsFragment">
 
         <ImageView
             android:id="@+id/iv_plusfriend"

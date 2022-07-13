@@ -1,13 +1,15 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
-import com.teampome.pome.util.BaseFragment
-import com.teampome.pome.util.CustomItemDecorator
-import com.teampome.pome.util.VerticalItemDecorator
+import com.teampome.pome.presentation.record.RecordAdapter
+import com.teampome.pome.presentation.record.RecordData
+import com.teampome.pome.util.base.BaseFragment
+import com.teampome.pome.util.decorate.CustomItemDecorator
+import com.teampome.pome.util.decorate.VerticalItemDecorator
 
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 

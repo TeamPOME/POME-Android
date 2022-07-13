@@ -1,12 +1,13 @@
-package com.teampome.pome.presentation.friends
+package com.teampome.pome.presentation.friends.screens
 
 import android.os.Bundle
 import android.view.View
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentFriendsBinding
-import com.teampome.pome.util.BaseFragment
-import com.teampome.pome.util.FriendsConsumeItemDecorator
-import com.teampome.pome.util.FriendsProfileItemDecorator
+import com.teampome.pome.presentation.friends.*
+import com.teampome.pome.util.base.BaseFragment
+import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
+import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
 
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter

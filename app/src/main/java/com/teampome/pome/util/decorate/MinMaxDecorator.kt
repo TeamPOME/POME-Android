@@ -1,4 +1,4 @@
-package com.teampome.pome.util
+package com.teampome.pome.util.decorate
 
 import android.graphics.Color
 import android.text.style.ForegroundColorSpan

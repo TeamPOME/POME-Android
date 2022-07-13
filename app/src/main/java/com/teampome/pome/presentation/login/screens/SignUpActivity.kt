@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.login
+package com.teampome.pome.presentation.login.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import coil.load
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivitySignUpBinding
+import com.teampome.pome.presentation.login.viewmodels.SignViewModel
 import timber.log.Timber
 
 class SignUpActivity : AppCompatActivity() {

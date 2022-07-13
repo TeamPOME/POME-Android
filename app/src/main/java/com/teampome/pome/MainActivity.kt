@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.teampome.pome.databinding.ActivityMainBinding
-import com.teampome.pome.presentation.friends.FriendsFragment
-import com.teampome.pome.presentation.record.RecordFragment
-import timber.log.Timber
+import com.teampome.pome.presentation.friends.screens.FriendsFragment
+import com.teampome.pome.presentation.record.screens.RecordFragment
 
 class MainActivity : AppCompatActivity() {
     private val recordFragment by lazy { RecordFragment() }

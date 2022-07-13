@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
 import android.content.Intent
 import android.os.Bundle

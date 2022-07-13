@@ -1,12 +1,11 @@
-package com.teampome.pome.presentation.login
+package com.teampome.pome.presentation.login.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityAddFriendBinding
-import com.teampome.pome.databinding.ActivitySignUpBinding
-import com.teampome.pome.databinding.ActivitySignUpContentBinding
+import com.teampome.pome.presentation.login.AddFriendAdapter
+import com.teampome.pome.presentation.login.AddFriendData
 
 class AddFriendActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddFriendBinding

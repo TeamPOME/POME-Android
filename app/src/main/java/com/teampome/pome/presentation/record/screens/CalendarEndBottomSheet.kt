@@ -1,31 +1,30 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter
 import com.teampome.pome.R
-import com.teampome.pome.databinding.FragmentCalendarStartBottomSheetBinding
-import com.teampome.pome.util.MinMaxDecorator
-import com.teampome.pome.util.TodayDecorator
+import com.teampome.pome.databinding.FragmentCalendarEndBottomSheetBinding
+import com.teampome.pome.util.decorate.MinMaxDecorator
+import com.teampome.pome.util.decorate.TodayDecorator
+import timber.log.Timber
 import java.util.*
 
-class CalendarStartBottomSheet : BottomSheetDialogFragment(){
+class CalendarEndBottomSheet : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentCalendarStartBottomSheetBinding? = null
+    private var _binding: FragmentCalendarEndBottomSheetBinding? = null
     private val binding get() = _binding!!
     private var mOnClickListener: OnClickListener? = null
 
     interface OnClickListener {
-        fun onReceiveStartData(name: String)
+        fun onReceiveEndData(name: String)
     }
 
     override fun onAttach(context: Context) {
@@ -37,7 +36,7 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCalendarStartBottomSheetBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentCalendarEndBottomSheetBinding.inflate(layoutInflater, container,false)
         calendarSetting()
         choiceDate()
         return binding.root
@@ -49,7 +48,10 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment(){
     }
 
     private fun calendarSetting() {
-        binding.mcCalendar.selectedDate = CalendarDay.today()
+        //시작일 받아오는 로직 추가하기..
+        val startDate = arguments?.getString("date123")
+        Timber.d("startDate $startDate")
+        binding.mcCalendar.selectedDate = CalendarDay.from(2022, 7-1,27)
         val startTimeCalendar = Calendar.getInstance()
         val endTimeCalendar = Calendar.getInstance()
 
@@ -79,7 +81,11 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment(){
         binding.mcCalendar.setWeekDayFormatter(ArrayWeekDayFormatter(resources.getTextArray(R.array.custom_weekdays)))
 
         val stCalendarDay = CalendarDay.from(currentYear, currentMonth, currentDate)
-        val enCalendarDay = CalendarDay.from(endTimeCalendar.get(Calendar.YEAR), endTimeCalendar.get(Calendar.MONTH), endTimeCalendar.get(Calendar.DATE))
+        val enCalendarDay = CalendarDay.from(
+            endTimeCalendar.get(Calendar.YEAR),
+            endTimeCalendar.get(Calendar.MONTH),
+            endTimeCalendar.get(Calendar.DATE)
+        )
 
         val minMaxDecorator = MinMaxDecorator(stCalendarDay, enCalendarDay)
         val todayDecorator = TodayDecorator(requireContext())
@@ -94,7 +100,7 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment(){
             } else {
                 "${date.year}.${date.month+1}.${date.day}"
             }
-            mOnClickListener?.onReceiveStartData(choiceDate)
+            mOnClickListener?.onReceiveEndData(choiceDate)
             dismiss()
         }
     }
@@ -104,4 +110,3 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment(){
         _binding = null
     }
 }
-

@@ -1,9 +1,8 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityGoalDetailBinding
 
 class GoalDetailActivity : AppCompatActivity() {

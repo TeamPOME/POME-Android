@@ -1,4 +1,4 @@
-package com.teampome.pome
+package com.teampome.pome.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

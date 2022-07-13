@@ -1,15 +1,14 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
-import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityGoalDateBinding
 import com.teampome.pome.util.setVisibility
 import timber.log.Timber
 
-class GoalDateActivity : AppCompatActivity(), CalendarStartBottomSheet.OnClickListener, CalendarEndBottomSheet.OnClickListener {
+class GoalDateActivity : AppCompatActivity(), CalendarStartBottomSheet.OnClickListener,
+    CalendarEndBottomSheet.OnClickListener {
 
     private lateinit var binding: ActivityGoalDateBinding
 
