@@ -27,6 +27,15 @@
     <string name="whole_friends">전체</string>
     <string name="empty_friends">아직 추가한 친구가 없어요</string>
 
+    <!--   RemindFragment -->
+    <string name="remind_h1">씀씀이 돌아보기</string>
+    <string name="remind_h2">일주일 전후 감정변화를 비교해 보세요</string>
+    <string name="remind_firstemotion">처음 감정</string>
+    <string name="remind_secondemotion">돌아본 감정</string>
+    <string name="remind_nogoal_msg">아직 추가된 목표가 없어요</string>
+    <string name="remind_nogoal">ㅡ</string>
+    <string name="reminid_nogoal_ment">아직 돌아본 씀씀이가 없어요</string>
+
     <string-array name="custom_weekdays">
         <item>일</item>
         <item>월</item>

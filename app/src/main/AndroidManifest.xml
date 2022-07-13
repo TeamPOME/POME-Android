@@ -24,6 +24,7 @@
             android:name=".presentation.record.screens.GoalDateActivity"
             android:exported="false" />
         <activity
+
             android:name=".presentation.login.screens.KakaoLoginActivity"
             android:exported="false" />
         <activity

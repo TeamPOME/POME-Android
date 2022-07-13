@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pome_grey_0"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="17dp"
+        tools:context=".ui.main.remind.RemindFragment">
+
+        <ImageView
+            android:id="@+id/iv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_alarm_off"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
+            android:id="@+id/hsv_goals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/iv_alarm">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_goals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:checkedChip="@id/chip_1"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_nogoal"
+                    android:visibility="invisible"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:fontFamily="@font/pretendard"
+                    android:includeFontPadding="false"
+                    android:text="@string/remind_nogoal"
+                    android:textColor="@color/selector_chip_text_color"
+                    app:chipBackgroundColor="@color/selector_chip_background_color"
+                    app:chipMinHeight="33dp"
+                    app:chipStrokeColor="@null"
+                    app:rippleColor="@null" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/goal_custom"
+            app:layout_constraintTop_toBottomOf="@id/hsv_goals">
+
+            <ImageView
+                android:id="@+id/iv_lock_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_empty_goal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_goal"
+                style="@style/PomeB16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/remind_nogoal_msg"
+                android:textColor="@color/pome_grey_5"
+                app:layout_constraintBottom_toBottomOf="@id/iv_lock_check"
+                app:layout_constraintStart_toEndOf="@id/iv_lock_check"
+                app:layout_constraintTop_toTopOf="@id/iv_lock_check" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_remind_h1"
+            style="@style/PomeB18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/remind_h1"
+            android:textColor="@color/pome_grey_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_goal" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_filtering"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_remind_h1">
+
+            <ImageView
+                android:id="@+id/iv_first_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_first_emotion_filter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_second_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_second_emotion_filter"
+                app:layout_constraintStart_toEndOf="@id/iv_first_emotion"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_filter_reset"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_remind"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_filtering" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_remind_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_remind_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_noting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_remind_empty"
+                style="@style/PomeSb14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/reminid_nogoal_ment"
+                android:textColor="@color/pome_grey_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_remind_empty" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcv_bottomsheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
