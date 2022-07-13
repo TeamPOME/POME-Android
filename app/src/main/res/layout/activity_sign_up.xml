@@ -76,8 +76,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:invisibility="@{viewModel.vaildNickname}"
-                android:text="@string/sign_password_detail"
+                android:text="멋진 닉네임이네요!"
+                android:textColor="@color/pome_main"
+                android:visibility="@{viewModel.vaildNickname}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_nickname" />
 
