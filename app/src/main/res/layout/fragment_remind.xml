@@ -43,6 +43,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_nogoal"
+                    android:visibility="invisible"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/remind_nogoal_msg"
-                android:textColor="@color/pome_grey_8"
+                android:textColor="@color/pome_grey_5"
                 app:layout_constraintBottom_toBottomOf="@id/iv_lock_check"
                 app:layout_constraintStart_toEndOf="@id/iv_lock_check"
                 app:layout_constraintTop_toTopOf="@id/iv_lock_check" />
