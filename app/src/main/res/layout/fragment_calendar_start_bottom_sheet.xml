@@ -17,10 +17,10 @@
         android:theme="@style/CalendarViewCustom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:mcv_selectionColor="@color/pome_sub"
         app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
-        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText"
-        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"/>
+        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"
+        app:mcv_selectionColor="@color/pome_sub"
+        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_choicedate"

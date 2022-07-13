@@ -1,9 +1,12 @@
 package com.teampome.pome.presentation.record
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
@@ -15,10 +18,20 @@ import com.teampome.pome.util.MinMaxDecorator
 import com.teampome.pome.util.TodayDecorator
 import java.util.*
 
-class CalendarStartBottomSheet : BottomSheetDialogFragment() {
+class CalendarStartBottomSheet : BottomSheetDialogFragment(){
 
     private var _binding: FragmentCalendarStartBottomSheetBinding? = null
     private val binding get() = _binding!!
+    private var mOnClickListener: OnClickListener? = null
+
+    interface OnClickListener {
+        fun onReceiveStartData(name: String)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mOnClickListener = activity as OnClickListener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +39,13 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
     ): View {
         _binding = FragmentCalendarStartBottomSheetBinding.inflate(layoutInflater, container, false)
         calendarSetting()
+        choiceDate()
         return binding.root
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mOnClickListener = null
     }
 
     private fun calendarSetting() {
@@ -66,4 +85,23 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
         val todayDecorator = TodayDecorator(requireContext())
         binding.mcCalendar.addDecorators(minMaxDecorator, todayDecorator)
     }
+
+    private fun choiceDate() {
+        binding.btnChoicedate.setOnClickListener {
+            val date = binding.mcCalendar.selectedDate
+            val choiceDate : String = if (date.month.toString().length == 1){
+                "${date.year}.0${date.month+1}.${date.day}"
+            } else {
+                "${date.year}.${date.month+1}.${date.day}"
+            }
+            mOnClickListener?.onReceiveStartData(choiceDate)
+            dismiss()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
+
