@@ -10,7 +10,8 @@ import com.teampome.pome.util.FriendsConsumeItemDecorator
 
 class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_remind) {
     private lateinit var remindConsumeAdapter: RemindConsumeAdapter
-    private val bottomSheetFragment = RemindFirstBottomSheetFragment()
+    private val firstBottomSheet = RemindFirstBottomSheetFragment()
+    private val secondBottomSheet = RemindSecondBottomSheetFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,6 +21,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initAddRemindConsume()
 
         initClickFirstEmotion()
+        initClickSecondEmotion()
     }
 
     private fun initAdapterDecoration() {
@@ -113,9 +115,18 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun initClickFirstEmotion() {
         binding.ivFirstEmotion.setOnClickListener {
-            if (!bottomSheetFragment.isAdded)
-                bottomSheetFragment.show(
-                    childFragmentManager, bottomSheetFragment.tag
+            if (!firstBottomSheet.isAdded)
+                firstBottomSheet.show(
+                    childFragmentManager, firstBottomSheet.tag
+                )
+        }
+    }
+
+    private fun initClickSecondEmotion() {
+        binding.ivSecondEmotion.setOnClickListener {
+            if (!secondBottomSheet.isAdded)
+                secondBottomSheet.show(
+                    childFragmentManager, secondBottomSheet.tag
                 )
         }
     }

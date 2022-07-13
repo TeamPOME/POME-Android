@@ -17,7 +17,7 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
         _binding = FragmentRemindFirstBottomSheetBinding.inflate(layoutInflater, container, false)
 
         initHeight()
-
+        initClose()
         return binding.root
     }
 
@@ -25,6 +25,11 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
         val bottomSheet = binding.clRemindFirstBottomsheet
         bottomSheet.minHeight = 259
         bottomSheet.maxHeight = 259
+    }
+    private fun initClose(){
+        binding.ivClose.setOnClickListener {
+            dialog?.dismiss()
+        }
     }
 
     override fun onDestroyView() {
