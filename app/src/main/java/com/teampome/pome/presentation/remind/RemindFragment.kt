@@ -9,6 +9,7 @@ import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 import com.teampome.pome.util.BaseFragment
+import com.teampome.pome.util.FriendsConsumeItemDecorator
 
 class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_remind) {
     private lateinit var remindConsumeAdapter: RemindConsumeAdapter
@@ -17,8 +18,12 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         super.onViewCreated(view, savedInstanceState)
 
         initRemindConsumeAdapter()
+        initAdapterDecoration()
+        initAddRemindConsume()
+    }
 
-        //initAddRemindConsume()
+    private fun initAdapterDecoration(){
+        binding.rvRemind.addItemDecoration(FriendsConsumeItemDecorator(14))
     }
 
     private fun initRemindConsumeAdapter(){
