@@ -72,6 +72,7 @@ class FriendsProfileAdapter :
             }
             else -> {
                 //여기는 로그 띄우기
+
             }
         }
 
@@ -126,7 +127,6 @@ class FriendsProfileAdapter :
 
     interface FriendsListClickInterface {
         fun onProfileListClick(v: View, data: FriendsProfileData, pos: Int)
-
     }
 
     fun setOnProfileListClickListener(listener: FriendsListClickInterface) {
