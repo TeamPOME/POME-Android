@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.teampome.pome.presentation.login.SignViewModel" />
+            type="com.teampome.pome.presentation.login.viewmodels.SignViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
-        tools:context=".presentation.login.SignUpActivity">
+        tools:context=".presentation.login.screens.SignUpActivity">
 
         <TextView
             android:id="@+id/tv_title"

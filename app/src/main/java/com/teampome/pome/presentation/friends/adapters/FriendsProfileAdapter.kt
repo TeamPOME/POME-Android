@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.friends
+package com.teampome.pome.presentation.friends.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendProfileEmptyBinding
 import com.teampome.pome.databinding.ItemFriendProfileListBinding
+import com.teampome.pome.presentation.friends.FriendsProfileData
+import com.teampome.pome.presentation.friends.FriendsProfileInterface
+import com.teampome.pome.presentation.friends.FriendsProfileWholeData
 
 class FriendsProfileAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
