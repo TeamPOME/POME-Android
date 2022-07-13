@@ -1,18 +1,21 @@
 package com.teampome.pome.presentation.remind
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.databinding.ItemRemindConsumeBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
+import com.teampome.pome.presentation.friends.FriendsProfileAdapter
 
 class RemindConsumeAdapter :
     ListAdapter<FriendsConsumeData, RemindConsumeAdapter.RemindConsumeViewHolder>(
         DIFFUTIL
     ) {
+    private lateinit var listener:ReactionClickListener
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,17 +32,23 @@ class RemindConsumeAdapter :
         position: Int
     ) {
         holder.bind(getItem(position))
+        holder.reactionButton.setOnClickListener {
+            listener.onClick(it, position)
+        }
     }
 
     class RemindConsumeViewHolder(
         private val binding: ItemRemindConsumeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+        val reactionButton=binding.ivReactions
+
         fun bind(friendsConsumeData: FriendsConsumeData) {
             binding.tvRemindDate.text = friendsConsumeData.date
             binding.tvRemindContent.text = friendsConsumeData.description
             binding.tvRemindPrice.text = friendsConsumeData.price
             binding.tvRemindTag.text = friendsConsumeData.tag
         }
+
     }
 
     companion object {
@@ -56,5 +65,12 @@ class RemindConsumeAdapter :
 
         }
 
+    }
+
+    interface ReactionClickListener{
+        fun onClick(data: View, pos:Int)
+    }
+    fun setReactionClickListener(listener: ReactionClickListener){
+        this.listener=listener
     }
 }
