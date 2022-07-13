@@ -3,26 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="157dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cly_custom"
     android:padding="20dp">
 
     <TextView
-        style="@style/PomeM12"
-        android:textColor="@color/pome_grey_5"
         android:id="@+id/tv_remind_tag"
+        style="@style/PomeM12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_tvtag"
+        android:textColor="@color/pome_grey_5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="커피 대신 물을 마시자" />
 
     <TextView
         android:id="@+id/tv_remind_price"
+        style="@style/PomeSb18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        style="@style/PomeSb18"
         android:textColor="@color/pome_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_remind_tag"
@@ -30,12 +31,11 @@
 
     <TextView
         android:id="@+id/tv_remind_content"
+        style="@style/PomeM14"
         android:layout_width="161dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:maxLength="13"
         android:maxLines="2"
-        style="@style/PomeM14"
         android:textColor="@color/pome_grey_8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_remind_price"
@@ -44,9 +44,9 @@
     <TextView
         android:id="@+id/tv_remind_date"
         style="@style/PomeM12"
-        android:textColor="@color/pome_grey_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/pome_grey_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1시간전" />
@@ -72,9 +72,11 @@
         app:layout_constraintTop_toBottomOf="@id/tv_remind_date" />
 
     <ImageView
-        android:src="@drawable/ic_emoji_smile_mint_28"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/iv_reactions"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:src="@drawable/ic_emoji_smile_mint_28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_second_emotion" />
 </androidx.constraintlayout.widget.ConstraintLayout>
