@@ -3,6 +3,48 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.187" />
+
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.176" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/cursor_custom.xml" value="0.1" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_add_complete.xml" value="0.1575" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_alarm_off_24.xml" value="0.2535" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_back.xml" value="0.1025" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_btn_make_goal.xml" value="0.1575" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_emoji_background.xml" value="0.1895" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_emoji_what_mint_34.xml" value="0.13" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_empty_goal_3_d_component.xml" value="0.176" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_folder.xml" value="0.1355" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_goal_category.xml" value="0.189" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_lock_all.xml" value="0.1025" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_look_back.xml" value="0.1025" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_look_back_right.xml" value="0.1025" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_mypage.xml" value="0.1" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_plus.xml" value="0.1" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/ic_question_with_background.xml" value="0.1575" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/inset_dialog_background.xml" value="0.1" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.2535" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/rectangle_white_round_6.xml" value="0.318" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/rectangle_white_round_8.xml" value="0.155" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_custom.xml" value="0.1" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_custom_pink.xml" value="0.172" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_custom_red.xml" value="0.172" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom.xml" value="0.215" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom_pink.xml" value="0.172" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom_red.xml" value="0.172" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/selector_chip_background_color.xml" value="0.1" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/font/pretendard.xml" value="0.1259259259259259" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_record_look_back.xml" value="0.22" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_goal_limit_dialog.xml" value="0.21467391304347827" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_no_emotion_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_no_record_dialog.xml" value="0.18" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_no_record_writing_dialog.xml" value="0.35546875" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_record.xml" value="0.25" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/item_record_list.xml" value="0.9" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/seekbar_thumb.xml" value="0.9" />
+
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1035" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/balloon_custom.xml" value="0.1" />
         <entry key="..\:/Users/82103/Documents/POME-Android/app/src/main/res/drawable/bottomsheet_round.xml" value="0.1" />
@@ -82,6 +124,10 @@
         <entry key="app/src/main/res/layout/activity_add_friend.xml" value="0.30431976318359377" />
         <entry key="app/src/main/res/layout/activity_friend_add.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11094360351562502" />
+
+        <entry key="app/src/main/res/layout/activity_kakao_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31645507812500007" />
+
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.15522155761718748" />
         <entry key="app/src/main/res/layout/activity_sign_up_content.xml" value="0.2633326400945216" />
         <entry key="app/src/main/res/layout/item_friend_list.xml" value="0.34425048828125004" />
