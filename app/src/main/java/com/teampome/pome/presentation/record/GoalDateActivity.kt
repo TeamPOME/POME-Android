@@ -3,9 +3,6 @@ package com.teampome.pome.presentation.record
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityGoalDateBinding
 
 class GoalDateActivity : AppCompatActivity() {
@@ -30,7 +27,7 @@ class GoalDateActivity : AppCompatActivity() {
 
     private fun calendarClickEvent() {
         binding.btnStartcalendar.setOnClickListener {
-            val bottomSheet = CalendarBottomSheet()
+            val bottomSheet = CalendarStartBottomSheet()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }

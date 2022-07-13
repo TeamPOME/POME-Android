@@ -10,22 +10,21 @@ import com.prolificinteractive.materialcalendarview.CalendarMode
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter
 import com.teampome.pome.R
-import com.teampome.pome.databinding.FragmentCalendarBottomSheetBinding
+import com.teampome.pome.databinding.FragmentCalendarStartBottomSheetBinding
 import com.teampome.pome.util.MinMaxDecorator
 import com.teampome.pome.util.TodayDecorator
-import java.time.LocalDate
 import java.util.*
 
-class CalendarBottomSheet : BottomSheetDialogFragment() {
+class CalendarStartBottomSheet : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentCalendarBottomSheetBinding? = null
+    private var _binding: FragmentCalendarStartBottomSheetBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCalendarBottomSheetBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentCalendarStartBottomSheetBinding.inflate(layoutInflater, container, false)
         calendarSetting()
         return binding.root
     }

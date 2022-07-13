@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="16dp"
-    tools:context=".presentation.record.CalendarBottomSheet">
+    tools:context=".presentation.record.CalendarStartBottomSheet">
     <!--지영언니 머지하면 style 주기-->
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
