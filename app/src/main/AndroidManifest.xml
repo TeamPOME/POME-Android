@@ -24,6 +24,9 @@
             android:name=".presentation.record.screens.GoalDateActivity"
             android:exported="false" />
         <activity
+            android:name=".presentation.login.screens.KakaoLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
             android:exported="false" />
         <activity
@@ -39,7 +42,7 @@
             android:name=".presentation.login.screens.SignUpContentActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +64,7 @@
         <activity
             android:name=".presentation.login.screens.AddFriendActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

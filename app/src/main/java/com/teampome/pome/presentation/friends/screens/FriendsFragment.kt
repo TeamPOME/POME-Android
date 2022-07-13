@@ -2,9 +2,13 @@ package com.teampome.pome.presentation.friends.screens
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import com.skydoves.balloon.balloon
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentFriendsBinding
 import com.teampome.pome.presentation.friends.*
+import com.teampome.pome.presentation.friends.adapters.FriendsConsumeAdapter
+import com.teampome.pome.presentation.friends.adapters.FriendsProfileAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
@@ -12,29 +16,31 @@ import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
-
+    private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
+    private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
+    private var emoji_position: Int = -1
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initConsumeAdapter()
+
         initListAdapter()
 
         //후에 서버통신 할 에정
         initWholeData()
 
-
         getFriendProfileList()
         getFriendsConsumeData()
 
+        initConsumeClick()
         addFriendsDecoration()
+
     }
 
-    // 친구 프로필 리스트와 소비 리스트 한번에 보이고 안보이게
-
-
     private fun initConsumeAdapter() {
-        friendsConsumeAdapter = FriendsConsumeAdapter()
+        friendsConsumeAdapter = FriendsConsumeAdapter {
+            addEmoji()
+        }
         binding.rcvFriendsconsumelist.adapter = friendsConsumeAdapter
-
     }
 
     private fun initListAdapter() {
@@ -173,4 +179,43 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 //        })
 //    }
 
+    private fun addEmoji(): Int {
+        val emojiList = listOf<ImageView>(
+            friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_heart),
+            friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_smile),
+            friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_fun),
+            friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_flex),
+            friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_what),
+            friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_sad)
+        )
+        for (i in emojiList.indices) {
+            emojiList[i].setOnClickListener {
+                emoji_position = i
+                return@setOnClickListener
+            }
+        }
+        friendsConsumeAdapter.setEmojiPosition(emoji_position)
+
+        return emoji_position
+    }
+
+    private fun initConsumeClick() {
+        friendsConsumeAdapter.setConsumeListClickListener(object :
+            FriendsConsumeAdapter.FriendsConsumeListInterface {
+            override fun onClick(data: View, position: Int, addEmoji: Boolean) {
+                //bottom sheet로 반응 나오게 하기
+                if (!addEmoji) {
+                    if (!friendsBottomSheetFragment.isAdded)
+                        friendsBottomSheetFragment.show(
+                            childFragmentManager,
+                            friendsBottomSheetFragment.tag
+                        )
+                } else {
+                    friendsEmojiBalloon.showAlignBottom(data)
+
+                    friendsEmojiBalloon.dismiss()
+                }
+            }
+        })
+    }
 }

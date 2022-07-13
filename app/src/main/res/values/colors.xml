@@ -24,4 +24,5 @@
     <color name="pome_main">#7be48f</color>
     <color name="pome_light_mint">#e2fce7</color>
     <color name="pome_light_pink">#fff4f3</color>
+    <color name="pome_transparent">#00000000</color>
 </resources>
