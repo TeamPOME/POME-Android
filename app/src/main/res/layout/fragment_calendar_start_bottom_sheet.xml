@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_calendar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    tools:context=".presentation.record.screens.CalendarStartBottomSheet">
+    <!--지영언니 머지하면 style 주기-->
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/mc_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:theme="@style/CalendarViewCustom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
+        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"
+        app:mcv_selectionColor="@color/pome_sub"
+        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_choicedate"
+        style="@style/PomeB18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/rectangle_green_round_6"
+        android:paddingVertical="14dp"
+        android:text="선택했어요"
+        android:textColor="@color/pome_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mc_calendar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

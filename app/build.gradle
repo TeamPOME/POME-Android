@@ -100,4 +100,7 @@ dependencies {
 
     //balloon
     implementation 'com.github.skydoves:balloon:1.4.6'
+
+    // Calendar
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }

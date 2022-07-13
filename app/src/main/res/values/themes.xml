@@ -160,4 +160,34 @@
         <item name="android:background">@drawable/bottomsheet_round</item>
     </style>
 
+    <!-- 달력 스타일-->
+    <style name="CustomTextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/pome_grey_9</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!--요일, 달력 안 숫자들의 폰트 설정-->
+    <style name="CalendarViewCustom" parent="Theme.AppCompat">
+        <item name="android:fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textColor">@color/pome_grey_5</item>
+    </style>
+
+    <!--달력 안의 숫자-->
+    <style name="CalenderViewDateCustomText">
+        <item name="android:textColor">@color/selector_calendar_text_color</item>
+    </style>
+
+    <!--달력 안의 요일-->
+    <style name="CalenderViewWeekCustomText">
+        <item name="android:textColor">@color/pome_grey_5</item>
+    </style>
+
+    <!--헤더-->
+    <style name="CalendarWidgetHeader">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textColor">@color/pome_grey_9</item>
+    </style>
+
 </resources>

@@ -15,6 +15,16 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+            android:name=".presentation.record.screens.GoalAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.record.screens.GoalDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.record.screens.GoalDateActivity"
+            android:exported="false" />
+        <activity
+
             android:name=".presentation.login.screens.KakaoLoginActivity"
             android:exported="false" />
         <activity

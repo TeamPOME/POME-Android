@@ -18,9 +18,18 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        goGoalDateActivity()
         initAdapter()
         noGoalClickEvent()
         goLookBackActivity()
+    }
+
+    private fun goGoalDateActivity() {
+        binding.btnGoaladd.setOnClickListener {
+            //나중에 로직 짤 때 목표가 5개인지 검사
+            val intent = Intent(requireContext(), GoalDateActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initAdapter() {
