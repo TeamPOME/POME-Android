@@ -52,7 +52,6 @@ class SignUpBottomSheetFragment : BottomSheetDialogFragment() {
         binding.liRemove.setOnClickListener {
             onListenerButton?.onCheckedState(1)
         }
-      //  dismiss()
     }
 
     override fun onDetach() {

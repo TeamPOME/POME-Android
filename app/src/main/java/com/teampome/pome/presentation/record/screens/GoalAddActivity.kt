@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.teampome.pome.MainActivity
 import com.teampome.pome.databinding.ActivityGoalAddBinding
+import com.teampome.pome.presentation.main.MainActivity
 
 class GoalAddActivity : AppCompatActivity() {
 
