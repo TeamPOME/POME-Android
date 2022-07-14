@@ -58,6 +58,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
     private fun goGallery() {
+
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         activityLauncher.launch(intent)
