@@ -5,13 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityMainBinding
-import dagger.internal.DoubleCheck.lazy
+import com.teampome.pome.presentation.friends.screens.FriendsFragment
+import com.teampome.pome.presentation.mypage.MyPageFragment
+import com.teampome.pome.presentation.record.screens.RecordFragment
+import com.teampome.pome.presentation.remind.screens.RemindFragment
+
 
 class MainActivity : AppCompatActivity() {
     private val recordFragment by lazy { RecordFragment() }
     private val friendsFragment by lazy { FriendsFragment() }
     private val remindFragment by lazy { RemindFragment() }
-    //private val mypageFragment by lazy { MyPageFragment() }
+    private val mypageFragment by lazy { MyPageFragment() }
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +38,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_remind -> {
                     changeFragment(remindFragment)
                 }
-                /*R.id.menu_mypage -> {
+                R.id.menu_mypage -> {
                     changeFragment(mypageFragment)
-                }*/
+                }
             }
             true
         }

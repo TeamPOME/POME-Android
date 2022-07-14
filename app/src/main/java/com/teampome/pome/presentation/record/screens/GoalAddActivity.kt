@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.teampome.pome.MainActivity
-import com.teampome.pome.databinding.ActivityGoalAddBinding
 import com.teampome.pome.presentation.main.MainActivity
+import com.teampome.pome.databinding.ActivityGoalAddBinding
 
 class GoalAddActivity : AppCompatActivity() {
 
