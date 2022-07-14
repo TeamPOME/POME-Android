@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_record"
         android:title="@string/menu_record" />
     <item
-        android:id="@+id/menu_recollect"
+        android:id="@+id/menu_remind"
         android:icon="@drawable/ic_recollect"
         android:title="@string/menu_recollect" />
     <item
