@@ -3,6 +3,7 @@ package com.teampome.pome.presentation.friends.screens
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.core.view.get
 import com.skydoves.balloon.balloon
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentFriendsBinding

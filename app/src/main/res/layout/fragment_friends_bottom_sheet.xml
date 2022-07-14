@@ -95,6 +95,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
+            app:spanCount="3"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />
 
