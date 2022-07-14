@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_bottomsheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bottomsheet_round"
-    tools:context=".presentation.login.screens.SignUpBottomSheet">
+    android:background="@drawable/bottomsheet_round">
 
     <TextView
         android:id="@+id/tv_title"
@@ -48,6 +47,7 @@
         android:id="@+id/li_remove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:orientation="horizontal"
         android:paddingVertical="25dp"
         android:paddingStart="24dp"

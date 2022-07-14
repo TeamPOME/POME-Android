@@ -1,21 +1,20 @@
 package com.teampome.pome.presentation.login.screens
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import retrofit2.Response.error
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.teampome.pome.databinding.FragmentSignUpBottomSheetBinding
 
-class SignUpBottomSheet : Fragment() {
-    private var _binding: SignUpBottomSheet? = null
-    private val binding get() = _binding ?: error("binding이 되지 않았습니다.")
-
+class SignUpBottomSheetFragment : BottomSheetDialogFragment() {
+    private var _binding: FragmentSignUpBottomSheetBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = SignUpBottomSheet.inflate(layoutInflater, container, false)
+        _binding = FragmentSignUpBottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -25,14 +24,15 @@ class SignUpBottomSheet : Fragment() {
     }
 
     private fun initSetHeight() {
-        //360으로
-        val bottomSheet = binding.clWholebottomsheet
-        bottomSheet.minHeight = 360
-        bottomSheet.maxHeight = 360
+        //600으로
+        val bottomSheet = binding.clBottomsheet
+        bottomSheet.minHeight = 600
+        bottomSheet.maxHeight = 600
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }
