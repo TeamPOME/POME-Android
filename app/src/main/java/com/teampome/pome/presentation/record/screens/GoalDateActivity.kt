@@ -22,14 +22,7 @@ class GoalDateActivity : AppCompatActivity() {
         goBack()
         calendarClickEvent()
         goGoalDetailActivity()
-        viewModel.startDate.observe(this) {
-            binding.tvGoalstartdate.text = SimpleDateFormat("yyyy.MM.dd").format(it.time)
-            binding.tvChoicestartdate.setVisibility(false)
-        }
-        viewModel.endDate.observe(this) {
-            binding.tvGoalenddate.text = SimpleDateFormat("yyyy.MM.dd").format(it.time)
-            binding.tvChoiceenddate.setVisibility(false)
-        }
+        observes()
     }
 
     private fun goBack() {
@@ -46,6 +39,17 @@ class GoalDateActivity : AppCompatActivity() {
         binding.btnEndcalendar.setOnClickListener {
             val bottomSheet = CalendarEndBottomSheet()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+        }
+    }
+
+    private fun observes() {
+        viewModel.startDate.observe(this) {
+            binding.tvGoalstartdate.text = SimpleDateFormat("yyyy.MM.dd").format(it.time)
+            binding.tvChoicestartdate.setVisibility(false)
+        }
+        viewModel.endDate.observe(this) {
+            binding.tvGoalenddate.text = SimpleDateFormat("yyyy.MM.dd").format(it.time)
+            binding.tvChoiceenddate.setVisibility(false)
         }
     }
 
