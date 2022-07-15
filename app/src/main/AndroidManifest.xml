@@ -15,6 +15,9 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+            android:name=".presentation.mypage.SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.record.screens.GoalAddActivity"
             android:exported="false" />
         <activity
@@ -24,7 +27,6 @@
             android:name=".presentation.record.screens.GoalDateActivity"
             android:exported="false" />
         <activity
-
             android:name=".presentation.login.screens.KakaoLoginActivity"
             android:exported="false" />
         <activity
@@ -38,20 +40,19 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.screens.SignUpActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".presentation.login.screens.SignUpContentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.main.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.login.screens.SignUpContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:exported="false"/>
 
 
         <provider
