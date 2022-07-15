@@ -62,10 +62,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangle_grey_round_6"
                 android:hint="@string/nickname_hint"
-                android:onTextChanged="@{viewModel::onNicknameTextChanged}"
                 android:paddingVertical="16dp"
                 android:paddingStart="16dp"
-                android:text="@{viewModel.userNickname}"
+                android:text="@={viewModel.userNickname}"
                 android:textCursorDrawable="@drawable/cursor_custom"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -78,7 +77,7 @@
                 android:layout_marginTop="10dp"
                 android:text="멋진 닉네임이네요!"
                 android:textColor="@color/pome_main"
-                android:visibility="@{viewModel.vaildNickname}"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_nickname" />
 
@@ -113,9 +112,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@{viewModel.vaildNickname ? @color/pome_main : @color/pome_disabled_mint}"
-            android:onClick="@{() -> viewModel.signUp()}"
-            android:paddingVertical="20dp"
+            android:background="@drawable/selector_button"
+            android:clickable="false"
+            android:paddingVertical="15dp"
             android:text="@string/finish"
             android:textColor="@color/pome_white"
             app:layout_constraintBottom_toBottomOf="parent"

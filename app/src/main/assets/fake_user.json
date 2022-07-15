@@ -1,0 +1,15 @@
+{
+  "status": 200,
+  "message": "유저 정보 조회 성공",
+  "data": {
+    "nickname": "string",
+    "profileImage": "string",
+    "badge": {
+      "recordLevel": 0,
+      "reactLevel": 0,
+      "growLevel": 0,
+      "frankLevel": 0
+    },
+    "goalStorageCount": 0
+  }
+}
