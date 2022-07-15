@@ -1,9 +1,9 @@
 package com.teampome.pome.presentation.friends.screens
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.core.view.get
 import com.skydoves.balloon.balloon
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentFriendsBinding
@@ -13,6 +13,7 @@ import com.teampome.pome.presentation.friends.adapters.FriendsProfileAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
+import timber.log.Timber
 
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
@@ -20,6 +21,11 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
     private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
     private var emoji_position: Int = -1
+    private var list_position: Int = -1
+    private lateinit var emojiList: List<ImageView>
+    private val getSharedPreference =
+        activity?.getSharedPreferences("emoji_store", Context.MODE_PRIVATE)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initConsumeAdapter()
@@ -32,15 +38,58 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         getFriendProfileList()
         getFriendsConsumeData()
 
-        initConsumeClick()
+        consumeClick()
         addFriendsDecoration()
+
+        initBalloonList()
+        //balloon에 있는 이모지들 초기화
+
+        //initSharedPreference()
+        //addEmoji(list_position)
+        //emojiSet()
+
+        //
+
+    }
+
+    private fun initSharedPreference() {
+        getSharedPreference?.edit()?.putString(
+            list_position.toString(), emoji_position.toString()
+        )
+        Timber.d("저장오나료")
+    } //data위치와 이모지 번호를 sharedpreference에 저장
+
+    private fun emojiSet() {
+        //sharedpreference로 넣기
+        when (emoji_position) {
+            0 -> {
+                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+            }
+            1 -> {
+                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+            }
+            2 -> {
+                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+            }
+            3 -> {
+                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+            }
+            4 -> {
+                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_what_mint_28)
+            }
+            5 -> {
+                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+            }
+            else -> {
+                //-1인 경우
+            }
+        }
+        //local에 저장하기
 
     }
 
     private fun initConsumeAdapter() {
-        friendsConsumeAdapter = FriendsConsumeAdapter {
-            addEmoji()
-        }
+        friendsConsumeAdapter = FriendsConsumeAdapter(requireContext())
         binding.rcvFriendsconsumelist.adapter = friendsConsumeAdapter
     }
 
@@ -180,8 +229,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 //        })
 //    }
 
-    private fun addEmoji(): Int {
-        val emojiList = listOf<ImageView>(
+    private fun initBalloonList() {
+        emojiList = listOf<ImageView>(
             friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_heart),
             friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_smile),
             friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_fun),
@@ -189,34 +238,40 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_what),
             friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_sad)
         )
+    }
+
+    private fun addEmoji(list_pos: Int) {
+        emoji_position = -1
         for (i in emojiList.indices) {
             emojiList[i].setOnClickListener {
                 emoji_position = i
-                return@setOnClickListener
+                Timber.d("clicked_emoji=$emoji_position, 리스트 순번=$list_pos")
+                initSharedPreference()
+                friendsEmojiBalloon.dismiss()
             }
+
         }
-        friendsConsumeAdapter.setEmojiPosition(emoji_position)
+    }//클릭된 이모지의 위치 알아낸 후 sharedpreference에 저장
 
-        return emoji_position
-    }
-
-    private fun initConsumeClick() {
+    private fun consumeClick() {
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {
-            override fun onClick(data: View, position: Int, addEmoji: Boolean) {
+            override fun onClick(data: View, position: Int, addEmoji: Boolean){
                 //bottom sheet로 반응 나오게 하기
                 if (!addEmoji) {
                     if (!friendsBottomSheetFragment.isAdded)
                         friendsBottomSheetFragment.show(
                             childFragmentManager,
                             friendsBottomSheetFragment.tag
-                        )
+                        )//클릭한 부분이 다르기 때문에 addEmoji로 구분함.
                 } else {
+                    list_position = position
                     friendsEmojiBalloon.showAlignBottom(data)
-
+                    addEmoji(list_position)
                     friendsEmojiBalloon.dismiss()
-                }
+                }//balloon을 띄우기 위해 현재 클릭된 data의 위치를 알려주고 해당 위치 밑에 balloon을 띄운다.
             }
         })
     }
+
 }

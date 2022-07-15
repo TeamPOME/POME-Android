@@ -1,5 +1,6 @@
 package com.teampome.pome.presentation.friends.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
+import timber.log.Timber
 
-class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
+class FriendsConsumeAdapter(context: Context) :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(
         DIFFUTIL
     ) {
-
     private lateinit var listener: FriendsConsumeListInterface
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsConsumeViewHolder {
         val binding = ItemFriendConsumeListBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return FriendsConsumeViewHolder(binding, emojiClick)
+        return FriendsConsumeViewHolder(binding, parent.context)
     }
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
@@ -31,12 +32,11 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
         holder.addEmojiButton.setOnClickListener {
             listener.onClick(it, position, true)
         }
-        holder.setEmoji(getEmojiPosition())
+        holder.getEmoji()
     }
 
     class FriendsConsumeViewHolder(
-        private val binding: ItemFriendConsumeListBinding,
-        private val emojiClick: (Int) -> (Unit)
+        private val binding: ItemFriendConsumeListBinding, val context: Context
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -50,6 +50,14 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
             binding.tvFriendtag.text = friendsConsumeData.tag
             //프로필 이미지, 반응들, 처음감정과 나중감정
         }
+
+        fun getEmoji() {
+
+            var sP = context.getSharedPreferences("emoji_store", Context.MODE_PRIVATE)
+            val string = sP.getString(adapterPosition.toString(), "-1")
+            Timber.d("position:$adapterPosition,emoji_pos:$string")
+            setEmoji(string!!.toInt())
+        }//sharedpreference에서 가져오기. 근데 못가져옴.
 
         fun setEmoji(position: Int) {
             when (position) {
@@ -78,7 +86,6 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
         }
     }
 
-
     companion object {
         val DIFFUTIL = object : DiffUtil.ItemCallback<FriendsConsumeData>() {
             override fun areItemsTheSame(
@@ -100,11 +107,4 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
     fun setConsumeListClickListener(listener: FriendsConsumeListInterface) {
         this.listener = listener
     }
-
-    var emoji_position: Int = -1
-    fun setEmojiPosition(pos: Int) {
-        emoji_position = pos
-    }//받은 값을 설정
-
-    fun getEmojiPosition(): Int = emoji_position
 }
