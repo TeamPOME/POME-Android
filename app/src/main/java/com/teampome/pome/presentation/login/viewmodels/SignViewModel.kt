@@ -1,36 +1,35 @@
 package com.teampome.pome.presentation.login.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import java.util.regex.Pattern
+import androidx.lifecycle.viewModelScope
+import com.teampome.pome.data.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
-class SignViewModel : ViewModel() {
-    private val userNickname = MutableLiveData<String>()
-    private val isVaildNickname = MutableLiveData<Boolean>()
-    private var isCompletedSignUp = MutableLiveData<Boolean>()
+@HiltViewModel
+class SignViewModel @Inject constructor(
+    private val repository: AuthRepository
+) : ViewModel() {
+    val userNickname = MutableStateFlow("")
 
-
-    fun signUp() {
-        if (isVaildNickname.value == false) return
-        else isCompletedSignUp.value = true
+    val isInputCheck = userNickname.map {
+        it.isNotBlank()
     }
 
-    fun onNicknameTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        userNickname.value = s.toString().trim()
-        checkNicknameFormat()
+    fun getUser() {
+        viewModelScope.launch {
+            runCatching {
+                repository.getUser()
+            }.onSuccess {
+                Timber.d("asdf", it.toString())
+            }
+        }
     }
-
-    private fun checkNicknameFormat() {
-        if (userNickname.value == null) return
-        else isVaildNickname.value = true
-
-    }
-
-    fun getUserNickname(): LiveData<String> = userNickname
-    fun getVaildNickname(): LiveData<Boolean?> = isVaildNickname
-    fun getCompleteSignUp(): LiveData<Boolean> = isCompletedSignUp
-
 
 }
 
