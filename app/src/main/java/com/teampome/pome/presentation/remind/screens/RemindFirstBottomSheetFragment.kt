@@ -23,8 +23,8 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initHeight() {
         val bottomSheet = binding.clRemindFirstBottomsheet
-        bottomSheet.minHeight = 259
-        bottomSheet.maxHeight = 259
+        bottomSheet.minHeight = ViewGroup.LayoutParams.WRAP_CONTENT
+        bottomSheet.maxHeight = ViewGroup.LayoutParams.WRAP_CONTENT
     }
     private fun initClose(){
         binding.ivClose.setOnClickListener {

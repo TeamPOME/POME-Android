@@ -35,6 +35,9 @@
     <string name="remind_nogoal_msg">아직 추가된 목표가 없어요</string>
     <string name="remind_nogoal">ㅡ</string>
     <string name="reminid_nogoal_ment">아직 돌아본 씀씀이가 없어요</string>
+    <string name="remind_happy">행복해요</string>
+    <string name="remind_idk">모르겠어요</string>
+    <string name="remind_regret">후회해요</string>
 
     <string-array name="custom_weekdays">
         <item>일</item>

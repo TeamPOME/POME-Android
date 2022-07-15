@@ -25,7 +25,7 @@ class FriendsReactAdapter :
         holder.bind(reactList[position])
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = reactList.size
 
     class FriendsEmojiViewHolder(private val binding: ItemFriendsEmojiBinding) :
         RecyclerView.ViewHolder(binding.root) {

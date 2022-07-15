@@ -54,7 +54,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -63,7 +64,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -72,7 +74,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -81,7 +84,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -90,7 +94,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -99,7 +104,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -108,7 +114,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -117,7 +124,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 )
 
             )
@@ -168,7 +176,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun setNotEmptyGoal() {
         //chip, 목표 이름 가져오기
-        val goal_tag: String = "커피"
+        val goal_tag = "커피"
         //받아온 목표
         val goal_des = "하루 한잔만 마시기"
         binding.cNogoal.visibility = View.VISIBLE
@@ -197,7 +205,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.rvRemind.visibility = View.VISIBLE
         binding.clRemindEmpty.visibility = View.INVISIBLE
         initAddRemindConsume()
-        val goal_tag: String = "커피"
+        val goal_tag = "커피"
         //받아온 목표
         val goal_des = "하루 한잔만 마시기"
 

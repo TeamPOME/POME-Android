@@ -23,7 +23,7 @@
         android:maxEms="3"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textColor="@color/pome_grey_5"
+        android:textColor="@color/selector_profile"
         app:layout_constraintEnd_toEndOf="@id/iv_friendprofile"
         app:layout_constraintStart_toStartOf="@id/iv_friendprofile"
         app:layout_constraintTop_toBottomOf="@id/iv_friendprofile"
