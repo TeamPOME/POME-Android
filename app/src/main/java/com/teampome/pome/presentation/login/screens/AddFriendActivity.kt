@@ -1,11 +1,13 @@
 package com.teampome.pome.presentation.login.screens
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityAddFriendBinding
 import com.teampome.pome.presentation.login.AddFriendAdapter
 import com.teampome.pome.presentation.login.AddFriendData
+import com.teampome.pome.presentation.main.MainActivity
 
 class AddFriendActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddFriendBinding
@@ -15,11 +17,21 @@ class AddFriendActivity : AppCompatActivity() {
         binding = ActivityAddFriendBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initAdapter()
+        goToMainActivity()
     }
 
     private fun initAdapter() {
         binding.rcvFriend.adapter = addFriendAdapter
         addFriendList()
+    }
+
+    private fun goToMainActivity() {
+        binding.btnComplete.setOnClickListener {
+            Intent(this, MainActivity::class.java).run {
+                startActivity(this)
+                finish()
+            }
+        }
     }
 
     private fun addFriendList() {
