@@ -47,7 +47,7 @@ class RecordLookBackActivity : AppCompatActivity() {
             )
         )
     }
-
+    
     private fun goBack() {
         binding.btnBack.setOnClickListener {
             finish()
