@@ -23,9 +23,13 @@ class GoalLimitDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGoalLimitDialogBinding.inflate(layoutInflater, container, false)
+        return inflater.inflate(R.layout.fragment_goal_limit_dialog, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         changeTextColor()
         cancelDialog()
-        return inflater.inflate(R.layout.fragment_goal_limit_dialog, container, false)
     }
 
     private fun cancelDialog() {

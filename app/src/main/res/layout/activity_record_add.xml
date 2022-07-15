@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    tools:context=".presentation.record.screens.RecordAddActivity">
+
+    <TextView
+        android:id="@+id/tv_goalplus"
+        style="@style/PomeSb20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:lineSpacingExtra="2dp"
+        android:text="새로운 씀씀이 기록이\n추가되었어요!"
+        android:textColor="@color/pome_grey_9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_goodjob"
+        style="@style/PomeM14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="잊지 않고 기록해주셨네요! 정말 대단해요"
+        android:textColor="@color/pome_grey_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_goalplus" />
+
+    <ImageView
+        android:id="@+id/iv_3dnothing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="82dp"
+        android:padding="32dp"
+        android:src="@drawable/ic_3d_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_goodjob" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_check"
+        style="@style/PomeB18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/rectangle_green_round_6"
+        android:paddingVertical="15dp"
+        android:text="확인했어요"
+        android:textColor="@color/pome_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

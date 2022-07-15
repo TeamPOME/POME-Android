@@ -22,15 +22,19 @@ class SignViewModel : ViewModel() {
     }
 
     private fun checkNicknameFormat() {
-        val passwordPattern =
-            Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[-._])(?=.*[가-힣]).{4,10}.$")
-        isVaildNickname.value = passwordPattern.matcher(userNickname.value).matches()
-    }
+        if (userNickname.value == null) return
+        else isVaildNickname.value = true
 
+    }
 
     fun getUserNickname(): LiveData<String> = userNickname
     fun getVaildNickname(): LiveData<Boolean?> = isVaildNickname
     fun getCompleteSignUp(): LiveData<Boolean> = isCompletedSignUp
 
+
 }
 
+// 특수문자 : (?=.*[-._])
+//  val passwordPattern =
+//  Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[가-힣]).{1,10}.$")
+// isVaildNickname.value = passwordPattern.matcher(userNickname.value).matches()

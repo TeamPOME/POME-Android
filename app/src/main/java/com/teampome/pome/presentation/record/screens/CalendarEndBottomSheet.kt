@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
@@ -15,43 +16,40 @@ import com.teampome.pome.databinding.FragmentCalendarEndBottomSheetBinding
 import com.teampome.pome.util.decorate.MinMaxDecorator
 import com.teampome.pome.util.decorate.TodayDecorator
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
+import kotlin.properties.Delegates
 
 class CalendarEndBottomSheet : BottomSheetDialogFragment() {
 
+    private val viewModel by activityViewModels<CalendarViewModel>()
     private var _binding: FragmentCalendarEndBottomSheetBinding? = null
     private val binding get() = _binding!!
-    private var mOnClickListener: OnClickListener? = null
 
-    interface OnClickListener {
-        fun onReceiveEndData(name: String)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mOnClickListener = activity as OnClickListener
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCalendarEndBottomSheetBinding.inflate(layoutInflater, container,false)
-        calendarSetting()
-        choiceDate()
+        _binding = FragmentCalendarEndBottomSheetBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        mOnClickListener = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        calendarSetting()
+        choiceDate()
     }
 
     private fun calendarSetting() {
-        //시작일 받아오는 로직 추가하기..
-        val startDate = arguments?.getString("date123")
-        Timber.d("startDate $startDate")
-        binding.mcCalendar.selectedDate = CalendarDay.from(2022, 7-1,27)
+        //시작일 받아오는 로직 추가하기
+        var startDate by Delegates.notNull<Date>()
+        viewModel.startDate.observe(this) {
+            binding.mcCalendar.selectedDate = CalendarDay.from(it)
+            startDate = it
+        }
+
         val startTimeCalendar = Calendar.getInstance()
         val endTimeCalendar = Calendar.getInstance()
 
@@ -94,13 +92,8 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
 
     private fun choiceDate() {
         binding.btnChoicedate.setOnClickListener {
-            val date = binding.mcCalendar.selectedDate
-            val choiceDate : String = if (date.month.toString().length == 1){
-                "${date.year}.0${date.month+1}.${date.day}"
-            } else {
-                "${date.year}.${date.month+1}.${date.day}"
-            }
-            mOnClickListener?.onReceiveEndData(choiceDate)
+            val date = binding.mcCalendar.selectedDate.date
+            viewModel.endDate.value = date
             dismiss()
         }
     }
