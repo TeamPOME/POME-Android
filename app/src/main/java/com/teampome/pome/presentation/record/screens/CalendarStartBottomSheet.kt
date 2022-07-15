@@ -1,6 +1,5 @@
 package com.teampome.pome.presentation.record.screens
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +14,6 @@ import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentCalendarStartBottomSheetBinding
 import com.teampome.pome.util.decorate.MinMaxDecorator
 import com.teampome.pome.util.decorate.TodayDecorator
-import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CalendarStartBottomSheet : BottomSheetDialogFragment() {
@@ -33,9 +28,14 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCalendarStartBottomSheetBinding.inflate(layoutInflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         calendarSetting()
         choiceDate()
-        return binding.root
     }
 
     private fun calendarSetting() {

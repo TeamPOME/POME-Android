@@ -32,10 +32,14 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCalendarEndBottomSheetBinding.inflate(layoutInflater, container,false)
+        _binding = FragmentCalendarEndBottomSheetBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         calendarSetting()
         choiceDate()
-        return binding.root
     }
 
     private fun calendarSetting() {
