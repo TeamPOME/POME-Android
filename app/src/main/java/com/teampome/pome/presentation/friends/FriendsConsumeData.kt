@@ -7,6 +7,7 @@ data class FriendsConsumeData(
     val description:String,
     val first_emotion:Int,
     val second_emotion:Int,
-    val tag:String
+    val tag:String,
+    val reaction:List<Int>
     //친구들 반응 리스트는 나중에
 )

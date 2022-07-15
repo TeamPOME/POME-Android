@@ -17,7 +17,6 @@ class FriendsProfileAdapter :
     private lateinit var empty_binding: ItemFriendProfileEmptyBinding
     private lateinit var full_binding: ItemFriendProfileListBinding
     private var holderList = listOf<ItemFriendProfileListBinding>()
-    private lateinit var holder: RecyclerView.ViewHolder
     override fun getItemViewType(position: Int): Int = when (friendsProfileList[position]) {
         is FriendsProfileData -> {
             VIEW_FULL
@@ -35,7 +34,6 @@ class FriendsProfileAdapter :
                     parent,
                     false
                 )
-                holder = FriendsProfileListViewHolder(full_binding)
                 return FriendsProfileListViewHolder(full_binding)
             }
             else -> {
