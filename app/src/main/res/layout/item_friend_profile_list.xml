@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
     android:id="@+id/cl_friendprofile"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -16,14 +16,13 @@
 
     <TextView
         android:id="@+id/tv_friendname"
+        style="@style/PomeM12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        style="@style/PomeM12"
+        android:ellipsize="end"
         android:maxEms="3"
         android:maxLines="1"
-        android:ellipsize="end"
-        android:textColor="@color/selector_profile"
         app:layout_constraintEnd_toEndOf="@id/iv_friendprofile"
         app:layout_constraintStart_toStartOf="@id/iv_friendprofile"
         app:layout_constraintTop_toBottomOf="@id/iv_friendprofile"

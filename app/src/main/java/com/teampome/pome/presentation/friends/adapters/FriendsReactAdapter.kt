@@ -54,7 +54,7 @@ class FriendsReactAdapter :
                 5 -> {
                     binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_sad_mint_28)
                 }
-                else->{
+                else -> {
 
                 }
             }

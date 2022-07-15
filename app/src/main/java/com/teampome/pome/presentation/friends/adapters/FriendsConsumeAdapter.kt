@@ -57,7 +57,7 @@ class FriendsConsumeAdapter() :
             if (index == position) item else friendsConsumeData
         }.toList()
         submitList(newList)
-    }
+    }//post한 후 실행할 함수
 
     class FriendsConsumeViewHolder(
         private val binding: ItemFriendConsumeListBinding

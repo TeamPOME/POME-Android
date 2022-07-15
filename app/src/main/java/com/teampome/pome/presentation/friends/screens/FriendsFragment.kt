@@ -234,14 +234,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         binding.rcvFriends.addItemDecoration(FriendsProfileItemDecorator(18))
     }
 
-    private fun initProfileClick(){
-        friendsProfileAdapter.setOnProfileListClickListener(object:FriendsProfileAdapter.FriendsListClickInterface{
-            override fun onProfileListClick(v: View, data: FriendsProfileData, pos: Int) {
-                //
-            }
-        })
-    }
-
     private fun initBalloonList() {
         emojiList = listOf<ImageView>(
             friendsEmojiBalloon.getContentView().findViewById<ImageView>(R.id.iv_react_heart),
@@ -263,11 +255,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 friendsEmojiBalloon.dismiss()
             }
         }
-        //서버에서 날리고 ~
-        //friendsConsumeAdapter.changeItem(//, postion)
     }
-    //클릭된 이모지의 위치 알아낸 후 sharedpreference에 저장
-
     private fun consumeClick() {
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {
@@ -287,8 +275,5 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 }//balloon을 띄우기 위해 현재 클릭된 data의 위치를 알려주고 해당 위치 밑에 balloon을 띄운다.
             }
         })
-    }
-    private fun profileClick(){
-
     }
 }

@@ -22,9 +22,9 @@ class FriendsProfileAdapter :
     private lateinit var full_binding: ItemFriendProfileListBinding
 
     private lateinit var listener: FriendsListClickInterface
-    var selectedItemPosition=-1
+    var selectedItemPosition = -1
 
-    var whole_selected=true
+    var whole_selected = true
 
     override fun getItemViewType(position: Int): Int = when (friendsProfileList[position]) {
         is FriendsProfileData -> {
@@ -60,29 +60,29 @@ class FriendsProfileAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
             is FriendsProfileListViewHolder -> {
-                val profile_item=friendsProfileList[position] as FriendsProfileData
+                val profile_item = friendsProfileList[position] as FriendsProfileData
                 holder.bind(profile_item)
                 holder.itemView.setOnClickListener {
-                    selectedItemPosition=position
-                    whole_selected=false
+                    selectedItemPosition = position
+                    whole_selected = false
                     notifyDataSetChanged()
                 }
-                if(selectedItemPosition==position){
+                if (selectedItemPosition == position) {
                     holder.profile_name.setTextColor(Color.BLACK)
-                }else{
+                } else {
                     holder.profile_name.setTextColor(Color.GRAY)
                 }
             }
             is FriendsProfileEmptyViewHolder -> {
                 holder.bind(friendsProfileList as MutableList<FriendsProfileData>)
                 holder.itemView.setOnClickListener {
-                    whole_selected=true
-                    selectedItemPosition=-1
+                    whole_selected = true
+                    selectedItemPosition = -1
                     notifyDataSetChanged()
                 }
-                if(whole_selected){
+                if (whole_selected) {
                     holder.whole_text.setTextColor(Color.BLACK)
-                }else{
+                } else {
                     holder.whole_text.setTextColor(Color.GRAY)
                 }
 
@@ -98,7 +98,7 @@ class FriendsProfileAdapter :
 
     class FriendsProfileListViewHolder(private val binding: ItemFriendProfileListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val profile_name=binding.tvFriendname
+        val profile_name = binding.tvFriendname
         fun bind(friendProfileData: FriendsProfileData) {
             binding.tvFriendname.text = friendProfileData.name
             //이미지 넣기
@@ -109,7 +109,7 @@ class FriendsProfileAdapter :
 
     class FriendsProfileEmptyViewHolder(private val binding: ItemFriendProfileEmptyBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val whole_text=binding.tvWhole
+        val whole_text = binding.tvWhole
         fun bind(
             list: MutableList<FriendsProfileData>
         ) {
@@ -130,11 +130,13 @@ class FriendsProfileAdapter :
         const val VIEW_FULL = 0
         const val VIEW_EMPTY = 1
     }
-    interface FriendsListClickInterface{
+
+    interface FriendsListClickInterface {
         fun onProfileListClick(v: View, data: FriendsProfileData, pos: Int)
     }
-    fun setOnProfileListClickListener(listener:FriendsListClickInterface){
-        this.listener=listener
+
+    fun setOnProfileListClickListener(listener: FriendsListClickInterface) {
+        this.listener = listener
     }
 }
 
