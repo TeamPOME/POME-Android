@@ -18,7 +18,7 @@ class FriendsEmojiBalloon : Balloon.Factory() {
             setWidth(BalloonSizeSpec.WRAP)
             setHeight(BalloonSizeSpec.WRAP)
             setBackgroundColor(ContextCompat.getColor(context, R.color.pome_transparent))
-            setBalloonAnimation(BalloonAnimation.CIRCULAR)
+            setBalloonAnimation(BalloonAnimation.NONE)
             setOverlayColor(R.color.pome_grey_2)
         }
     }

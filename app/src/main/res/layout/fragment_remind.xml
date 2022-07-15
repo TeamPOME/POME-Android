@@ -36,13 +36,12 @@
                 android:id="@+id/cg_goals"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:checkedChip="@id/chip_1"
                 app:singleLine="true"
                 app:singleSelection="true">
 
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_nogoal"
+                    android:id="@+id/c_nogoal"
                     android:visibility="invisible"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"

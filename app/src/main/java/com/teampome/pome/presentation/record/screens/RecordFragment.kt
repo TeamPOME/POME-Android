@@ -20,12 +20,18 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
         goGoalDateActivity()
         initAdapter()
-        noGoalClickEvent()
+//        noGoalClickEvent()
+        fabClickEvent()
         goLookBackActivity()
     }
 
     private fun goGoalDateActivity() {
         binding.btnGoaladd.setOnClickListener {
+            //나중에 로직 짤 때 목표가 5개인지 검사
+            val intent = Intent(requireContext(), GoalDateActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnMakegoal.setOnClickListener {
             //나중에 로직 짤 때 목표가 5개인지 검사
             val intent = Intent(requireContext(), GoalDateActivity::class.java)
             startActivity(intent)
@@ -64,10 +70,17 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-    private fun noGoalClickEvent() {
+//    private fun noGoalClickEvent() {
+//        binding.fabWrite.setOnClickListener {
+//            val dialog = NoRecordDialogFragment()
+//            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoRecordDialogFragment") }
+//        }
+//    }
+
+    private fun fabClickEvent() {
         binding.fabWrite.setOnClickListener {
-            val dialog = NoRecordDialogFragment()
-            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoRecordDialogFragment") }
+            val intent = Intent(requireContext(), RecordWriteActivity::class.java)
+            startActivity(intent)
         }
     }
 }

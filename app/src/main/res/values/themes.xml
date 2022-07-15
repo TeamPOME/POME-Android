@@ -190,4 +190,10 @@
         <item name="android:textColor">@color/pome_grey_9</item>
     </style>
 
+    <!--칩 선택했을 때 설정-->
+    <style name="ChipTextStyleSelected">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textColor">@color/pome_white</item>
+    </style>
 </resources>
