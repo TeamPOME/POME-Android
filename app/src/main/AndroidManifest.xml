@@ -15,7 +15,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
-            android:name=".RecordAddActivity"
+            android:name=".presentation.record.screens.RecordAddActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.record.screens.RecordWriteActivity"

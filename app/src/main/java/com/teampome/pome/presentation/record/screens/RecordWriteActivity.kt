@@ -1,5 +1,6 @@
 package com.teampome.pome.presentation.record.screens
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.teampome.pome.R
@@ -15,11 +16,19 @@ class RecordWriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         goBack()
+        goRecordAddActivity()
     }
 
     private fun goBack() {
         binding.btnBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun goRecordAddActivity() {
+        binding.btnWrite.setOnClickListener {
+            val intent = Intent(this, RecordAddActivity::class.java)
+            startActivity(intent)
         }
     }
 }
