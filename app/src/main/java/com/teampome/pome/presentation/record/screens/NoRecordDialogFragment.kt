@@ -22,8 +22,13 @@ class NoRecordDialogFragment : DialogFragment() {
     ): View {
         _binding = FragmentNoRecordDialogBinding.inflate(layoutInflater, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         cancelDialog()
-        return binding.root    }
+    }
 
     private fun cancelDialog() {
         binding.btnCancel.setOnClickListener {

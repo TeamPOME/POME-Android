@@ -20,8 +20,12 @@ class NoEmotionDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNoEmotionDialogBinding.inflate(layoutInflater, container, false)
-        cancelDialog()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        cancelDialog()
     }
 
     private fun cancelDialog() {
