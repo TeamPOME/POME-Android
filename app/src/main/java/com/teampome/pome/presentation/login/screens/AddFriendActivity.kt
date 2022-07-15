@@ -42,10 +42,7 @@ class AddFriendActivity : AppCompatActivity() {
                 ),
                 AddFriendData(
                     R.drawable.ic_friend_profile, "미미공주"
-                ),
-
-
-
+                )
             )
         )
     }
