@@ -1,9 +1,13 @@
 package com.teampome.pome.presentation.remind.screens
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
@@ -50,7 +54,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -59,7 +64,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -68,7 +74,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -77,7 +84,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -86,7 +94,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -95,7 +104,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -104,7 +114,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 ),
                 FriendsConsumeData(
                     name = "dwd",
@@ -113,7 +124,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     tag = "간식",
                     first_emotion = 1,
                     second_emotion = 2,
-                    date = "0713"
+                    date = "0713",
+                    reaction = listOf(1,2,3)
                 )
 
             )
@@ -154,8 +166,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     }
 
     private fun setEmptyGoal() {
-        //chipNoGoal(), recyclerview은 안보임,
-        binding.chipNogoal.visibility = View.VISIBLE
+        //chipNoGoal(), recyclerview은 안보임
+        binding.cNogoal.visibility = View.VISIBLE
         binding.clRemindEmpty.visibility = View.VISIBLE
         binding.ivLockCheck.setImageResource(R.drawable.ic_empty_goal)
         binding.tvGoal.setText(R.string.remind_nogoal_msg)
@@ -164,38 +176,105 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun setNotEmptyGoal() {
         //chip, 목표 이름 가져오기
-        val goal_tag: String = "커피"
+        val goal_tag = "커피"
         //받아온 목표
         val goal_des = "하루 한잔만 마시기"
-        binding.chipNogoal.visibility = View.GONE
+        binding.cNogoal.visibility = View.VISIBLE
 
-        val chip = Chip(context)
-        chip.text=goal_tag
-
-        binding.cgGoals.addView(chip)
+        val chip1 = Chip(context).apply {
+            text = goal_tag
+            id = R.id.chip_1
+        }
+        val chip2 = Chip(context).apply {
+            text = goal_tag
+            id = R.id.chip_1
+        }
+        binding.cgGoals.addView(chip1, 0)
+        binding.cgGoals.addView(chip2, 1)
 
         binding.clRemindEmpty.visibility = View.VISIBLE
         binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
-        binding.tvGoal.text=goal_des
-        binding.tvGoal.setTextColor(Color.BLACK)
+        binding.tvGoal.apply {
+            text = goal_des
+            setTextColor(Color.BLACK)
+        }
     }
 
     private fun setRemindList() {
-        binding.chipNogoal.visibility = View.GONE
+        binding.cNogoal.visibility = View.GONE
         binding.rvRemind.visibility = View.VISIBLE
         binding.clRemindEmpty.visibility = View.INVISIBLE
         initAddRemindConsume()
-        val goal_tag: String = "커피"
+        val goal_tag = "커피"
         //받아온 목표
         val goal_des = "하루 한잔만 마시기"
-        binding.chipNogoal.visibility = View.INVISIBLE
 
-        val chip = Chip(context)
-        chip.setText(goal_tag)
-        binding.cgGoals.addView(chip)
+        val drawable =
+            ChipDrawable.createFromAttributes(
+                requireContext(),
+                null,
+                0,
+                R.style.ChipTextStyleSelected
+            )
+
+        val chip1 = Chip(context).apply {
+            text = "1번 칩"
+            isCheckable=true
+            isCheckedIconVisible=false
+            id = R.id.c_remind0
+            chipBackgroundColor = ColorStateList(
+                arrayOf(
+                    intArrayOf(-android.R.attr.state_checked),
+                    intArrayOf(android.R.attr.state_checked)
+                ),
+                intArrayOf(Color.WHITE, ContextCompat.getColor(context,R.color.pome_main))
+            )
+
+            //텍스트
+            setTextColor(
+                ColorStateList(
+                    arrayOf(
+                        intArrayOf(-android.R.attr.state_checked),
+                        intArrayOf(android.R.attr.state_checked)
+                    ),
+                    intArrayOf(Color.BLACK, Color.WHITE)
+                )
+            )
+        }
+        val chip2 = Chip(context).apply {
+            text = "2번 칩"
+            isCheckable=true
+            isCheckedIconVisible=false
+            id = R.id.c_remind1
+            chipBackgroundColor = ColorStateList(
+                arrayOf(
+                    intArrayOf(-android.R.attr.state_checked),
+                    intArrayOf(android.R.attr.state_checked)
+                ),
+                intArrayOf(Color.WHITE, ContextCompat.getColor(context,R.color.pome_main))
+            )
+
+            //텍스트
+            setTextColor(
+                ColorStateList(
+                    arrayOf(
+                        intArrayOf(-android.R.attr.state_checked),
+                        intArrayOf(android.R.attr.state_checked)
+                    ),
+                    intArrayOf(Color.BLACK, Color.WHITE)
+                )
+            )
+        }
+
+        binding.cgGoals.addView(chip1)
+        binding.cgGoals.addView(chip2)
+        binding.cgGoals.isSingleSelection=true
+        chip1.isChecked=true
 
         binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
-        binding.tvGoal.setText(goal_des)
-        binding.tvGoal.setTextColor(Color.BLACK)
+        binding.tvGoal.apply {
+            text = goal_des
+            setTextColor(Color.BLACK)
+        }
     }
 }

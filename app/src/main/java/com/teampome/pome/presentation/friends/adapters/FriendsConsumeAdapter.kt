@@ -1,5 +1,6 @@
 package com.teampome.pome.presentation.friends.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
+import timber.log.Timber
 
-class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
+class FriendsConsumeAdapter() :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(
         DIFFUTIL
     ) {
-
     private lateinit var listener: FriendsConsumeListInterface
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsConsumeViewHolder {
         val binding = ItemFriendConsumeListBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return FriendsConsumeViewHolder(binding, emojiClick)
+        return FriendsConsumeViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
@@ -31,15 +32,37 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
         holder.addEmojiButton.setOnClickListener {
             listener.onClick(it, position, true)
         }
-        holder.setEmoji(getEmojiPosition())
+
     }
 
+    override fun onBindViewHolder(
+        holder: FriendsConsumeViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty())
+            super.onBindViewHolder(holder, position, payloads)
+        else {
+            val bundle = payloads[0] as Bundle
+            Timber.d("bundle=$bundle")
+            val pos = bundle.getInt("emoji_position")
+            Timber.d("emoji_position=$pos")
+            holder.setEmoji(pos)
+        }
+    }
+
+    fun changeItem(item: FriendsConsumeData, position: Int) {
+        //여기서 position은 emoji_positon임
+        val newList = currentList.mapIndexed { index, friendsConsumeData ->
+            if (index == position) item else friendsConsumeData
+        }.toList()
+        submitList(newList)
+    }//post한 후 실행할 함수
+
     class FriendsConsumeViewHolder(
-        private val binding: ItemFriendConsumeListBinding,
-        private val emojiClick: (Int) -> (Unit)
+        private val binding: ItemFriendConsumeListBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
-
         val addEmojiButton = binding.ivAddemotion
 
         fun bind(friendsConsumeData: FriendsConsumeData) {
@@ -52,7 +75,8 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
         }
 
         fun setEmoji(position: Int) {
-            when (position) {
+            val pos = position
+            when (pos) {
                 0 -> {
                     binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_happy_mint_28)
                 }
@@ -78,7 +102,6 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
         }
     }
 
-
     companion object {
         val DIFFUTIL = object : DiffUtil.ItemCallback<FriendsConsumeData>() {
             override fun areItemsTheSame(
@@ -100,11 +123,4 @@ class FriendsConsumeAdapter(private val emojiClick: (Int) -> (Unit)) :
     fun setConsumeListClickListener(listener: FriendsConsumeListInterface) {
         this.listener = listener
     }
-
-    var emoji_position: Int = -1
-    fun setEmojiPosition(pos: Int) {
-        emoji_position = pos
-    }//받은 값을 설정
-
-    fun getEmojiPosition(): Int = emoji_position
 }

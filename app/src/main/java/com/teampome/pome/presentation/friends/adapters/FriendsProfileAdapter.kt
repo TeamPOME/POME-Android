@@ -1,5 +1,6 @@
 package com.teampome.pome.presentation.friends.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,15 @@ import com.teampome.pome.presentation.friends.FriendsProfileInterface
 import com.teampome.pome.presentation.friends.FriendsProfileWholeData
 
 class FriendsProfileAdapter :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<ViewHolder>() {
     val friendsProfileList = mutableListOf<FriendsProfileInterface>()
-    private var listener: FriendsListClickInterface? = null
+    private lateinit var empty: ItemFriendProfileEmptyBinding
+    private lateinit var full: ItemFriendProfileListBinding
+
+    private lateinit var listener: FriendsListClickInterface
+    var selectedItemPosition = -1
+
+    var wholeSelected = true
 
     override fun getItemViewType(position: Int): Int = when (friendsProfileList[position]) {
         is FriendsProfileData -> {
@@ -29,95 +36,86 @@ class FriendsProfileAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         when (viewType) {
             VIEW_FULL -> {
-                val binding = ItemFriendProfileListBinding.inflate(
+                full = ItemFriendProfileListBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return FriendsProfileListViewHolder(binding)
+                return FriendsProfileListViewHolder(full)
             }
-
             else -> {
-                val binding = ItemFriendProfileEmptyBinding.inflate(
+                empty = ItemFriendProfileEmptyBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-
-                return FriendsProfileEmptyViewHolder(binding)
+                return FriendsProfileEmptyViewHolder(empty)
             }
         }
     }
 
-    val itemListBinding: ItemFriendProfileListBinding? = null
 
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
             is FriendsProfileListViewHolder -> {
-                holder.bind(friendsProfileList[position] as FriendsProfileData)
-
+                val profile_item = friendsProfileList[position] as FriendsProfileData
+                holder.bind(profile_item)
                 holder.itemView.setOnClickListener {
-                    holder.initprofileColor(R.color.pome_disabled_mint)
-                    holder.profileClick(position, R.color.pome_red)
-
+                    selectedItemPosition = position
+                    wholeSelected = false
+                    notifyDataSetChanged()
+                }
+                if (selectedItemPosition == position) {
+                    holder.profile_name.setTextColor(Color.BLACK)
+                } else {
+                    holder.profile_name.setTextColor(Color.GRAY)
                 }
             }
             is FriendsProfileEmptyViewHolder -> {
-                holder.bind(
-                    friendsProfileList[position] as FriendsProfileWholeData,
-                    friendsProfileList as MutableList<FriendsProfileData>
-                )
+                holder.bind(friendsProfileList as MutableList<FriendsProfileData>)
                 holder.itemView.setOnClickListener {
-                    holder.emptyClick(friendsProfileList[position] as FriendsProfileWholeData)
+                    wholeSelected = true
+                    selectedItemPosition = -1
+                    notifyDataSetChanged()
+                }
+                if (wholeSelected) {
+                    holder.whole_text.setTextColor(Color.BLACK)
+                } else {
+                    holder.whole_text.setTextColor(Color.GRAY)
                 }
 
             }
             else -> {
                 //여기는 로그 띄우기
-
             }
         }
-
     }
 
 
     override fun getItemCount(): Int = friendsProfileList.size
 
-
     class FriendsProfileListViewHolder(private val binding: ItemFriendProfileListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
+        val profile_name = binding.tvFriendname
         fun bind(friendProfileData: FriendsProfileData) {
             binding.tvFriendname.text = friendProfileData.name
             //이미지 넣기
         }
-
-        fun profileClick(position: Int, color: Int) {
-            //서버 연결 시 클릭한 프로필에 해당한 데이터만 가져올 함수
-            binding.tvFriendname.setTextColor(color)
-        }
-
-        fun initprofileColor(color: Int) {
-            binding.tvFriendname.setTextColor(color)
-        }
-
     }
 
     class FriendsProfileEmptyViewHolder(private val binding: ItemFriendProfileEmptyBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        val whole_text = binding.tvWhole
         fun bind(
-            friendsProfileWholeData: FriendsProfileWholeData,
             list: MutableList<FriendsProfileData>
         ) {
+
             if (list.size == 1) {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_empty)
             } else {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_full)
             }
-
         }
-
         fun emptyClick(friendsProfileWholeData: FriendsProfileWholeData) {
             //전체를 클릭한 경우
         }
@@ -135,18 +133,6 @@ class FriendsProfileAdapter :
     fun setOnProfileListClickListener(listener: FriendsListClickInterface) {
         this.listener = listener
     }
-
-    private fun profileClick(
-        viewHolder: ViewHolder,
-        binding: ItemFriendProfileListBinding,
-        data: FriendsProfileInterface,
-        position: Int
-    ) {
-
-
-    }
-
-
 }
 
 
