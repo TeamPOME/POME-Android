@@ -5,13 +5,14 @@ import android.os.Bundle
 import com.teampome.pome.databinding.ActivityRecordLookBackBinding
 import com.teampome.pome.presentation.record.RecordAdapter
 import com.teampome.pome.presentation.record.RecordData
+import com.teampome.pome.presentation.record.RecordLookBackAdapter
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 
 class RecordLookBackActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecordLookBackBinding
-    private lateinit var recordAdapter: RecordAdapter
+    private lateinit var recordLookBackAdapter: RecordLookBackAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +24,8 @@ class RecordLookBackActivity : AppCompatActivity() {
     }
 
     private fun initAdapter(){
-        recordAdapter = RecordAdapter()
-        binding.rvRecord.adapter = recordAdapter
+        recordLookBackAdapter = RecordLookBackAdapter()
+        binding.rvRecord.adapter = recordLookBackAdapter
         addList()
         initDecoration()
     }
@@ -35,7 +36,7 @@ class RecordLookBackActivity : AppCompatActivity() {
     }
 
     private fun addList() {
-        recordAdapter.submitList(
+        recordLookBackAdapter.submitList(
             listOf(
                 RecordData(1, "06.24", 1, "10,000원", "뽀뽀랑 오랜만에 술 한잔! 헤헤 맛있당 ^_^"),
                 RecordData(1, "06.25", 1, "100,000원", "가보자고... 10만원의 무언가ㅎㅎ"),
