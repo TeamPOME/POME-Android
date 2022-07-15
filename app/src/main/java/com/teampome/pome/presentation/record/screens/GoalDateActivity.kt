@@ -3,13 +3,15 @@ package com.teampome.pome.presentation.record.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.teampome.pome.databinding.ActivityGoalDateBinding
 import com.teampome.pome.util.setVisibility
 import timber.log.Timber
+import java.text.SimpleDateFormat
 
-class GoalDateActivity : AppCompatActivity(), CalendarStartBottomSheet.OnClickListener,
-    CalendarEndBottomSheet.OnClickListener {
+class GoalDateActivity : AppCompatActivity() {
 
+    private val viewModel by viewModels<CalendarViewModel>()
     private lateinit var binding: ActivityGoalDateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,14 @@ class GoalDateActivity : AppCompatActivity(), CalendarStartBottomSheet.OnClickLi
         goBack()
         calendarClickEvent()
         goGoalDetailActivity()
+        viewModel.startDate.observe(this) {
+            binding.tvGoalstartdate.text = SimpleDateFormat("yyyy.MM.dd").format(it.time)
+            binding.tvChoicestartdate.setVisibility(false)
+        }
+        viewModel.endDate.observe(this) {
+            binding.tvGoalenddate.text = SimpleDateFormat("yyyy.MM.dd").format(it.time)
+            binding.tvChoiceenddate.setVisibility(false)
+        }
     }
 
     private fun goBack() {
@@ -45,22 +55,5 @@ class GoalDateActivity : AppCompatActivity(), CalendarStartBottomSheet.OnClickLi
             val intent = Intent(this, GoalDetailActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    override fun onReceiveStartData(name: String) {
-        binding.tvGoalstartdate.text = name
-        binding.tvChoicestartdate.setVisibility(false)
-        Timber.d("date $name")
-        CalendarEndBottomSheet().apply {
-            arguments =
-                Bundle().apply {
-                    putString("date123", name)
-                }
-        }
-    }
-
-    override fun onReceiveEndData(name: String) {
-        binding.tvGoalenddate.text = name
-        binding.tvChoiceenddate.setVisibility(false)
     }
 }
