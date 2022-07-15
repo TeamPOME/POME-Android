@@ -13,18 +13,16 @@ import com.teampome.pome.presentation.friends.FriendsProfileData
 import com.teampome.pome.presentation.friends.FriendsProfileInterface
 import com.teampome.pome.presentation.friends.FriendsProfileWholeData
 
-//누른 포지션의 view의 위치를 기억하고 ㅡ 그것의 색을 정하고 selected= T, F로 설정해주기
-
 class FriendsProfileAdapter :
     RecyclerView.Adapter<ViewHolder>() {
     val friendsProfileList = mutableListOf<FriendsProfileInterface>()
-    private lateinit var empty_binding: ItemFriendProfileEmptyBinding
-    private lateinit var full_binding: ItemFriendProfileListBinding
+    private lateinit var empty: ItemFriendProfileEmptyBinding
+    private lateinit var full: ItemFriendProfileListBinding
 
     private lateinit var listener: FriendsListClickInterface
     var selectedItemPosition = -1
 
-    var whole_selected = true
+    var wholeSelected = true
 
     override fun getItemViewType(position: Int): Int = when (friendsProfileList[position]) {
         is FriendsProfileData -> {
@@ -38,20 +36,20 @@ class FriendsProfileAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         when (viewType) {
             VIEW_FULL -> {
-                full_binding = ItemFriendProfileListBinding.inflate(
+                full = ItemFriendProfileListBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return FriendsProfileListViewHolder(full_binding)
+                return FriendsProfileListViewHolder(full)
             }
             else -> {
-                empty_binding = ItemFriendProfileEmptyBinding.inflate(
+                empty = ItemFriendProfileEmptyBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return FriendsProfileEmptyViewHolder(empty_binding)
+                return FriendsProfileEmptyViewHolder(empty)
             }
         }
     }
@@ -64,7 +62,7 @@ class FriendsProfileAdapter :
                 holder.bind(profile_item)
                 holder.itemView.setOnClickListener {
                     selectedItemPosition = position
-                    whole_selected = false
+                    wholeSelected = false
                     notifyDataSetChanged()
                 }
                 if (selectedItemPosition == position) {
@@ -76,11 +74,11 @@ class FriendsProfileAdapter :
             is FriendsProfileEmptyViewHolder -> {
                 holder.bind(friendsProfileList as MutableList<FriendsProfileData>)
                 holder.itemView.setOnClickListener {
-                    whole_selected = true
+                    wholeSelected = true
                     selectedItemPosition = -1
                     notifyDataSetChanged()
                 }
-                if (whole_selected) {
+                if (wholeSelected) {
                     holder.whole_text.setTextColor(Color.BLACK)
                 } else {
                     holder.whole_text.setTextColor(Color.GRAY)
@@ -103,8 +101,6 @@ class FriendsProfileAdapter :
             binding.tvFriendname.text = friendProfileData.name
             //이미지 넣기
         }
-
-
     }
 
     class FriendsProfileEmptyViewHolder(private val binding: ItemFriendProfileEmptyBinding) :
@@ -120,7 +116,6 @@ class FriendsProfileAdapter :
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_full)
             }
         }
-
         fun emptyClick(friendsProfileWholeData: FriendsProfileWholeData) {
             //전체를 클릭한 경우
         }
