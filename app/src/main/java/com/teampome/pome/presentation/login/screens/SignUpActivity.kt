@@ -7,14 +7,21 @@ import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivitySignUpBinding
 import com.teampome.pome.presentation.friends.screens.FriendsBottomSheetFragment
 import com.teampome.pome.presentation.login.viewmodels.SignViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
+@AndroidEntryPoint
 class SignUpActivity : AppCompatActivity(), SignUpBottomSheetFragment.OnListenerButton {
     private lateinit var binding: ActivitySignUpBinding
     private val viewModel: SignViewModel by viewModels()
@@ -25,17 +32,20 @@ class SignUpActivity : AppCompatActivity(), SignUpBottomSheetFragment.OnListener
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this@SignUpActivity
-        goToAddFriendActivity()
+        viewModel.getUser()
         btnClickEvent()
+        observe()
+        goToAddFriendActivity()
     }
 
     private fun goToAddFriendActivity() {
-        viewModel.getCompleteSignUp().observe(this) { isCompleted ->
-            if (!isCompleted) return@observe
-            Intent(this, SignUpContentActivity::class.java).run {
-                startActivity(this)
-                finish()
-            }
+        binding.btnFinish.setOnClickListener {
+            if (binding.btnFinish.isSelected) {
+                Intent(this, SignUpContentActivity::class.java).run {
+                    startActivity(this)
+                    finish()
+                }
+            }else observe()
         }
     }
 
@@ -62,7 +72,6 @@ class SignUpActivity : AppCompatActivity(), SignUpBottomSheetFragment.OnListener
         }
 
     private fun goGallery() {
-
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         activityLauncher.launch(intent)
@@ -73,6 +82,14 @@ class SignUpActivity : AppCompatActivity(), SignUpBottomSheetFragment.OnListener
         signUpBottomSheetFragment.show(
             supportFragmentManager, signUpBottomSheetFragment.tag
         )
+    }
+
+    private fun observe() {
+        viewModel.isInputCheck.flowWithLifecycle(lifecycle)
+            .onEach {
+                binding.btnFinish.isSelected = it
+                binding.tvDetail.isVisible = it
+            }.launchIn(lifecycleScope)
     }
 
     override fun onCheckedState(state: Int) {
