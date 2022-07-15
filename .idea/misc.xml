@@ -107,13 +107,18 @@
         <entry key="app/src/main/res/drawable/cursor_custom.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/ic_add_complete.xml" value="0.202" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.111" />
+        <entry key="app/src/main/res/drawable/ic_ex3d.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/ic_myprofile.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/ic_pencil.xml" value="0.11" />
         <entry key="app/src/main/res/drawable/ic_record.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1955" />
+        <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/ic_smile_mint.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/iconbackground.xml" value="0.118" />
         <entry key="app/src/main/res/drawable/rectangle_green_round_6.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/rectangle_grey_round_6.xml" value="0.228" />
+        <entry key="app/src/main/res/drawable/rectangle_lightpink_round_8.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/rectangle_pink_radius_6.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/shadow.xml" value="0.4303760986328125" />
         <entry key="app/src/main/res/font/pretendard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_add_friend.xml" value="0.30431976318359377" />
@@ -124,12 +129,16 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22744598388671877" />
         <entry key="app/src/main/res/layout/activity_sign_up_content.xml" value="0.2633326400945216" />
         <entry key="app/src/main/res/layout/fragment_friends_bottom_sheet.xml" value="0.22327898550724637" />
-        <entry key="app/src/main/res/layout/fragment_my_page.xml" value="0.14311043566362716" />
+        <entry key="app/src/main/res/layout/fragment_my_page.xml" value="0.3318634033203125" />
         <entry key="app/src/main/res/layout/fragment_record.xml" value="0.14311043566362716" />
         <entry key="app/src/main/res/layout/fragment_remind_first_bottom_sheet.xml" value="0.28115692138671877" />
         <entry key="app/src/main/res/layout/fragment_sign_up_bottom_sheet.xml" value="0.2830578512396694" />
         <entry key="app/src/main/res/layout/item_friend_list.xml" value="1.1069182389937107" />
+        <entry key="app/src/main/res/layout/item_friend_profile_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_icon_list.xml" value="0.5420580028159037" />
+        <entry key="app/src/main/res/layout/item_list_marshmellow.xml" value="0.16869964599609377" />
+        <entry key="app/src/main/res/layout/item_record_list.xml" value="0.16460418701171875" />
+        <entry key="app/src/main/res/layout/item_remind_consume.xml" value="0.1" />
         <entry key="app/src/main/res/layout/shadow.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.3098958333333333" />
       </map>
