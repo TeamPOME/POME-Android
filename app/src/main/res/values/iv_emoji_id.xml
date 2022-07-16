@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="iv_add_emoji" type="id"/>
     <item name="iv_emoji0" type="id"/>
     <item name="iv_emoji1" type="id"/>
     <item name="iv_emoji2" type="id"/>
