@@ -15,6 +15,12 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
         <activity
+<<<<<<< HEAD
+=======
+            android:name=".presentation.record.emotion.BeforeSelectEmotionActivity"
+            android:exported="false" />
+        <activity
+>>>>>>> develop
             android:name=".presentation.mypage.SettingActivity"
             android:exported="false" />
         <activity

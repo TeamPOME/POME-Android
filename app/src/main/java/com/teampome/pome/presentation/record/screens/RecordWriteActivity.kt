@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityRecordWriteBinding
+import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 
 class RecordWriteActivity : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class RecordWriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         goBack()
-        goRecordAddActivity()
+        goBeforeSelectEmotionActivity()
     }
 
     private fun goBack() {
@@ -25,9 +26,9 @@ class RecordWriteActivity : AppCompatActivity() {
         }
     }
 
-    private fun goRecordAddActivity() {
+    private fun goBeforeSelectEmotionActivity() {
         binding.btnWrite.setOnClickListener {
-            val intent = Intent(this, RecordAddActivity::class.java)
+            val intent = Intent(this, BeforeSelectEmotionActivity::class.java)
             startActivity(intent)
         }
     }

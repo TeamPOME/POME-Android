@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.record.emotion.AfterSelectEmotionActivity">
+        tools:context=".presentation.record.emotion.BeforeSelectEmotionActivity">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tb_back"
@@ -29,7 +29,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
+            android:paddingHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_back"
             app:layout_constraintVertical_bias="0.0"
@@ -41,11 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-<<<<<<< HEAD
-=======
                 android:lineSpacingExtra="3dp"
->>>>>>> develop
-                android:text="@string/emotion_ment"
+                android:text="소비한 순간의\n솔직한 감정을 남겨주세요"
                 android:textColor="@color/pome_grey_9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -56,10 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-<<<<<<< HEAD
-=======
-                android:lineSpacingExtra="4dp"
->>>>>>> develop
+
                 android:text="@string/pome_ment"
                 android:textColor="@color/pome_grey_5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +65,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="140dp"
-                android:background="@drawable/happy_icon"
+                android:background="@drawable/selector_before_emoji_happy"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_pome_ment" />
@@ -82,11 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="행복해요"
-<<<<<<< HEAD
-                android:textColor="@color/selector_after_emotion_text"
-=======
                 android:textColor="@color/pome_grey_7"
->>>>>>> develop
                 app:layout_constraintBottom_toBottomOf="@id/btn_happy"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/btn_happy"
@@ -98,7 +88,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="140dp"
-                android:background="@drawable/oh_icon"
+                android:background="@drawable/ic_btn_emoji_what_mint_110_nor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_happy" />
@@ -109,11 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="모르겠어요"
-<<<<<<< HEAD
-                android:textColor="@color/selector_after_emotion_text"
-=======
                 android:textColor="@color/pome_grey_7"
->>>>>>> develop
                 app:layout_constraintBottom_toBottomOf="@id/btn_oh"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/btn_oh"
@@ -125,7 +111,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="140dp"
-                android:background="@drawable/sad_icon"
+                android:background="@drawable/ic_btn_emoji_sad_mint_110_nor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_oh" />
@@ -136,11 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="후회해요"
-<<<<<<< HEAD
-                android:textColor="@color/selector_after_emotion_text"
-=======
                 android:textColor="@color/pome_grey_7"
->>>>>>> develop
                 app:layout_constraintBottom_toBottomOf="@id/btn_sad"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/btn_sad"
@@ -152,12 +134,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-<<<<<<< HEAD
-                android:background="@drawable/selector_button"
-=======
                 android:background="@drawable/rectangle_disable_round_6"
                 android:clickable="false"
->>>>>>> develop
                 android:paddingVertical="15dp"
                 android:text="@string/emotion_select"
                 android:textColor="@color/pome_white"
