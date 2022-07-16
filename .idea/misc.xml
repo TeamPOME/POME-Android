@@ -97,10 +97,12 @@
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom.xml" value="0.215" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom_pink.xml" value="0.172" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/seekbar_thumb_custom_red.xml" value="0.172" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/selector_before_emoji_happy.xml" value="0.1465" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/drawable/selector_chip_background_color.xml" value="0.1" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/font/pretendard.xml" value="0.1259259259259259" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_after_complete_emotion.xml" value="0.25" />
-        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_after_select_emotion.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_after_select_emotion.xml" value="0.33" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_before_select_emotion.xml" value="0.33" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_goal_add.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_goal_date.xml" value="0.22" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_goal_detail.xml" value="0.22123893805309736" />
@@ -109,14 +111,19 @@
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_record_add.xml" value="0.2403846153846154" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_record_look_back.xml" value="0.22" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_record_write.xml" value="0.18181818181818182" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/activity_sign_up.xml" value="0.30572916666666666" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_calendar_bottom_sheet.xml" value="0.1" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_calendar_end_bottom_sheet.xml" value="0.21" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_calendar_start_bottom_sheet.xml" value="0.33" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_friends_bottom_sheet.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_goal_limit_dialog.xml" value="0.21467391304347827" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_no_emotion_dialog.xml" value="0.25" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_no_record_dialog.xml" value="0.18" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_no_record_writing_dialog.xml" value="0.35546875" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_record.xml" value="0.25" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_remind_first_bottom_sheet.xml" value="0.30572916666666666" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_remind_second_bottom_sheet.xml" value="0.30572916666666666" />
+        <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/fragment_sign_up_bottom_sheet.xml" value="0.30572916666666666" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/item_record_list.xml" value="0.33" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/layout/seekbar_thumb.xml" value="0.9" />
         <entry key="..\:/Users/yjin1/AndroidStudioProjects/POME-Android/app/src/main/res/menu/menu.xml" value="0.36614583333333334" />
