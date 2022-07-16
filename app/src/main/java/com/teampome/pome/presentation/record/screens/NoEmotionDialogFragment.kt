@@ -1,5 +1,7 @@
 package com.teampome.pome.presentation.record.screens
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,12 +28,17 @@ class NoEmotionDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cancelDialog()
+        backgroundDesign()
     }
 
     private fun cancelDialog() {
         binding.btnCancel.setOnClickListener {
             dismiss()
         }
+    }
+
+    private fun backgroundDesign() {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     override fun onResume() {
