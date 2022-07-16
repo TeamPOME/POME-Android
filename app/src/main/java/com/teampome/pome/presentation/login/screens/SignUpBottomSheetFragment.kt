@@ -39,10 +39,10 @@ class SignUpBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initSetHeight() {
-        //600으로
+        val height = resources.displayMetrics.heightPixels * 0.3
         val bottomSheet = binding.clBottomsheet
-        bottomSheet.minHeight = 600
-        bottomSheet.maxHeight = 600
+        bottomSheet.minHeight = height.toInt()
+        bottomSheet.maxHeight = height.toInt()
     }
 
     private fun clickEvent() {
