@@ -16,16 +16,18 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
         _binding = FragmentRemindFirstBottomSheetBinding.inflate(layoutInflater, container, false)
 
-        initHeight()
+        initSetHeight()
         initClose()
         return binding.root
     }
 
-    private fun initHeight() {
+    private fun initSetHeight() {
+        val height = resources.displayMetrics.heightPixels * 0.5
         val bottomSheet = binding.clRemindFirstBottomsheet
-        bottomSheet.minHeight = ViewGroup.LayoutParams.WRAP_CONTENT
-        bottomSheet.maxHeight = ViewGroup.LayoutParams.WRAP_CONTENT
+        bottomSheet.minHeight = height.toInt()
+        bottomSheet.maxHeight = height.toInt()
     }
+
     private fun initClose(){
         binding.ivClose.setOnClickListener {
             dialog?.dismiss()

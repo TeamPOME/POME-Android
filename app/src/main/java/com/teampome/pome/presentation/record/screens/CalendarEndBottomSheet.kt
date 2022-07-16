@@ -40,6 +40,7 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         calendarSetting()
         choiceDate()
+        initSetHeight()
     }
 
     private fun calendarSetting() {
@@ -96,6 +97,13 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
             viewModel.endDate.value = date
             dismiss()
         }
+    }
+
+    private fun initSetHeight() {
+        val height = resources.displayMetrics.heightPixels * 0.5
+        val bottomSheet = binding.clCalendar
+        bottomSheet.minHeight = height.toInt()
+        bottomSheet.maxHeight = height.toInt()
     }
 
     override fun onDestroyView() {
