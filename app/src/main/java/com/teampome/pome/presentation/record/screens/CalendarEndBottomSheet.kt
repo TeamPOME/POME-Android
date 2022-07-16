@@ -45,15 +45,14 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
 
     private fun calendarSetting() {
         //시작일 받아오는 로직 추가하기
-        var startDate by Delegates.notNull<Date>()
         viewModel.startDate.observe(this) {
             binding.mcCalendar.selectedDate = CalendarDay.from(it)
-            startDate = it
         }
 
-        val startTimeCalendar = Calendar.getInstance()
+        val startTimeCalendar = Calendar.getInstance() //객체 생성 구현된 ~~
         val endTimeCalendar = Calendar.getInstance()
 
+        //선택한 날짜 변수덜
         val currentYear = startTimeCalendar.get(Calendar.YEAR)
         val currentMonth = startTimeCalendar.get(Calendar.MONTH)
         val currentDate = startTimeCalendar.get(Calendar.DATE)
