@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.teampome.pome.R
-import com.teampome.pome.databinding.FragmentDeleteGoalDialogBinding
+import com.teampome.pome.databinding.FragmentDeleteRecordDialogBinding
 
-class DeleteGoalDialogFragment : DialogFragment() {
+class DeleteRecordDialogFragment : DialogFragment() {
 
-    private var _binding: FragmentDeleteGoalDialogBinding? = null
+    private var _binding: FragmentDeleteRecordDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDeleteGoalDialogBinding.inflate(layoutInflater, container, false)
+    ): View? {
+        _binding = FragmentDeleteRecordDialogBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

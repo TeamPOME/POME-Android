@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/inset_dialog_background"
-    tools:context=".presentation.record.screens.DeleteGoalDialogFragment">
+    tools:context=".presentation.record.screens.DeleteRecordDialogFragment">
 
     <TextView
-        android:id="@+id/tv_goaldelete"
+        android:id="@+id/tv_recorddelete"
         style="@style/PomeSb16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="목표를 삭제하시겠어요?"
+        android:text="기록을 삭제하시겠어요?"
         android:textColor="@color/pome_grey_9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,11 +24,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:text="해당 목표에서 작성한 기록도 모두 삭제돼요"
+        android:text="삭제한 내용은 다시 되돌릴 수 없어요"
         android:textColor="@color/pome_grey_6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_goaldelete" />
+        app:layout_constraintTop_toBottomOf="@id/tv_recorddelete" />
 
     <ImageView
         android:id="@+id/iv_trash"
