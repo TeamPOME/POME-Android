@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.PomeAndroid">
-       <activity
+        <activity
             android:name=".presentation.mypage.SettingActivity"
             android:exported="false" />
-       <activity
+        <activity
             android:name=".presentation.record.screens.RecordAddActivity"
             android:exported="false" />
         <activity
@@ -41,6 +41,7 @@
         <activity
             android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
             android:exported="false" />
+
         <activity
             android:name=".presentation.record.screens.RecordLookBackActivity"
             android:exported="false" />
