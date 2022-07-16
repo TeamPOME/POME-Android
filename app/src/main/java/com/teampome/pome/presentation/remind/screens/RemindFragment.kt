@@ -277,4 +277,12 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             setTextColor(Color.BLACK)
         }
     }
+    fun click(){
+        remindConsumeAdapter.setReactionClickListener(object:RemindConsumeAdapter.ReactionClickListener{
+            override fun onClick(data: View, pos: Int) {
+                //친구들이 단 이모지 클릭하면 혹시 무슨 일이 있는지 알아보기
+            }
+
+        })
+    }
 }
