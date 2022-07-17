@@ -54,10 +54,12 @@ class GoalDateActivity : AppCompatActivity() {
     }
 
     private fun goGoalDetailActivity() {
+//        binding.btnChoice.isSelected = binding.tvGoalstartdate.length() != 0 && binding.tvGoalenddate.length() != 0
         binding.btnChoice.setOnClickListener {
-            //나중에 로직 짤 때 캘린더 다 채웠는지 검사
-            val intent = Intent(this, GoalDetailActivity::class.java)
-            startActivity(intent)
+            if(binding.btnChoice.isSelected) {
+                val intent = Intent(this, GoalDetailActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
