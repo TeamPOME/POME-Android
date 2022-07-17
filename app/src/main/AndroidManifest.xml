@@ -37,14 +37,20 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.screens.KakaoLoginActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
             android:exported="false" />
-
         <activity
             android:name=".presentation.record.screens.RecordLookBackActivity"
             android:exported="false" />
@@ -56,13 +62,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
