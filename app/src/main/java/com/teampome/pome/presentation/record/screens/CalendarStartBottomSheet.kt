@@ -90,7 +90,7 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initSetHeight() {
-        val height = resources.displayMetrics.heightPixels * 0.5
+        val height = resources.displayMetrics.heightPixels * 0.6
         val bottomSheet = binding.clCalendar
         bottomSheet.minHeight = height.toInt()
         bottomSheet.maxHeight = height.toInt()
