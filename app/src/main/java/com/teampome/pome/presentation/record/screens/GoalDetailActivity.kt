@@ -49,7 +49,6 @@ class GoalDetailActivity : AppCompatActivity() {
 
     private fun goGoalAddActivity() {
         binding.btnWrite.setOnClickListener {
-            //나중에 로직 짤 때 editText 다 채웠는지 검사
             if (binding.btnWrite.isSelected) {
                 val intent = Intent(this, GoalAddActivity::class.java)
                 startActivity(intent)
