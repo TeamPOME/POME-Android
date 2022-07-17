@@ -53,6 +53,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.startup:startup-runtime:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha03'
     testImplementation 'junit:junit:4.13.2'
     implementation 'io.coil-kt:coil:2.1.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
