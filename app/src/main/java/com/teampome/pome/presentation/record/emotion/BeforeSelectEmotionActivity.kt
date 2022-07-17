@@ -11,17 +11,12 @@ import com.teampome.pome.presentation.record.screens.RecordAddActivity
 class BeforeSelectEmotionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBeforeSelectEmotionBinding
 
-    //private val viewModel: SelectEmotionViewModel by viewModels()
-    private var nowTypeNum: Int? = null
-    private var prevTypeNum: Int? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBeforeSelectEmotionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         goBack()
-        iconlist()
-        //clickIcon()
+        clickIcon()
         goRecordAddActivity()
     }
 
@@ -32,44 +27,53 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
     }
 
     private fun clickIcon() {
-
         binding.btnHappy.setOnClickListener {
-            binding.btnComplete.isClickable
-            binding.btnHappy.isSelected = !binding.btnHappy.isSelected
-            if(binding.btnHappy.isSelected) binding.tvHappy.setTextColor(ContextCompat.getColor(this@BeforeSelectEmotionActivity, R.color.pome_main))
-            else binding.tvHappy.setTextColor(ContextCompat.getColor(this@BeforeSelectEmotionActivity, R.color.pome_grey_7))
+            binding.apply {
+                btnOh.isSelected = false
+                btnSad.isSelected = false
+                btnHappy.isSelected = true
+                btnComplete.isSelected = true
+                tvHappy.isSelected = true
+                tvOh.isSelected = false
+                tvSad.isSelected = false
+            }
+
         }
         binding.btnOh.setOnClickListener {
-            binding.btnComplete.isClickable
-            binding.btnOh.isSelected = !binding.btnOh.isSelected
+            binding.apply {
+                btnHappy.isSelected = false
+                btnSad.isSelected = false
+                btnOh.isSelected = true
+                btnComplete.isSelected = true
+                tvHappy.isSelected = false
+                tvOh.isSelected = true
+                tvSad.isSelected = false
+            }
+
         }
         binding.btnSad.setOnClickListener {
-            binding.btnComplete.isClickable
-            binding.btnSad.isSelected = !binding.btnSad.isSelected
-        }
-    }
-    private fun iconlist() {
-        val iconlist = listOf(
-            binding.btnHappy,
-            binding.btnOh,
-            binding.btnSad
-        )
-
-        for (i in iconlist.indices)
-            iconlist[i].setOnClickListener { isSelected ->
-                nowTypeNum = i
-
-                if (prevTypeNum != null && nowTypeNum != null)
-                    iconlist[prevTypeNum!!].isSelected = false
-                prevTypeNum = nowTypeNum
+            binding.apply {
+                btnOh.isSelected = false
+                btnHappy.isSelected = false
+                btnSad.isSelected = true
+                btnComplete.isSelected = true
+                tvHappy.isSelected = false
+                tvOh.isSelected = false
+                tvSad.isSelected = true
             }
+
+        }
     }
 
 
     private fun goRecordAddActivity() {
         binding.btnComplete.setOnClickListener {
-            val intent = Intent(this, RecordAddActivity::class.java)
-            startActivity(intent)
+            if (binding.btnComplete.isSelected) {
+                Intent(this, RecordAddActivity::class.java).run {
+                    startActivity(this)
+                    finish()
+                }
+            }
         }
     }
 }
