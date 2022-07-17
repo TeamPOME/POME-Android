@@ -28,7 +28,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     private fun goGoalDateActivity() {
         binding.apply {
             btnGoaladd.setOnClickListener {
-                if (cgGoal.size >= 6) {
+                if (cgGoal.size >= 11) {
                     showDialog()
                 } else {
                     val intent = Intent(requireContext(), GoalDateActivity::class.java)
@@ -36,7 +36,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 }
             }
             btnMakegoal.setOnClickListener {
-                if (cgGoal.size >= 6) {
+                if (cgGoal.size >= 11) {
                     showDialog()
                 } else {
                     val intent = Intent(requireContext(), GoalDateActivity::class.java)
