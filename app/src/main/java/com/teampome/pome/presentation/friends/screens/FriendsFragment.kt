@@ -124,7 +124,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(1, 2, 3)
+                    reaction = listOf(0, 2, 3)
                 ),
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ2",
@@ -204,7 +204,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(1)
+                    reaction = listOf(0,1)
                 )
 
             )

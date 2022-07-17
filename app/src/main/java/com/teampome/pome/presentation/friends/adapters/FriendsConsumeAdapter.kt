@@ -1,10 +1,13 @@
 package com.teampome.pome.presentation.friends.adapters
 
+import android.app.ActionBar
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -35,22 +38,6 @@ class FriendsConsumeAdapter(val context: Context) :
 
     }
 
-//    override fun onBindViewHolder(
-//        holder: FriendsConsumeViewHolder,
-//        position: Int,
-//        payloads: MutableList<Any>
-//    ) {
-//        if (payloads.isEmpty())
-//            super.onBindViewHolder(holder, position, payloads)
-//        else {
-//            val bundle = payloads[0] as Bundle
-//            Timber.d("bundle=$bundle")
-//            val pos = bundle.getInt("emoji_position")
-//            Timber.d("emoji_position=$pos")
-//            holder.setEmoji(pos)
-//        }
-//    }
-
     fun changeItem(item: FriendsConsumeData, position: Int) {
         //여기서 position은 emoji_positon임
         val newList = currentList.mapIndexed { index, friendsConsumeData ->
@@ -74,18 +61,25 @@ class FriendsConsumeAdapter(val context: Context) :
             binding.tvFriendtag.text = friendsConsumeData.tag
             //프로필 이미지, 반응들, 처음감정과 나중감정
 
-            // Log.d("freidnsConsumeAdapter","index:$adapterPosition, friends reaction=${friendsConsumeData.reaction}")
-
             //여기서 동적 추가 해주기
             binding.lyWrapFriendEmoji.removeAllViews()
 
             friendsConsumeData.reaction.forEachIndexed { index, it ->
-
                 val imageView = ImageView(context)
+
+                val layoutParams=ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                layoutParams.apply {
+                    leftMargin=index*22
+                }
                 imageView.apply {
                     when (it) {
                         0 -> {
                             addEmojiButton.visibility = View.VISIBLE
+                            addEmojiButton.bringToFront()
                         }
                         1 -> {
                             setImageResource(R.drawable.ic_emoji_happy_mint_28)
@@ -107,12 +101,9 @@ class FriendsConsumeAdapter(val context: Context) :
                         }
                     }
                 }
-
-                binding.lyWrapFriendEmoji.addView(imageView)
-                binding.lyWrapFriendEmoji.overlay
+                binding.lyWrapFriendEmoji.addView(imageView,layoutParams)
             }
         }
-
 
         fun setEmoji(position: Int) {
             val pos = position
