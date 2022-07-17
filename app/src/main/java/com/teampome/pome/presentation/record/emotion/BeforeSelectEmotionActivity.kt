@@ -36,8 +36,8 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvHappy.isSelected = true
                 tvOh.isSelected = false
                 tvSad.isSelected = false
+                btnComplete.isSelected = true
             }
-
         }
         binding.btnOh.setOnClickListener {
             binding.apply {
@@ -48,8 +48,8 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvHappy.isSelected = false
                 tvOh.isSelected = true
                 tvSad.isSelected = false
+                btnComplete.isSelected = true
             }
-
         }
         binding.btnSad.setOnClickListener {
             binding.apply {
@@ -60,11 +60,10 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvHappy.isSelected = false
                 tvOh.isSelected = false
                 tvSad.isSelected = true
+                btnComplete.isSelected = true
             }
-
         }
     }
-
 
     private fun goRecordAddActivity() {
         binding.btnComplete.setOnClickListener {
