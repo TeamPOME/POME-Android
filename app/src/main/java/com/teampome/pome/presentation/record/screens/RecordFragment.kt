@@ -3,6 +3,7 @@ package com.teampome.pome.presentation.record.screens
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.size
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
@@ -34,7 +35,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         binding.btnMakegoal.setOnClickListener {
             //나중에 로직 짤 때 목표가 5개인지 검사
             val dialog = GoalLimitDialogFragment()
-            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "GoalLimitDialogFragment") }
+            activity?.let { it1 ->
+                dialog.show(
+                    it1.supportFragmentManager,
+                    "GoalLimitDialogFragment"
+                )
+            }
         }
     }
 
@@ -55,7 +61,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 //            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
 //            startActivity(intent)
             val dialog = NoEmotionDialogFragment()
-            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoEmotionDialogFragment") }
+            activity?.let { it1 ->
+                dialog.show(
+                    it1.supportFragmentManager,
+                    "NoEmotionDialogFragment"
+                )
+            }
         }
     }
 
@@ -74,15 +85,18 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun noGoalClickEvent() {
         binding.fabWrite.setOnClickListener {
-            val dialog = NoRecordDialogFragment()
-            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoRecordDialogFragment") }
+            if (binding.cgGoal.size != 0) {
+                val intent = Intent(requireContext(), RecordWriteActivity::class.java)
+                startActivity(intent)
+            } else {
+                val dialog = NoRecordDialogFragment()
+                activity?.let { it1 ->
+                    dialog.show(
+                        it1.supportFragmentManager,
+                        "NoRecordDialogFragment"
+                    )
+                }
+            }
         }
     }
-
-//    private fun fabClickEvent() {
-//        binding.fabWrite.setOnClickListener {
-//            val intent = Intent(requireContext(), RecordWriteActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
 }
