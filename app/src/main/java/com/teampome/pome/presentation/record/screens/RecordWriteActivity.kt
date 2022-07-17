@@ -23,6 +23,7 @@ class RecordWriteActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         goBack()
+        calendarClickEvent()
         checkComplete()
         goBeforeSelectEmotionActivity()
     }
@@ -30,6 +31,13 @@ class RecordWriteActivity : AppCompatActivity() {
     private fun goBack() {
         binding.btnBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun calendarClickEvent() {
+        binding.btnCalendar.setOnClickListener {
+            val bottomSheet = RecordCalendarBottomSheet()
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }
 
