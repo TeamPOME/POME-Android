@@ -354,10 +354,10 @@
                         android:layout_marginBottom="145dp"
                         android:text="기록된 씀씀이가 없어요"
                         android:textColor="@color/pome_grey_5"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/iv_nothing"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toBottomOf="@id/iv_nothing" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_record"
@@ -365,6 +365,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="12dp"
+                        android:overScrollMode="never"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
