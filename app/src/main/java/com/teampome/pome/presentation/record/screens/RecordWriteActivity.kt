@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.teampome.pome.databinding.ActivityRecordWriteBinding
+import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
+import com.teampome.pome.util.setVisibility
 
-class RecordWriteActivity : AppCompatActivity() {
+class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal {
 
     private lateinit var binding: ActivityRecordWriteBinding
     private val viewModel by viewModels<RecordWriteViewModel>()
@@ -71,5 +73,10 @@ class RecordWriteActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onCheckedGoal(goal: String) {
+        binding.tvChoicegoal.text = goal
+        binding.tvGoal.setVisibility(false)
     }
 }
