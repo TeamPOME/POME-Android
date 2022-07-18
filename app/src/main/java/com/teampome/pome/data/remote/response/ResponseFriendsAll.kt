@@ -10,5 +10,5 @@ data class ResponseFriendsAll(
     val description:String,
     val profile_image:String,
     val addEmoji:Boolean,
-    val reaction_list:List<Int>?
+    val reaction_list:List<Int>
 )
