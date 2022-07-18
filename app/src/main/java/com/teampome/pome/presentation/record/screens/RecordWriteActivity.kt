@@ -4,12 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityRecordWriteBinding
+import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
+import com.teampome.pome.util.setVisibility
 
-class RecordWriteActivity : AppCompatActivity() {
+class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal {
 
     private lateinit var binding: ActivityRecordWriteBinding
     private val viewModel by viewModels<RecordWriteViewModel>()
@@ -23,6 +24,7 @@ class RecordWriteActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         goBack()
+        goalClickEvent()
         calendarClickEvent()
         checkComplete()
         goBeforeSelectEmotionActivity()
@@ -34,6 +36,13 @@ class RecordWriteActivity : AppCompatActivity() {
         }
     }
 
+    private fun goalClickEvent() {
+        binding.btnDown.setOnClickListener {
+            val bottomSheet = GoalListBottomSheet()
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+        }
+    }
+
     private fun calendarClickEvent() {
         binding.btnCalendar.setOnClickListener {
             val bottomSheet = RecordCalendarBottomSheet()
@@ -42,6 +51,9 @@ class RecordWriteActivity : AppCompatActivity() {
     }
 
     private fun checkComplete() {
+        viewModel.goalchoice.observe(this) {
+            viewModel.completeWriteCheck()
+        }
 //        viewModel.consumedate.observe(this) {
 //            viewModel.completeWriteCheck()
 //        }
@@ -64,5 +76,10 @@ class RecordWriteActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onCheckedGoal(goal: String) {
+        binding.tvChoicegoal.text = goal
+        binding.tvGoal.setVisibility(false)
     }
 }
