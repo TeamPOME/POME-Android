@@ -252,6 +252,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 emoji_position = i
                 //Timber.d("clicked_emoji=$emoji_position, 리스트 순번=$list_pos")
                 //initSharedPreference()
+                friendsConsumeAdapter.changeItem(friendsConsumeAdapter.currentList[list_pos], emoji_position)
                 friendsEmojiBalloon.dismiss()
             }
         }
@@ -272,7 +273,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     list_position = position
                     friendsEmojiBalloon.showAlignBottom(data)
                     addEmoji(list_position)
-                    friendsEmojiBalloon.dismiss()
+                    //friendsEmojiBalloon.dismiss()
                 }//balloon을 띄우기 위해 현재 클릭된 data의 위치를 알려주고 해당 위치 밑에 balloon을 띄운다.
             }
         })

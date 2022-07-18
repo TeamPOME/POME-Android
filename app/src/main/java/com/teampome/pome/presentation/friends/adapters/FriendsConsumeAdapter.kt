@@ -1,11 +1,9 @@
 package com.teampome.pome.presentation.friends.adapters
 
-import android.app.ActionBar
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
@@ -15,11 +13,13 @@ import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 
-class FriendsConsumeAdapter(val context: Context) :
+class FriendsConsumeAdapter(val contextT: Context) :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(
         DIFFUTIL
     ) {
+    var context = contextT
     private lateinit var listener: FriendsConsumeListInterface
+    val friendConsumeList = mutableListOf<FriendsConsumeData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsConsumeViewHolder {
         val binding = ItemFriendConsumeListBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -63,21 +63,16 @@ class FriendsConsumeAdapter(val context: Context) :
 
             //여기서 동적 추가 해주기
             binding.lyWrapFriendEmoji.removeAllViews()
-            friendsConsumeData.reaction=friendsConsumeData.reaction.asReversed()
+            friendsConsumeData.reaction = friendsConsumeData.reaction.asReversed()
 
             friendsConsumeData.reaction.forEachIndexed { index, it ->
                 val imageView = ImageView(context)
 
-                val layoutParams=ConstraintLayout.LayoutParams(
+                val layoutParams = ConstraintLayout.LayoutParams(
                     ConstraintLayout.LayoutParams.WRAP_CONTENT,
                     ConstraintLayout.LayoutParams.WRAP_CONTENT
                 )
 
-                layoutParams.apply {
-                    leftMargin=index*22
-                    topToTop=R.id.ly_wrap_friend_emoji
-                    startToStart=R.id.ly_wrap_friend_emoji
-                }
                 imageView.apply {
                     when (it) {
                         0 -> {
@@ -87,56 +82,64 @@ class FriendsConsumeAdapter(val context: Context) :
                         1 -> {
                             setImageResource(R.drawable.ic_emoji_happy_mint_28)
                             layoutParams.apply {
-                                leftMargin=index*22
-                                topToTop=R.id.ly_wrap_friend_emoji
-                                startToStart=R.id.ly_wrap_friend_emoji
+                                leftMargin = index * changeToDp()
+                                topToTop = R.id.ly_wrap_friend_emoji
+                                startToStart = R.id.ly_wrap_friend_emoji
                             }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
                         }
                         2 -> {
                             setImageResource(R.drawable.ic_emoji_smile_mint_28)
                             layoutParams.apply {
-                                leftMargin=index*22
-                                topToTop=R.id.ly_wrap_friend_emoji
-                                startToStart=R.id.ly_wrap_friend_emoji
+                                leftMargin = index * changeToDp()
+                                topToTop = R.id.ly_wrap_friend_emoji
+                                startToStart = R.id.ly_wrap_friend_emoji
                             }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
                         }
                         3 -> {
                             setImageResource(R.drawable.ic_emoji_funny_mint_28)
                             layoutParams.apply {
-                                leftMargin=index*22
-                                topToTop=R.id.ly_wrap_friend_emoji
-                                startToStart=R.id.ly_wrap_friend_emoji
+                                leftMargin = index * changeToDp()
+                                topToTop = R.id.ly_wrap_friend_emoji
+                                startToStart = R.id.ly_wrap_friend_emoji
                             }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
                         }
                         4 -> {
                             setImageResource(R.drawable.ic_emoji_flex_mint_28)
                             layoutParams.apply {
-                                leftMargin=index*22
-                                topToTop=R.id.ly_wrap_friend_emoji
-                                startToStart=R.id.ly_wrap_friend_emoji
+                                leftMargin = index * changeToDp()
+                                topToTop = R.id.ly_wrap_friend_emoji
+                                startToStart = R.id.ly_wrap_friend_emoji
                             }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
                         }
                         5 -> {
                             setImageResource(R.drawable.ic_emoji_what_mint_28)
                             layoutParams.apply {
-                                leftMargin=index*22
-                                topToTop=R.id.ly_wrap_friend_emoji
-                                startToStart=R.id.ly_wrap_friend_emoji
+                                leftMargin = index * changeToDp()
+                                topToTop = R.id.ly_wrap_friend_emoji
+                                startToStart = R.id.ly_wrap_friend_emoji
                             }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
                         }
                         else -> {
                             setImageResource(R.drawable.ic_emoji_sad_mint_28)
                             layoutParams.apply {
-                                leftMargin=index*22
-                                topToTop=R.id.ly_wrap_friend_emoji
-                                startToStart=R.id.ly_wrap_friend_emoji
+                                leftMargin = index * changeToDp()
+                                topToTop = R.id.ly_wrap_friend_emoji
+                                startToStart = R.id.ly_wrap_friend_emoji
                             }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
                         }
                     }
                 }
-                imageView.bringToFront()
-                binding.lyWrapFriendEmoji.addView(imageView,layoutParams)
+                //imageView.bringToFront()
+
             }
+
+
         }
 
         fun setEmoji(position: Int) {
@@ -164,6 +167,13 @@ class FriendsConsumeAdapter(val context: Context) :
                     binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_sad_mint_28)
                 }
             }
+        }
+
+        fun changeToDp(): Int {
+            val value = 22
+            var displayMetrics = context.resources.displayMetrics
+            var dp = Math.round(value * displayMetrics.density)
+            return dp
         }
     }
 
