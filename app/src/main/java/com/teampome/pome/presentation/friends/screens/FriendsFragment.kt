@@ -1,6 +1,5 @@
 package com.teampome.pome.presentation.friends.screens
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -16,20 +15,17 @@ import com.teampome.pome.presentation.friends.adapters.FriendsReactAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
-import timber.log.Timber
 
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
-    private lateinit var friendsReactAdapter:FriendsReactAdapter
+    private lateinit var friendsReactAdapter: FriendsReactAdapter
 
     private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
     private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
     private var emoji_position: Int = -1
     private var list_position: Int = -1
     private lateinit var emojiList: List<ImageView>
-//    private val getSharedPreference =
-//        activity?.getSharedPreferences("emoji_store", Context.MODE_PRIVATE)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,6 +44,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
         initBalloonList()
         //balloon에 있는 이모지들 초기화
+
+        //initFriendsEmojii()
 
         //initSharedPreference()
         //addEmoji(list_position)
@@ -93,8 +91,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 //
 //    }
 
+
     private fun initConsumeAdapter() {
-        friendsConsumeAdapter = FriendsConsumeAdapter()
+        friendsConsumeAdapter = FriendsConsumeAdapter(requireContext())
         binding.rcvFriendsconsumelist.adapter = friendsConsumeAdapter
     }
 
@@ -118,7 +117,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(1, 2, 3)
+                    reaction = listOf(0, 2, 3)
                 ),
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ2",
@@ -128,7 +127,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(2, 5)
+                    reaction = listOf(0, 2, 5)
                 ),
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ3",
@@ -168,7 +167,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(1)
+                    reaction = listOf(0, 6)
                 ),
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ7",
@@ -194,12 +193,13 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     name = "ㅇㅈㅇ9",
                     description = "탐탐민초 추천",
                     date = "07.09",
-                    price = "4,400",
+                    price = "4,0",
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(1)
+                    reaction = listOf(0, 1)
                 )
+
             )
         )
     }
@@ -256,6 +256,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             }
         }
     }
+
     private fun consumeClick() {
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {

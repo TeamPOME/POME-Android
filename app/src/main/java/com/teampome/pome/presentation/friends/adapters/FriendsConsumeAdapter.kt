@@ -1,18 +1,21 @@
 package com.teampome.pome.presentation.friends.adapters
 
-import android.os.Bundle
+import android.app.ActionBar
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
-import timber.log.Timber
 
-class FriendsConsumeAdapter() :
+class FriendsConsumeAdapter(val context: Context) :
     ListAdapter<FriendsConsumeData, FriendsConsumeAdapter.FriendsConsumeViewHolder>(
         DIFFUTIL
     ) {
@@ -21,7 +24,7 @@ class FriendsConsumeAdapter() :
         val binding = ItemFriendConsumeListBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return FriendsConsumeViewHolder(binding)
+        return FriendsConsumeViewHolder(binding, context)
     }
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
@@ -35,22 +38,6 @@ class FriendsConsumeAdapter() :
 
     }
 
-    override fun onBindViewHolder(
-        holder: FriendsConsumeViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        if (payloads.isEmpty())
-            super.onBindViewHolder(holder, position, payloads)
-        else {
-            val bundle = payloads[0] as Bundle
-            Timber.d("bundle=$bundle")
-            val pos = bundle.getInt("emoji_position")
-            Timber.d("emoji_position=$pos")
-            holder.setEmoji(pos)
-        }
-    }
-
     fun changeItem(item: FriendsConsumeData, position: Int) {
         //여기서 position은 emoji_positon임
         val newList = currentList.mapIndexed { index, friendsConsumeData ->
@@ -60,7 +47,8 @@ class FriendsConsumeAdapter() :
     }//post한 후 실행할 함수
 
     class FriendsConsumeViewHolder(
-        private val binding: ItemFriendConsumeListBinding
+        private val binding: ItemFriendConsumeListBinding,
+        val context: Context
     ) :
         RecyclerView.ViewHolder(binding.root) {
         val addEmojiButton = binding.ivAddemotion
@@ -72,31 +60,108 @@ class FriendsConsumeAdapter() :
             binding.tvFriendprice.text = friendsConsumeData.price
             binding.tvFriendtag.text = friendsConsumeData.tag
             //프로필 이미지, 반응들, 처음감정과 나중감정
+
+            //여기서 동적 추가 해주기
+            binding.lyWrapFriendEmoji.removeAllViews()
+            friendsConsumeData.reaction=friendsConsumeData.reaction.asReversed()
+
+            friendsConsumeData.reaction.forEachIndexed { index, it ->
+                val imageView = ImageView(context)
+
+                val layoutParams=ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                layoutParams.apply {
+                    leftMargin=index*22
+                    topToTop=R.id.ly_wrap_friend_emoji
+                    startToStart=R.id.ly_wrap_friend_emoji
+                }
+                imageView.apply {
+                    when (it) {
+                        0 -> {
+                            addEmojiButton.visibility = View.VISIBLE
+                            addEmojiButton.bringToFront()
+                        }
+                        1 -> {
+                            setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
+                        }
+                        2 -> {
+                            setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
+                        }
+                        3 -> {
+                            setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
+                        }
+                        4 -> {
+                            setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
+                        }
+                        5 -> {
+                            setImageResource(R.drawable.ic_emoji_what_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
+                        }
+                        else -> {
+                            setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
+                        }
+                    }
+                }
+                imageView.bringToFront()
+                binding.lyWrapFriendEmoji.addView(imageView,layoutParams)
+            }
         }
 
         fun setEmoji(position: Int) {
             val pos = position
             when (pos) {
                 0 -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_btn_emoji_add)
                 }
                 1 -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_happy_mint_28)
                 }
                 2 -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_smile_mint_28)
                 }
                 3 -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_funny_mint_28)
                 }
                 4 -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_flex_mint_28)
                 }
                 5 -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_what_mint_28)
                 }
-                else -> {
-                    binding.ivAddemotion.setImageResource(R.drawable.ic_btn_emoji_add)
+                6 -> {
+                    binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_sad_mint_28)
                 }
             }
         }

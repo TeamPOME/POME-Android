@@ -19,7 +19,7 @@ class FriendsEmojiBalloon : Balloon.Factory() {
             setHeight(BalloonSizeSpec.WRAP)
             setBackgroundColor(ContextCompat.getColor(context, R.color.pome_transparent))
             setBalloonAnimation(BalloonAnimation.NONE)
-            setOverlayColor(R.color.pome_grey_2)
+            setIsVisibleOverlay(true)
         }
     }
 }

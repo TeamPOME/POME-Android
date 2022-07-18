@@ -2,63 +2,75 @@ package com.teampome.pome.presentation.friends.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendsEmojiBinding
+import com.teampome.pome.databinding.ItemFriendsReactionBinding
+import com.teampome.pome.presentation.friends.FriendReactionData
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 
 class FriendsReactAdapter :
-    RecyclerView.Adapter<FriendsReactAdapter.FriendsEmojiViewHolder>() {
-    private lateinit var binding: ItemFriendsEmojiBinding
-    val reactList = mutableListOf<FriendsConsumeData>()
+    ListAdapter<FriendReactionData, FriendsReactAdapter.FriendsEmojiViewHolder>( DIFFUTIL) {
+    class FriendsEmojiViewHolder(
+        private val binding:ItemFriendsReactionBinding
+    ):RecyclerView.ViewHolder(binding.root) {
+        fun bind(friendReactionData: FriendReactionData){
+            when(friendReactionData.emoji){
+                1-> {
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
+                }
+                2->{
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_smile_react_54)
+                }
+                3-> {
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_funny_react_54)
+                }
+                4-> {
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_flex_react_54)
+                }
+                5->{
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_what_fiter_54)
+                }
+                6-> {
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_sad_filter_54)
+                }
+            }
+            binding.tvFriendsReaction.text=friendReactionData.name
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsEmojiViewHolder {
-        binding = ItemFriendsEmojiBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        }
+    }
+
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FriendsReactAdapter.FriendsEmojiViewHolder {
+        val binding=ItemFriendsReactionBinding.inflate(
+            LayoutInflater.from(parent.context),parent,false
         )
         return FriendsEmojiViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FriendsEmojiViewHolder, position: Int) {
-        holder.bind(reactList[position])
+    override fun onBindViewHolder(
+        holder: FriendsReactAdapter.FriendsEmojiViewHolder,
+        position: Int
+    ) {
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = reactList.size
+    companion object {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<FriendReactionData>() {
+            override fun areItemsTheSame(
+                oldItem: FriendReactionData,
+                newItem: FriendReactionData
+            ): Boolean = oldItem.name == newItem.name
 
-    class FriendsEmojiViewHolder(private val binding: ItemFriendsEmojiBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(
-            friendsEmojiData: FriendsConsumeData
-        ) {
-            val reaction = friendsEmojiData.reaction
-            //reaction정보를 int로 얻어서 후에 연결
-
-            when (reaction[adapterPosition]) {
-                0 -> {
-                    binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_happy_mint_28)
-                }
-                1 -> {
-                    binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_smile_mint_28)
-                }
-                2 -> {
-                    binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_funny_mint_28)
-                }
-                3 -> {
-                    binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_flex_mint_28)
-                }
-                4 -> {
-                    binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_what_mint_28)
-                }
-                5 -> {
-                    binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_sad_mint_28)
-                }
-                else -> {
-
-                }
-            }
-            binding.ivFriendsEmoji.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+            override fun areContentsTheSame(
+                oldItem: FriendReactionData,
+                newItem: FriendReactionData
+            ): Boolean = oldItem == newItem
         }
     }
 

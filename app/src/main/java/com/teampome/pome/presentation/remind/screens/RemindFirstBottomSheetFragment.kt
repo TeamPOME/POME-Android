@@ -24,6 +24,7 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
     private fun initSetHeight() {
         val height = resources.displayMetrics.heightPixels * 0.5
         val bottomSheet = binding.clRemindFirstBottomsheet
+        val height = resources.displayMetrics.heightPixels*0.5
         bottomSheet.minHeight = height.toInt()
         bottomSheet.maxHeight = height.toInt()
     }

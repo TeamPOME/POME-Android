@@ -20,7 +20,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private val firstBottomSheet = RemindFirstBottomSheetFragment()
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
     private val remindList = mutableListOf<FriendsConsumeData>()
-
+    private val reactionBottomSheet=RemindReactionBottomSheet()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,8 +31,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initClickFirstEmotion()
         initClickSecondEmotion()
         initClickReset()
-
         getGoal()
+        reactClick()
     }
 
     private fun initAdapterDecoration() {
@@ -276,5 +276,17 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             text = goal_des
             setTextColor(Color.BLACK)
         }
+    }
+    fun reactClick(){
+        remindConsumeAdapter.setReactionClickListener(object:RemindConsumeAdapter.ReactionClickListener{
+            override fun onClick(data: View, pos: Int) {
+                //친구들이 단 이모지 클릭하면 혹시 무슨 일이 있는지 알아보
+                if(!reactionBottomSheet.isAdded)
+                    reactionBottomSheet.show(
+                        childFragmentManager,
+                        reactionBottomSheet.tag
+                    )
+            }
+        })
     }
 }

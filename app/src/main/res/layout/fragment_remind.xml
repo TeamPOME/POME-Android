@@ -139,6 +139,7 @@
             android:layout_marginTop="12dp"
             android:orientation="vertical"
             android:visibility="invisible"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +181,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_bottomsheet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="360dp"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
