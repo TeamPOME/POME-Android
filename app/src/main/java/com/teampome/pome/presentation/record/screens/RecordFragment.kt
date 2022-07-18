@@ -3,6 +3,7 @@ package com.teampome.pome.presentation.record.screens
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.size
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
@@ -20,21 +21,38 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
         goGoalDateActivity()
         initAdapter()
-//        noGoalClickEvent()
-        fabClickEvent()
+        noGoalClickEvent()
         goLookBackActivity()
     }
 
     private fun goGoalDateActivity() {
-        binding.btnGoaladd.setOnClickListener {
-            //나중에 로직 짤 때 목표가 5개인지 검사
-            val intent = Intent(requireContext(), GoalDateActivity::class.java)
-            startActivity(intent)
+        binding.apply {
+            btnGoaladd.setOnClickListener {
+                if (cgGoal.size >= 11) {
+                    showDialog()
+                } else {
+                    val intent = Intent(requireContext(), GoalDateActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            btnMakegoal.setOnClickListener {
+                if (cgGoal.size >= 11) {
+                    showDialog()
+                } else {
+                    val intent = Intent(requireContext(), GoalDateActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
-        binding.btnMakegoal.setOnClickListener {
-            //나중에 로직 짤 때 목표가 5개인지 검사
-            val intent = Intent(requireContext(), GoalDateActivity::class.java)
-            startActivity(intent)
+    }
+
+    private fun showDialog() {
+        val dialog = GoalLimitDialogFragment()
+        activity?.let { it1 ->
+            dialog.show(
+                it1.supportFragmentManager,
+                "GoalLimitDialogFragment"
+            )
         }
     }
 
@@ -52,8 +70,15 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun goLookBackActivity() {
         binding.clLookback.setOnClickListener {
-            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
+//            startActivity(intent)
+            val dialog = NoEmotionDialogFragment()
+            activity?.let { it1 ->
+                dialog.show(
+                    it1.supportFragmentManager,
+                    "NoEmotionDialogFragment"
+                )
+            }
         }
     }
 
@@ -70,17 +95,20 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-//    private fun noGoalClickEvent() {
-//        binding.fabWrite.setOnClickListener {
-//            val dialog = NoRecordDialogFragment()
-//            activity?.let { it1 -> dialog.show(it1.supportFragmentManager, "NoRecordDialogFragment") }
-//        }
-//    }
-
-    private fun fabClickEvent() {
+    private fun noGoalClickEvent() {
         binding.fabWrite.setOnClickListener {
-            val intent = Intent(requireContext(), RecordWriteActivity::class.java)
-            startActivity(intent)
+            if (binding.cgGoal.size != 0) {
+                val intent = Intent(requireContext(), RecordWriteActivity::class.java)
+                startActivity(intent)
+            } else {
+                val dialog = NoRecordDialogFragment()
+                activity?.let { it1 ->
+                    dialog.show(
+                        it1.supportFragmentManager,
+                        "NoRecordDialogFragment"
+                    )
+                }
+            }
         }
     }
 }
