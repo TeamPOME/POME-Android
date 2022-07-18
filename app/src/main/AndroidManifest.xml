@@ -13,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/Theme.PomeAndroid">
+        android:theme="@style/Theme.PomeAndroid"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.record.emotion.BeforeSelectEmotionActivity"
             android:exported="false" />
