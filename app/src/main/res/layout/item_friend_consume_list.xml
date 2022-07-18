@@ -109,11 +109,11 @@
 
         <TextView
             android:id="@+id/tv_location"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toStartOf="@id/iv_friend_firstemotion"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_friend_firstemotion" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ly_friend_emoji"
@@ -137,9 +137,9 @@
                 android:id="@+id/ly_wrap_friend_emoji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginStart="22dp"
                 android:backgroundTint="@color/purple_200"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

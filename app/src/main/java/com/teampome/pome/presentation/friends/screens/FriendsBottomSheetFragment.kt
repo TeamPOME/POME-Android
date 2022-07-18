@@ -48,8 +48,9 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
     private fun initSetHeight() {
         //360으로
         val bottomSheet = binding.clWholebottomsheet
-        bottomSheet.minHeight = ViewGroup.LayoutParams.WRAP_CONTENT
-        bottomSheet.maxHeight = ViewGroup.LayoutParams.WRAP_CONTENT
+        val height = resources.displayMetrics.heightPixels*0.5
+        bottomSheet.minHeight = height.toInt()
+        bottomSheet.maxHeight = height.toInt()
     }
 
     override fun onDestroyView() {

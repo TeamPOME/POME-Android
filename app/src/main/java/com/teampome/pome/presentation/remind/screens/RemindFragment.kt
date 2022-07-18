@@ -31,9 +31,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initClickFirstEmotion()
         initClickSecondEmotion()
         initClickReset()
-
         getGoal()
-
         reactClick()
     }
 

@@ -1,6 +1,5 @@
 package com.teampome.pome.presentation.friends.screens
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -13,26 +12,20 @@ import com.teampome.pome.presentation.friends.FriendsProfileWholeData
 import com.teampome.pome.presentation.friends.adapters.FriendsConsumeAdapter
 import com.teampome.pome.presentation.friends.adapters.FriendsProfileAdapter
 import com.teampome.pome.presentation.friends.adapters.FriendsReactAdapter
-import com.teampome.pome.presentation.main.MainActivity
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
-import timber.log.Timber
 
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
-    private lateinit var friendsReactAdapter:FriendsReactAdapter
+    private lateinit var friendsReactAdapter: FriendsReactAdapter
 
     private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
     private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
     private var emoji_position: Int = -1
     private var list_position: Int = -1
     private lateinit var emojiList: List<ImageView>
-//    private val getSharedPreference =
-//        activity?.getSharedPreferences("emoji_store", Context.MODE_PRIVATE)
-
-    lateinit var mainActivity:MainActivity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -134,7 +127,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(0,2, 5)
+                    reaction = listOf(0, 2, 5)
                 ),
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ3",
@@ -174,7 +167,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(0,6)
+                    reaction = listOf(0, 6)
                 ),
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ7",
@@ -204,7 +197,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     first_emotion = 1,
                     second_emotion = 2,
                     tag = "탐탐은 민초가 짱",
-                    reaction = listOf(0,1)
+                    reaction = listOf(0, 1)
                 )
 
             )
@@ -263,6 +256,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             }
         }
     }
+
     private fun consumeClick() {
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {
