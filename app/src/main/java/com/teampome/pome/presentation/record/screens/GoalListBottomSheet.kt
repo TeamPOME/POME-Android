@@ -1,5 +1,7 @@
 package com.teampome.pome.presentation.record.screens
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,17 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
     private var _binding: FragmentGoalListBottomSheetBinding? = null
     private val binding get() = _binding!!
     private lateinit var goalListAdapter: GoalListAdapter
+
+    private var onListenerGoal: OnListenerGoal? = null
+
+    interface OnListenerGoal {
+        fun onCheckedGoal(goal: String)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onListenerGoal = activity as OnListenerGoal
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +57,10 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initAdapter() {
-        goalListAdapter = GoalListAdapter()
+        goalListAdapter = GoalListAdapter {
+            onListenerGoal?.onCheckedGoal(it.goal)
+            dismiss()
+        }
         binding.rvGoal.adapter = goalListAdapter
         addList()
     }
@@ -64,6 +80,11 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
                 GoalListData("포미")
             )
         )
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        onListenerGoal = null
     }
 
     override fun onDestroyView() {
