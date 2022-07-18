@@ -107,4 +107,10 @@ dependencies {
 
     // Calendar
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+
+    // okhttp3
+    def okhttp3_version = "4.9.3"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp3_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
 }
