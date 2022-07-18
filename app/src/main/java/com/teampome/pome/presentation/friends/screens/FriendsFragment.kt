@@ -94,6 +94,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter(requireContext())
+
         binding.rcvFriendsconsumelist.adapter = friendsConsumeAdapter
     }
 
@@ -107,7 +108,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         //추후에 서버에서 가져오기
         binding.rcvFriendsconsumelist.visibility = View.VISIBLE
         binding.clFriendsempty.visibility = View.INVISIBLE
-        friendsConsumeAdapter.submitList(
+        //val data = mutableListOf<FriendsConsumeData>()
+            friendsConsumeAdapter.friendConsumeList.addAll(
             listOf(
                 FriendsConsumeData(
                     name = "ㅇㅈㅇ12",
@@ -199,9 +201,10 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     tag = "탐탐은 민초가 짱",
                     reaction = listOf(0, 1)
                 )
-
             )
         )
+
+
     }
 
     private fun initWholeData() {
@@ -252,7 +255,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 emoji_position = i
                 //Timber.d("clicked_emoji=$emoji_position, 리스트 순번=$list_pos")
                 //initSharedPreference()
-                friendsConsumeAdapter.changeItem(friendsConsumeAdapter.currentList[list_pos], emoji_position)
+                //friendsConsumeAdapter.changeItem(friendsConsumeAdapter.currentList[list_position], emoji_position)
+                friendsConsumeAdapter.getEmojiPosition(emoji_position+1, list_position)
                 friendsEmojiBalloon.dismiss()
             }
         }
