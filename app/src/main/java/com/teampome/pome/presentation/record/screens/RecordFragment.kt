@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.size
 import com.teampome.pome.R
+import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
 import com.teampome.pome.presentation.record.RecordData
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
+import javax.inject.Inject
 
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
+    @Inject
+    lateinit var service: GoalService
     private lateinit var recordAdapter: RecordAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
