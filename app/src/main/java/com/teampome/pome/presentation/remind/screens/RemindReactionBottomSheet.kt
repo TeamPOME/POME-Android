@@ -39,7 +39,7 @@ class RemindReactionBottomSheet : BottomSheetDialogFragment() {
     }
     private fun initHeight(){
         val bottomSheet = binding.clRemindbottomsheet
-        val height = resources.displayMetrics.heightPixels*0.5
+        val height = resources.displayMetrics.heightPixels*0.6
         bottomSheet.minHeight = height.toInt()
         bottomSheet.maxHeight = height.toInt()
     }
