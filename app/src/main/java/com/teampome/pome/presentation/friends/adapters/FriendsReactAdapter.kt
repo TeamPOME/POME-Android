@@ -19,22 +19,22 @@ class FriendsReactAdapter :
         fun bind(friendReactionData: FriendReactionData){
             when(friendReactionData.emoji){
                 1-> {
-                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_click_emoji_happy)
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
                 }
                 2->{
-                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_smile)
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_smile_react_54)
                 }
                 3-> {
-                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_fun)
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_funny_react_54)
                 }
                 4-> {
-                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_flex)
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_flex_react_54)
                 }
                 5->{
-                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_what)
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_what_fiter_54)
                 }
                 6-> {
-                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_click_emoji_sad)
+                    binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_sad_filter_54)
                 }
             }
             binding.tvFriendsReaction.text=friendReactionData.name

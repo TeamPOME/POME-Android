@@ -30,22 +30,22 @@ class RemindReactionAdapter :
         fun bind(remindReactionData: RemindReactionData){
             when(remindReactionData.emoji){
                 1-> {
-                    binding.ivRemindReaction.setImageResource(R.drawable.ic_click_emoji_happy)
+                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
                 }
                 2->{
-                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_smile)
+                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_smile_react_54)
                 }
                 3-> {
-                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_fun)
+                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_funny_react_54)
                 }
                 4-> {
-                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_flex)
+                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_flex_react_54)
                 }
                 5->{
-                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_what)
+                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_what_fiter_54)
                 }
                 6-> {
-                    binding.ivRemindReaction.setImageResource(R.drawable.ic_click_emoji_sad)
+                    binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_sad_filter_54)
                 }
             }
             binding.tvRemindReaction.text=remindReactionData.name
