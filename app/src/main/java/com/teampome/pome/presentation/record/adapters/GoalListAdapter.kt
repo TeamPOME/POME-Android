@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.databinding.ItemGoalListBinding
 import com.teampome.pome.presentation.record.GoalListData
 
-class GoalListAdapter : ListAdapter<GoalListData, GoalListAdapter.GoalListViewHolder>(DiffUtil) {
+class GoalListAdapter(private val itemClick: (GoalListData) -> Unit) : ListAdapter<GoalListData, GoalListAdapter.GoalListViewHolder>(DiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalListViewHolder {
         val binding =
             ItemGoalListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GoalListViewHolder(binding)
+        return GoalListViewHolder(binding, itemClick)
     }
 
     override fun onBindViewHolder(holder: GoalListViewHolder, position: Int) {
@@ -21,10 +21,14 @@ class GoalListAdapter : ListAdapter<GoalListData, GoalListAdapter.GoalListViewHo
     }
 
     class GoalListViewHolder(
-        private val binding: ItemGoalListBinding
+        private val binding: ItemGoalListBinding,
+        private val itemClick: (GoalListData) -> (Unit)
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: GoalListData) {
             binding.tvGoal.text = data.goal
+            binding.root.setOnClickListener {
+                itemClick(data)
+            }
         }
     }
 
