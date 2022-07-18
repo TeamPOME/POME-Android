@@ -13,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/Theme.PomeAndroid">
+        android:theme="@style/Theme.PomeAndroid"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.record.emotion.BeforeSelectEmotionActivity"
             android:exported="false" />
@@ -37,14 +38,29 @@
             android:exported="false" />
         <activity
             android:name=".presentation.login.screens.KakaoLoginActivity"
-            android:exported="false" />
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao699dbdf059e2987fa055e4e3a50d524d" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".presentation.record.emotion.AfterCompleteEmotionActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.record.emotion.AfterSelectEmotionActivity"
             android:exported="false" />
-
         <activity
             android:name=".presentation.record.screens.RecordLookBackActivity"
             android:exported="false" />
@@ -56,12 +72,11 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
 
         <provider

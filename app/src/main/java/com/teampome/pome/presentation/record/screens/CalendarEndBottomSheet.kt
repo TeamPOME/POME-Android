@@ -1,7 +1,8 @@
 package com.teampome.pome.presentation.record.screens
 
-import android.content.Context
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,8 @@ import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormat
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentCalendarEndBottomSheetBinding
 import com.teampome.pome.util.decorate.MinMaxDecorator
-import com.teampome.pome.util.decorate.TodayDecorator
-import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
-import kotlin.properties.Delegates
+import java.util.Calendar.*
 
 class CalendarEndBottomSheet : BottomSheetDialogFragment() {
 
@@ -44,31 +41,44 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun calendarSetting() {
+        val sdf = SimpleDateFormat("yyyy/MM/dd EEEE HH:mm:ss z", Locale.KOREAN)
         //시작일 받아오는 로직 추가하기
-        var startDate by Delegates.notNull<Date>()
+        //it은 date 형식인데, selectedDate는 캘린더 형식임.
+        var customDate: String
         viewModel.startDate.observe(this) {
-            binding.mcCalendar.selectedDate = CalendarDay.from(it)
-            startDate = it
+            //binding.mcCalendar.selectedDate = CalendarDay.from(it)
+            customDate = sdf.format(it)
+            //it은 calendarstartbottomsheet에서 받아오는 것
+            Log.e("dateEndBottom777", "${customDate}")
         }
 
-        val startTimeCalendar = Calendar.getInstance()
-        val endTimeCalendar = Calendar.getInstance()
+        //Log.e("dataresult", "$koreaDate")
+        //Log.e("dateEndBottom12", "${binding.mcCalendar.selectedDate}")
+        //현재 날짜 받아서 + selectedDate 계산
+        // selectedDate 형변환 formatt
+        //Log.e("dateEndBottom777", "${customDate}")
+        val startTimeCalendar = getInstance()//객체 생성 구현된 ~~
+        val endTimeCalendar = getInstance()
 
-        val currentYear = startTimeCalendar.get(Calendar.YEAR)
-        val currentMonth = startTimeCalendar.get(Calendar.MONTH)
-        val currentDate = startTimeCalendar.get(Calendar.DATE)
+        Log.e("start", "$endTimeCalendar")
+
+        //선택한 날짜 변수덜 int로 가져옴.
+        val currentYear = startTimeCalendar.get(YEAR)
+        val currentMonth = startTimeCalendar.get(MONTH)
+        val currentDate = startTimeCalendar.get(DATE)
+
 
         //끝나는 달
-        endTimeCalendar.set(Calendar.MONTH, currentMonth + 1)
+        endTimeCalendar.set(MONTH, currentMonth + 1)
 
         //최소 선택 날짜, 최대 선택 날짜
         binding.mcCalendar.state().edit()
-            .setFirstDayOfWeek(Calendar.SUNDAY)
+            .setFirstDayOfWeek(SUNDAY)
             .setMinimumDate(CalendarDay.from(currentYear, currentMonth, 1))
             .setMaximumDate(
                 CalendarDay.from(
                     currentYear, currentMonth + 1, endTimeCalendar.getActualMaximum(
-                        Calendar.DAY_OF_MONTH
+                        DAY_OF_MONTH
                     )
                 )
             )
@@ -81,20 +91,22 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
 
         val stCalendarDay = CalendarDay.from(currentYear, currentMonth, currentDate)
         val enCalendarDay = CalendarDay.from(
-            endTimeCalendar.get(Calendar.YEAR),
-            endTimeCalendar.get(Calendar.MONTH),
-            endTimeCalendar.get(Calendar.DATE)
+            endTimeCalendar.get(YEAR),
+            endTimeCalendar.get(MONTH),
+            endTimeCalendar.get(DATE)
         )
 
+        // 현재 날짜 기준으로 decorate임.
+        //min, max 파라미터에 선택한 날짜를 넣어두면 됨.
         val minMaxDecorator = MinMaxDecorator(stCalendarDay, enCalendarDay)
-        val todayDecorator = TodayDecorator(requireContext())
-        binding.mcCalendar.addDecorators(minMaxDecorator, todayDecorator)
+        binding.mcCalendar.addDecorators(minMaxDecorator)
     }
 
     private fun choiceDate() {
         binding.btnChoicedate.setOnClickListener {
             val date = binding.mcCalendar.selectedDate.date
             viewModel.endDate.value = date
+            Log.d("date", "$date")
             dismiss()
         }
     }

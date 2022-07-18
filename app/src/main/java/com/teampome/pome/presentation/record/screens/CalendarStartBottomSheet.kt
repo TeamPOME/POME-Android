@@ -1,6 +1,7 @@
 package com.teampome.pome.presentation.record.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,6 +86,7 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
         binding.btnChoicedate.setOnClickListener {
             val date = binding.mcCalendar.selectedDate.date
             viewModel.startDate.value = date
+            Log.d("date","${date}")
             dismiss()
         }
     }
