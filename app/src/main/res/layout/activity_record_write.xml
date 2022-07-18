@@ -1,201 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingHorizontal="16dp"
-    tools:context=".presentation.record.screens.RecordWriteActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_whatconsume"
-        style="@style/PomeSb20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="어떤 소비를 하셨나요?"
-        android:textColor="@color/pome_grey_9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_back" />
-
-    <TextView
-        android:id="@+id/tv_simplerecord"
-        style="@style/PomeM14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="소비에 대한 간단한 기록을 남겨보세요"
-        android:textColor="@color/pome_grey_5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_whatconsume" />
-
-    <TextView
-        android:id="@+id/tv_goal"
-        style="@style/PomeSb14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="목표"
-        android:textColor="@color/pome_grey_7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_simplerecord" />
+        <variable
+            name="recordWriteViewModel"
+            type="com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_goal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_grey_round_8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_goal">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp"
+        tools:context=".presentation.record.screens.RecordWriteActivity">
 
-        <TextView
-            android:id="@+id/tv_goalchoice"
-            style="@style/PomeM14"
+        <ImageButton
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:paddingVertical="17dp"
-            android:text="목표를 선택해주세요"
-            android:textColor="@color/pome_grey_5"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_down"
+        <TextView
+            android:id="@+id/tv_whatconsume"
+            style="@style/PomeSb20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="@null"
-            android:src="@drawable/ic_arrow_down"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tv_consumedate"
-        style="@style/PomeSb14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="소비 날짜"
-        android:textColor="@color/pome_grey_7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_goal" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_consumedate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_grey_round_8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_consumedate">
+            android:layout_marginTop="26dp"
+            android:text="어떤 소비를 하셨나요?"
+            android:textColor="@color/pome_grey_9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
         <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/tv_simplerecord"
+            style="@style/PomeM14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="소비에 대한 간단한 기록을 남겨보세요"
+            android:textColor="@color/pome_grey_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_whatconsume" />
+
+        <TextView
+            android:id="@+id/tv_plzgoalchoice"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="목표"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_simplerecord" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rectangle_grey_round_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_plzgoalchoice">
+
+            <TextView
+                android:id="@+id/tv_goal"
+                style="@style/PomeM14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingVertical="17dp"
+                android:text="목표를 선택해주세요"
+                android:textColor="@color/pome_grey_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_choicegoal"
+                style="@style/PomeM14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingVertical="17dp"
+                android:text="@={recordWriteViewModel.goalchoice}"
+                android:textColor="@color/pome_grey_9"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ic_arrow_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_consumedate"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="소비 날짜"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_goal" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_consumedate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rectangle_grey_round_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_consumedate">
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/PomeM14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_grey_round_8"
+                android:paddingVertical="17dp"
+                android:paddingStart="16dp"
+                android:text="2022.07.17"
+                android:textColor="@color/pome_grey_9"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_choicedate"
+                style="@style/PomeM14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="17dp"
+                android:paddingStart="16dp"
+                android:textColor="@color/pome_grey_9"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ic_calendar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_goalamount"
+            style="@style/PomeSb14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="목표 금액"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_consumedate" />
+
+        <EditText
+            android:id="@+id/et_goalamount"
             style="@style/PomeM14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:background="@drawable/rectangle_grey_round_8"
+            android:hint="10,000"
+            android:inputType="number|textNoSuggestions"
+            android:maxLength="20"
             android:paddingVertical="17dp"
             android:paddingStart="16dp"
-            android:text="2022.07.11"
+            android:text="@={recordWriteViewModel.consumeamount}"
             android:textColor="@color/pome_grey_9"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColorHint="@color/pome_grey_5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tv_goalamount" />
 
-        <ImageButton
-            android:id="@+id/btn_calendar"
+        <TextView
+            android:id="@+id/tv_consumerecord"
+            style="@style/PomeSb14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="@null"
-            android:src="@drawable/ic_calendar"
+            android:layout_marginTop="24dp"
+            android:text="소비 기록"
+            android:textColor="@color/pome_grey_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_goalamount" />
+
+        <EditText
+            android:id="@+id/et_consumerecord"
+            style="@style/PomeM14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rectangle_grey_round_8"
+            android:hint="소비에 대한 감상을 적어주세요 (20자)"
+            android:maxLength="20"
+            android:paddingVertical="17dp"
+            android:paddingStart="16dp"
+            android:text="@={recordWriteViewModel.consumerecord}"
+            android:textColor="@color/pome_grey_9"
+            android:textColorHint="@color/pome_grey_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_consumerecord" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_write"
+            style="@style/PomeB18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/selector_button"
+            android:paddingVertical="15dp"
+            android:text="작성했어요"
+            android:textColor="@color/pome_white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tv_goalamount"
-        style="@style/PomeSb14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="목표 금액"
-        android:textColor="@color/pome_grey_7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_consumedate" />
-
-    <EditText
-        android:id="@+id/et_goalamount"
-        style="@style/PomeM14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_grey_round_8"
-        android:hint="10,000"
-        android:paddingVertical="17dp"
-        android:paddingStart="16dp"
-        android:textColor="@color/pome_grey_9"
-        android:textColorHint="@color/pome_grey_5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_goalamount" />
-
-    <TextView
-        android:id="@+id/tv_consumerecord"
-        style="@style/PomeSb14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="소비 기록"
-        android:textColor="@color/pome_grey_7"
-        app:layout_constraintTop_toBottomOf="@id/et_goalamount"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/et_consumerecord"
-        style="@style/PomeM14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle_grey_round_8"
-        android:hint="소비에 대한 감상을 적어주세요 (20자)"
-        android:maxLength="20"
-        android:paddingVertical="17dp"
-        android:paddingStart="16dp"
-        android:textColor="@color/pome_grey_9"
-        android:textColorHint="@color/pome_grey_5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_consumerecord" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_write"
-        style="@style/PomeB18"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:background="@drawable/rectangle_green_round_6"
-        android:paddingVertical="15dp"
-        android:text="작성했어요"
-        android:textColor="@color/pome_white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

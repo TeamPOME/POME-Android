@@ -30,16 +30,16 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         marshMellowAdapter.submitList(
             listOf(
                 MarshMellowData(
-                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.ic_myprofile
+                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.marshmallow_level_3_pink
                 ),
                 MarshMellowData(
-                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.ic_myprofile
+                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.marshmallow_level_2_blue
                 ),
                 MarshMellowData(
-                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.ic_myprofile
+                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.marshmallow_level_2_yellow
                 ),
                 MarshMellowData(
-                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.ic_myprofile
+                    R.drawable.ic_level, R.drawable.ic_badge, R.drawable.marshmallow_level_4_mint
                 )
             )
         )

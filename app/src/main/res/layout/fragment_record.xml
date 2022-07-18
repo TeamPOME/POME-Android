@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="30dp"
                         android:layout_marginStart="21dp"
-                        android:src="@drawable/ic_empty_goal_3_d_component"
+                        android:src="@drawable/ic_3d_empty_goal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -127,11 +127,12 @@
                         style="@style/PomeSb16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="137dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="45dp"
+                        android:lineSpacingExtra="4dp"
                         android:text="목표가 있어야\n씀씀이를 기록할 수 있어요"
                         android:textColor="@color/pome_grey_8"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_3d"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
@@ -365,6 +366,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="12dp"
+                        android:visibility="gone"
                         android:overScrollMode="never"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"

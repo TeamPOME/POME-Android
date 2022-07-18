@@ -16,13 +16,14 @@ class RemindSecondBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
         _binding = FragmentRemindSecondBottomSheetBinding.inflate(layoutInflater, container, false)
 
-        initHeight()
+        initSetHeight()
         initClose()
 
         return binding.root
     }
 
-    private fun initHeight() {
+    private fun initSetHeight() {
+        val height = resources.displayMetrics.heightPixels * 0.5
         val bottomSheet = binding.clRemindSecondBottomsheet
         val height = resources.displayMetrics.heightPixels*0.5
         bottomSheet.minHeight = height.toInt()

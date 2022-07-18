@@ -13,5 +13,6 @@ class PomeApp : Application() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         //KakaoSdk.init(this, "{NATIVE_APP_KEY}")
         //KakaoSdk.init(this, BuildConfig.KAKAO_APP_KEY)
+        KakaoSdk.init(this, BuildConfig.KAKAO_APP_KEY)
     }
 }

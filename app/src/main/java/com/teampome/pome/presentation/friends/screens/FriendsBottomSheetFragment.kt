@@ -1,9 +1,7 @@
 package com.teampome.pome.presentation.friends.screens
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teampome.pome.databinding.FragmentFriendsBottomSheetBinding
 import com.teampome.pome.presentation.friends.FriendReactionData
@@ -47,8 +45,8 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initSetHeight() {
         //360으로
+        val height = resources.displayMetrics.heightPixels * 0.5
         val bottomSheet = binding.clWholebottomsheet
-        val height = resources.displayMetrics.heightPixels*0.5
         bottomSheet.minHeight = height.toInt()
         bottomSheet.maxHeight = height.toInt()
     }

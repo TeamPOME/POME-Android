@@ -5,7 +5,6 @@ import android.text.style.ForegroundColorSpan
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
-import com.teampome.pome.R
 
 class MinMaxDecorator(min: CalendarDay, max: CalendarDay): DayViewDecorator {
     val maxDay = max

@@ -29,6 +29,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
+    <ImageView
+        android:id="@+id/iv_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/friend_3dcomplelte"
+        app:layout_constraintBottom_toTopOf="@+id/tv_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_cheer" />
+
     <TextView
         android:id="@+id/tv_next"
         style="@style/PomeB18"
@@ -42,6 +53,7 @@
         android:textColor="@color/pome_grey_4"
         app:layout_constraintBottom_toTopOf="@id/btn_finish"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_finish"

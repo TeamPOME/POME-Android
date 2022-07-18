@@ -1,6 +1,7 @@
 package com.teampome.pome.presentation.record.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         calendarSetting()
         choiceDate()
+        initSetHeight()
     }
 
     private fun calendarSetting() {
@@ -84,8 +86,16 @@ class CalendarStartBottomSheet : BottomSheetDialogFragment() {
         binding.btnChoicedate.setOnClickListener {
             val date = binding.mcCalendar.selectedDate.date
             viewModel.startDate.value = date
+            Log.d("date","${date}")
             dismiss()
         }
+    }
+
+    private fun initSetHeight() {
+        val height = resources.displayMetrics.heightPixels * 0.6
+        val bottomSheet = binding.clCalendar
+        bottomSheet.minHeight = height.toInt()
+        bottomSheet.maxHeight = height.toInt()
     }
 
     override fun onDestroyView() {

@@ -12,41 +12,44 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_margin="8dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/pome_white">
+        android:background="@drawable/rectangle_white_round_8">
 
         <ImageView
             android:id="@+id/iv_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="14dp"
+            android:setImage="@{marshmellow.label}"
             app:layout_constraintStart_toStartOf="@id/iv_profile"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_level" />
+            tools:src="@drawable/ic_level" />
 
         <ImageView
             android:id="@+id/iv_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="54dp"
+            android:layout_height="24dp"
             android:layout_marginTop="14dp"
+            android:setImage="@{marshmellow.badge}"
             app:layout_constraintEnd_toEndOf="@+id/iv_profile"
             app:layout_constraintStart_toEndOf="@id/iv_level"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_badge" />
+            tools:src="@drawable/ic_badge" />
 
         <ImageView
             android:id="@+id/iv_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="15dp"
+            android:setImage="@{marshmellow.marshmellow}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_level"
-            android:src="@drawable/ic_myprofile" />
+            tools:src="@drawable/ic_myprofile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
