@@ -3,9 +3,11 @@ package com.teampome.pome.presentation.login.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.teampome.pome.databinding.ActivityKakaoLoginBinding
+import timber.log.Timber
 
 
 class KakaoLoginActivity : AppCompatActivity() {
@@ -24,6 +26,7 @@ class KakaoLoginActivity : AppCompatActivity() {
                 //Login Fail
             } else if (token != null) {
                 //Login Success
+                    Log.d("token","$token")
                 val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
             }
