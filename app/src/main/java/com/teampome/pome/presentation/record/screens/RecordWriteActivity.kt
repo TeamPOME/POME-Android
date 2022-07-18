@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityRecordWriteBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
@@ -23,6 +22,7 @@ class RecordWriteActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         goBack()
+        goalClickEvent()
         calendarClickEvent()
         checkComplete()
         goBeforeSelectEmotionActivity()
@@ -31,6 +31,13 @@ class RecordWriteActivity : AppCompatActivity() {
     private fun goBack() {
         binding.btnBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun goalClickEvent() {
+        binding.btnDown.setOnClickListener {
+            val bottomSheet = GoalListBottomSheet()
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }
 
