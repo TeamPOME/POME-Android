@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".presentation.record.screens.DeleteRecordDialogFragment">
+
+    <TextView
+        android:id="@+id/tv_recorddelete"
+        style="@style/PomeSb16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="기록을 삭제하시겠어요?"
+        android:textColor="@color/pome_grey_9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_alldelete"
+        style="@style/PomeM14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="삭제한 내용은 다시 되돌릴 수 없어요"
+        android:textColor="@color/pome_grey_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recorddelete" />
+
+    <ImageView
+        android:id="@+id/iv_trash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_3d_trash_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_alldelete" />
+
+    <TextView
+        android:id="@+id/tv_no"
+        style="@style/PomeM14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:padding="5dp"
+        android:text="아니요"
+        android:textColor="@color/pome_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_delete"
+        app:layout_constraintTop_toBottomOf="@id/iv_trash" />
+
+    <TextView
+        android:id="@+id/tv_delete"
+        style="@style/PomeM14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="18dp"
+        android:padding="5dp"
+        android:text="삭제할래요"
+        android:textColor="@color/pome_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_trash" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
