@@ -13,8 +13,7 @@ class RemindConsumeAdapter :
     ListAdapter<FriendsConsumeData, RemindConsumeAdapter.RemindConsumeViewHolder>(
         DIFFUTIL
     ) {
-    private lateinit var listener:ReactionClickListener
-
+    private lateinit var listener: ReactionClickListener
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
