@@ -28,7 +28,7 @@ class RemindReactionBottomSheet : BottomSheetDialogFragment() {
         initHeight()
     }
     private fun initHeight(){
-        val bottomSheet = binding.clRemindReactionBottomsheet
+        val bottomSheet = binding.clRemindbottomsheet
         bottomSheet.minHeight = ViewGroup.LayoutParams.WRAP_CONTENT
         bottomSheet.maxHeight = ViewGroup.LayoutParams.WRAP_CONTENT
     }
