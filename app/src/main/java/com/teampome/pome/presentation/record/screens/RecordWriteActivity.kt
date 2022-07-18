@@ -51,6 +51,9 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     }
 
     private fun checkComplete() {
+        viewModel.goalchoice.observe(this) {
+            viewModel.completeWriteCheck()
+        }
 //        viewModel.consumedate.observe(this) {
 //            viewModel.completeWriteCheck()
 //        }

@@ -12,7 +12,7 @@ class RecordWriteViewModel : ViewModel() {
     val isWriteSuccess = MutableLiveData(false)
 
     fun completeWriteCheck() {
-        return if (!consumeamount.value.isNullOrEmpty() && !consumerecord.value.isNullOrEmpty()) {
+        return if (!goalchoice.value.isNullOrEmpty() && !consumeamount.value.isNullOrEmpty() && !consumerecord.value.isNullOrEmpty()) {
             isWriteSuccess.value = true
         } else {
             isWriteSuccess.value = false

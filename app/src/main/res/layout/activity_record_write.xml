@@ -88,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:paddingVertical="17dp"
+                android:text="@={recordWriteViewModel.goalchoice}"
                 android:textColor="@color/pome_grey_9"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
