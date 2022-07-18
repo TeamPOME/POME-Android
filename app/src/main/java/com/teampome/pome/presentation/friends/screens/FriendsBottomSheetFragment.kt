@@ -38,7 +38,10 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
                 FriendReactionData(5, "김수빈"),
                 FriendReactionData(3,"황연진"),
                 FriendReactionData(5, "김수빈"),
-            )
+                FriendReactionData(2, "김수빈"),
+                FriendReactionData(4,"황연진"),
+                FriendReactionData(6, "김수빈"),
+                )
         )
     }
 
