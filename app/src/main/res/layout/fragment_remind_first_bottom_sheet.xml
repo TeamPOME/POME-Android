@@ -5,6 +5,7 @@
     android:id="@+id/cl_remind_first_bottomsheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bottomsheet_round"
     android:paddingHorizontal="20dp"
     android:paddingTop="20dp"
     tools:context=".presentation.remind.screens.RemindFirstBottomSheetFragment">
