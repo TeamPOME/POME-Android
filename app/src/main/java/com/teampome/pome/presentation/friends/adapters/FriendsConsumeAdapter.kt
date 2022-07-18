@@ -63,6 +63,7 @@ class FriendsConsumeAdapter(val context: Context) :
 
             //여기서 동적 추가 해주기
             binding.lyWrapFriendEmoji.removeAllViews()
+            friendsConsumeData.reaction=friendsConsumeData.reaction.asReversed()
 
             friendsConsumeData.reaction.forEachIndexed { index, it ->
                 val imageView = ImageView(context)
@@ -74,6 +75,8 @@ class FriendsConsumeAdapter(val context: Context) :
 
                 layoutParams.apply {
                     leftMargin=index*22
+                    topToTop=R.id.ly_wrap_friend_emoji
+                    startToStart=R.id.ly_wrap_friend_emoji
                 }
                 imageView.apply {
                     when (it) {
@@ -83,24 +86,55 @@ class FriendsConsumeAdapter(val context: Context) :
                         }
                         1 -> {
                             setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
                         }
                         2 -> {
                             setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
                         }
                         3 -> {
                             setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
                         }
                         4 -> {
                             setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
                         }
                         5 -> {
                             setImageResource(R.drawable.ic_emoji_what_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
                         }
                         else -> {
                             setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                            layoutParams.apply {
+                                leftMargin=index*22
+                                topToTop=R.id.ly_wrap_friend_emoji
+                                startToStart=R.id.ly_wrap_friend_emoji
+                            }
                         }
                     }
                 }
+                imageView.bringToFront()
                 binding.lyWrapFriendEmoji.addView(imageView,layoutParams)
             }
         }
