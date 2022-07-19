@@ -1,9 +1,14 @@
 package com.teampome.pome.presentation.record.screens
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.size
+import com.google.android.material.chip.Chip
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentRecordBinding
@@ -12,6 +17,8 @@ import com.teampome.pome.presentation.record.RecordData
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
+import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.showToast
 import javax.inject.Inject
 
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
@@ -58,6 +65,72 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 "GoalLimitDialogFragment"
             )
         }
+    }
+
+    private fun initGoalChip() {
+        service.initGoalChip().enqueueUtil(
+            onSuccess = {
+                it.data?.forEachIndexed { index, responseGoalCreate ->
+                    if (index == 0){
+                        val chip = Chip(context).apply {
+                            id = responseGoalCreate.id
+                            text = responseGoalCreate.category
+                            setTextAppearanceResource(R.style.PomeSb14)
+                            isCheckable = true
+                            isCheckedIconVisible = false
+                            chipBackgroundColor = ColorStateList(
+                                arrayOf(
+                                    intArrayOf(-android.R.attr.state_checked),
+                                    intArrayOf(android.R.attr.state_checked)
+                                ),
+                                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
+                            )
+                            setTextColor(
+                                ColorStateList(
+                                    arrayOf(
+                                        intArrayOf(-android.R.attr.state_checked),
+                                        intArrayOf(android.R.attr.state_checked)
+                                    ),
+                                    intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_5), Color.WHITE)
+                                )
+                            )
+                        }
+                        binding.cgGoal.addView(chip)
+                        chip.isChecked = true
+                    } else {
+                        val chip = Chip(context).apply {
+                            id = responseGoalCreate.id
+                            text = responseGoalCreate.category
+                            setTextAppearanceResource(R.style.PomeSb14)
+                            isCheckable = true
+                            isCheckedIconVisible = false
+                            chipBackgroundColor = ColorStateList(
+                                arrayOf(
+                                    intArrayOf(-android.R.attr.state_checked),
+                                    intArrayOf(android.R.attr.state_checked)
+                                ),
+                                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
+                            )
+                            setTextColor(
+                                ColorStateList(
+                                    arrayOf(
+                                        intArrayOf(-android.R.attr.state_checked),
+                                        intArrayOf(android.R.attr.state_checked)
+                                    ),
+                                    intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_5), Color.WHITE)
+                                )
+                            )
+                        }
+                        binding.cgGoal.addView(chip)
+                        chip.isChecked = false
+                    }
+                    binding.cgGoal.isSingleSelection = true
+                }
+            },
+            onError = {
+                requireContext().showToast("불러오기에 실패했습니다.")
+            }
+        )
     }
 
     private fun initAdapter() {
