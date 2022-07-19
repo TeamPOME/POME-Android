@@ -48,61 +48,15 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         initFriendsData()
         //후에 서버통신 할 에정
         initFriendProfile()
-
-        //getFriendProfileList()
-        //getFriendsConsumeData()
+        initWholeData()
 
         consumeClick()
         addFriendsDecoration()
 
         initBalloonList()
         //balloon에 있는 이모지들 초기화
-
-        //initFriendsEmojii()
-
-        //initSharedPreference()
-        //addEmoji(list_position)
-        //emojiSet()
-
-        //
-
     }
 
-//    private fun initSharedPreference() {
-//        getSharedPreference?.edit()?.putString(
-//            list_position.toString(), emoji_position.toString()
-//        )
-//        Timber.d("저장오나료")
-//    } //data위치와 이모지 번호를 sharedpreference에 저장
-
-    //    private fun emojiSet() {
-//        //sharedpreference로 넣기
-//        when (emoji_position) {
-//            0 -> {
-//                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_happy_mint_28)
-//            }
-//            1 -> {
-//                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_smile_mint_28)
-//            }
-//            2 -> {
-//                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_funny_mint_28)
-//            }
-//            3 -> {
-//                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_flex_mint_28)
-//            }
-//            4 -> {
-//                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_what_mint_28)
-//            }
-//            5 -> {
-//                binding.ivPlusfriend.setImageResource(R.drawable.ic_emoji_sad_mint_28)
-//            }
-//            else -> {
-//                //-1인 경우
-//            }
-//        }
-//        //local에 저장하기
-//
-//    }
     private fun initFriendsData() {
         lifecycleScope.launch {
             kotlin.runCatching {
@@ -137,7 +91,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter(requireContext())
-
         binding.rcvFriendsconsumelist.adapter = friendsConsumeAdapter
     }
 
@@ -159,143 +112,19 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         )
     }
 
-//    private fun getFriendsConsumeData() {
-//        //추후에 서버에서 가져오기
-//        binding.rcvFriendsconsumelist.visibility = View.VISIBLE
-//        binding.clFriendsempty.visibility = View.INVISIBLE
-//
-//            friendsConsumeAdapter.friendConsumeList.addAll(
-//            listOf(
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ12",
-//                    description = "일이삼사오육칠팔구십일이삼사오육칠팔구",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(0, 2, 3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ2",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(0, 2, 5)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ3",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(4, 5)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ4",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(2, 4, 5)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ5",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(3, 5)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ6",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(0, 6)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ7",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(1)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ8",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,400",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(1)
-//                ),
-//                FriendsConsumeData(
-//                    name = "ㅇㅈㅇ9",
-//                    description = "탐탐민초 추천",
-//                    date = "07.09",
-//                    price = "4,0",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    tag = "탐탐은 민초가 짱",
-//                    reaction = listOf(0, 1)
-//                )
-//            )
-//        )
-//
-//
-//    }
-
     private fun initWholeData() {
         friendsProfileAdapter.friendsProfileList.add(
             FriendsProfileWholeData("전체", "tmp")
         )
-
     }
 
     private fun noFriendsProfile() {
-        initWholeData()
-        friendsProfileAdapter.isEmpty=true
+        friendsProfileAdapter.isEmpty = true
     }
 
     private fun noFriendsRecords() {
         binding.clFriendsempty.visibility = View.VISIBLE
     }
-
-//    private fun getFriendProfileList() {
-//        binding.rcvFriends.visibility = View.VISIBLE
-//        binding.clFriendsempty.visibility = View.INVISIBLE
-//        binding.ivEmptyfriends.setImageResource(R.drawable.ic_friend_profile_full)
-//        friendsProfileAdapter.friendsProfileList.addAll(
-//            listOf(
-//                FriendsProfileData("황연진입니다", "tmp"),
-//                FriendsProfileData("김수빈", "tmp"),
-//                FriendsProfileData("양지영", "tmp"),
-//                FriendsProfileData("황연진", "tmp"),
-//                FriendsProfileData("김수빈", "tmp"),
-//                FriendsProfileData("양지영", "tmp"),
-//                FriendsProfileData("황연진", "tmp"),
-//                FriendsProfileData("김수빈", "tmp"),
-//                FriendsProfileData("양지영", "tmp")
-//            )
-//        )
-//    }
 
     private fun addFriendsDecoration() {
         binding.rcvFriendsconsumelist.addItemDecoration(FriendsConsumeItemDecorator(12))
@@ -318,8 +147,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         for (i in emojiList.indices) {
             emojiList[i].setOnClickListener {
                 emoji_position = i
-                Log.d(TAG, "FriendsFragment - addEmoji() called list_position=$list_position")
-
                 friendsConsumeAdapter.getEmojiPosition(emoji_position + 1, list_position)
                 friendsEmojiBalloon.dismiss()
             }
