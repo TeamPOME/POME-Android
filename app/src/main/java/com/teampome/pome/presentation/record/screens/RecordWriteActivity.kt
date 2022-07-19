@@ -9,7 +9,9 @@ import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
 import com.teampome.pome.util.setVisibility
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal {
 
     private lateinit var binding: ActivityRecordWriteBinding
