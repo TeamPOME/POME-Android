@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import com.skydoves.balloon.balloon
 import com.teampome.pome.R
+import com.teampome.pome.data.FriendService
 import com.teampome.pome.databinding.FragmentFriendsBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 import com.teampome.pome.presentation.friends.FriendsProfileData
@@ -17,11 +18,17 @@ import com.teampome.pome.presentation.friends.adapters.FriendsReactAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
     private lateinit var friendsReactAdapter: FriendsReactAdapter
+
+    @Inject
+    lateinit var service: FriendService
 
     private val friendsBottomSheetFragment = FriendsBottomSheetFragment()
     private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
@@ -35,6 +42,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
         initListAdapter()
 
+        initFriendsData()
         //후에 서버통신 할 에정
         initWholeData()
 
@@ -92,7 +100,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 //        //local에 저장하기
 //
 //    }
-
+    private fun initFriendsData(){
+        service
+    }
 
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter(requireContext())
