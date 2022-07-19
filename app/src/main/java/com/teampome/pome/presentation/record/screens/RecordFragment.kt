@@ -6,9 +6,14 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
+import androidx.core.view.forEach
 import androidx.core.view.size
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentRecordBinding
@@ -73,66 +78,11 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun initGoalChip() {
         service.initGoalChip().enqueueUtil(
-            onSuccess = {
-                it.data?.forEachIndexed { index, responseGoalCreate ->
-                    categoryMap[responseGoalCreate.category] = responseGoalCreate.id
-                    if (index == 0){
-                        val chip = Chip(context).apply {
-                            id = responseGoalCreate.id
-                            text = responseGoalCreate.category
-                            tag = responseGoalCreate.category
-                            setTextAppearanceResource(R.style.PomeSb14)
-                            isCheckable = true
-                            isCheckedIconVisible = false
-                            chipBackgroundColor = ColorStateList(
-                                arrayOf(
-                                    intArrayOf(-android.R.attr.state_checked),
-                                    intArrayOf(android.R.attr.state_checked)
-                                ),
-                                intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_0), ContextCompat.getColor(context, R.color.pome_main))
-                            )
-                            setTextColor(
-                                ColorStateList(
-                                    arrayOf(
-                                        intArrayOf(-android.R.attr.state_checked),
-                                        intArrayOf(android.R.attr.state_checked)
-                                    ),
-                                    intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_5), Color.WHITE)
-                                )
-                            )
-                        }
-                        binding.cgGoal.addView(chip)
-                        chip.isChecked = true
-                    } else {
-                        val chip = Chip(context).apply {
-                            id = responseGoalCreate.id
-                            text = responseGoalCreate.category
-                            tag = responseGoalCreate.category
-                            setTextAppearanceResource(R.style.PomeSb14)
-                            isCheckable = true
-                            isCheckedIconVisible = false
-                            chipBackgroundColor = ColorStateList(
-                                arrayOf(
-                                    intArrayOf(-android.R.attr.state_checked),
-                                    intArrayOf(android.R.attr.state_checked)
-                                ),
-                                intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_0), ContextCompat.getColor(context, R.color.pome_main))
-                            )
-                            setTextColor(
-                                ColorStateList(
-                                    arrayOf(
-                                        intArrayOf(-android.R.attr.state_checked),
-                                        intArrayOf(android.R.attr.state_checked)
-                                    ),
-                                    intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_5), Color.WHITE)
-                                )
-                            )
-                        }
-                        binding.cgGoal.addView(chip)
-                        chip.isChecked = false
-                    }
+            onSuccess = { it ->
+                it.data?.forEach {
+                    categoryMap[it.category] = it.id
                 }
-                Log.d("map", "$categoryMap")
+                configureCategory(categoryMap)
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
@@ -140,28 +90,72 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-    private fun initGoalDetail() {
-        val goalId = binding.cgGoal.checkedChipId
+    private fun configureCategory(category: MutableMap<String, Int>) {
+        val categoryName = mutableListOf<String>()
+        category.forEach { categoryName.add(it.key) }
 
+        categoryName.forEachIndexed { i, text ->
+            if (i == 0) binding.cgGoal.addView(createChip(text, true))
+            else binding.cgGoal.addView(createChip(text))
+        }
+    }
+
+    private fun createChip(text: String, isChecked: Boolean = false): Chip {
+        return (layoutInflater.inflate(R.layout.layout_chip, binding.cgGoal, false) as Chip).apply {
+            this.text = text
+            this.isChecked = isChecked
+            layoutParams = ChipGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+    }
+
+    private fun getSelectedCategory(): String {
+        var selectedCategory = ""
+        Log.e("으악", "됨")
+        binding.cgGoal.forEach {
+            if ((it as Chip).isChecked) selectedCategory = it.text.toString()
+        }
+        return selectedCategory
+    }
+
+    private fun initGoalDetail() {
+//        val chipText = getSelectedCategory()
+//        val goalId = categoryMap[chipText]
+//        Log.d("성공했니?", "$goalId")
+
+        val goalId = 24
         service.initGoalDetail(goalId).enqueueUtil(
             onSuccess = {
-
                 visibilityGone()
                 visibilityTrue()
-                binding.apply {
-                    ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                    tvTitle.text = it.data.message
-                    tvUseamount.text = it.data.payAmount.toString()
-                    tvGoalamount.text = it.data.amount.toString()
-                    //데이터 바인딩 수빈이한테 물어볼 것
-                    tvSeekbar.text = it.data.rate.toString()
-                }
+                binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
+                setText()
+
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
             }
         )
+    }
 
+    private fun setText() {
+        binding.sbGoal.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val value = (progress * (seekBar?.width!! - 2 * seekBar.thumbOffset)) / seekBar.max
+                binding.tvSeekbar.x = seekBar.x + value + (seekBar.thumbOffset / 2)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun visibilityGone() {
