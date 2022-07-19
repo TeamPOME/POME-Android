@@ -37,6 +37,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.lifecycleOwner = this
+
         initGoalChip()
         initGoalDetail()
         goGoalDateActivity()
@@ -130,8 +132,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             onSuccess = {
                 visibilityGone()
                 visibilityTrue()
+                binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                setText()
 
             },
             onError = {
