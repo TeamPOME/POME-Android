@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="goaldetail"
+            type="com.teampome.pome.data.remote.response.ResponseGoalDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,7 +67,6 @@
                 android:layout_marginBottom="1dp"
                 app:chipSpacingHorizontal="8dp"
                 app:selectionRequired="true"
-                app:singleLine="true"
                 app:singleSelection="true">
 
             </com.google.android.material.chip.ChipGroup>
@@ -145,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:text="술은 한달에 적당히 무"
+                        android:text="@{goaldetail.message}"
                         android:textColor="@color/pome_grey_9"
                         android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@id/iv_lock"
@@ -182,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="30,000원"
+                        android:text="@{goaldetail.payAmount+'원'}"
                         android:textColor="@color/pome_grey_9"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:text="100,000원"
+                        android:text="@{goaldetail.amount+'원'}"
                         android:textColor="@color/pome_grey_5"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/tv_slash"
@@ -223,7 +225,7 @@
                         android:max="110"
                         android:maxHeight="6dp"
                         android:minHeight="6dp"
-                        android:progress="5"
+                        android:progress="@{goaldetail.rate+5}"
                         android:progressDrawable="@drawable/seekbar_custom_green"
                         android:thumb="@drawable/seekbar_thumb_custom_green"
                         android:visibility="gone"
@@ -236,7 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="0%"
+                        android:text="@{goaldetail.rate + '%'}"
                         android:textColor="@color/pome_white"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/sb_goal"
