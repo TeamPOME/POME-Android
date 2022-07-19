@@ -44,93 +44,93 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.rvRemind.adapter = remindConsumeAdapter
     }
 
-    private fun initAddRemindConsume() {
-        remindConsumeAdapter.submitList(
-            listOf(
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                )
-
-            )
-        )
-    }
+//    private fun initAddRemindConsume() {
+//        remindConsumeAdapter.submitList(
+//            listOf(
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                )
+//
+//            )
+//        )
+//    }
 
     private fun initClickFirstEmotion() {
         binding.ivFirstEmotion.setOnClickListener {
@@ -204,7 +204,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.cNogoal.visibility = View.GONE
         binding.rvRemind.visibility = View.VISIBLE
         binding.clRemindEmpty.visibility = View.INVISIBLE
-        initAddRemindConsume()
+        //initAddRemindConsume()
         val goal_tag = "커피"
         //받아온 목표
         val goal_des = "하루 한잔만 마시기"

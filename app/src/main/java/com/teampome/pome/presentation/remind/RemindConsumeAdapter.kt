@@ -43,7 +43,7 @@ class RemindConsumeAdapter :
         fun bind(friendsConsumeData: FriendsConsumeData) {
             binding.tvRemindDate.text = friendsConsumeData.date
             binding.tvRemindContent.text = friendsConsumeData.description
-            binding.tvRemindPrice.text = friendsConsumeData.price
+            binding.tvRemindPrice.text = friendsConsumeData.price.toString()
             binding.tvRemindTag.text = friendsConsumeData.tag
         }
 

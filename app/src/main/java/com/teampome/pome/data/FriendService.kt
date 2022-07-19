@@ -6,8 +6,8 @@ import retrofit2.http.GET
 
 interface FriendService {
     @GET("friends")
-    suspend fun getAllFriends(): BaseResponse<ResponseFriendsAll>
+    suspend fun getAllFriends(): BaseResponse<List<ResponseFriendsAll>>
 
     @GET("friends/records")
-    suspend fun getFriendsRecords():BaseResponse<ResponseFriendsAll>
+    suspend fun getFriendsRecords():BaseResponse<List<ResponseFriendsAll>>
 }

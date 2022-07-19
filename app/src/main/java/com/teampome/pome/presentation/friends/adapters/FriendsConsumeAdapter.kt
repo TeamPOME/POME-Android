@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 
@@ -18,7 +19,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
     var context = contextT
     var clicked_position = -1
     private lateinit var listener: FriendsConsumeListInterface
-    var friendConsumeList = mutableListOf<FriendsConsumeData>()
+    var friendConsumeList = mutableListOf<ResponseFriendsAll>()
     var getEmoji = -1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsConsumeViewHolder {
         val binding = ItemFriendConsumeListBinding.inflate(
@@ -74,17 +75,39 @@ class FriendsConsumeAdapter(val contextT: Context) :
         RecyclerView.ViewHolder(binding.root) {
         val addEmojiButton = binding.ivAddemotion
 
-        fun bind(friendsConsumeData: FriendsConsumeData) {
-            binding.tvFriendname.text = friendsConsumeData.name
-            binding.tvFrienddate.text = friendsConsumeData.date
-            binding.tvFrienddes.text = friendsConsumeData.description
-            binding.tvFriendprice.text = friendsConsumeData.price
-            binding.tvFriendtag.text = friendsConsumeData.tag
-            //프로필 이미지, 반응들, 처음감정과 나중감정
+        fun bind(friendsConsumeData: ResponseFriendsAll) {
+            binding.tvFriendname.text = friendsConsumeData.nickname
+            binding.tvFrienddate.text = friendsConsumeData.timestamp
+            binding.tvFrienddes.text = friendsConsumeData.content
+            binding.tvFriendprice.text = friendsConsumeData.amount.toString()
+            binding.tvFriendtag.text = friendsConsumeData.goalMessage
 
+            //프로필 이미지, 반응들, 처음감정과 나중감정
+            when(friendsConsumeData.startEmotion){
+                1-> {
+                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_heart)
+                }
+                2-> {
+                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_what)
+                }
+                3-> {
+                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_sad)
+                }
+            }
+            when(friendsConsumeData.endEmotion){
+                1->{
+                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_happy_pink_34)
+                }
+                2->{
+                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_what_pink_34)
+                }
+                3-> {
+                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_sad_pink_34)
+                }
+            }
             //여기서 동적 추가 해주기
             binding.lyWrapFriendEmoji.removeAllViews()
-            friendsConsumeData.reaction = friendsConsumeData.reaction.asReversed()
+//            friendsConsumeData.reaction = friendsConsumeData.reaction.asReversed()
 
             friendsConsumeData.reaction.forEachIndexed { index, it ->
                 val imageView = ImageView(context)
