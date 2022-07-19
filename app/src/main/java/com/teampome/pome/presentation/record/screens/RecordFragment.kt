@@ -3,8 +3,8 @@ package com.teampome.pome.presentation.record.screens
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.size
@@ -33,6 +33,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         super.onViewCreated(view, savedInstanceState)
 
         initGoalChip()
+        initGoalDetail()
         goGoalDateActivity()
         initAdapter()
         noGoalClickEvent()
@@ -74,10 +75,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         service.initGoalChip().enqueueUtil(
             onSuccess = {
                 it.data?.forEachIndexed { index, responseGoalCreate ->
+                    categoryMap[responseGoalCreate.category] = responseGoalCreate.id
                     if (index == 0){
                         val chip = Chip(context).apply {
                             id = responseGoalCreate.id
                             text = responseGoalCreate.category
+                            tag = responseGoalCreate.category
                             setTextAppearanceResource(R.style.PomeSb14)
                             isCheckable = true
                             isCheckedIconVisible = false
@@ -104,6 +107,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                         val chip = Chip(context).apply {
                             id = responseGoalCreate.id
                             text = responseGoalCreate.category
+                            tag = responseGoalCreate.category
                             setTextAppearanceResource(R.style.PomeSb14)
                             isCheckable = true
                             isCheckedIconVisible = false
@@ -127,15 +131,61 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                         binding.cgGoal.addView(chip)
                         chip.isChecked = false
                     }
-                    binding.cgGoal.isSingleSelection = true
                 }
+                Log.d("map", "$categoryMap")
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
             }
         )
     }
-    
+
+    private fun initGoalDetail() {
+        val goalId = binding.cgGoal.checkedChipId
+
+        service.initGoalDetail(goalId).enqueueUtil(
+            onSuccess = {
+
+                visibilityGone()
+                visibilityTrue()
+                binding.apply {
+                    ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
+                    tvTitle.text = it.data.message
+                    tvUseamount.text = it.data.payAmount.toString()
+                    tvGoalamount.text = it.data.amount.toString()
+                    //데이터 바인딩 수빈이한테 물어볼 것
+                    tvSeekbar.text = it.data.rate.toString()
+                }
+            },
+            onError = {
+                requireContext().showToast("불러오기에 실패했습니다.")
+            }
+        )
+
+    }
+
+    private fun visibilityGone() {
+        binding.apply {
+            iv3d.visibility = View.GONE
+            tvNogoaltext.visibility = View.GONE
+            btnMakegoal.visibility = View.GONE
+        }
+    }
+
+    private fun visibilityTrue() {
+        binding.apply {
+            ivLock.visibility = View.VISIBLE
+            tvTitle.visibility = View.VISIBLE
+            btnMore.visibility = View.VISIBLE
+            tvAmount.visibility = View.VISIBLE
+            tvUseamount.visibility = View.VISIBLE
+            tvSlash.visibility = View.VISIBLE
+            tvGoalamount.visibility = View.VISIBLE
+            sbGoal.visibility = View.VISIBLE
+            tvSeekbar.visibility = View.VISIBLE
+        }
+    }
+
     private fun initAdapter() {
         recordAdapter = RecordAdapter()
         binding.rvRecord.adapter = recordAdapter
@@ -190,5 +240,9 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 }
             }
         }
+    }
+
+    companion object {
+        val categoryMap = mutableMapOf<String, Int>()
     }
 }

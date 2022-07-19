@@ -63,6 +63,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="1dp"
                 app:chipSpacingHorizontal="8dp"
+                app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true">
 
@@ -348,8 +349,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="12dp"
-                        android:visibility="gone"
                         android:overScrollMode="never"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
