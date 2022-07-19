@@ -38,11 +38,6 @@ class FriendsConsumeAdapter(val contextT: Context) :
             listener.onClick(it, position, true)
         }
         if (clicked_position == position && getEmoji != -1) {
-            Log.d(
-                TAG,
-                "FriendsConsumeAdapter - onBindViewHolder() called clicked_position=$clicked_position," +
-                        "position=$position, getEmoji=$getEmoji"
-            )
             holder.setEmoji(getEmoji)
         }
     }

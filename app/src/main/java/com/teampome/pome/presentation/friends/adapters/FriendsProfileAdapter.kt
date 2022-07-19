@@ -1,6 +1,8 @@
 package com.teampome.pome.presentation.friends.adapters
 
+import android.content.ContentValues.TAG
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +17,7 @@ import com.teampome.pome.presentation.friends.FriendsProfileData
 
 class FriendsProfileAdapter :
     RecyclerView.Adapter<ViewHolder>() {
-    val friendsProfileList = mutableListOf<FriendsProfileData.friends>()
+    val friendsProfileList = mutableListOf<FriendsProfileData>()
     val friendsReponseList = mutableListOf<ResponseFriendsProflie>()
 
     private lateinit var empty: ItemFriendProfileEmptyBinding
@@ -23,11 +25,10 @@ class FriendsProfileAdapter :
 
     private lateinit var listener: FriendsListClickInterface
     var selectedItemPosition = -1
-    var isEmpty = false
     var wholeSelected = true
 
-    override fun getItemViewType(position: Int): Int = when {
-        position <= 1 -> {
+    override fun getItemViewType(position: Int): Int = when (friendsReponseList.size) {
+        0 -> {
             VIEW_EMPTY
         }
         else -> {
@@ -59,21 +60,20 @@ class FriendsProfileAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
             is FriendsProfileListViewHolder -> {
-                val profile_item = friendsProfileList
-                holder.bind(profile_item[position])
-                holder.itemView.setOnClickListener {
-                    selectedItemPosition = position
-                    wholeSelected = false
-                    notifyDataSetChanged()
-                }
-                if (selectedItemPosition == position) {
-                    holder.profile_name.setTextColor(Color.BLACK)
-                } else {
-                    holder.profile_name.setTextColor(Color.GRAY)
-                }
+                holder.bind(friendsReponseList[position])
+//                holder.itemView.setOnClickListener {
+//                    selectedItemPosition = position
+//                    wholeSelected = false
+//                    notifyDataSetChanged()
+//                }
+//                if (selectedItemPosition == position) {
+//                    holder.profile_name.setTextColor(Color.BLACK)
+//                } else {
+//                    holder.profile_name.setTextColor(Color.GRAY)
+//                }
             }
             is FriendsProfileEmptyViewHolder -> {
-                holder.bind(friendsProfileList)
+                holder.bind(friendsReponseList, friendsProfileList[position])
                 holder.itemView.setOnClickListener {
                     wholeSelected = true
                     selectedItemPosition = -1
@@ -92,14 +92,17 @@ class FriendsProfileAdapter :
         }
     }
 
-    override fun getItemCount(): Int = friendsProfileList.size
+    override fun getItemCount(): Int = friendsReponseList.size
 
     class FriendsProfileListViewHolder(private val binding: ItemFriendProfileListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val profile_name = binding.tvFriendname
-        fun bind(friendsInfo: FriendsProfileData.friends) {
-            binding.tvFriendname.text = friendsInfo.name
-            binding.ivFriendprofile.load(friendsInfo.image)
+        fun bind(friendsResponseList: ResponseFriendsProflie) {
+            binding.tvFriendname.text = friendsResponseList.nickname
+            if(friendsResponseList.profileImage=="default_image.png")
+                binding.ivFriendprofile.setImageResource(R.drawable.ic_profile_empty)
+            else
+                binding.ivFriendprofile.load(friendsResponseList.profileImage)
         }
     }
 
@@ -107,13 +110,16 @@ class FriendsProfileAdapter :
         RecyclerView.ViewHolder(binding.root) {
         val whole_text = binding.tvWhole
         fun bind(
-            list: List<FriendsProfileData.friends>
+            list: MutableList<ResponseFriendsProflie>,
+            friendsProfileData: FriendsProfileData
+
         ) {
-            if (list.size == 1) {
+            if (list.size == 0) {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_empty)
             } else {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_full)
             }
+            binding.tvWhole.text=friendsProfileData.data.name
         }
     }
 

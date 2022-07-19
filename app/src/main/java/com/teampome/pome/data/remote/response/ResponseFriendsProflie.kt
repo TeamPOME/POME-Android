@@ -1,5 +1,6 @@
 package com.teampome.pome.data.remote.response
 data class ResponseFriendsProflie(
-    val name:String,
-    val image:String
+    val id:Int,
+    val nickname:String,
+    val profileImage:String
 )
