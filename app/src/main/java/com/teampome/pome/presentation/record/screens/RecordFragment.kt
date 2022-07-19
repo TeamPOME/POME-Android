@@ -1,9 +1,9 @@
 package com.teampome.pome.presentation.record.screens
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -19,8 +19,10 @@ import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
     @Inject
@@ -30,6 +32,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initGoalChip()
         goGoalDateActivity()
         initAdapter()
         noGoalClickEvent()
@@ -83,7 +86,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                                     intArrayOf(-android.R.attr.state_checked),
                                     intArrayOf(android.R.attr.state_checked)
                                 ),
-                                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
+                                intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_0), ContextCompat.getColor(context, R.color.pome_main))
                             )
                             setTextColor(
                                 ColorStateList(
@@ -109,7 +112,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                                     intArrayOf(-android.R.attr.state_checked),
                                     intArrayOf(android.R.attr.state_checked)
                                 ),
-                                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
+                                intArrayOf(ContextCompat.getColor(context, R.color.pome_grey_0), ContextCompat.getColor(context, R.color.pome_main))
                             )
                             setTextColor(
                                 ColorStateList(
@@ -132,7 +135,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             }
         )
     }
-
+    
     private fun initAdapter() {
         recordAdapter = RecordAdapter()
         binding.rvRecord.adapter = recordAdapter
