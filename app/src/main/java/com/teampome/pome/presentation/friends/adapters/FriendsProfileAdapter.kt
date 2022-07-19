@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ResponseFriendsProflie
 import com.teampome.pome.databinding.ItemFriendProfileEmptyBinding
 import com.teampome.pome.databinding.ItemFriendProfileListBinding
 import com.teampome.pome.presentation.friends.FriendsProfileData
@@ -16,12 +17,14 @@ import com.teampome.pome.presentation.friends.FriendsProfileWholeData
 class FriendsProfileAdapter :
     RecyclerView.Adapter<ViewHolder>() {
     val friendsProfileList = mutableListOf<FriendsProfileInterface>()
+    val friendsReponseList= mutableListOf<ResponseFriendsProflie>()
+
     private lateinit var empty: ItemFriendProfileEmptyBinding
     private lateinit var full: ItemFriendProfileListBinding
 
     private lateinit var listener: FriendsListClickInterface
     var selectedItemPosition = -1
-
+    var isEmpty=false
     var wholeSelected = true
 
     override fun getItemViewType(position: Int): Int = when (friendsProfileList[position]) {

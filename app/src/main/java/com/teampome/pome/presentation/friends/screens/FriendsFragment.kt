@@ -10,6 +10,7 @@ import com.skydoves.balloon.balloon
 import com.teampome.pome.R
 import com.teampome.pome.data.FriendService
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
+import com.teampome.pome.data.remote.response.ResponseFriendsProflie
 import com.teampome.pome.databinding.FragmentFriendsBinding
 import com.teampome.pome.presentation.friends.FriendsProfileData
 import com.teampome.pome.presentation.friends.FriendsProfileWholeData
@@ -48,7 +49,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         //후에 서버통신 할 에정
         initFriendProfile()
 
-        getFriendProfileList()
+        //getFriendProfileList()
         //getFriendsConsumeData()
 
         consumeClick()
@@ -108,7 +109,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 service.getFriendsRecords()
             }.onSuccess {
                 val data = it.data
-                if (data.isNullOrEmpty())
+                if (data.isNullOrEmpty()) //기록이 없는 경우
+                    noFriendsRecords()
                 else
                     getFriendsData(data!!)
             }.onFailure {
@@ -117,15 +119,16 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         }
     }
 
-    private fun initFriendProfile(){
+    private fun initFriendProfile() {
         lifecycleScope.launch {
             kotlin.runCatching {
                 service.getAllFriends()
             }.onSuccess {
-                val data=it.data
-                if(data.isNullOrEmpty())
-                    else
-
+                val data = it.data
+                if (data.isNullOrEmpty()) //친구가 없는 경우
+                    noFriendsProfile()
+                else
+                    getFriendProfileData(data)
             }.onFailure {
                 Timber.d("$it")
             }
@@ -148,7 +151,13 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             data.toMutableList()
         )
     }
-   // private fun getFriendProfileData(data:List<Response>)
+
+
+    private fun getFriendProfileData(data: List<ResponseFriendsProflie>) {
+        friendsProfileAdapter.friendsReponseList.addAll(
+            data.toMutableList()
+        )
+    }
 
 //    private fun getFriendsConsumeData() {
 //        //추후에 서버에서 가져오기
@@ -257,26 +266,36 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         friendsProfileAdapter.friendsProfileList.add(
             FriendsProfileWholeData("전체", "tmp")
         )
+
     }
 
-    private fun getFriendProfileList() {
-        binding.rcvFriends.visibility = View.VISIBLE
-        binding.clFriendsempty.visibility = View.INVISIBLE
-        binding.ivEmptyfriends.setImageResource(R.drawable.ic_friend_profile_full)
-        friendsProfileAdapter.friendsProfileList.addAll(
-            listOf(
-                FriendsProfileData("황연진입니다", "tmp"),
-                FriendsProfileData("김수빈", "tmp"),
-                FriendsProfileData("양지영", "tmp"),
-                FriendsProfileData("황연진", "tmp"),
-                FriendsProfileData("김수빈", "tmp"),
-                FriendsProfileData("양지영", "tmp"),
-                FriendsProfileData("황연진", "tmp"),
-                FriendsProfileData("김수빈", "tmp"),
-                FriendsProfileData("양지영", "tmp")
-            )
-        )
+    private fun noFriendsProfile() {
+        initWholeData()
+        friendsProfileAdapter.isEmpty=true
     }
+
+    private fun noFriendsRecords() {
+        binding.clFriendsempty.visibility = View.VISIBLE
+    }
+
+//    private fun getFriendProfileList() {
+//        binding.rcvFriends.visibility = View.VISIBLE
+//        binding.clFriendsempty.visibility = View.INVISIBLE
+//        binding.ivEmptyfriends.setImageResource(R.drawable.ic_friend_profile_full)
+//        friendsProfileAdapter.friendsProfileList.addAll(
+//            listOf(
+//                FriendsProfileData("황연진입니다", "tmp"),
+//                FriendsProfileData("김수빈", "tmp"),
+//                FriendsProfileData("양지영", "tmp"),
+//                FriendsProfileData("황연진", "tmp"),
+//                FriendsProfileData("김수빈", "tmp"),
+//                FriendsProfileData("양지영", "tmp"),
+//                FriendsProfileData("황연진", "tmp"),
+//                FriendsProfileData("김수빈", "tmp"),
+//                FriendsProfileData("양지영", "tmp")
+//            )
+//        )
+//    }
 
     private fun addFriendsDecoration() {
         binding.rcvFriendsconsumelist.addItemDecoration(FriendsConsumeItemDecorator(12))
