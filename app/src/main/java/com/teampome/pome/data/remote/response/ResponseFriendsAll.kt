@@ -1,7 +1,7 @@
 package com.teampome.pome.data.remote.response
 
 data class ResponseFriendsAll(
-    val id:String,
+    val id:Int,
     var userId:Int,
     val nickname:String,
     val profileImage:String,
@@ -11,6 +11,6 @@ data class ResponseFriendsAll(
     val startEmotion:Int,
     val endEmotion:Int,
     val timestamp:String,
-    val reaction:List<Int>,
+    val reaction:List<String>,
     val plusCount:Int
 )
