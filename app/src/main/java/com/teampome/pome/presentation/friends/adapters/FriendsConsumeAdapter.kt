@@ -8,18 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
-import okhttp3.internal.notify
 
 class FriendsConsumeAdapter(val contextT: Context) :
     RecyclerView.Adapter<FriendsConsumeAdapter.FriendsConsumeViewHolder>() {
     var context = contextT
-    var clicked_position=-1
+    var clicked_position = -1
     private lateinit var listener: FriendsConsumeListInterface
     var friendConsumeList = mutableListOf<FriendsConsumeData>()
     var getEmoji = -1
@@ -39,15 +36,22 @@ class FriendsConsumeAdapter(val contextT: Context) :
 
             listener.onClick(it, position, true)
         }
-        if(getEmoji!=-1  ){
+        if (clicked_position == position && getEmoji != -1) {
+            Log.d(
+                TAG,
+                "FriendsConsumeAdapter - onBindViewHolder() called clicked_position=$clicked_position," +
+                        "position=$position, getEmoji=$getEmoji"
+            )
             holder.setEmoji(getEmoji)
-            clicked_position=-1
         }
     }
-    fun getEmojiPosition(position: Int, list_position:Int){
-        clicked_position=list_position
-        getEmoji=position
-        notifyDataSetChanged()
+
+    fun getEmojiPosition(position: Int, list_position: Int) {
+        if (position != -1)
+            clicked_position = list_position
+        getEmoji = position
+  //      notifyDataSetChanged()
+        notifyItemChanged(list_position)
     }
 
 //    fun changeItem(item: FriendsConsumeData, position: Int) {

@@ -1,6 +1,8 @@
 package com.teampome.pome.presentation.friends.screens
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.skydoves.balloon.balloon
@@ -253,9 +255,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         for (i in emojiList.indices) {
             emojiList[i].setOnClickListener {
                 emoji_position = i
-                //Timber.d("clicked_emoji=$emoji_position, 리스트 순번=$list_pos")
-                //initSharedPreference()
-                //friendsConsumeAdapter.changeItem(friendsConsumeAdapter.currentList[list_position], emoji_position)
+                Log.d(TAG,"FriendsFragment - addEmoji() called list_position=$list_position")
+
                 friendsConsumeAdapter.getEmojiPosition(emoji_position+1, list_position)
                 friendsEmojiBalloon.dismiss()
             }
