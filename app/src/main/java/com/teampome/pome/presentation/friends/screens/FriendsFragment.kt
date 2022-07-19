@@ -35,7 +35,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private var emoji_position: Int = -1
     private var list_position: Int = -1
     private lateinit var emojiList: List<ImageView>
-    var friendsData = listOf<FriendsProfileData.friends>()
+   // var friendsData = listOf<FriendsProfileData.friends>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,8 +45,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
         initFriendsData()
         //후에 서버통신 할 에정
-        initFriendProfile()
-        initWholeData()
+        //initFriendProfile()
+        //initWholeData()
 
         consumeClick()
         addFriendsDecoration()
@@ -58,34 +58,34 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private fun initFriendsData() {
         lifecycleScope.launch {
             kotlin.runCatching {
-                service.getFriendsRecords()
+                service.getFriendsRecords(0)
             }.onSuccess {
                 val data = it.data
                 if (data.isNullOrEmpty()) //기록이 없는 경우
                     noFriendsRecords()
                 else
-                    getFriendsData(data!!)
+                    getFriendsData(data)
             }.onFailure {
                 Timber.d("$it")
             }
         }
     }
 
-    private fun initFriendProfile() {
-        lifecycleScope.launch {
-            kotlin.runCatching {
-                service.getAllFriends()
-            }.onSuccess {
-                val data = it.data
-                if (data.isNullOrEmpty()) //친구가 없는 경우
-                    noFriendsProfile()
-                else
-                    getFriendProfileData(data)
-            }.onFailure {
-                Timber.d("$it")
-            }
-        }
-    }
+//    private fun initFriendProfile() {
+//        lifecycleScope.launch {
+//            kotlin.runCatching {
+//                service.getAllFriends()
+//            }.onSuccess {
+//                val data = it.data
+//                if (data.isNullOrEmpty()) //친구가 없는 경우
+//                    noFriendsProfile()
+//                else
+//                    getFriendProfileData(data)
+//            }.onFailure {
+//                Timber.d("$it")
+//            }
+//        }
+//    }
 
     private fun initConsumeAdapter() {
         friendsConsumeAdapter = FriendsConsumeAdapter(requireContext())
@@ -103,17 +103,17 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         )
     }
 
-    private fun getFriendProfileData(data: List<ResponseFriendsProflie>) {
-        friendsProfileAdapter.friendsReponseList.addAll(
-            data.toMutableList()
-        )
-    }
+//    private fun getFriendProfileData(data: List<ResponseFriendsProflie>) {
+//        friendsProfileAdapter.friendsReponseList.addAll(
+//            data.toMutableList()
+//        )
+//    }
 
-    private fun initWholeData() {
-        friendsProfileAdapter.friendsProfileList.add(
-            FriendsProfileData.friends("전체","tmp")
-        )
-    }
+//    private fun initWholeData() {
+//        friendsProfileAdapter.friendsProfileList.add(
+//            FriendsProfileData.friends("전체","tmp")
+//        )
+//    }
 
     private fun noFriendsProfile() {
         friendsProfileAdapter.isEmpty = true

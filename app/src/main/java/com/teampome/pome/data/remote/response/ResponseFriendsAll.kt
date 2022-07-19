@@ -11,6 +11,6 @@ data class ResponseFriendsAll(
     val startEmotion:Int,
     val endEmotion:Int,
     val timestamp:String,
-    val reaction:List<String>,
+    val reaction:List<Int>,
     val plusCount:Int
 )
