@@ -183,11 +183,11 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
         val chip1 = Chip(context).apply {
             text = goal_tag
-            id = R.id.chip_1
+//            id = R.id.chip_1
         }
         val chip2 = Chip(context).apply {
             text = goal_tag
-            id = R.id.chip_1
+//            id = R.id.chip_1
         }
         binding.cgGoals.addView(chip1, 0)
         binding.cgGoals.addView(chip2, 1)
