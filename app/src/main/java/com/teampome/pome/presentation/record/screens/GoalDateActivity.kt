@@ -71,7 +71,12 @@ class GoalDateActivity : AppCompatActivity() {
     private fun goGoalDetailActivity() {
         binding.btnChoice.setOnClickListener {
             if (binding.btnChoice.isSelected) {
-                val intent = Intent(this, GoalDetailActivity::class.java)
+                val startDate = binding.tvGoalstartdate.text.toString()
+                val endDate = binding.tvGoalenddate.text.toString()
+                val intent = Intent(this, GoalDetailActivity::class.java).apply {
+                    putExtra("startDate", startDate.toString())
+                    putExtra("endDate", endDate)
+                }
                 startActivity(intent)
             }
         }

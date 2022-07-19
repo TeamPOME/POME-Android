@@ -3,6 +3,7 @@ package com.teampome.pome.presentation.record.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.data.remote.request.RequestGoalCreate
@@ -11,6 +12,8 @@ import com.teampome.pome.presentation.record.viewmodels.GoalDetailViewModel
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -66,8 +69,8 @@ class GoalDetailActivity : AppCompatActivity() {
 
     private fun goalCreateNetwork() {
         val intent = intent
-        val startDate = intent.getStringExtra("startDate")
-        val endDate = intent.getStringExtra("endDate")
+        val startDate = intent.getStringExtra("startDate")?.replace(".", "-")
+        val endDate = intent.getStringExtra("endDate")?.replace(".", "-")
 
         val requestGoalCreate = RequestGoalCreate(
             startDate = startDate.toString(),
@@ -75,7 +78,7 @@ class GoalDetailActivity : AppCompatActivity() {
             category = binding.etGoalcategory.text.toString(),
             message = binding.etResolution.text.toString(),
             amount = binding.etGoalamount.text.toString().toInt(),
-            isPublic = binding.swLock.isSelected
+            isPublic = binding.swLock.isChecked
         )
 
         service.createGoal(requestGoalCreate).enqueueUtil(
