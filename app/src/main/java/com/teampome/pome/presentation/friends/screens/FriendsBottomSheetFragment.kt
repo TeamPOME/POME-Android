@@ -32,14 +32,20 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFriendsBottomSheetBinding.inflate(layoutInflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initSetHeight()
         initAdapter()
 
-        getBundle()
+        getBundle() //recordId값 받아오기
 
         initReactionBottomSheet()
         //서버통신
-        return binding.root
+
     }
 
     private fun getBundle(){
