@@ -29,6 +29,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private val firstBottomSheet = RemindFirstBottomSheetFragment()
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
     private var clickedChipId=-1
+    private var clickedChipPos=-1
     private val reactionBottomSheet = RemindReactionBottomSheet()
     @Inject
     lateinit var service: RemindService
@@ -76,7 +77,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 if(data!!.isEmpty())
                     setEmptyGoal()
                 else{
-                    initNotEmpty(data[0].goalMessage, data[0].isGoalPublic)
+                    binding.rvRemind.visibility=View.VISIBLE
+                    initNotEmpty(data[clickedChipPos].goalMessage, data[clickedChipPos].isGoalPublic)
                    remindConsumeAdapter.submitList(data)
                 }
             }.onFailure {
@@ -155,6 +157,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.ivLockCheck.setImageResource(R.drawable.ic_empty_goal)
         binding.tvGoal.setText(R.string.remind_nogoal_msg)
         binding.tvGoal.setTextColor(Color.GRAY)
+        binding.rvRemind.visibility=View.INVISIBLE
     }
 
     private fun setNotEmptyGoal() {
@@ -214,12 +217,14 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     )
                 )
                 setOnClickListener {
+                    clickedChipPos=index
                     clickChip(tag.toString().toInt())
                 }
             }
             binding.cgGoals.addView(chip)
             binding.cgGoals.isSingleSelection = true
             if(index==0){
+                clickedChipPos=0
                 chip.isChecked=true
                 clickedChipId=chip.tag.toString().toInt()
                 initRemindData(clickedChipId)
