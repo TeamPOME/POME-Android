@@ -16,6 +16,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
+import com.teampome.pome.data.RecordsService
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
 import com.teampome.pome.presentation.record.RecordData
@@ -23,6 +24,7 @@ import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.setVisibility
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -32,6 +34,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     @Inject
     lateinit var service: GoalService
+    @Inject
+    lateinit var recordService: RecordsService
     private lateinit var recordAdapter: RecordAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,6 +46,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         initGoalChip()
         initGoalDetail()
         goGoalDateActivity()
+        initGoalRecord()
         initAdapter()
         noGoalClickEvent()
         goLookBackActivity()
@@ -182,7 +187,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     private fun initAdapter() {
         recordAdapter = RecordAdapter()
         binding.rvRecord.adapter = recordAdapter
-        addList()
         initDecoration()
     }
 
@@ -205,19 +209,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
-    private fun addList() {
-        recordAdapter.submitList(
-            listOf(
-                RecordData(1, "06.24", 1, "10,000원", "gg"),
-                RecordData(1, "06.25", 1, "100,000원", "gg"),
-                RecordData(1, "06.26", 1, "200,000원", "gg"),
-                RecordData(1, "06.27", 1, "300,000원", "gg"),
-                RecordData(1, "06.28", 1, "500,000원", "gg"),
-                RecordData(1, "06.29", 1, "1,000,000원", "gg")
-            )
-        )
-    }
-
     private fun noGoalClickEvent() {
         binding.fabWrite.setOnClickListener {
             if (binding.cgGoal.size != 0) {
@@ -233,6 +224,20 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 }
             }
         }
+    }
+
+    private fun initGoalRecord() {
+        val goalId = 24
+        recordService.initGoalRecord(goalId).enqueueUtil(
+            onSuccess = {
+                binding.apply {
+                    ivNothing.setVisibility(false)
+                    tvNothing.setVisibility(false)
+                    rvRecord.setVisibility(true)
+                }
+                recordAdapter.submitList(it.data)
+            }
+        )
     }
 
     companion object {
