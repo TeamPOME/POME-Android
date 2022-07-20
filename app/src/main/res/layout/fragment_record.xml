@@ -52,8 +52,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:scrollbars="none"
             android:overScrollMode="never"
+            android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@id/sv_record"
             app:layout_constraintEnd_toEndOf="@id/cl_topappbar"
             app:layout_constraintHorizontal_bias="1.0"
@@ -79,8 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="9dp"
-            android:scrollbars="none"
             android:overScrollMode="never"
+            android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_goaladd"
             app:layout_constraintVertical_bias="0.0"
@@ -153,7 +153,25 @@
                         android:textColor="@color/pome_grey_9"
                         android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@id/iv_lock"
-                        app:layout_constraintTop_toTopOf="@id/iv_lock" />
+                        app:layout_constraintTop_toTopOf="@id/iv_lock"
+                        tools:text="카테고리 제목" />
+
+                    <TextView
+                        android:id="@+id/tv_dday"
+                        style="@style/PomeSb10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/shape_dday_badge"
+                        android:text="@{'D'+@string/dash+@string/percent(goaldetail.DDay)}"
+                        android:textColor="@color/pome_white"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_lock"
+                        app:layout_constraintStart_toEndOf="@id/tv_title"
+                        app:layout_constraintTop_toTopOf="@id/iv_lock"
+                        tools:text="D-10" />
 
                     <ImageButton
                         android:id="@+id/btn_more"

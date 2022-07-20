@@ -67,4 +67,5 @@
 
     <string name="price_format">%,2d</string>
     <string name="percent">%d</string>
+    <string name="dash">&#45;</string>
 </resources>
