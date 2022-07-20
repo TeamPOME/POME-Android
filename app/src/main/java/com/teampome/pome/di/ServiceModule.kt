@@ -2,6 +2,7 @@ package com.teampome.pome.di
 
 import com.teampome.pome.data.FriendService
 import com.teampome.pome.data.GoalService
+import com.teampome.pome.data.remote.request.RecordsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +22,9 @@ object ServiceModule {
     @Singleton
     fun provideGoalService(retrofit: Retrofit): GoalService =
         retrofit.create(GoalService::class.java)
+
+    @Provides
+    @Singleton
+    fun privideRecordsService(retrofit: Retrofit): RecordsService =
+        retrofit.create(RecordsService::class.java)
 }
