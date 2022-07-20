@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.teampome.pome.R
-import com.teampome.pome.data.FriendService
 import com.teampome.pome.data.RemindService
+import com.teampome.pome.data.remote.response.ResponseRemindGoal
 import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 import com.teampome.pome.presentation.remind.RemindConsumeAdapter
@@ -28,7 +28,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private lateinit var remindConsumeAdapter: RemindConsumeAdapter
     private val firstBottomSheet = RemindFirstBottomSheetFragment()
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
-    private val remindList = mutableListOf<FriendsConsumeData>()
+    private var clickedChipId=-1
     private val reactionBottomSheet = RemindReactionBottomSheet()
     @Inject
     lateinit var service: RemindService
@@ -36,13 +36,11 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         super.onViewCreated(view, savedInstanceState)
 
         initRemindGoal()
-        initRemindData()
+        //initRemindData()
         //서버통신
 
         initRemindConsumeAdapter()
         initAdapterDecoration()
-
-        initRemindData()
 
         initClickFirstEmotion()
         initClickSecondEmotion()
@@ -57,24 +55,55 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 service.getRemindGoal()
             }.onSuccess {
                 val data=it.data
-                Log.d(TAG,"RemindFragment - initRemindGoal() called, data=$data")
+                if(data!!.isEmpty()){
+                    setEmptyGoal()
+                }else{
+                    setGoals(data)
+                    //setGoalMessage(data)
+                }
             }.onFailure {
                 Timber.d("$it")
             }
         }
     }
 
-    private fun initRemindData(){
+    private fun initRemindData(goal_id:Int){
         lifecycleScope.launch {
             runCatching {
-                //service.getRemindData()
+                service.getRemindData(goal_id,0,0)
             }.onSuccess {
-                //val data=it.data
-
+                val data=it.data
+                if(data!!.isEmpty())
+                    setEmptyGoal()
+                else{
+                    initNotEmpty(data[0].goalMessage, data[0].isGoalPublic)
+                   remindConsumeAdapter.submitList(data)
+                }
             }.onFailure {
-               // Timber.d("$it")
+                Timber.d("$it")
             }
         }
+    }
+
+//    private fun notShowMsg(){
+//        if()
+//        binding.clRemindEmpty.visibility = View.VISIBLE
+//        binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
+//        binding.tvGoal.apply {
+//            text = goal_des
+//            setTextColor(Color.BLACK)
+//        }
+//    }
+
+    private fun initNotEmpty(goal_msg:String, isPublic:Boolean){
+        binding.clRemindEmpty.visibility=View.INVISIBLE
+        if(isPublic){
+            binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
+        }else{
+            binding.ivLockCheck.setImageResource(R.drawable.ic_lock_all)
+        }
+        binding.tvGoal.text=goal_msg
+
     }
 
     private fun initAdapterDecoration() {
@@ -116,7 +145,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         //if()- goal만 있는 경우
         //return setNotEmptyGoal()
         //if()- goal과 기록 다 있는 경우
-        return setRemindList()
+        //return setRemindList()
     }
 
     private fun setEmptyGoal() {
@@ -157,84 +186,50 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
-    private fun setRemindList() {
-        binding.cNogoal.visibility = View.GONE
-        binding.rvRemind.visibility = View.VISIBLE
-        binding.clRemindEmpty.visibility = View.INVISIBLE
-        //initAddRemindConsume()
-        val goal_tag = "커피"
-        //받아온 목표
-        val goal_des = "하루 한잔만 마시기"
+    private fun setGoals(data:List<ResponseRemindGoal>){
+        binding.cNogoal.visibility=View.GONE
+        data.forEachIndexed { index, responseRemindGoal ->
+            val chip = Chip(context).apply {
+                text = responseRemindGoal.category
+                isCheckable = true
+                isCheckedIconVisible = false
+                tag=responseRemindGoal.id.toString()
 
-        val drawable =
-            ChipDrawable.createFromAttributes(
-                requireContext(),
-                null,
-                0,
-                R.style.ChipTextStyleSelected
-            )
-
-        val chip1 = Chip(context).apply {
-            text = "1번 칩"
-            isCheckable = true
-            isCheckedIconVisible = false
-            id = R.id.c_remind0
-            chipBackgroundColor = ColorStateList(
-                arrayOf(
-                    intArrayOf(-android.R.attr.state_checked),
-                    intArrayOf(android.R.attr.state_checked)
-                ),
-                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
-            )
-
-            //텍스트
-            setTextColor(
-                ColorStateList(
+                chipBackgroundColor = ColorStateList(
                     arrayOf(
                         intArrayOf(-android.R.attr.state_checked),
                         intArrayOf(android.R.attr.state_checked)
                     ),
-                    intArrayOf(Color.BLACK, Color.WHITE)
+                    intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
                 )
-            )
-        }
-        val chip2 = Chip(context).apply {
-            text = "2번 칩"
-            isCheckable = true
-            isCheckedIconVisible = false
-            id = R.id.c_remind1
-            chipBackgroundColor = ColorStateList(
-                arrayOf(
-                    intArrayOf(-android.R.attr.state_checked),
-                    intArrayOf(android.R.attr.state_checked)
-                ),
-                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
-            )
 
-            //텍스트
-            setTextColor(
-                ColorStateList(
-                    arrayOf(
-                        intArrayOf(-android.R.attr.state_checked),
-                        intArrayOf(android.R.attr.state_checked)
-                    ),
-                    intArrayOf(Color.BLACK, Color.WHITE)
+                //텍스트
+                setTextColor(
+                    ColorStateList(
+                        arrayOf(
+                            intArrayOf(-android.R.attr.state_checked),
+                            intArrayOf(android.R.attr.state_checked)
+                        ),
+                        intArrayOf(Color.BLACK, Color.WHITE)
+                    )
                 )
-            )
-        }
+                setOnClickListener {
+                    clickChip(tag.toString().toInt())
+                }
+            }
+            binding.cgGoals.addView(chip)
+            binding.cgGoals.isSingleSelection = true
+            if(index==0){
+                chip.isChecked=true
+                clickedChipId=chip.tag.toString().toInt()
+                initRemindData(clickedChipId)
+            }
 
-        binding.cgGoals.addView(chip1)
-        binding.cgGoals.addView(chip2)
-        binding.cgGoals.isSingleSelection = true
-        chip1.isChecked = true
-
-        binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
-        binding.tvGoal.apply {
-            text = goal_des
-            setTextColor(Color.BLACK)
         }
     }
-
+    private fun clickChip(chip_id:Int){
+        initRemindData(chip_id)
+    }
     fun reactClick() {
         remindConsumeAdapter.setReactionClickListener(object :
             RemindConsumeAdapter.ReactionClickListener {
