@@ -1,8 +1,6 @@
 package com.teampome.pome.presentation.friends.adapters
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
-import com.teampome.pome.presentation.friends.FriendsConsumeData
 
 class FriendsConsumeAdapter(val contextT: Context) :
     RecyclerView.Adapter<FriendsConsumeAdapter.FriendsConsumeViewHolder>() {
     var context = contextT
-    var clicked_position = -1
+    var clicked_position = 0
     private lateinit var listener: FriendsConsumeListInterface
     var friendConsumeList = mutableListOf<ResponseFriendsAll>()
     var getEmoji = -1
@@ -45,7 +42,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
         if (position != -1)
             clicked_position = list_position
         getEmoji = position
-  //      notifyDataSetChanged()
+        //      notifyDataSetChanged()
         notifyItemChanged(list_position)
     }
 
@@ -70,7 +67,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
         val addEmojiButton = binding.ivAddemotion
 
         fun bind(friendsConsumeData: ResponseFriendsAll) {
-            binding.apply{
+            binding.apply {
                 tvFriendname.text = friendsConsumeData.nickname
                 tvFrienddate.text = friendsConsumeData.timestamp
                 tvFrienddes.text = friendsConsumeData.content
@@ -78,33 +75,37 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvFriendtag.text = friendsConsumeData.goalMessage
             }
 
-            when(friendsConsumeData.startEmotion){
-                1-> {
+            when (friendsConsumeData.startEmotion) {
+                1 -> {
                     binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_heart)
                 }
-                2-> {
+                2 -> {
                     binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_what)
                 }
-                3-> {
+                3 -> {
                     binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_sad)
                 }
+
             }
-            when(friendsConsumeData.endEmotion){
-                1->{
-                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_happy_pink_34)
+            when (friendsConsumeData.endEmotion) {
+                1 -> {
+                    binding.ivFriendSecondemotion.setImageResource(R.drawable.ic_emoji_happy_pink_34)
                 }
-                2->{
-                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_what_pink_34)
+                2 -> {
+                    binding.ivFriendSecondemotion.setImageResource(R.drawable.ic_emoji_what_pink_34)
                 }
-                3-> {
-                    binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_sad_pink_34)
+                3 -> {
+                    binding.ivFriendSecondemotion.setImageResource(R.drawable.ic_emoji_sad_pink_34)
+                }
+                else -> {
+                    binding.ivFriendSecondemotion.setImageResource(R.drawable.ic_question_backgorund_34)
                 }
             }
             //여기서 동적 추가 해주기
             binding.lyWrapFriendEmoji.removeAllViews()
 //            friendsConsumeData.reaction = friendsConsumeData.reaction.asReversed()
 
-            friendsConsumeData.reaction.forEachIndexed { index, it ->
+            friendsConsumeData.reactions.forEachIndexed { index, it ->
                 val imageView = ImageView(context)
 
                 val layoutParams = ConstraintLayout.LayoutParams(

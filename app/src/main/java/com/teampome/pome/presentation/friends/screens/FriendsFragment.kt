@@ -47,7 +47,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
         initWholeData()
         initFriendProfile()
-        initFriendsData()
+        initFriendsData(0)
+        profileClick()
         //서버통신코드
 
         consumeClick()
@@ -57,13 +58,14 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         //balloon에 있는 이모지들 초기화
     }
 
-    private fun initFriendsData() {
+    private fun initFriendsData(pos:Int) {
         lifecycleScope.launch {
             runCatching {
-                service.getFriendsRecords(0)
+                service.getFriendsRecords(pos)
             }.onSuccess {
+                Log.d(TAG,"FriendsFragment - initFriendsData() called success, id=${friendsProfileAdapter.clickedId},it=$it")
                 val data = it.data
-                if (data.isNullOrEmpty()) //기록이 없는 경우
+                if (data!!.isEmpty()) //기록이 없는 경우
                     noFriendsRecords()
                 else
                     getFriendsData(data)
@@ -71,6 +73,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 Timber.d("$it")
             }
         }
+
     }
 
     private fun initFriendProfile() {
@@ -101,10 +104,14 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     }
 
     private fun getFriendsData(data: List<ResponseFriendsAll>) {
+        friendsConsumeAdapter.friendConsumeList.clear()
+        Log.d(TAG,"FriendsFragment - getFriendsData() called, data=$data")
         friendsConsumeAdapter.friendConsumeList.addAll(
             data.toMutableList()
         )
-        friendsProfileAdapter.notifyDataSetChanged()
+        friendsConsumeAdapter.notifyDataSetChanged()
+        showFriendsRecord()
+        binding.rcvFriendsconsumelist.visibility=View.VISIBLE
     }
 
     private fun getFriendProfileData(data: List<ResponseFriendsProflie>) {
@@ -129,7 +136,12 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     }
 
     private fun noFriendsRecords() {
+        friendsConsumeAdapter.friendConsumeList.clear()
+        friendsConsumeAdapter.notifyDataSetChanged()
         binding.clFriendsempty.visibility = View.VISIBLE
+    }
+    private fun showFriendsRecord(){
+        binding.clFriendsempty.visibility=View.INVISIBLE
     }
 
     private fun addFriendsDecoration() {
@@ -157,6 +169,15 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 friendsEmojiBalloon.dismiss()
             }
         }
+    }
+
+    private fun profileClick(){
+        friendsProfileAdapter.setOnProfileListClickListener(object:
+        FriendsProfileAdapter.FriendsListClickInterface{
+            override fun onProfileListClick(pos: Int) {
+                initFriendsData(pos)
+            }
+        })
     }
 
     private fun consumeClick() {
