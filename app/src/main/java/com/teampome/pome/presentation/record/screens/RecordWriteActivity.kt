@@ -10,6 +10,8 @@ import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
 import com.teampome.pome.util.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal, RecordCalendarBottomSheet.OnListenerDate {
@@ -26,6 +28,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         binding.lifecycleOwner = this
 
         goBack()
+        todaySetting()
         goalClickEvent()
         calendarClickEvent()
         checkComplete()
@@ -36,6 +39,14 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         binding.btnBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun todaySetting() {
+        val now = System.currentTimeMillis()
+        val date = Date(now)
+        val sdf = SimpleDateFormat("yyyy.MM.dd")
+        val today : String = sdf.format(date)
+        binding.tvDate.text = today
     }
 
     private fun goalClickEvent() {
