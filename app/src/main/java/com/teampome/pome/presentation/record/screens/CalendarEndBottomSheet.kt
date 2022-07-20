@@ -15,6 +15,7 @@ import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormat
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentCalendarEndBottomSheetBinding
 import com.teampome.pome.util.decorate.MinMaxDecorator
+import timber.log.Timber
 import java.util.*
 import java.util.Calendar.*
 
@@ -46,7 +47,7 @@ class CalendarEndBottomSheet : BottomSheetDialogFragment() {
         //it은 date 형식인데, selectedDate는 캘린더 형식임.
         var customDate: String
         viewModel.startDate.observe(this) {
-            //binding.mcCalendar.selectedDate = CalendarDay.from(it)
+            binding.mcCalendar.selectedDate = CalendarDay.from(it)
             customDate = sdf.format(it)
             //it은 calendarstartbottomsheet에서 받아오는 것
             Log.e("dateEndBottom777", "${customDate}")

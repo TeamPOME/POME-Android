@@ -9,8 +9,9 @@ import com.teampome.pome.presentation.friends.screens.FriendsFragment
 import com.teampome.pome.presentation.mypage.MyPageFragment
 import com.teampome.pome.presentation.record.screens.RecordFragment
 import com.teampome.pome.presentation.remind.screens.RemindFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val recordFragment by lazy { RecordFragment() }
     private val friendsFragment by lazy { FriendsFragment() }

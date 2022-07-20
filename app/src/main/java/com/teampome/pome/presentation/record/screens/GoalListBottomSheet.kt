@@ -7,12 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.GoalListData
 import com.teampome.pome.presentation.record.adapters.GoalListAdapter
+import com.teampome.pome.util.enqueueUtil
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GoalListBottomSheet : BottomSheetDialogFragment() {
 
+    @Inject
+    lateinit var service: GoalService
     private var _binding: FragmentGoalListBottomSheetBinding? = null
     private val binding get() = _binding!!
     private lateinit var goalListAdapter: GoalListAdapter
@@ -38,6 +45,7 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initGoalList()
         initSetHeight()
         initClose()
         initAdapter()
@@ -58,29 +66,20 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
 
     private fun initAdapter() {
         goalListAdapter = GoalListAdapter {
-            onListenerGoal?.onCheckedGoal(it.goal)
+            onListenerGoal?.onCheckedGoal(it.category)
             dismiss()
         }
         binding.rvGoal.adapter = goalListAdapter
-        addList()
     }
 
-    private fun addList() {
-        goalListAdapter.submitList(
-            listOf(
-                GoalListData("커피"),
-                GoalListData("술"),
-                GoalListData("밥"),
-                GoalListData("스티커"),
-                GoalListData("앨범"),
-                GoalListData("옷"),
-                GoalListData("가전제품"),
-                GoalListData("적금"),
-                GoalListData("구독"),
-                GoalListData("포미")
-            )
+    private fun initGoalList() {
+        service.initGoalChip().enqueueUtil(
+            onSuccess = {
+                goalListAdapter.submitList(it.data)
+            }
         )
     }
+
 
     override fun onDetach() {
         super.onDetach()

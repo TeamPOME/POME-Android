@@ -3,12 +3,24 @@ package com.teampome.pome.presentation.record.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import com.teampome.pome.data.GoalService
+import com.teampome.pome.data.remote.request.RequestGoalCreate
 import com.teampome.pome.databinding.ActivityGoalDetailBinding
 import com.teampome.pome.presentation.record.viewmodels.GoalDetailViewModel
+import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GoalDetailActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var service: GoalService
     private lateinit var binding: ActivityGoalDetailBinding
     private val viewModel by viewModels<GoalDetailViewModel>()
 
@@ -50,9 +62,37 @@ class GoalDetailActivity : AppCompatActivity() {
     private fun goGoalAddActivity() {
         binding.btnWrite.setOnClickListener {
             if (binding.btnWrite.isSelected) {
-                val intent = Intent(this, GoalAddActivity::class.java)
-                startActivity(intent)
+                goalCreateNetwork()
             }
         }
+    }
+
+    private fun goalCreateNetwork() {
+        val intent = intent
+        val startDate = intent.getStringExtra("startDate")?.replace(".", "-")
+        val endDate = intent.getStringExtra("endDate")?.replace(".", "-")
+
+        val requestGoalCreate = RequestGoalCreate(
+            startDate = startDate.toString(),
+            endDate = endDate.toString(),
+            category = binding.etGoalcategory.text.toString(),
+            message = binding.etResolution.text.toString(),
+            amount = binding.etGoalamount.text.toString().toInt(),
+            isPublic = binding.swLock.isChecked
+        )
+
+        service.createGoal(requestGoalCreate).enqueueUtil(
+            onSuccess = {
+                startActivity(Intent(this@GoalDetailActivity, GoalAddActivity::class.java))
+                if(!isFinishing) finish()
+            },
+            onError = {
+                when(it) {
+                    400 -> showToast("잘못된 요청 값입니다.")
+                    401 -> showToast("인증 되지 않은 요청입니다.")
+                    500 -> showToast("서버 내부 오류입니다.")
+                }
+            }
+        )
     }
 }
