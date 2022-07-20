@@ -35,6 +35,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRemindGoal()
+        initRemindData()
+        //서버통신
+
         initRemindConsumeAdapter()
         initAdapterDecoration()
 
@@ -45,6 +49,19 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initClickReset()
         getGoal()
         reactClick()
+    }
+
+    private fun initRemindGoal(){
+        lifecycleScope.launch{
+            runCatching {
+                service.getRemindGoal()
+            }.onSuccess {
+                val data=it.data
+                Log.d(TAG,"RemindFragment - initRemindGoal() called, data=$data")
+            }.onFailure {
+                Timber.d("$it")
+            }
+        }
     }
 
     private fun initRemindData(){
