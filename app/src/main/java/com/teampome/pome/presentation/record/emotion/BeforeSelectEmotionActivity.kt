@@ -3,10 +3,7 @@ package com.teampome.pome.presentation.record.emotion
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.core.content.ContextCompat
-import com.teampome.pome.R
-import com.teampome.pome.data.remote.request.RecordsService
+import com.teampome.pome.data.RecordsService
 import com.teampome.pome.data.remote.request.RequestRecordsCreate
 import com.teampome.pome.databinding.ActivityBeforeSelectEmotionBinding
 import com.teampome.pome.presentation.record.screens.RecordAddActivity

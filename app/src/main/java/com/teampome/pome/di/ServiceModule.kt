@@ -2,7 +2,7 @@ package com.teampome.pome.di
 
 import com.teampome.pome.data.FriendService
 import com.teampome.pome.data.GoalService
-import com.teampome.pome.data.remote.request.RecordsService
+import com.teampome.pome.data.RecordsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
