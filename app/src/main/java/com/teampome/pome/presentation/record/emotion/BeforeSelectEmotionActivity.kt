@@ -26,7 +26,8 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
         }
     }
 
-    private fun clickIcon() {
+    private fun clickIcon(): Int {
+        var emotion = 0
         binding.btnHappy.setOnClickListener {
             binding.apply {
                 btnOh.isSelected = false
@@ -37,6 +38,7 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvOh.isSelected = false
                 tvSad.isSelected = false
                 btnComplete.isSelected = true
+                emotion = 1
             }
         }
         binding.btnOh.setOnClickListener {
@@ -49,6 +51,7 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvOh.isSelected = true
                 tvSad.isSelected = false
                 btnComplete.isSelected = true
+                emotion = 2
             }
         }
         binding.btnSad.setOnClickListener {
@@ -61,8 +64,10 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvOh.isSelected = false
                 tvSad.isSelected = true
                 btnComplete.isSelected = true
+                emotion = 3
             }
         }
+        return emotion
     }
 
     private fun goRecordAddActivity() {
