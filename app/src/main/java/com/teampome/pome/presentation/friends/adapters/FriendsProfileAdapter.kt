@@ -1,8 +1,6 @@
 package com.teampome.pome.presentation.friends.adapters
 
-import android.content.ContentValues.TAG
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +25,8 @@ class FriendsProfileAdapter :
     var selectedItemPosition = -1
     var wholeSelected = true
 
-    override fun getItemViewType(position: Int): Int = when (friendsReponseList.size) {
-        0 -> {
+    override fun getItemViewType(position: Int): Int = when (friendsReponseList[position].id==-1) {
+        true -> {
             VIEW_EMPTY
         }
         else -> {
@@ -61,19 +59,19 @@ class FriendsProfileAdapter :
         when (holder) {
             is FriendsProfileListViewHolder -> {
                 holder.bind(friendsReponseList[position])
-//                holder.itemView.setOnClickListener {
-//                    selectedItemPosition = position
-//                    wholeSelected = false
-//                    notifyDataSetChanged()
-//                }
-//                if (selectedItemPosition == position) {
-//                    holder.profile_name.setTextColor(Color.BLACK)
-//                } else {
-//                    holder.profile_name.setTextColor(Color.GRAY)
-//                }
+                holder.itemView.setOnClickListener {
+                    selectedItemPosition = position
+                    wholeSelected = false
+                    notifyDataSetChanged()
+                }
+                if (selectedItemPosition == position) {
+                    holder.profile_name.setTextColor(Color.BLACK)
+                } else {
+                    holder.profile_name.setTextColor(Color.GRAY)
+                }
             }
             is FriendsProfileEmptyViewHolder -> {
-                holder.bind(friendsReponseList, friendsProfileList[position])
+                holder.bind(friendsReponseList)
                 holder.itemView.setOnClickListener {
                     wholeSelected = true
                     selectedItemPosition = -1
@@ -84,7 +82,6 @@ class FriendsProfileAdapter :
                 } else {
                     holder.whole_text.setTextColor(Color.GRAY)
                 }
-
             }
             else -> {
                 //여기는 로그 띄우기
@@ -99,10 +96,7 @@ class FriendsProfileAdapter :
         val profile_name = binding.tvFriendname
         fun bind(friendsResponseList: ResponseFriendsProflie) {
             binding.tvFriendname.text = friendsResponseList.nickname
-            if(friendsResponseList.profileImage=="default_image.png")
-                binding.ivFriendprofile.setImageResource(R.drawable.ic_profile_empty)
-            else
-                binding.ivFriendprofile.load(friendsResponseList.profileImage)
+            binding.ivFriendprofile.load(friendsResponseList.profileImage)
         }
     }
 
@@ -110,16 +104,14 @@ class FriendsProfileAdapter :
         RecyclerView.ViewHolder(binding.root) {
         val whole_text = binding.tvWhole
         fun bind(
-            list: MutableList<ResponseFriendsProflie>,
-            friendsProfileData: FriendsProfileData
-
+            list: MutableList<ResponseFriendsProflie>
         ) {
-            if (list.size == 0) {
+            if (list.size == 1) {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_empty)
             } else {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_full)
             }
-            binding.tvWhole.text=friendsProfileData.data.name
+            binding.tvWhole.text = list[0].nickname
         }
     }
 

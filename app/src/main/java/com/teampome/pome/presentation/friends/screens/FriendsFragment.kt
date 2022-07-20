@@ -44,9 +44,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         initConsumeAdapter()
         initListAdapter()
         //어댑터 생성
+
         initWholeData()
         initFriendProfile()
-
         initFriendsData()
         //서버통신코드
 
@@ -104,18 +104,23 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         friendsConsumeAdapter.friendConsumeList.addAll(
             data.toMutableList()
         )
+        friendsProfileAdapter.notifyDataSetChanged()
     }
 
     private fun getFriendProfileData(data: List<ResponseFriendsProflie>) {
         friendsProfileAdapter.friendsReponseList.addAll(
             data.toMutableList()
         )
-        Log.d(TAG,"FriendsFragment - getFriendProfileData() called data=$data")
+        friendsProfileAdapter.notifyDataSetChanged()
+        //Log.d(TAG,"FriendsFragment - getFriendProfileData() called data=$data")
     }
 
     private fun initWholeData() {
-        friendsProfileAdapter.friendsProfileList.add(
-            FriendsProfileData(FriendsProfileData.friends("전체뿡", "tmp"))
+//        friendsProfileAdapter.friendsProfileList.add(
+//            FriendsProfileData(FriendsProfileData.friends("전체뿡", "tmp"))
+//        )
+        friendsProfileAdapter.friendsReponseList.add(
+            ResponseFriendsProflie(-1, "전체","tmp")
         )
     }
 
