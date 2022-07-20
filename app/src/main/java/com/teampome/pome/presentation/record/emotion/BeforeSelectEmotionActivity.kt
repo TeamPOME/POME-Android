@@ -3,6 +3,7 @@ package com.teampome.pome.presentation.record.emotion
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.teampome.pome.data.RecordsService
 import com.teampome.pome.data.remote.request.RequestRecordsCreate
 import com.teampome.pome.databinding.ActivityBeforeSelectEmotionBinding
@@ -18,6 +19,7 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
     @Inject
     lateinit var service: RecordsService
     private lateinit var binding: ActivityBeforeSelectEmotionBinding
+    private var clickedPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,6 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
     }
 
     private fun clickIcon(): Int {
-        var emotion = 0
         binding.btnHappy.setOnClickListener {
             binding.apply {
                 btnOh.isSelected = false
@@ -46,7 +47,7 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvOh.isSelected = false
                 tvSad.isSelected = false
                 btnComplete.isSelected = true
-                emotion = 1
+                clickedPosition = 1
             }
         }
         binding.btnOh.setOnClickListener {
@@ -59,7 +60,7 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvOh.isSelected = true
                 tvSad.isSelected = false
                 btnComplete.isSelected = true
-                emotion = 2
+                clickedPosition = 2
             }
         }
         binding.btnSad.setOnClickListener {
@@ -72,10 +73,10 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
                 tvOh.isSelected = false
                 tvSad.isSelected = true
                 btnComplete.isSelected = true
-                emotion = 3
+                clickedPosition = 3
             }
         }
-        return emotion
+        return clickedPosition
     }
 
     private fun goRecordAddActivity() {
@@ -93,6 +94,7 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
         val consumeAmount = intent.getStringExtra("consumeAmount")?.toInt()
         val consumeRecord = intent.getStringExtra("consumeRecord")
         val emotion = clickIcon()
+        Log.e("감정 변수", "$emotion")
 
         val requestRecordsCreate = RequestRecordsCreate(
             goalId = goalId,
