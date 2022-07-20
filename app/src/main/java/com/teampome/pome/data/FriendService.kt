@@ -1,7 +1,7 @@
 package com.teampome.pome.data
 
 import com.teampome.pome.data.remote.response.BaseResponse
-import com.teampome.pome.data.remote.response.RequestFriendReaction
+import com.teampome.pome.data.remote.response.ResponseFriendReaction
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.data.remote.response.ResponseFriendsProflie
 import retrofit2.http.GET
@@ -22,5 +22,5 @@ interface FriendService {
     @GET("records/{recordId}/reaction")
     suspend fun getFriendsReaction(
         @Path("recordId")recordId:Int,
-        @Query("type")type:Int):BaseResponse<List<RequestFriendReaction>>
+        @Query("type")type:Int):BaseResponse<List<ResponseFriendReaction>>
 }

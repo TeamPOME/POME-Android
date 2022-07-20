@@ -68,6 +68,7 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
             }.onSuccess {
                 val data=it.data
                 Log.d(TAG,"FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data")
+                friendsReactAdapter.submitList(data)
             }.onFailure {
                 Timber.d("$it")
             }
