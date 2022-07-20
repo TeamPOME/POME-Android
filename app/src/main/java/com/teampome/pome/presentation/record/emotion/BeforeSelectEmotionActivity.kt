@@ -3,12 +3,23 @@ package com.teampome.pome.presentation.record.emotion
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.request.RecordsService
+import com.teampome.pome.data.remote.request.RequestRecordsCreate
 import com.teampome.pome.databinding.ActivityBeforeSelectEmotionBinding
 import com.teampome.pome.presentation.record.screens.RecordAddActivity
+import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class BeforeSelectEmotionActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var service: RecordsService
     private lateinit var binding: ActivityBeforeSelectEmotionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,11 +84,39 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
     private fun goRecordAddActivity() {
         binding.btnComplete.setOnClickListener {
             if (binding.btnComplete.isSelected) {
-                Intent(this, RecordAddActivity::class.java).run {
-                    startActivity(this)
-                    finish()
-                }
+                recordCreateNetwork()
             }
         }
+    }
+
+    private fun recordCreateNetwork() {
+        val intent = intent
+        val goalId = intent.getIntExtra("goalId", 0)
+        val consumeDate = intent.getStringExtra("consumeDate")?.replace(".", "-")
+        val consumeAmount = intent.getStringExtra("consumeAmount")?.toInt()
+        val consumeRecord = intent.getStringExtra("consumeRecord")
+        val emotion = clickIcon()
+
+        val requestRecordsCreate = RequestRecordsCreate(
+            goalId = goalId,
+            date = consumeDate.toString(),
+            amount = consumeAmount.toString().toInt(),
+            content = consumeRecord.toString(),
+            startEmotion = emotion
+        )
+
+        service.createRecord(requestRecordsCreate).enqueueUtil(
+            onSuccess = {
+                startActivity(Intent(this@BeforeSelectEmotionActivity, RecordAddActivity::class.java))
+                if (!isFinishing) finish()
+            },
+            onError = {
+                when (it) {
+                    400 -> showToast("잘못된 요청 값입니다.")
+                    401 -> showToast("인증 되지 않은 요청입니다.")
+                    500 -> showToast("서버 내부 오류입니다.")
+                }
+            }
+        )
     }
 }
