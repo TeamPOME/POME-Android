@@ -22,7 +22,6 @@ class RecordAddActivity : AppCompatActivity() {
 
     private fun goRecordFragment() {
         binding.btnCheck.setOnClickListener {
-            //여기서 정보 다 보내고 프래그먼트 이동하고 액티비티 종료
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             ActivityCompat.finishAffinity(this)
