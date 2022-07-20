@@ -134,7 +134,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 visibilityTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-
+                setText()
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
@@ -150,11 +150,9 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
             }
 
         })

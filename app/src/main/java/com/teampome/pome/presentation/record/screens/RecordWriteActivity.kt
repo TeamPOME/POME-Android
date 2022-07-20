@@ -12,7 +12,7 @@ import com.teampome.pome.util.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal {
+class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal, RecordCalendarBottomSheet.OnListenerDate {
 
     private lateinit var binding: ActivityRecordWriteBinding
     private val viewModel by viewModels<RecordWriteViewModel>()
@@ -84,4 +84,11 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         binding.tvChoicegoal.text = goal
         binding.tvGoal.setVisibility(false)
     }
+
+    override fun onReceiveDate(date: Date) {
+        val choiceDate = SimpleDateFormat("yyyy.MM.dd").format(date)
+        binding.tvChoicedate.text = choiceDate
+        binding.tvDate.setVisibility(false)
+    }
+
 }

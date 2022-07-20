@@ -74,7 +74,7 @@ class GoalDateActivity : AppCompatActivity() {
                 val startDate = binding.tvGoalstartdate.text.toString()
                 val endDate = binding.tvGoalenddate.text.toString()
                 val intent = Intent(this, GoalDetailActivity::class.java).apply {
-                    putExtra("startDate", startDate.toString())
+                    putExtra("startDate", startDate)
                     putExtra("endDate", endDate)
                 }
                 startActivity(intent)
