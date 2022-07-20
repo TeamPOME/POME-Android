@@ -91,7 +91,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
                     binding.tvDate.text.toString()
                 }
                 val consumeAmount = binding.etGoalamount.text.toString()
-                val consumeRecord = binding.etConsumerecord.text
+                val consumeRecord = binding.etConsumerecord.text.toString()
                 val intent = Intent(this, BeforeSelectEmotionActivity::class.java).apply {
                     putExtra("goalId", goalId)
                     putExtra("consumeDate", consumeDate)
