@@ -92,14 +92,18 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     }
 
     override fun onCheckedGoal(goal: String) {
-        binding.tvChoicegoal.text = goal
-        binding.tvGoal.setVisibility(false)
+        binding.apply {
+            tvChoicegoal.text = goal
+            tvGoal.setVisibility(false)
+        }
     }
 
     override fun onReceiveDate(date: Date) {
         val choiceDate = SimpleDateFormat("yyyy.MM.dd").format(date)
-        binding.tvChoicedate.text = choiceDate
-        binding.tvDate.setVisibility(false)
+        binding.apply {
+            tvChoicedate.text = choiceDate
+            tvDate.setVisibility(false)
+        }
     }
 
 }

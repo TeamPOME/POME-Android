@@ -115,7 +115,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun getSelectedCategory(): String {
         var selectedCategory = ""
-        Log.e("으악", "됨")
         binding.cgGoal.forEach {
             if ((it as Chip).isChecked) selectedCategory = it.text.toString()
         }
