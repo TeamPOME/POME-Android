@@ -34,7 +34,6 @@ class FriendsConsumeAdapter(val contextT: Context) :
         }
         holder.bind(friendConsumeList[position])
         holder.addEmojiButton.setOnClickListener {
-
             listener.onClick(it, position, true)
         }
         if (clicked_position == position && getEmoji != -1) {
@@ -71,13 +70,14 @@ class FriendsConsumeAdapter(val contextT: Context) :
         val addEmojiButton = binding.ivAddemotion
 
         fun bind(friendsConsumeData: ResponseFriendsAll) {
-            binding.tvFriendname.text = friendsConsumeData.nickname
-            binding.tvFrienddate.text = friendsConsumeData.timestamp
-            binding.tvFrienddes.text = friendsConsumeData.content
-            binding.tvFriendprice.text = friendsConsumeData.amount.toString()
-            binding.tvFriendtag.text = friendsConsumeData.goalMessage
+            binding.apply{
+                tvFriendname.text = friendsConsumeData.nickname
+                tvFrienddate.text = friendsConsumeData.timestamp
+                tvFrienddes.text = friendsConsumeData.content
+                tvFriendprice.text = friendsConsumeData.amount.toString()
+                tvFriendtag.text = friendsConsumeData.goalMessage
+            }
 
-            //프로필 이미지, 반응들, 처음감정과 나중감정
             when(friendsConsumeData.startEmotion){
                 1-> {
                     binding.ivFriendFirstemotion.setImageResource(R.drawable.ic_emoji_mint_heart)
