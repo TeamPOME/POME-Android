@@ -1,6 +1,8 @@
 package com.teampome.pome.presentation.record.screens
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,16 @@ class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
 
     private var _binding: FragmentRecordCalendarBottomSheetBinding? = null
     private val binding get() = _binding!!
+    private var onListenerDate: OnListenerDate? = null
+
+    interface OnListenerDate {
+        fun onReceiveDate(date: Date)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onListenerDate = activity as OnListenerDate
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,8 +92,8 @@ class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
 
     private fun choiceDate() {
         binding.btnChoicedate.setOnClickListener {
-//            val date = binding.mcCalendar.selectedDate.date
-//            viewModel.startDate.value = date
+            val date = binding.mcCalendar.selectedDate.date
+            onListenerDate?.onReceiveDate(date)
             dismiss()
         }
     }
@@ -96,6 +108,11 @@ class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        onListenerDate = null
     }
 
 }

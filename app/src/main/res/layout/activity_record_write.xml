@@ -135,7 +135,6 @@
                 android:background="@drawable/rectangle_grey_round_8"
                 android:paddingVertical="17dp"
                 android:paddingStart="16dp"
-                android:text="2022.07.17"
                 android:textColor="@color/pome_grey_9"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
