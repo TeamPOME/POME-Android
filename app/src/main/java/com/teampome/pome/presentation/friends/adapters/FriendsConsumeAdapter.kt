@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
@@ -111,9 +112,9 @@ class FriendsConsumeAdapter(val contextT: Context) :
             friendsConsumeData.reactions.forEachIndexed { index, it ->
                 val imageView = ImageView(context)
 
-                val layoutParams = ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                val layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
                 )
 
                 imageView.apply {
@@ -122,63 +123,63 @@ class FriendsConsumeAdapter(val contextT: Context) :
                             addEmojiButton.visibility = View.VISIBLE
                             addEmojiButton.bringToFront()
                         }
-//                        1 -> {
-//                            setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                        1 -> {
+                            setImageResource(R.drawable.ic_emoji_happy_mint_28)
 //                            layoutParams.apply {
 //                                leftMargin = index * changeToDp()
 //                                topToTop = R.id.ly_wrap_friend_emoji
 //                                startToStart = R.id.ly_wrap_friend_emoji
 //                            }
-//                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-//                        }
-//                        2 -> {
-//                            setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
+                        }
+                        2 -> {
+                            setImageResource(R.drawable.ic_emoji_smile_mint_28)
 //                            layoutParams.apply {
 //                                leftMargin = index * changeToDp()
 //                                topToTop = R.id.ly_wrap_friend_emoji
 //                                startToStart = R.id.ly_wrap_friend_emoji
 //                            }
-//                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-//                        }
-//                        3 -> {
-//                            setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
+                        }
+                        3 -> {
+                            setImageResource(R.drawable.ic_emoji_funny_mint_28)
 //                            layoutParams.apply {
 //                                leftMargin = index * changeToDp()
 //                                topToTop = R.id.ly_wrap_friend_emoji
 //                                startToStart = R.id.ly_wrap_friend_emoji
 //                            }
-//                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-//                        }
-//                        4 -> {
-//                            setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
+                        }
+                        4 -> {
+                            setImageResource(R.drawable.ic_emoji_flex_mint_28)
 //                            layoutParams.apply {
 //                                leftMargin = index * changeToDp()
 //                                topToTop = R.id.ly_wrap_friend_emoji
 //                                startToStart = R.id.ly_wrap_friend_emoji
 //                            }
-//                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-//                        }
-//                        5 -> {
-//                            setImageResource(R.drawable.ic_emoji_what_mint_28)
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
+                        }
+                        5 -> {
+                            setImageResource(R.drawable.ic_emoji_what_mint_28)
 //                            layoutParams.apply {
 //                                leftMargin = index * changeToDp()
 //                                topToTop = R.id.ly_wrap_friend_emoji
 //                                startToStart = R.id.ly_wrap_friend_emoji
 //                            }
-//                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-//                        }
-//                        else -> {
-//                            setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
+                        }
+                        else -> {
+                            setImageResource(R.drawable.ic_emoji_sad_mint_28)
 //                            layoutParams.apply {
 //                                leftMargin = index * changeToDp()
 //                                topToTop = R.id.ly_wrap_friend_emoji
 //                                startToStart = R.id.ly_wrap_friend_emoji
 //                            }
-//                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-//                        }
+                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
+                        }
                     }
                 }
-                //imageView.bringToFront()
+
 
             }
 
