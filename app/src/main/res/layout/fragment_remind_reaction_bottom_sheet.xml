@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_remindbottomsheet"
     android:layout_width="match_parent"
-    android:layout_height="360dp"
+    android:layout_height="match_parent"
     android:background="@drawable/bottomsheet_round"
     android:paddingHorizontal="16dp"
     android:paddingTop="16dp">
@@ -89,8 +89,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_remindlist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_whole">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -98,7 +99,8 @@
             android:layout_width="match_parent"
             app:spanCount="3"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

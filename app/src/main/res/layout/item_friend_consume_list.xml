@@ -130,18 +130,15 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_btn_emoji_add"
                 android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@id/ly_wrap_friend_emoji"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ly_wrap_friend_emoji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:backgroundTint="@color/purple_200"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="-6dp"
+                app:layout_constraintStart_toEndOf="@id/iv_addemotion"
                 app:layout_constraintTop_toTopOf="parent">
 
             </androidx.constraintlayout.widget.ConstraintLayout>

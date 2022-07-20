@@ -6,30 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import coil.load
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ResponseFriendsProflie
 import com.teampome.pome.databinding.ItemFriendProfileEmptyBinding
 import com.teampome.pome.databinding.ItemFriendProfileListBinding
 import com.teampome.pome.presentation.friends.FriendsProfileData
-import com.teampome.pome.presentation.friends.FriendsProfileInterface
-import com.teampome.pome.presentation.friends.FriendsProfileWholeData
 
 class FriendsProfileAdapter :
     RecyclerView.Adapter<ViewHolder>() {
-    val friendsProfileList = mutableListOf<FriendsProfileInterface>()
+    val friendsProfileList = mutableListOf<FriendsProfileData>()
+    val friendsReponseList = mutableListOf<ResponseFriendsProflie>()
+
     private lateinit var empty: ItemFriendProfileEmptyBinding
     private lateinit var full: ItemFriendProfileListBinding
 
     private lateinit var listener: FriendsListClickInterface
     var selectedItemPosition = -1
-
     var wholeSelected = true
 
-    override fun getItemViewType(position: Int): Int = when (friendsProfileList[position]) {
-        is FriendsProfileData -> {
-            VIEW_FULL
+    override fun getItemViewType(position: Int): Int = when (friendsReponseList[position].id==-1) {
+        true -> {
+            VIEW_EMPTY
         }
         else -> {
-            VIEW_EMPTY
+            VIEW_FULL
         }
     }
 
@@ -54,12 +55,10 @@ class FriendsProfileAdapter :
         }
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
             is FriendsProfileListViewHolder -> {
-                val profile_item = friendsProfileList[position] as FriendsProfileData
-                holder.bind(profile_item)
+                holder.bind(friendsReponseList[position])
                 holder.itemView.setOnClickListener {
                     selectedItemPosition = position
                     wholeSelected = false
@@ -72,7 +71,7 @@ class FriendsProfileAdapter :
                 }
             }
             is FriendsProfileEmptyViewHolder -> {
-                holder.bind(friendsProfileList as MutableList<FriendsProfileData>)
+                holder.bind(friendsReponseList)
                 holder.itemView.setOnClickListener {
                     wholeSelected = true
                     selectedItemPosition = -1
@@ -83,7 +82,6 @@ class FriendsProfileAdapter :
                 } else {
                     holder.whole_text.setTextColor(Color.GRAY)
                 }
-
             }
             else -> {
                 //여기는 로그 띄우기
@@ -91,15 +89,14 @@ class FriendsProfileAdapter :
         }
     }
 
-
-    override fun getItemCount(): Int = friendsProfileList.size
+    override fun getItemCount(): Int = friendsReponseList.size
 
     class FriendsProfileListViewHolder(private val binding: ItemFriendProfileListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val profile_name = binding.tvFriendname
-        fun bind(friendProfileData: FriendsProfileData) {
-            binding.tvFriendname.text = friendProfileData.name
-            //이미지 넣기
+        fun bind(friendsResponseList: ResponseFriendsProflie) {
+            binding.tvFriendname.text = friendsResponseList.nickname
+            binding.ivFriendprofile.load(friendsResponseList.profileImage)
         }
     }
 
@@ -107,17 +104,14 @@ class FriendsProfileAdapter :
         RecyclerView.ViewHolder(binding.root) {
         val whole_text = binding.tvWhole
         fun bind(
-            list: MutableList<FriendsProfileData>
+            list: MutableList<ResponseFriendsProflie>
         ) {
-
             if (list.size == 1) {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_empty)
             } else {
                 binding.ivFriendprofileWhole.setImageResource(R.drawable.ic_friend_profile_full)
             }
-        }
-        fun emptyClick(friendsProfileWholeData: FriendsProfileWholeData) {
-            //전체를 클릭한 경우
+            binding.tvWhole.text = list[0].nickname
         }
     }
 
