@@ -129,6 +129,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun initGoalDetail() {
+
         val goalId = 24
         service.initGoalDetail(goalId).enqueueUtil(
             onSuccess = {
@@ -136,7 +137,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 visibilityTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                binding.tvSeekbar.x = (it.data.rate*2.6).toFloat()
+                binding.tvSeekbar.x = (it.data.rate*2.6+2).toFloat()
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
@@ -224,11 +225,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         val goalId = 24
         recordService.initGoalRecord(goalId).enqueueUtil(
             onSuccess = {
-                Log.d("1번", "onSuccess")
                 visibilityRecord()
-                Log.d("2번", "OnSuccess")
-                recordAdapter.submitList()
-                Log.d("3번", "OnSuccess")
+                recordAdapter.submitList(it.data?.records)
             }
         )
     }

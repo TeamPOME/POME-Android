@@ -16,8 +16,8 @@ interface RecordsService {
         @Body body: RequestRecordsCreate
     ): Call<BaseResponse<ResponseRecordsCreate>>
 
-    @GET("records/{goalId}")
+    @GET("records/week/{goalId}")
     fun initGoalRecord(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<List<ResponseRecordsLook>>>
+    ): Call<BaseResponse<ResponseRecordsLook>>
 }

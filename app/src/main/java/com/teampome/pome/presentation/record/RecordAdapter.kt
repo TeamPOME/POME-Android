@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.Records
 import com.teampome.pome.data.remote.response.ResponseRecordsLook
 import com.teampome.pome.databinding.ItemRecordListBinding
 
-class RecordAdapter : ListAdapter<ResponseRecordsLook, RecordAdapter.RecordViewHolder>(DiffUtil) {
+class RecordAdapter : ListAdapter<Records, RecordAdapter.RecordViewHolder>(DiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordViewHolder {
         val binding =
@@ -24,7 +25,7 @@ class RecordAdapter : ListAdapter<ResponseRecordsLook, RecordAdapter.RecordViewH
     class RecordViewHolder(
         private val binding: ItemRecordListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ResponseRecordsLook) {
+        fun onBind(data: Records) {
             binding.tvDate.text = data.date
             binding.tvAmount.text = data.amount.toString()
             binding.tvDescription.text = data.content
@@ -38,16 +39,20 @@ class RecordAdapter : ListAdapter<ResponseRecordsLook, RecordAdapter.RecordViewH
     }
 
     companion object {
-        val DiffUtil = object : DiffUtil.ItemCallback<ResponseRecordsLook>() {
-            override fun areItemsTheSame(oldItem: ResponseRecordsLook, newItem: ResponseRecordsLook): Boolean {
+        val DiffUtil = object : DiffUtil.ItemCallback<Records>() {
+            override fun areItemsTheSame(
+                oldItem: Records,
+                newItem: Records
+            ): Boolean {
                 return oldItem.content == newItem.content
             }
 
-            override fun areContentsTheSame(oldItem: ResponseRecordsLook, newItem: ResponseRecordsLook): Boolean {
+            override fun areContentsTheSame(
+                oldItem: Records,
+                newItem: Records
+            ): Boolean {
                 return oldItem == newItem
             }
         }
     }
-
-
 }
