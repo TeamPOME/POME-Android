@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.skydoves.balloon.balloon
 import com.teampome.pome.R
 import com.teampome.pome.data.FriendService
+import com.teampome.pome.data.remote.request.RequestFriendAddReaction
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.data.remote.response.ResponseFriendsProflie
 import com.teampome.pome.databinding.FragmentFriendsBinding
@@ -36,6 +37,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private val friendsEmojiBalloon by balloon<FriendsEmojiBalloon>()
     private var emoji_position: Int = -1
     private var list_position: Int = -1
+    private var clickedPosition=-1
     private lateinit var emojiList: List<ImageView>
     var friendsData = listOf<FriendsProfileData.friends>()
 
@@ -170,8 +172,23 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         for (i in emojiList.indices) {
             emojiList[i].setOnClickListener {
                 emoji_position = i
+
                 friendsConsumeAdapter.getEmojiPosition(emoji_position + 1, list_position)
                 friendsEmojiBalloon.dismiss()
+                initSetEmoji(emoji_position+1)
+            }
+        }
+    }
+
+    private fun initSetEmoji(emojiNum:Int){
+        lifecycleScope.launch {
+            runCatching {
+                service.setFriendsReaction(RequestFriendAddReaction(emotion = emojiNum, targetId = clickedPosition))
+            }.onSuccess {
+                Log.d(TAG,"FriendsFragment - initSetEmoji() called, 잘넣었다!")
+                //Timber.d("${it.message}")
+            }.onFailure {
+                Timber.d("$it")
             }
         }
     }
@@ -203,6 +220,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     }
                 } else {
                     list_position = position
+                    clickedPosition=id
+                    Log.d(TAG,"FriendsFragment - onClick() called id=$id")
                     friendsEmojiBalloon.showAlignBottom(data)
                     addEmoji(list_position)
                     //friendsEmojiBalloon.dismiss()

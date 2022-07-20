@@ -29,12 +29,14 @@ class FriendsConsumeAdapter(val contextT: Context) :
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            listener.onClick(it, position, false,clicked_recordId)
             clicked_recordId=friendConsumeList[position].id
+            listener.onClick(it, position, false,clicked_recordId)
+
         }
         holder.bind(friendConsumeList[position])
         holder.addEmojiButton.setOnClickListener {
-            listener.onClick(it, position, true,0)
+            clicked_recordId=friendConsumeList[position].id
+            listener.onClick(it, position, true,clicked_recordId)
         }
         if (clicked_position == position && getEmoji != -1) {
             holder.setEmoji(getEmoji)
