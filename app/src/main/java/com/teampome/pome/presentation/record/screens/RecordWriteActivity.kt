@@ -9,8 +9,12 @@ import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
 import com.teampome.pome.util.setVisibility
+import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
-class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal {
+@AndroidEntryPoint
+class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal, RecordCalendarBottomSheet.OnListenerDate {
 
     private lateinit var binding: ActivityRecordWriteBinding
     private val viewModel by viewModels<RecordWriteViewModel>()
@@ -24,6 +28,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         binding.lifecycleOwner = this
 
         goBack()
+        todaySetting()
         goalClickEvent()
         calendarClickEvent()
         checkComplete()
@@ -34,6 +39,14 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         binding.btnBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun todaySetting() {
+        val now = System.currentTimeMillis()
+        val date = Date(now)
+        val sdf = SimpleDateFormat("yyyy.MM.dd")
+        val today : String = sdf.format(date)
+        binding.tvDate.text = today
     }
 
     private fun goalClickEvent() {
@@ -79,7 +92,18 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     }
 
     override fun onCheckedGoal(goal: String) {
-        binding.tvChoicegoal.text = goal
-        binding.tvGoal.setVisibility(false)
+        binding.apply {
+            tvChoicegoal.text = goal
+            tvGoal.setVisibility(false)
+        }
     }
+
+    override fun onReceiveDate(date: Date) {
+        val choiceDate = SimpleDateFormat("yyyy.MM.dd").format(date)
+        binding.apply {
+            tvChoicedate.text = choiceDate
+            tvDate.setVisibility(false)
+        }
+    }
+
 }
