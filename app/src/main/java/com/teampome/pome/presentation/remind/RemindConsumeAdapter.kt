@@ -10,6 +10,7 @@ import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ResponseRemindData
 import com.teampome.pome.databinding.ItemRemindConsumeBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
+import com.teampome.pome.util.setImage
 
 class RemindConsumeAdapter :
     ListAdapter<ResponseRemindData, RemindConsumeAdapter.RemindConsumeViewHolder>(
@@ -57,6 +58,9 @@ class RemindConsumeAdapter :
                 }
                 3 -> {
                     binding.ivFirstEmotion.setImageResource(R.drawable.ic_emoji_mint_sad)
+                }
+                else -> {
+                    binding.ivFirstEmotion.setImageResource(R.drawable.ic_question_backgorund_34)
                 }
             }
             when(friendsConsumeData.endEmotion){

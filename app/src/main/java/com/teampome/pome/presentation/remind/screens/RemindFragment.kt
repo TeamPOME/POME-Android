@@ -87,19 +87,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
-//    private fun notShowMsg(){
-//        if()
-//        binding.clRemindEmpty.visibility = View.VISIBLE
-//        binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
-//        binding.tvGoal.apply {
-//            text = goal_des
-//            setTextColor(Color.BLACK)
-//        }
-//    }
-
     private fun initNotEmpty(goal_msg:String, isPublic:Boolean){
         binding.clRemindEmpty.visibility=View.INVISIBLE
-        if(isPublic){
+        Log.d(TAG,"RemindFragment - initNotEmpty() called, goal_msg:$goal_msg, isPublic=$isPublic")
+        if(isPublic==true){
             binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
         }else{
             binding.ivLockCheck.setImageResource(R.drawable.ic_lock_all)
