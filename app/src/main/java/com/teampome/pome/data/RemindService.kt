@@ -12,4 +12,9 @@ interface RemindService {
         @Query("startEmotion")startEmotion:Int,
         @Query("endEmotion")endEmotion:Int
     ):BaseResponse<List<ResponseRemindData>>
+
+    @GET("goals")
+    suspend fun getRemindGoal(
+
+    ):BaseResponse<>
 }

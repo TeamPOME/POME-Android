@@ -7,33 +7,57 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.teampome.pome.R
+import com.teampome.pome.data.FriendService
+import com.teampome.pome.data.RemindService
 import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 import com.teampome.pome.presentation.remind.RemindConsumeAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_remind) {
     private lateinit var remindConsumeAdapter: RemindConsumeAdapter
     private val firstBottomSheet = RemindFirstBottomSheetFragment()
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
     private val remindList = mutableListOf<FriendsConsumeData>()
     private val reactionBottomSheet = RemindReactionBottomSheet()
+    @Inject
+    lateinit var service: RemindService
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initRemindConsumeAdapter()
         initAdapterDecoration()
-        //initAddRemindConsume()
+
+        initRemindData()
 
         initClickFirstEmotion()
         initClickSecondEmotion()
         initClickReset()
         getGoal()
         reactClick()
+    }
+
+    private fun initRemindData(){
+        lifecycleScope.launch {
+            runCatching {
+                //service.getRemindData()
+            }.onSuccess {
+                //val data=it.data
+
+            }.onFailure {
+               // Timber.d("$it")
+            }
+        }
     }
 
     private fun initAdapterDecoration() {
@@ -44,94 +68,6 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         remindConsumeAdapter = RemindConsumeAdapter()
         binding.rvRemind.adapter = remindConsumeAdapter
     }
-
-//    private fun initAddRemindConsume() {
-//        remindConsumeAdapter.submitList(
-//            listOf(
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                ),
-//                FriendsConsumeData(
-//                    name = "dwd",
-//                    description = "와플은 맛잇다",
-//                    price = "3900",
-//                    tag = "간식",
-//                    first_emotion = 1,
-//                    second_emotion = 2,
-//                    date = "0713",
-//                    reaction = listOf(1,2,3)
-//                )
-//
-//            )
-//        )
-//    }
 
     private fun initClickFirstEmotion() {
         binding.ivFirstEmotion.setOnClickListener {
