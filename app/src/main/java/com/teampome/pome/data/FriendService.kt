@@ -17,4 +17,7 @@ interface FriendService {
     @POST("records/reaction")
     suspend fun setFriendsReaction()
 
+    @GET("records/{@recordId}/reaction")
+    suspend fun getFriendsReaction(@Query("recordId")recordId:Int)
+
 }
