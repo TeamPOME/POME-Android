@@ -27,7 +27,7 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
     private var onListenerGoal: OnListenerGoal? = null
 
     interface OnListenerGoal {
-        fun onCheckedGoal(goal: String)
+        fun onCheckedGoal(goal: String, id: Int)
     }
 
     override fun onAttach(context: Context) {
@@ -66,7 +66,7 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
 
     private fun initAdapter() {
         goalListAdapter = GoalListAdapter {
-            onListenerGoal?.onCheckedGoal(it.category)
+            onListenerGoal?.onCheckedGoal(it.category, it.id)
             dismiss()
         }
         binding.rvGoal.adapter = goalListAdapter

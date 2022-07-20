@@ -91,7 +91,8 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         }
     }
 
-    override fun onCheckedGoal(goal: String) {
+    override fun onCheckedGoal(goal: String, id: Int) {
+        goalId = id
         binding.apply {
             tvChoicegoal.text = goal
             tvGoal.setVisibility(false)
@@ -106,4 +107,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         }
     }
 
+    companion object {
+        var goalId : Int = 0
+    }
 }
