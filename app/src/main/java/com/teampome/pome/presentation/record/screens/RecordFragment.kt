@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
@@ -43,6 +44,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
         binding.lifecycleOwner = this
 
+        noDragSeekBar()
         initGoalChip()
         initGoalDetail()
         goGoalDateActivity()
@@ -127,10 +129,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun initGoalDetail() {
-//        val chipText = getSelectedCategory()
-//        val goalId = categoryMap[chipText]
-//        Log.d("성공했니?", "$goalId")
-
         val goalId = 24
         service.initGoalDetail(goalId).enqueueUtil(
             onSuccess = {
@@ -138,28 +136,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 visibilityTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                setText()
+                binding.tvSeekbar.x = (it.data.rate*2.6).toFloat()
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
             }
         )
-    }
-
-    private fun setText() {
-        binding.sbGoal.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val value = (progress * (seekBar?.width!! - 2 * seekBar.thumbOffset)) / seekBar.max
-                binding.tvSeekbar.x = seekBar.x + value + (seekBar.thumbOffset / 2)
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-
-        })
     }
 
     private fun visibilityGone() {
@@ -175,6 +157,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             ivLock.visibility = View.VISIBLE
             tvTitle.visibility = View.VISIBLE
             btnMore.visibility = View.VISIBLE
+            tvDday.visibility = View.VISIBLE
             tvAmount.visibility = View.VISIBLE
             tvUseamount.visibility = View.VISIBLE
             tvSlash.visibility = View.VISIBLE
@@ -182,6 +165,17 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             sbGoal.visibility = View.VISIBLE
             tvSeekbar.visibility = View.VISIBLE
         }
+    }
+
+    private fun noDragSeekBar() {
+        binding.sbGoal.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if(event?.action == MotionEvent.ACTION_DOWN){
+                    return false
+                }
+                return true
+            }
+        })
     }
 
     private fun initAdapter() {
@@ -230,14 +224,21 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         val goalId = 24
         recordService.initGoalRecord(goalId).enqueueUtil(
             onSuccess = {
-                binding.apply {
-                    ivNothing.setVisibility(false)
-                    tvNothing.setVisibility(false)
-                    rvRecord.setVisibility(true)
-                }
-                recordAdapter.submitList(it.data)
+                Log.d("1번", "onSuccess")
+                visibilityRecord()
+                Log.d("2번", "OnSuccess")
+                recordAdapter.submitList()
+                Log.d("3번", "OnSuccess")
             }
         )
+    }
+
+    private fun visibilityRecord() {
+        binding.apply {
+            ivNothing.visibility = View.GONE
+            tvNothing.visibility = View.GONE
+            rvRecord.visibility = View.VISIBLE
+        }
     }
 
     companion object {
