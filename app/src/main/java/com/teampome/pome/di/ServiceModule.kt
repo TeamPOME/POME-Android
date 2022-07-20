@@ -17,6 +17,8 @@ object ServiceModule {
     fun provideFriendsService(retrofit: Retrofit):FriendService = 
         retrofit.create(FriendService::class.java)
 
+    @Provides
+    @Singleton
     fun provideGoalService(retrofit: Retrofit): GoalService =
         retrofit.create(GoalService::class.java)
 }
