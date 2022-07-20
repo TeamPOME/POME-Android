@@ -15,6 +15,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
     RecyclerView.Adapter<FriendsConsumeAdapter.FriendsConsumeViewHolder>() {
     var context = contextT
     var clicked_position = 0
+    var clicked_recordId=0
     private lateinit var listener: FriendsConsumeListInterface
     var friendConsumeList = mutableListOf<ResponseFriendsAll>()
     var getEmoji = -1
@@ -27,11 +28,12 @@ class FriendsConsumeAdapter(val contextT: Context) :
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            listener.onClick(it, position, false)
+            listener.onClick(it, position, false,clicked_recordId)
+            clicked_recordId=friendConsumeList[position].id
         }
         holder.bind(friendConsumeList[position])
         holder.addEmojiButton.setOnClickListener {
-            listener.onClick(it, position, true)
+            listener.onClick(it, position, true,0)
         }
         if (clicked_position == position && getEmoji != -1) {
             holder.setEmoji(getEmoji)
@@ -73,6 +75,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvFrienddes.text = friendsConsumeData.content
                 tvFriendprice.text = friendsConsumeData.amount.toString()
                 tvFriendtag.text = friendsConsumeData.goalMessage
+                tvRecordid.text= friendsConsumeData.id.toString()
             }
 
             when (friendsConsumeData.startEmotion) {
@@ -217,7 +220,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
     }
 
     interface FriendsConsumeListInterface {
-        fun onClick(data: View, position: Int, addEmoji: Boolean)
+        fun onClick(data: View, position: Int, addEmoji: Boolean, id:Int)
     }
 
     fun setConsumeListClickListener(listener: FriendsConsumeListInterface) {

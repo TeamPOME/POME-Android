@@ -47,8 +47,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
         initWholeData()
         initFriendProfile()
-        initFriendsData(0)
+        initFriendsData(0)//처음엔 전체 값이 나오기 위해서 0으로 설정
         profileClick()
+        //프로필 클릭시 initFriendData의 pos값이 바뀐다.
         //서버통신코드
 
         consumeClick()
@@ -58,12 +59,15 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         //balloon에 있는 이모지들 초기화
     }
 
-    private fun initFriendsData(pos:Int) {
+    private fun initFriendsData(pos: Int) {
         lifecycleScope.launch {
             runCatching {
                 service.getFriendsRecords(pos)
             }.onSuccess {
-                Log.d(TAG,"FriendsFragment - initFriendsData() called success, id=${friendsProfileAdapter.clickedId},it=$it")
+                Log.d(
+                    TAG,
+                    "FriendsFragment - initFriendsData() called success, id=${friendsProfileAdapter.clickedId},it=$it"
+                )
                 val data = it.data
                 if (data!!.isEmpty()) //기록이 없는 경우
                     noFriendsRecords()
@@ -105,13 +109,13 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     private fun getFriendsData(data: List<ResponseFriendsAll>) {
         friendsConsumeAdapter.friendConsumeList.clear()
-        Log.d(TAG,"FriendsFragment - getFriendsData() called, data=$data")
+        Log.d(TAG, "FriendsFragment - getFriendsData() called, data=$data")
         friendsConsumeAdapter.friendConsumeList.addAll(
             data.toMutableList()
         )
         friendsConsumeAdapter.notifyDataSetChanged()
         showFriendsRecord()
-        binding.rcvFriendsconsumelist.visibility=View.VISIBLE
+        binding.rcvFriendsconsumelist.visibility = View.VISIBLE
     }
 
     private fun getFriendProfileData(data: List<ResponseFriendsProflie>) {
@@ -127,7 +131,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 //            FriendsProfileData(FriendsProfileData.friends("전체뿡", "tmp"))
 //        )
         friendsProfileAdapter.friendsReponseList.add(
-            ResponseFriendsProflie(-1, "전체","tmp")
+            ResponseFriendsProflie(-1, "전체", "tmp")
         )
     }
 
@@ -140,8 +144,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         friendsConsumeAdapter.notifyDataSetChanged()
         binding.clFriendsempty.visibility = View.VISIBLE
     }
-    private fun showFriendsRecord(){
-        binding.clFriendsempty.visibility=View.INVISIBLE
+
+    private fun showFriendsRecord() {
+        binding.clFriendsempty.visibility = View.INVISIBLE
     }
 
     private fun addFriendsDecoration() {
@@ -171,9 +176,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         }
     }
 
-    private fun profileClick(){
-        friendsProfileAdapter.setOnProfileListClickListener(object:
-        FriendsProfileAdapter.FriendsListClickInterface{
+    private fun profileClick() {
+        friendsProfileAdapter.setOnProfileListClickListener(object :
+            FriendsProfileAdapter.FriendsListClickInterface {
             override fun onProfileListClick(pos: Int) {
                 initFriendsData(pos)
             }
@@ -183,14 +188,19 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private fun consumeClick() {
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {
-            override fun onClick(data: View, position: Int, addEmoji: Boolean) {
+            override fun onClick(data: View, position: Int, addEmoji: Boolean, id: Int) {
                 //bottom sheet로 반응 나오게 하기
                 if (!addEmoji) {
-                    if (!friendsBottomSheetFragment.isAdded)
+                    if (!friendsBottomSheetFragment.isAdded) {
+                        var bundle = Bundle().apply {
+                            putString("recordId", id.toString())
+                        }
+                        Log.d(TAG,"FriendsFragment - onClick() called, id=$id")
+                        friendsBottomSheetFragment.arguments = bundle
                         friendsBottomSheetFragment.show(
-                            childFragmentManager,
-                            friendsBottomSheetFragment.tag
-                        )//클릭한 부분이 다르기 때문에 addEmoji로 구분함.
+                            childFragmentManager, friendsBottomSheetFragment.tag
+                        )
+                    }
                 } else {
                     list_position = position
                     friendsEmojiBalloon.showAlignBottom(data)
