@@ -146,16 +146,11 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-    private fun visibilityGone() {
+    private fun visibilityGoalTrue() {
         binding.apply {
             iv3d.visibility = View.GONE
             tvNogoaltext.visibility = View.GONE
             btnMakegoal.visibility = View.GONE
-        }
-    }
-
-    private fun visibilityTrue() {
-        binding.apply {
             ivLock.visibility = View.VISIBLE
             tvTitle.visibility = View.VISIBLE
             btnMore.visibility = View.VISIBLE
@@ -222,25 +217,20 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
-    private fun initGoalRecord() {
-        val goalId = 24
+    private fun initGoalRecord(goalId: Int) {
         recordService.initGoalRecord(goalId).enqueueUtil(
             onSuccess = {
-                if (it.data?.records?.size != null) {
-                    visibilityRecord()
-                    recordAdapter.submitList(it.data.records)
+                if (it.data?.records?.size != 0) {
+                    visibilityRecordTrue()
+                    recordAdapter.submitList(it.data?.records)
                 } else {
-                    binding.apply {
-                        ivNothing.visibility = View.VISIBLE
-                        tvNothing.visibility = View.VISIBLE
-                        rvRecord.visibility = View.GONE
-                    }
+                    visibilityRecordFalse()
                 }
             }
         )
     }
 
-    private fun visibilityRecord() {
+    private fun visibilityRecordTrue() {
         binding.apply {
             ivNothing.visibility = View.GONE
             tvNothing.visibility = View.GONE
@@ -248,7 +238,11 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
-    companion object {
-        val categoryMap = mutableMapOf<String, Int>()
+    private fun visibilityRecordFalse() {
+        binding.apply {
+            ivNothing.visibility = View.VISIBLE
+            tvNothing.visibility = View.VISIBLE
+            rvRecord.visibility = View.GONE
+        }
     }
 }
