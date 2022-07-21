@@ -82,6 +82,7 @@ class FriendsProfileAdapter :
                     notifyDataSetChanged()
                 }
                 if (wholeSelected) {
+                    holder.image.setImageResource(R.drawable.ic_friend_profile_empty)
                     holder.whole_text.setTextColor(Color.BLACK)
                 } else {
                     holder.whole_text.setTextColor(Color.GRAY)
@@ -108,6 +109,7 @@ class FriendsProfileAdapter :
     class FriendsProfileEmptyViewHolder(private val binding: ItemFriendProfileEmptyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val whole_text = binding.tvWhole
+        val image=binding.ivFriendprofileWhole
         fun bind(
             list: MutableList<ResponseFriendsProflie>
         ) {
