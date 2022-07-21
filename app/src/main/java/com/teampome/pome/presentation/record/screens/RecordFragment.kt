@@ -35,6 +35,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     @Inject
     lateinit var service: GoalService
+
     @Inject
     lateinit var recordService: RecordsService
     private lateinit var recordAdapter: RecordAdapter
@@ -137,7 +138,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 visibilityTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                binding.tvSeekbar.x = (it.data.rate*2.6+2).toFloat()
+                binding.tvSeekbar.x = (it.data.rate * 2.6 + 1).toFloat()
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
@@ -171,7 +172,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     private fun noDragSeekBar() {
         binding.sbGoal.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                if(event?.action == MotionEvent.ACTION_DOWN){
+                if (event?.action == MotionEvent.ACTION_DOWN) {
                     return false
                 }
                 return true
@@ -225,8 +226,16 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         val goalId = 24
         recordService.initGoalRecord(goalId).enqueueUtil(
             onSuccess = {
-                visibilityRecord()
-                recordAdapter.submitList(it.data?.records)
+                if (it.data?.records?.size != null) {
+                    visibilityRecord()
+                    recordAdapter.submitList(it.data.records)
+                } else {
+                    binding.apply {
+                        ivNothing.visibility = View.VISIBLE
+                        tvNothing.visibility = View.VISIBLE
+                        rvRecord.visibility = View.GONE
+                    }
+                }
             }
         )
     }
