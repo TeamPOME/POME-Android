@@ -39,6 +39,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     @Inject
     lateinit var recordService: RecordsService
     private lateinit var recordAdapter: RecordAdapter
+    private var clickedChipPos: Int = -1
+    private var clickedChipId: Int = -1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,9 +49,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
         noDragSeekBar()
         initGoalChip()
-        initGoalDetail()
         goGoalDateActivity()
-        initGoalRecord()
         initAdapter()
         noGoalClickEvent()
         goLookBackActivity()
@@ -88,11 +88,49 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun initGoalChip() {
         service.initGoalChip().enqueueUtil(
-            onSuccess = { it ->
-                it.data?.forEach {
-                    categoryMap[it.category] = it.id
+            onSuccess = {
+                it.data?.forEachIndexed { index, responseGoalCreate ->
+                    val chip = Chip(context).apply {
+                        tag = responseGoalCreate.id.toString()
+                        text = responseGoalCreate.category
+                        setTextAppearanceResource(R.style.PomeSb14)
+                        isCheckable = true
+                        isCheckedIconVisible = false
+                        chipBackgroundColor = ColorStateList(
+                            arrayOf(
+                                intArrayOf(-android.R.attr.state_checked),
+                                intArrayOf(android.R.attr.state_checked)
+                            ),
+                            intArrayOf(
+                                ContextCompat.getColor(context, R.color.pome_grey_0),
+                                ContextCompat.getColor(context, R.color.pome_main)
+                            )
+                        )
+                        setTextColor(
+                            ColorStateList(
+                                arrayOf(
+                                    intArrayOf(-android.R.attr.state_checked),
+                                    intArrayOf(android.R.attr.state_checked)
+                                ),
+                                intArrayOf(
+                                    ContextCompat.getColor(context, R.color.pome_grey_5),
+                                    Color.WHITE
+                                )
+                            )
+                        )
+                        setOnClickListener {
+                            clickedChipPos = index
+                            initGoalDetail(tag.toString().toInt())
+                        }
+                        if (index == 0) {
+                            clickedChipPos = 0
+                            isChecked = true
+                            clickedChipId = tag.toString().toInt()
+                            initGoalDetail(tag.toString().toInt())
+                        }
+                    }
+                    binding.cgGoal.addView(chip)
                 }
-                configureCategory(categoryMap)
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
