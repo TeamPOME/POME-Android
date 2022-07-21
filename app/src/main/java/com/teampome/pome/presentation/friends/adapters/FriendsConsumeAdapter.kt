@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
@@ -76,6 +77,9 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvFriendprice.text = friendsConsumeData.amount.toString()
                 tvFriendtag.text = friendsConsumeData.goalMessage
                 tvRecordid.text = friendsConsumeData.id.toString()
+                ivFriendimage.load(friendsConsumeData.profileImage)
+                if (friendsConsumeData.plusCount != 0)
+                    tvReactPlusCount.text = "+" + friendsConsumeData.plusCount.toString()
             }
 
             when (friendsConsumeData.startEmotion) {
@@ -142,32 +146,47 @@ class FriendsConsumeAdapter(val contextT: Context) :
                     }
                 } else {
                     binding.ivEmotion2.visibility = View.VISIBLE
-                    if (friendsConsumeData.reactions[i] == 1) {
-                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
-                    } else if (friendsConsumeData.reactions[i] == 2) {
-                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28)
-                    } else if (friendsConsumeData.reactions[i] == 3) {
-                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28)
-                    } else if (friendsConsumeData.reactions[i] == 4) {
-                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28)
-                    } else if (friendsConsumeData.reactions[i] == 5) {
-                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28)
-                    } else if (friendsConsumeData.reactions[i] == 6) {
-                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28)
-                    } else { //0번이면
-                        binding.ivEmotion2.visibility = View.GONE
+                    if (friendsConsumeData.plusCount == 0) {
+                        if (friendsConsumeData.reactions[i] == 1) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 2) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 3) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 4) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 5) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 6) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                        } else { //0번이면
+                            binding.ivEmotion2.visibility = View.GONE
+                        }
+                    } else {
+                        if (friendsConsumeData.reactions[i] == 1) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 2) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 3) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 4) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 5) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 6) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28_overlay)
+                        } else { //0번이면
+                            binding.ivEmotion2.visibility = View.GONE
+                        }
                     }
+
                 }
             }
-
 
             binding.ivEmotion2.bringToFront()
             binding.ivEmotion1.bringToFront()
             binding.ivAddemotion.bringToFront()
-
-
-            //plus 넣어주기
-            binding.tvReactPlusCount.text = friendsConsumeData.plusCount.toString()
+            binding.tvReactPlusCount.bringToFront()
 
         }
 

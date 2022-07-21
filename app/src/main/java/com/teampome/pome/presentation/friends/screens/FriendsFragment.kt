@@ -133,13 +133,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             data.toMutableList()
         )
         friendsProfileAdapter.notifyDataSetChanged()
-        //Log.d(TAG,"FriendsFragment - getFriendProfileData() called data=$data")
     }
 
     private fun initWholeData() {
-//        friendsProfileAdapter.friendsProfileList.add(
-//            FriendsProfileData(FriendsProfileData.friends("전체뿡", "tmp"))
-//        )
         friendsProfileAdapter.friendsReponseList.add(
             ResponseFriendsProflie(-1, "전체", "tmp")
         )

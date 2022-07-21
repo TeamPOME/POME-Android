@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ReactInfo
 import com.teampome.pome.data.remote.response.ResponseFriendReaction
 import com.teampome.pome.data.remote.response.ResponseReaction
 import com.teampome.pome.databinding.ItemFriendsEmojiBinding
@@ -14,11 +15,11 @@ import com.teampome.pome.presentation.friends.FriendReactionData
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 
 class FriendsReactAdapter :
-    ListAdapter<ResponseFriendReaction, FriendsReactAdapter.FriendsEmojiViewHolder>( DIFFUTIL) {
+    ListAdapter<ReactInfo, FriendsReactAdapter.FriendsEmojiViewHolder>( DIFFUTIL) {
     class FriendsEmojiViewHolder(
         private val binding:ItemFriendsReactionBinding
     ):RecyclerView.ViewHolder(binding.root) {
-        fun bind(friendReactionData: ResponseFriendReaction){
+        fun bind(friendReactionData: ReactInfo){
             when(friendReactionData.emotion){
                 1-> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
@@ -59,19 +60,19 @@ class FriendsReactAdapter :
         holder: FriendsEmojiViewHolder,
         position: Int
     ) {
-        holder.bind(getItem(position))
+       holder.bind(getItem(position))
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseFriendReaction>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ReactInfo>() {
             override fun areItemsTheSame(
-                oldItem: ResponseFriendReaction,
-                newItem: ResponseFriendReaction
-            ): Boolean = oldItem.nickname == newItem.nickname
+                oldItem: ReactInfo,
+                newItem: ReactInfo
+            ): Boolean = oldItem.emotion== newItem.emotion
 
             override fun areContentsTheSame(
-                oldItem: ResponseFriendReaction,
-                newItem: ResponseFriendReaction
+                oldItem: ReactInfo,
+                newItem: ReactInfo
             ): Boolean = oldItem == newItem
         }
     }
