@@ -7,16 +7,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.request.RequestFriendsData
 import com.teampome.pome.data.remote.response.ResponseFriendsData
 import com.teampome.pome.databinding.ItemFriendListBinding
 
-class AddFriendAdapter : ListAdapter<ResponseFriendsData, AddFriendAdapter.RepoViewHolder>(
-    DIFFUTIL
-) {
+class AddFriendAdapter(
+    private val itemClick: (ResponseFriendsData) -> Unit
+) : ListAdapter<ResponseFriendsData, AddFriendAdapter.RepoViewHolder>(
+        DIFFUTIL
+    ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val binding =
             ItemFriendListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RepoViewHolder(binding)
+        return RepoViewHolder(binding,itemClick)
 
     }
 
@@ -25,7 +28,8 @@ class AddFriendAdapter : ListAdapter<ResponseFriendsData, AddFriendAdapter.RepoV
     }
 
     class RepoViewHolder(
-        private val binding: ItemFriendListBinding
+        private val binding: ItemFriendListBinding,
+        private val itemClick: (ResponseFriendsData) -> (Unit)
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendData: ResponseFriendsData) {
             binding.friend = friendData
@@ -33,6 +37,7 @@ class AddFriendAdapter : ListAdapter<ResponseFriendsData, AddFriendAdapter.RepoV
             binding.btnAdd.setOnClickListener {
                 !binding.btnAdd.isClickable
                 binding.btnAdd.setImageResource(R.drawable.ic_add_complete)
+                itemClick(friendData)
             }
         }
     }
