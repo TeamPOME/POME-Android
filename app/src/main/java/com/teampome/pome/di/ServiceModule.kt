@@ -1,5 +1,6 @@
 package com.teampome.pome.di
 
+import com.teampome.pome.data.service.AuthService
 import com.teampome.pome.data.FriendService
 import com.teampome.pome.data.GoalService
 import dagger.Module
@@ -12,6 +13,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
+    //kakaoauth
+    @Provides
+    @Singleton
+    fun provideAuthService(retrofit: Retrofit): AuthService =
+        retrofit.create(AuthService::class.java)
+}
     @Provides
     @Singleton
     fun provideFriendsService(retrofit: Retrofit):FriendService = 
@@ -22,3 +29,4 @@ object ServiceModule {
     fun provideGoalService(retrofit: Retrofit): GoalService =
         retrofit.create(GoalService::class.java)
 }
+
