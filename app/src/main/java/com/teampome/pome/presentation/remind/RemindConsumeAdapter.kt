@@ -96,6 +96,7 @@ class RemindConsumeAdapter :
                 } else {
                     binding.ivEmotion2.visibility = View.VISIBLE
                     if (friendsConsumeData.plusCount == 0) {
+                        binding.tvReactPlusCount.visibility=View.INVISIBLE
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
                         } else if (friendsConsumeData.reactions[i] == 2) {
