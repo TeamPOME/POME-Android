@@ -16,10 +16,13 @@ class RemindSecondBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
         _binding = FragmentRemindSecondBottomSheetBinding.inflate(layoutInflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initSetHeight()
         initClose()
-
-        return binding.root
     }
 
     private fun initSetHeight() {

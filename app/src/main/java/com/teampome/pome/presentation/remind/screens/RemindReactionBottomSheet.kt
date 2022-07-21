@@ -30,7 +30,6 @@ class RemindReactionBottomSheet : BottomSheetDialogFragment() {
 
         initHeight()
         initAdapter()
-        addData()
     }
 
     private fun initAdapter(){
@@ -42,26 +41,6 @@ class RemindReactionBottomSheet : BottomSheetDialogFragment() {
         val height = resources.displayMetrics.heightPixels*0.6
         bottomSheet.minHeight = height.toInt()
         bottomSheet.maxHeight = height.toInt()
-    }
-
-    private fun addData(){
-        remindReactionAdapter.submitList(
-            listOf(
-                RemindReactionData(1,"양지영"),
-                RemindReactionData(3,"황연진"),
-                RemindReactionData(5, "김수빈"),
-                RemindReactionData(3,"황연진"),
-                RemindReactionData(5, "김수빈"),
-                RemindReactionData(2, "김수빈"),
-                RemindReactionData(4,"황연진"),
-                RemindReactionData(6, "김수빈"),
-                RemindReactionData(5, "김수빈"),
-                RemindReactionData(2, "김수빈"),
-                RemindReactionData(4,"황연진"),
-                RemindReactionData(6, "김수빈")
-            )
-        )
-        //remindReactionAdapter.is
     }
 
     override fun onDestroyView() {
