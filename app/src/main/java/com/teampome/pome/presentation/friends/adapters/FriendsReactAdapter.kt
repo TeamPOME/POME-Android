@@ -6,18 +6,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ReactInfo
+import com.teampome.pome.data.remote.response.ResponseFriendReaction
+import com.teampome.pome.data.remote.response.ResponseReaction
 import com.teampome.pome.databinding.ItemFriendsEmojiBinding
 import com.teampome.pome.databinding.ItemFriendsReactionBinding
 import com.teampome.pome.presentation.friends.FriendReactionData
 import com.teampome.pome.presentation.friends.FriendsConsumeData
 
 class FriendsReactAdapter :
-    ListAdapter<FriendReactionData, FriendsReactAdapter.FriendsEmojiViewHolder>( DIFFUTIL) {
+    ListAdapter<ReactInfo, FriendsReactAdapter.FriendsEmojiViewHolder>( DIFFUTIL) {
     class FriendsEmojiViewHolder(
         private val binding:ItemFriendsReactionBinding
     ):RecyclerView.ViewHolder(binding.root) {
-        fun bind(friendReactionData: FriendReactionData){
-            when(friendReactionData.emoji){
+        fun bind(friendReactionData: ReactInfo){
+            when(friendReactionData.emotion){
                 1-> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
                 }
@@ -37,7 +40,7 @@ class FriendsReactAdapter :
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_sad_filter_54)
                 }
             }
-            binding.tvFriendsReaction.text=friendReactionData.name
+            binding.tvFriendsReaction.text=friendReactionData.nickname
 
         }
     }
@@ -46,7 +49,7 @@ class FriendsReactAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FriendsReactAdapter.FriendsEmojiViewHolder {
+    ): FriendsEmojiViewHolder {
         val binding=ItemFriendsReactionBinding.inflate(
             LayoutInflater.from(parent.context),parent,false
         )
@@ -54,22 +57,22 @@ class FriendsReactAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: FriendsReactAdapter.FriendsEmojiViewHolder,
+        holder: FriendsEmojiViewHolder,
         position: Int
     ) {
-        holder.bind(getItem(position))
+       holder.bind(getItem(position))
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<FriendReactionData>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ReactInfo>() {
             override fun areItemsTheSame(
-                oldItem: FriendReactionData,
-                newItem: FriendReactionData
-            ): Boolean = oldItem.name == newItem.name
+                oldItem: ReactInfo,
+                newItem: ReactInfo
+            ): Boolean = oldItem.emotion== newItem.emotion
 
             override fun areContentsTheSame(
-                oldItem: FriendReactionData,
-                newItem: FriendReactionData
+                oldItem: ReactInfo,
+                newItem: ReactInfo
             ): Boolean = oldItem == newItem
         }
     }

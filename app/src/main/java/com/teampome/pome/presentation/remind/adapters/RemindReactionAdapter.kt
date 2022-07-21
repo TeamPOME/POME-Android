@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ReactInfo
 import com.teampome.pome.databinding.ItemRemindReactBinding
 import com.teampome.pome.presentation.remind.RemindReactionData
 
 class RemindReactionAdapter :
-    ListAdapter<RemindReactionData, RemindReactionAdapter.RemindReactionHolder>(
+    ListAdapter<ReactInfo, RemindReactionAdapter.RemindReactionHolder>(
         DIFFUTIL
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemindReactionHolder {
@@ -27,8 +28,8 @@ class RemindReactionAdapter :
 
     class RemindReactionHolder(private val binding: ItemRemindReactBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(remindReactionData: RemindReactionData){
-            when(remindReactionData.emoji){
+        fun bind(remindReactionData: ReactInfo){
+            when(remindReactionData.emotion){
                 1-> {
                     binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
                 }
@@ -48,22 +49,22 @@ class RemindReactionAdapter :
                     binding.ivRemindReaction.setImageResource(R.drawable.ic_emoji_mint_sad_filter_54)
                 }
             }
-            binding.tvRemindReaction.text=remindReactionData.name
+            binding.tvRemindReaction.text=remindReactionData.nickname
 
         }
 
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<RemindReactionData>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ReactInfo>() {
             override fun areItemsTheSame(
-                oldItem: RemindReactionData,
-                newItem: RemindReactionData
-            ): Boolean = oldItem.name == newItem.name
+                oldItem: ReactInfo,
+                newItem: ReactInfo
+            ): Boolean = oldItem.emotion == newItem.emotion
 
             override fun areContentsTheSame(
-                oldItem: RemindReactionData,
-                newItem: RemindReactionData
+                oldItem: ReactInfo,
+                newItem: ReactInfo
             ): Boolean = oldItem == newItem
 
         }

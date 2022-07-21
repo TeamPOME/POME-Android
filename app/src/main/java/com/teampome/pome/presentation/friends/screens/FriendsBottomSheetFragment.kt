@@ -1,16 +1,30 @@
 package com.teampome.pome.presentation.friends.screens
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.teampome.pome.data.FriendService
 import com.teampome.pome.databinding.FragmentFriendsBottomSheetBinding
 import com.teampome.pome.presentation.friends.FriendReactionData
 import com.teampome.pome.presentation.friends.adapters.FriendsReactAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentFriendsBottomSheetBinding? = null
     private val binding get() = _binding ?: error("binding이 되지 않았습니다.")
     private lateinit var friendsReactAdapter: FriendsReactAdapter
+
+    @Inject
+    lateinit var service: FriendService
+
+    private lateinit var id:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,29 +32,48 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFriendsBottomSheetBinding.inflate(layoutInflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initSetHeight()
         initAdapter()
-        addData()
-        return binding.root
+
+        getBundle() //recordId값 받아오기
+
+        initReactionBottomSheet()
+        //서버통신
+
+    }
+
+    private fun getBundle(){
+        val bundle=arguments
+        if(bundle!=null){
+            id= bundle.getString("recordId").toString()
+        }
+        Log.d(TAG,"FriendsBottomSheetFragment - getBundle() called, id=$id")
     }
 
     private fun initAdapter(){
         friendsReactAdapter= FriendsReactAdapter()
         binding.rvFriendsReaction.adapter=friendsReactAdapter
     }
-    private fun addData(){
-        friendsReactAdapter.submitList(
-            listOf(
-                FriendReactionData(1,"양지영"),
-                FriendReactionData(3,"황연진"),
-                FriendReactionData(5, "김수빈"),
-                FriendReactionData(3,"황연진"),
-                FriendReactionData(5, "김수빈"),
-                FriendReactionData(2, "김수빈"),
-                FriendReactionData(4,"황연진"),
-                FriendReactionData(6, "김수빈"),
-                )
-        )
+    private fun initReactionBottomSheet(){
+        lifecycleScope.launch {
+            runCatching {
+                service.getFriendsReaction(recordId = id.toInt(),type=0)
+                //TYPE=0은 전체 조회
+            }.onSuccess {
+                val data=it.data?.reactions
+                Log.d(TAG,"FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data")
+                binding.tvWhole.text="전체 "+it.data?.total
+                friendsReactAdapter.submitList(data)
+            }.onFailure {
+                Timber.d("$it")
+            }
+        }
     }
 
     private fun initSetHeight() {

@@ -20,7 +20,7 @@ class FriendsProfileAdapter :
 
     private lateinit var empty: ItemFriendProfileEmptyBinding
     private lateinit var full: ItemFriendProfileListBinding
-
+    var clickedId=0
     private lateinit var listener: FriendsListClickInterface
     var selectedItemPosition = -1
     var wholeSelected = true
@@ -62,6 +62,8 @@ class FriendsProfileAdapter :
                 holder.itemView.setOnClickListener {
                     selectedItemPosition = position
                     wholeSelected = false
+                    clickedId=friendsReponseList[position].id
+                    listener.onProfileListClick(clickedId)
                     notifyDataSetChanged()
                 }
                 if (selectedItemPosition == position) {
@@ -75,9 +77,12 @@ class FriendsProfileAdapter :
                 holder.itemView.setOnClickListener {
                     wholeSelected = true
                     selectedItemPosition = -1
+                    clickedId=0
+                    listener.onProfileListClick(clickedId)
                     notifyDataSetChanged()
                 }
                 if (wholeSelected) {
+                    holder.image.setImageResource(R.drawable.ic_friend_profile_empty)
                     holder.whole_text.setTextColor(Color.BLACK)
                 } else {
                     holder.whole_text.setTextColor(Color.GRAY)
@@ -95,6 +100,7 @@ class FriendsProfileAdapter :
         RecyclerView.ViewHolder(binding.root) {
         val profile_name = binding.tvFriendname
         fun bind(friendsResponseList: ResponseFriendsProflie) {
+
             binding.tvFriendname.text = friendsResponseList.nickname
             binding.ivFriendprofile.load(friendsResponseList.profileImage)
         }
@@ -103,6 +109,7 @@ class FriendsProfileAdapter :
     class FriendsProfileEmptyViewHolder(private val binding: ItemFriendProfileEmptyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val whole_text = binding.tvWhole
+        val image=binding.ivFriendprofileWhole
         fun bind(
             list: MutableList<ResponseFriendsProflie>
         ) {
@@ -121,7 +128,7 @@ class FriendsProfileAdapter :
     }
 
     interface FriendsListClickInterface {
-        fun onProfileListClick(v: View, data: FriendsProfileData, pos: Int)
+        fun onProfileListClick(pos: Int)
     }
 
     fun setOnProfileListClickListener(listener: FriendsListClickInterface) {
