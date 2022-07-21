@@ -6,11 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.ResponseRemindData
 import com.teampome.pome.databinding.ItemRemindConsumeBinding
 import com.teampome.pome.presentation.friends.FriendsConsumeData
+import com.teampome.pome.util.setImage
 
 class RemindConsumeAdapter :
-    ListAdapter<FriendsConsumeData, RemindConsumeAdapter.RemindConsumeViewHolder>(
+    ListAdapter<ResponseRemindData, RemindConsumeAdapter.RemindConsumeViewHolder>(
         DIFFUTIL
     ) {
     private lateinit var listener: ReactionClickListener
@@ -40,25 +43,54 @@ class RemindConsumeAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         val reactionButton=binding.ivReactions
 
-        fun bind(friendsConsumeData: FriendsConsumeData) {
-            binding.tvRemindDate.text = friendsConsumeData.date
-            binding.tvRemindContent.text = friendsConsumeData.description
-            binding.tvRemindPrice.text = friendsConsumeData.price.toString()
-            binding.tvRemindTag.text = friendsConsumeData.tag
+        fun bind(friendsConsumeData: ResponseRemindData) {
+            binding.tvRemindDate.text = friendsConsumeData.timestamp
+            binding.tvRemindContent.text = friendsConsumeData.content
+            binding.tvRemindPrice.text = friendsConsumeData.amount.toString()
+            binding.tvRemindTag.text = friendsConsumeData.goalMessage
+
+            when(friendsConsumeData.startEmotion){
+                1 -> {
+                    binding.ivFirstEmotion.setImageResource(R.drawable.ic_emoji_mint_heart)
+                }
+                2 -> {
+                    binding.ivFirstEmotion.setImageResource(R.drawable.ic_emoji_mint_what)
+                }
+                3 -> {
+                    binding.ivFirstEmotion.setImageResource(R.drawable.ic_emoji_mint_sad)
+                }
+                else -> {
+                    binding.ivFirstEmotion.setImageResource(R.drawable.ic_question_backgorund_34)
+                }
+            }
+            when(friendsConsumeData.endEmotion){
+                1 -> {
+                    binding.ivSecondEmotion.setImageResource(R.drawable.ic_emoji_happy_pink_34)
+                }
+                2 -> {
+                    binding.ivSecondEmotion.setImageResource(R.drawable.ic_emoji_what_pink_34)
+                }
+                3 -> {
+                    binding.ivSecondEmotion.setImageResource(R.drawable.ic_emoji_sad_pink_34)
+                }
+                else -> {
+                    binding.ivSecondEmotion.setImageResource(R.drawable.ic_question_backgorund_34)
+                }
+            }
         }
 
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<FriendsConsumeData>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseRemindData>() {
             override fun areItemsTheSame(
-                oldItem: FriendsConsumeData,
-                newItem: FriendsConsumeData
-            ): Boolean = oldItem.name == newItem.name
+                oldItem: ResponseRemindData,
+                newItem: ResponseRemindData
+            ): Boolean = oldItem.content == newItem.content
 
             override fun areContentsTheSame(
-                oldItem: FriendsConsumeData,
-                newItem: FriendsConsumeData
+                oldItem: ResponseRemindData,
+                newItem: ResponseRemindData
             ): Boolean = oldItem == newItem
 
         }

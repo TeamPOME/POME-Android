@@ -1,6 +1,6 @@
 package com.teampome.pome.data.remote.response
 
-data class RequestFriendReaction(
+data class ResponseFriendReaction(
     val emotion:Int,
-    val targetId:Int
+    val nickname:String
 )
