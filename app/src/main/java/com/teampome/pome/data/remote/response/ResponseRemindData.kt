@@ -8,5 +8,6 @@ data class ResponseRemindData(
     val endEmotion:Int,
     val timestamp:String,
     val reactions:List<Int>,
-    val plusCount:Int
+    val plusCount:Int,
+    val goalMessage:String
 )

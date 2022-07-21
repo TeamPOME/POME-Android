@@ -204,7 +204,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     fun reactClick() {
         remindConsumeAdapter.setReactionClickListener(object :
             RemindConsumeAdapter.ReactionClickListener {
-            override fun onClick(data: View, pos: Int) {
+            override fun onClick(data: View, pos: Int, recordId:Int) {
                 //친구들이 단 이모지 클릭하면 혹시 무슨 일이 있는지 알아보
                 if (!reactionBottomSheet.isAdded)
                     reactionBottomSheet.show(

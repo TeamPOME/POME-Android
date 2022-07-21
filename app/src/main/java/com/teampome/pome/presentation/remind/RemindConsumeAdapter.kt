@@ -16,6 +16,7 @@ class RemindConsumeAdapter :
     ListAdapter<ResponseRemindData, RemindConsumeAdapter.RemindConsumeViewHolder>(
         DIFFUTIL
     ) {
+    var clickedRecordId=-1
     private lateinit var listener: ReactionClickListener
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -32,22 +33,21 @@ class RemindConsumeAdapter :
         holder: RemindConsumeViewHolder,
         position: Int
     ) {
+        clickedRecordId=getItem(position).id
         holder.bind(getItem(position))
-        holder.reactionButton.setOnClickListener {
-            listener.onClick(it, position)
+        holder.itemView.setOnClickListener {
+            listener.onClick(it, position, clickedRecordId)
         }
     }
 
     class RemindConsumeViewHolder(
         private val binding: ItemRemindConsumeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        val reactionButton=binding.ivReactions
-
         fun bind(friendsConsumeData: ResponseRemindData) {
             binding.tvRemindDate.text = friendsConsumeData.timestamp
             binding.tvRemindContent.text = friendsConsumeData.content
             binding.tvRemindPrice.text = friendsConsumeData.amount.toString()
-            //binding.tvRemindTag.text = friendsConsumeData.goalMessage
+            binding.tvRemindTag.text = friendsConsumeData.goalMessage
 
             when(friendsConsumeData.startEmotion){
                 1 -> {
@@ -98,7 +98,7 @@ class RemindConsumeAdapter :
     }
 
     interface ReactionClickListener{
-        fun onClick(data: View, pos:Int)
+        fun onClick(data: View, pos:Int, id:Int)
     }
     fun setReactionClickListener(listener: ReactionClickListener){
         this.listener=listener
