@@ -166,15 +166,15 @@ class FriendsConsumeAdapter(val contextT: Context) :
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 2) {
-                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 3) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 4) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 5) {
-                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 6) {
-                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28_overlay)
                         } else { //0번이면
                             binding.ivEmotion2.visibility = View.GONE
                         }

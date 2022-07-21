@@ -77,7 +77,71 @@ class RemindConsumeAdapter :
                     binding.ivSecondEmotion.setImageResource(R.drawable.ic_question_backgorund_34)
                 }
             }
+            for (i in 0 until friendsConsumeData.reactions.size) {
+                // 무조건 3개가 날라옴..  뒤에 애들이 0인 경우
+                if (i == 1) {
+                    binding.ivEmotion1.visibility = View.VISIBLE
+                    if (friendsConsumeData.reactions[i] == 1) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 2) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 3) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 4) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 5) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 6) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                    } else { //0번이면
+                        binding.ivEmotion1.visibility = View.GONE
+                    }
+                } else {
+                    binding.ivEmotion2.visibility = View.VISIBLE
+                    if(friendsConsumeData.plusCount==0){
+                        if (friendsConsumeData.reactions[i] == 1) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 2) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 3) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 4) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 5) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                        } else if (friendsConsumeData.reactions[i] == 6) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                        } else { //0번이면
+                            binding.ivEmotion2.visibility = View.GONE
+                            binding.tvReactPlusCount.visibility=View.INVISIBLE
+                        }
+                    }else{ //추가 반응이 있는 경우
+                        if (friendsConsumeData.reactions[i] == 1) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 2) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 3) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 4) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 5) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28_overlay)
+                        } else if (friendsConsumeData.reactions[i] == 6) {
+                            binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28_overlay)
+                        } else { //0번이면
+                            binding.ivEmotion2.visibility = View.GONE
+                        }
+                        binding.tvReactPlusCount.text="+"+friendsConsumeData.plusCount.toString()
+                    }
+
+                }
+            }
+            binding.ivEmotion2.bringToFront()
+            binding.ivEmotion1.bringToFront()
+            binding.tvReactPlusCount.bringToFront()
+
         }
+
 
     }
 
