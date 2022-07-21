@@ -6,5 +6,7 @@ data class ResponseRemindData(
     val content:String,
     val startEmotion:Int,
     val endEmotion:Int,
-    val timestamp:String
+    val timestamp:String,
+    val reactions:List<Int>,
+    val plusCount:Int
 )
