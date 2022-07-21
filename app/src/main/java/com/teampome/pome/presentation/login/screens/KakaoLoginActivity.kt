@@ -3,23 +3,12 @@ package com.teampome.pome.presentation.login.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
-import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.user.UserApiClient
-import com.teampome.pome.data.local.PomeDataStore
-import com.teampome.pome.data.service.AuthService
 import com.teampome.pome.databinding.ActivityKakaoLoginBinding
 import com.teampome.pome.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import timber.log.Timber
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class KakaoLoginActivity : AppCompatActivity() {
-    @Inject
-    lateinit var authService: AuthService
     private lateinit var binding: ActivityKakaoLoginBinding
     //private val viewModel by viewModels<KaKaoViewModel>()
 
@@ -27,63 +16,46 @@ class KakaoLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityKakaoLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //initKakaoLogin()
+        //observeAccessToken()
         goKaKao()
     }
 
 
     private fun goKaKao() {
         binding.btnKakao.setOnClickListener {
-            initKakaoLogin()
+            goMainActivity()
         }
     }
 
-    private fun initKakaoLogin() {
-        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-            if (error != null) {
-                //Login Fail
-            } else if (token != null) {
-                //Login Success
-                Log.d("token", "${token.accessToken}")
-                lifecycleScope.launch {
-                    runCatching {
-                        authService.login("kakao", token.accessToken)
-                    }.onSuccess {
-                        //pome 회원이 아닐경우
-                        if (it.data?.type =="signup")
-                            PomeDataStore(this@KakaoLoginActivity).userToken = token.accessToken
-                        goMainActivity()
-                        //pome 회원일 경우
-                    }.onFailure {
-                        Timber.e("failure", "$it")
-                    }
-                }
-            }
-        }
-        loginClickEvent(callback)
-    }
-
-    private fun loginClickEvent(callback: (OAuthToken?, Throwable?) -> Unit) {
-            // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
-            UserApiClient.instance.run {
-                if (isKakaoTalkLoginAvailable(this@KakaoLoginActivity)) {
-                    loginWithKakaoTalk(this@KakaoLoginActivity, callback = callback)
-                } else {
-                    loginWithKakaoAccount(this@KakaoLoginActivity, callback = callback)
-                }
-            }
-    }
-
-    private fun goActivity() {
-        val intent = Intent(this, SignUpActivity::class.java)
-        startActivity(intent)
-    }
+    /* private fun getAccessToken() {
+         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+             UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
+                 if (error != null) {
+                     Log.e("failure", "실패")
+                 } else if (token != null) {
+                     Log.e("success", "성공1")
+                     viewModel.login("kakao", token.accessToken)
+                 }
+             }
+         } else {
+             UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
+                 if (error != null) {
+                     Log.e("failure", "실패")
+                 } else if (token != null) {
+                     Log.e("success", "성공2")
+                     viewModel.login("kakao", token.accessToken)
+                 }
+             }
+         }
+     }*/
 
     private fun goMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        //PomeDataStore(this).userToken = it
+        startActivity(Intent(this, MainActivity::class.java))
+        if (!isFinishing) {
+            finish()
+        }
     }
-
 }
 
 
@@ -181,4 +153,13 @@ private fun loginClickEvent(callback: (OAuthToken?, Throwable?) -> Unit) {
             }*/
 
             }
-        }*/
+        }
+          private fun goActivity() {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }*/
