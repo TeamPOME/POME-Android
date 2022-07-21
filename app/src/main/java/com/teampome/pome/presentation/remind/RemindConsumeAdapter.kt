@@ -47,7 +47,7 @@ class RemindConsumeAdapter :
             binding.tvRemindDate.text = friendsConsumeData.timestamp
             binding.tvRemindContent.text = friendsConsumeData.content
             binding.tvRemindPrice.text = friendsConsumeData.amount.toString()
-            binding.tvRemindTag.text = friendsConsumeData.goalMessage
+            //binding.tvRemindTag.text = friendsConsumeData.goalMessage
 
             when(friendsConsumeData.startEmotion){
                 1 -> {

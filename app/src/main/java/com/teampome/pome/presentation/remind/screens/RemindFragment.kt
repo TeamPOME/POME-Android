@@ -60,6 +60,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     //setEmptyGoal()
                 } else {
                     setGoals(data)
+                    initNotEmpty(data[clickedChipPos].message, data[clickedChipPos].isPublic)
+                    //카테고리, 메세지, isPublic
                     //setGoalMessage(data)
                 }
             }.onFailure {
@@ -78,10 +80,6 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     setEmptyGoal()
                 else {
                     binding.rvRemind.visibility = View.VISIBLE
-                    initNotEmpty(
-                        data[clickedChipPos].goalMessage,
-                        data[clickedChipPos].isGoalPublic
-                    )
                     remindConsumeAdapter.submitList(data)
                 }
             }.onFailure {
