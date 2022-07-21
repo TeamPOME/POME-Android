@@ -70,4 +70,5 @@
     <string name="dash">&#45;</string>
     <string name="lookbackrecord">"다시 돌아볼 씀씀이가 "</string>
     <string name="thereis">건 있어요</string>
+    <string name="over">초과</string>
 </resources>

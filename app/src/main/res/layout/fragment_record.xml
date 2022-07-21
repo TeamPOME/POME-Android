@@ -156,6 +156,7 @@
                         android:text="@{goaldetail.message}"
                         android:textColor="@color/pome_grey_9"
                         android:visibility="gone"
+                        android:maxLines="1"
                         app:layout_constraintStart_toEndOf="@id/iv_lock"
                         app:layout_constraintTop_toTopOf="@id/iv_lock"
                         tools:text="카테고리 제목" />
@@ -246,10 +247,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
-                        android:max="110"
+                        android:max="115"
                         android:maxHeight="6dp"
                         android:minHeight="6dp"
-                        android:progress="@{goaldetail.rate+5}"
+                        android:progress="@{goaldetail.rate == 999 ? 110 : goaldetail.rate+5}"
                         android:progressDrawable="@drawable/seekbar_custom_green"
                         android:thumb="@drawable/seekbar_thumb_custom_green"
                         android:visibility="gone"
@@ -262,12 +263,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="@{@string/percent(goaldetail.rate)+'%'}"
+                        android:text="@{goaldetail.rate == 999 ? @string/over : @string/percent(goaldetail.rate)+'%'}"
                         android:textColor="@color/pome_white"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/sb_goal"
                         app:layout_constraintStart_toStartOf="@id/sb_goal"
-                        app:layout_constraintTop_toTopOf="@id/sb_goal" />
+                        app:layout_constraintTop_toTopOf="@id/sb_goal"
+                        app:layout_constraintEnd_toEndOf="@id/sb_goal"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
