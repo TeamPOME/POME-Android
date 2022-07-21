@@ -1,8 +1,10 @@
 package com.teampome.pome.presentation.remind.screens
 
+import android.content.ContentValues.TAG
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -44,7 +46,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initClickFirstEmotion()
         initClickSecondEmotion()
         initClickReset()
-        getGoal()
+
         reactClick()
     }
 
@@ -136,22 +138,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
-    private fun getGoal() {
-        //if()- goal이 없는 경우
-        //return setEmptyGoal()
-        //if()- goal만 있는 경우
-        //return setNotEmptyGoal()
-        //if()- goal과 기록 다 있는 경우
-        //return setRemindList()
-    }
-
     private fun setEmptyGoal() {
         //chipNoGoal(), recyclerview은 안보임
-
-        binding.ivLockCheck.setImageResource(R.drawable.ic_empty_goal)
-        binding.tvGoal.setText(R.string.remind_nogoal_msg)
-        binding.tvGoal.setTextColor(Color.GRAY)
-        binding.rvRemind.visibility = View.INVISIBLE
+        binding.clRemindEmpty.visibility=View.VISIBLE
+        binding.rvRemind.visibility=View.INVISIBLE
     }
 
     private fun setGoals(data: List<ResponseRemindGoal>) {
@@ -184,16 +174,18 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 setOnClickListener {
                     clickedChipPos = index
                     clickChip(tag.toString().toInt())
+                    initNotEmpty(data[clickedChipPos].message, data[clickedChipPos].isPublic)
+                }
+                if (index == 0) {
+                    clickedChipPos = 0
+                    isChecked = true
+                    clickedChipId = tag.toString().toInt()
+                    initRemindData()
                 }
             }
             binding.cgGoals.addView(chip)
             binding.cgGoals.isSingleSelection = true
-            if (index == 0) {
-                clickedChipPos = 0
-                chip.isChecked = true
-                clickedChipId = chip.tag.toString().toInt()
-                initRemindData()
-            }
+
 
         }
     }
@@ -206,19 +198,17 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     fun reactClick() {
         remindConsumeAdapter.setReactionClickListener(object :
             RemindConsumeAdapter.ReactionClickListener {
-            override fun onClick(data: View, pos: Int, recordId: Int) {
+            override fun onClick(data: View, pos: Int, recordId:Int) {
                 //친구들이 단 이모지 클릭하면 혹시 무슨 일이 있는지 알아보
-                if (!reactionBottomSheet.isAdded) {
+                if (!reactionBottomSheet.isAdded){
                     var bundle = Bundle().apply {
-                        putString("recordId", recordId.toString())
-                    }
-                    reactionBottomSheet.arguments = bundle
+                        putString("recordId", recordId.toString())}
+                    reactionBottomSheet.arguments=bundle
                     reactionBottomSheet.show(
                         childFragmentManager,
                         reactionBottomSheet.tag
                     )
                 }
-
             }
         })
     }
