@@ -1,7 +1,6 @@
 package com.teampome.pome.presentation.record.screens
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
-import com.teampome.pome.presentation.record.GoalListData
 import com.teampome.pome.presentation.record.adapters.GoalListAdapter
 import com.teampome.pome.util.enqueueUtil
 import dagger.hilt.android.AndroidEntryPoint
