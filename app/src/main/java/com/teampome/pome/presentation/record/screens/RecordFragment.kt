@@ -100,45 +100,26 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-    private fun configureCategory(category: MutableMap<String, Int>) {
-        val categoryName = mutableListOf<String>()
-        category.forEach { categoryName.add(it.key) }
-
-        categoryName.forEachIndexed { i, text ->
-            if (i == 0) binding.cgGoal.addView(createChip(text, true))
-            else binding.cgGoal.addView(createChip(text))
-        }
-    }
-
-    private fun createChip(text: String, isChecked: Boolean = false): Chip {
-        return (layoutInflater.inflate(R.layout.layout_chip, binding.cgGoal, false) as Chip).apply {
-            this.text = text
-            this.isChecked = isChecked
-            layoutParams = ChipGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
-    }
-
-    private fun getSelectedCategory(): String {
-        var selectedCategory = ""
-        binding.cgGoal.forEach {
-            if ((it as Chip).isChecked) selectedCategory = it.text.toString()
-        }
-        return selectedCategory
-    }
-
-    private fun initGoalDetail() {
-
-        val goalId = 24
+    private fun initGoalDetail(goalId: Int) {
         service.initGoalDetail(goalId).enqueueUtil(
             onSuccess = {
-                visibilityGone()
-                visibilityTrue()
+                visibilityGoalTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                binding.tvSeekbar.x = (it.data.rate * 2.6 + 1).toFloat()
+                when (it.data.rate) {
+                    999 -> {
+                        val over = 290
+                        binding.tvSeekbar.x = over.toFloat()
+                    }
+                    0 -> {
+                        val start = 20
+                        binding.tvSeekbar.x = start.toFloat()
+                    }
+                    else -> {
+                        binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
+                    }
+                }
+                initGoalRecord(goalId)
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
