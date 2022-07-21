@@ -22,5 +22,5 @@ interface FriendService {
     @GET("records/{recordId}/reaction")
     suspend fun getFriendsReaction(
         @Path("recordId")recordId:Int,
-        @Query("type")type:Int):BaseResponse<List<ResponseFriendReaction>>
+        @Query("type")type:Int):BaseResponse<ResponseFriendReaction>
 }

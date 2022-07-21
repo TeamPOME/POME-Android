@@ -66,8 +66,9 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
                 service.getFriendsReaction(recordId = id.toInt(),type=0)
                 //TYPE=0은 전체 조회
             }.onSuccess {
-                val data=it.data
+                val data=it.data?.reactions
                 Log.d(TAG,"FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data")
+                binding.tvWhole.text="전체 "+it.data?.total
                 friendsReactAdapter.submitList(data)
             }.onFailure {
                 Timber.d("$it")
