@@ -94,7 +94,6 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
         val consumeAmount = intent.getStringExtra("consumeAmount")?.toInt()
         val consumeRecord = intent.getStringExtra("consumeRecord")
         val emotion = clickIcon()
-        Log.e("감정 변수", "$emotion")
 
         val requestRecordsCreate = RequestRecordsCreate(
             goalId = goalId,
