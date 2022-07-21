@@ -1,8 +1,10 @@
 package com.teampome.pome.presentation.remind.screens
 
+import android.content.ContentValues.TAG
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -80,7 +82,9 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     setEmptyGoal()
                 else {
                     binding.rvRemind.visibility = View.VISIBLE
-                    remindConsumeAdapter.submitList(data)
+                    remindConsumeAdapter.remindConsumeList.clear()
+                    remindConsumeAdapter.remindConsumeList.addAll(data.toMutableList())
+                    remindConsumeAdapter.notifyDataSetChanged()
                 }
             }.onFailure {
                 Timber.d("$it")

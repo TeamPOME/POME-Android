@@ -78,8 +78,8 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvFriendtag.text = friendsConsumeData.goalMessage
                 tvRecordid.text = friendsConsumeData.id.toString()
                 ivFriendimage.load(friendsConsumeData.profileImage)
-                if(friendsConsumeData.plusCount!=0)
-                    tvReactPlusCount.text="+"+friendsConsumeData.plusCount.toString()
+                if (friendsConsumeData.plusCount != 0)
+                    tvReactPlusCount.text = "+" + friendsConsumeData.plusCount.toString()
             }
 
             when (friendsConsumeData.startEmotion) {
@@ -146,7 +146,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                     }
                 } else {
                     binding.ivEmotion2.visibility = View.VISIBLE
-                    if(friendsConsumeData.plusCount==0){
+                    if (friendsConsumeData.plusCount == 0) {
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
                         } else if (friendsConsumeData.reactions[i] == 2) {
@@ -162,7 +162,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                         } else { //0번이면
                             binding.ivEmotion2.visibility = View.GONE
                         }
-                    }else{
+                    } else {
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 2) {
