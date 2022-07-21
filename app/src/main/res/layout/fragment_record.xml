@@ -8,6 +8,10 @@
         <variable
             name="goaldetail"
             type="com.teampome.pome.data.remote.response.ResponseGoalDetail" />
+
+        <variable
+            name="records"
+            type="com.teampome.pome.data.remote.response.ResponseRecordsLook" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -327,7 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_marginBottom="18dp"
-                        android:text="다시 돌아볼 씀씀이가 0건 있어요"
+                        android:text="@{@string/lookbackrecord+records.incompleteTotal+@string/thereis}"
                         android:textColor="@color/pome_grey_6"
                         app:layout_constraintBottom_toBottomOf="@id/cl_lookback"
                         app:layout_constraintStart_toEndOf="@id/iv_lookback" />
