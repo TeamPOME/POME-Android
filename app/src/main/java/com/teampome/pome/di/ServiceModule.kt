@@ -19,10 +19,10 @@ object ServiceModule {
     @Singleton
     fun provideAuthService(retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
-}
+
     @Provides
     @Singleton
-    fun provideFriendsService(retrofit: Retrofit):FriendService = 
+    fun provideFriendsService(retrofit: Retrofit): FriendService =
         retrofit.create(FriendService::class.java)
 
     @Provides
@@ -32,7 +32,8 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideRemindService(retrofit: Retrofit): RemindService=
+    fun provideRemindService(retrofit: Retrofit): RemindService =
         retrofit.create(RemindService::class.java)
-}
 
+
+}
