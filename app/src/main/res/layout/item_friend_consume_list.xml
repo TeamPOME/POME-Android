@@ -118,7 +118,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ly_friend_emoji"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -128,20 +128,38 @@
                 android:id="@+id/iv_addemotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_btn_emoji_add"
-                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                tools:src="@drawable/ic_emoji_smile_mint_28" />
 
-            <LinearLayout
-                android:id="@+id/ly_wrap_friend_emoji"
+            <ImageView
+                android:id="@+id/iv_emotion1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-5dp"
                 app:layout_constraintStart_toEndOf="@id/iv_addemotion"
                 app:layout_constraintTop_toTopOf="parent"
-                android:orientation="horizontal">
+                tools:src="@drawable/ic_emoji_flex_mint_28" />
 
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_emotion2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-5dp"
+                app:layout_constraintStart_toEndOf="@id/iv_emotion1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_emoji_what_mint_28" />
+
+            <TextView
+                android:id="@+id/tv_react_plus_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pome_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/iv_emotion2"
+                app:layout_constraintStart_toStartOf="@id/iv_emotion2"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="+9" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

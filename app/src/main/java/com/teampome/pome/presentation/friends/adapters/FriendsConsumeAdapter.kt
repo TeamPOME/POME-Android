@@ -4,9 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
@@ -16,7 +13,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
     RecyclerView.Adapter<FriendsConsumeAdapter.FriendsConsumeViewHolder>() {
     var context = contextT
     var clicked_position = 0
-    var clicked_recordId=0
+    var clicked_recordId = 0
     private lateinit var listener: FriendsConsumeListInterface
     var friendConsumeList = mutableListOf<ResponseFriendsAll>()
     var getEmoji = -1
@@ -29,14 +26,14 @@ class FriendsConsumeAdapter(val contextT: Context) :
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            clicked_recordId=friendConsumeList[position].id
-            listener.onClick(it, position, false,clicked_recordId)
+            clicked_recordId = friendConsumeList[position].id
+            listener.onClick(it, position, false, clicked_recordId)
 
         }
         holder.bind(friendConsumeList[position])
         holder.addEmojiButton.setOnClickListener {
-            clicked_recordId=friendConsumeList[position].id
-            listener.onClick(it, position, true,clicked_recordId)
+            clicked_recordId = friendConsumeList[position].id
+            listener.onClick(it, position, true, clicked_recordId)
         }
         if (clicked_position == position && getEmoji != -1) {
             holder.setEmoji(getEmoji)
@@ -78,7 +75,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvFrienddes.text = friendsConsumeData.content
                 tvFriendprice.text = friendsConsumeData.amount.toString()
                 tvFriendtag.text = friendsConsumeData.goalMessage
-                tvRecordid.text= friendsConsumeData.id.toString()
+                tvRecordid.text = friendsConsumeData.id.toString()
             }
 
             when (friendsConsumeData.startEmotion) {
@@ -107,84 +104,70 @@ class FriendsConsumeAdapter(val contextT: Context) :
                     binding.ivFriendSecondemotion.setImageResource(R.drawable.ic_question_backgorund_34)
                 }
             }
-            //여기서 동적 추가 해주기
-            binding.lyWrapFriendEmoji.removeAllViews()
-//            friendsConsumeData.reaction = friendsConsumeData.reaction.asReversed()
 
-            friendsConsumeData.reactions.forEachIndexed { index, it ->
-                val imageView = ImageView(context)
-
-                val layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-
-                imageView.apply {
-                    when (it) {
-                        0 -> {
-                            addEmojiButton.visibility = View.VISIBLE
-                            addEmojiButton.bringToFront()
-                        }
-                        1 -> {
-                            setImageResource(R.drawable.ic_emoji_happy_mint_28)
-//                            layoutParams.apply {
-//                                leftMargin = index * changeToDp()
-//                                topToTop = R.id.ly_wrap_friend_emoji
-//                                startToStart = R.id.ly_wrap_friend_emoji
-//                            }
-                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-                        }
-                        2 -> {
-                            setImageResource(R.drawable.ic_emoji_smile_mint_28)
-//                            layoutParams.apply {
-//                                leftMargin = index * changeToDp()
-//                                topToTop = R.id.ly_wrap_friend_emoji
-//                                startToStart = R.id.ly_wrap_friend_emoji
-//                            }
-                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-                        }
-                        3 -> {
-                            setImageResource(R.drawable.ic_emoji_funny_mint_28)
-//                            layoutParams.apply {
-//                                leftMargin = index * changeToDp()
-//                                topToTop = R.id.ly_wrap_friend_emoji
-//                                startToStart = R.id.ly_wrap_friend_emoji
-//                            }
-                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-                        }
-                        4 -> {
-                            setImageResource(R.drawable.ic_emoji_flex_mint_28)
-//                            layoutParams.apply {
-//                                leftMargin = index * changeToDp()
-//                                topToTop = R.id.ly_wrap_friend_emoji
-//                                startToStart = R.id.ly_wrap_friend_emoji
-//                            }
-                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-                        }
-                        5 -> {
-                            setImageResource(R.drawable.ic_emoji_what_mint_28)
-//                            layoutParams.apply {
-//                                leftMargin = index * changeToDp()
-//                                topToTop = R.id.ly_wrap_friend_emoji
-//                                startToStart = R.id.ly_wrap_friend_emoji
-//                            }
-                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-                        }
-                        else -> {
-                            setImageResource(R.drawable.ic_emoji_sad_mint_28)
-//                            layoutParams.apply {
-//                                leftMargin = index * changeToDp()
-//                                topToTop = R.id.ly_wrap_friend_emoji
-//                                startToStart = R.id.ly_wrap_friend_emoji
-//                            }
-                            binding.lyWrapFriendEmoji.addView(imageView, layoutParams)
-                        }
+            for (i in 0 until friendsConsumeData.reactions.size) {
+                // 무조건 3개가 날라옴..  뒤에 애들이 0인 경우
+                if (i == 0) {
+                    if (friendsConsumeData.reactions[i] == 1) {
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 2) {
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 3) {
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 4) {
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 5) {
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 6) {
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                    } else { //0번이면
+                        binding.ivAddemotion.setImageResource(R.drawable.ic_btn_emoji_add)
+                    }
+                } else if (i == 1) {
+                    binding.ivEmotion1.visibility = View.VISIBLE
+                    if (friendsConsumeData.reactions[i] == 1) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 2) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 3) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 4) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 5) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 6) {
+                        binding.ivEmotion1.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                    } else { //0번이면
+                        binding.ivEmotion1.visibility = View.GONE
+                    }
+                } else {
+                    binding.ivEmotion2.visibility = View.VISIBLE
+                    if (friendsConsumeData.reactions[i] == 1) {
+                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 2) {
+                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_smile_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 3) {
+                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_funny_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 4) {
+                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_flex_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 5) {
+                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_what_mint_28)
+                    } else if (friendsConsumeData.reactions[i] == 6) {
+                        binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_sad_mint_28)
+                    } else { //0번이면
+                        binding.ivEmotion2.visibility = View.GONE
                     }
                 }
-
-
             }
 
+
+            binding.ivEmotion2.bringToFront()
+            binding.ivEmotion1.bringToFront()
+            binding.ivAddemotion.bringToFront()
+
+
+            //plus 넣어주기
+            binding.tvReactPlusCount.text = friendsConsumeData.plusCount.toString()
 
         }
 
@@ -223,7 +206,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
     }
 
     interface FriendsConsumeListInterface {
-        fun onClick(data: View, position: Int, addEmoji: Boolean, id:Int)
+        fun onClick(data: View, position: Int, addEmoji: Boolean, id: Int)
     }
 
     fun setConsumeListClickListener(listener: FriendsConsumeListInterface) {

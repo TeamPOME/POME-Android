@@ -1,10 +1,8 @@
 package com.teampome.pome.presentation.remind.screens
 
-import android.content.ContentValues.TAG
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -93,7 +91,6 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun initNotEmpty(goal_msg: String, isPublic: Boolean) {
         binding.clRemindEmpty.visibility = View.INVISIBLE
-        Log.d(TAG, "RemindFragment - initNotEmpty() called, goal_msg:$goal_msg, isPublic=$isPublic")
         if (isPublic == true) {
             binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
         } else {

@@ -66,10 +66,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
             runCatching {
                 service.getFriendsRecords(pos)
             }.onSuccess {
-                Log.d(
-                    TAG,
-                    "FriendsFragment - initFriendsData() called success, id=${friendsProfileAdapter.clickedId},it=$it"
-                )
                 val data = it.data
                 if (data!!.isEmpty()) //기록이 없는 경우
                     noFriendsRecords()
