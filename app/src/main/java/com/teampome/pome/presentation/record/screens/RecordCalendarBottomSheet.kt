@@ -63,10 +63,10 @@ class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
         //최소 선택 날짜, 최대 선택 날짜
         binding.mcCalendar.state().edit()
             .setFirstDayOfWeek(Calendar.SUNDAY)
-            .setMinimumDate(CalendarDay.from(currentYear, currentMonth, 1))
+            .setMinimumDate(CalendarDay.from(currentYear, currentMonth-1, 1))
             .setMaximumDate(
                 CalendarDay.from(
-                    currentYear, currentMonth + 1, endTimeCalendar.getActualMaximum(
+                    currentYear, currentMonth + 2, endTimeCalendar.getActualMaximum(
                         Calendar.DAY_OF_MONTH
                     )
                 )
@@ -78,10 +78,10 @@ class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
         binding.mcCalendar.setTitleFormatter(MonthArrayTitleFormatter(resources.getTextArray(R.array.custom_months)))
         binding.mcCalendar.setWeekDayFormatter(ArrayWeekDayFormatter(resources.getTextArray(R.array.custom_weekdays)))
 
-        val stCalendarDay = CalendarDay.from(currentYear, currentMonth, currentDate)
+        val stCalendarDay = CalendarDay.from(currentYear, currentMonth-1, currentDate)
         val enCalendarDay = CalendarDay.from(
             endTimeCalendar.get(Calendar.YEAR),
-            endTimeCalendar.get(Calendar.MONTH),
+            endTimeCalendar.get(Calendar.MONTH)+2,
             endTimeCalendar.get(Calendar.DATE)
         )
 

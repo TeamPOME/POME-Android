@@ -35,6 +35,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     lateinit var service: RemindService
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
 
         initRemindGoal()
         //initRemindData()

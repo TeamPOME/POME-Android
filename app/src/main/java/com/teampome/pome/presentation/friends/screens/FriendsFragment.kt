@@ -47,6 +47,8 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
+
         initConsumeAdapter()
         initListAdapter()
         //어댑터 생성

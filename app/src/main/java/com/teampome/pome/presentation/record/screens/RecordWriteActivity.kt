@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.teampome.pome.databinding.ActivityRecordWriteBinding
 import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
@@ -14,7 +15,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal, RecordCalendarBottomSheet.OnListenerDate {
+class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerGoal,
+    RecordCalendarBottomSheet.OnListenerDate {
 
     private lateinit var binding: ActivityRecordWriteBinding
     private val viewModel by viewModels<RecordWriteViewModel>()
@@ -45,7 +47,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         val now = System.currentTimeMillis()
         val date = Date(now)
         val sdf = SimpleDateFormat("yyyy.MM.dd")
-        val today : String = sdf.format(date)
+        val today: String = sdf.format(date)
         binding.tvDate.text = today
     }
 
@@ -67,9 +69,6 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         viewModel.goalchoice.observe(this) {
             viewModel.completeWriteCheck()
         }
-//        viewModel.consumedate.observe(this) {
-//            viewModel.completeWriteCheck()
-//        }
         viewModel.consumeamount.observe(this) {
             viewModel.completeWriteCheck()
         }
@@ -85,13 +84,27 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     private fun goBeforeSelectEmotionActivity() {
         binding.btnWrite.setOnClickListener {
             if (binding.btnWrite.isSelected) {
-                val intent = Intent(this, BeforeSelectEmotionActivity::class.java)
+                val goalId = goalId
+                val consumeDate = if (!binding.tvDate.isVisible) {
+                    binding.tvChoicedate.text.toString()
+                } else {
+                    binding.tvDate.text.toString()
+                }
+                val consumeAmount = binding.etGoalamount.text.toString()
+                val consumeRecord = binding.etConsumerecord.text.toString()
+                val intent = Intent(this, BeforeSelectEmotionActivity::class.java).apply {
+                    putExtra("goalId", goalId)
+                    putExtra("consumeDate", consumeDate)
+                    putExtra("consumeAmount", consumeAmount)
+                    putExtra("consumeRecord", consumeRecord)
+                }
                 startActivity(intent)
             }
         }
     }
 
-    override fun onCheckedGoal(goal: String) {
+    override fun onCheckedGoal(goal: String, id: Int) {
+        goalId = id
         binding.apply {
             tvChoicegoal.text = goal
             tvGoal.setVisibility(false)
@@ -106,4 +119,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
         }
     }
 
+    companion object {
+        var goalId : Int = 0
+    }
 }

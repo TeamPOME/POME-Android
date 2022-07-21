@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
@@ -16,6 +17,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
+import com.teampome.pome.data.RecordsService
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
 import com.teampome.pome.presentation.record.RecordData
@@ -23,6 +25,7 @@ import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.setVisibility
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -32,15 +35,20 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     @Inject
     lateinit var service: GoalService
+
+    @Inject
+    lateinit var recordService: RecordsService
     private lateinit var recordAdapter: RecordAdapter
+    private var clickedChipPos: Int = -1
+    private var clickedChipId: Int = -1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = this
 
+        noDragSeekBar()
         initGoalChip()
-        initGoalDetail()
         goGoalDateActivity()
         initAdapter()
         noGoalClickEvent()
@@ -80,11 +88,49 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun initGoalChip() {
         service.initGoalChip().enqueueUtil(
-            onSuccess = { it ->
-                it.data?.forEach {
-                    categoryMap[it.category] = it.id
+            onSuccess = {
+                it.data?.forEachIndexed { index, responseGoalCreate ->
+                    val chip = Chip(context).apply {
+                        tag = responseGoalCreate.id.toString()
+                        text = responseGoalCreate.category
+                        setTextAppearanceResource(R.style.PomeSb14)
+                        isCheckable = true
+                        isCheckedIconVisible = false
+                        chipBackgroundColor = ColorStateList(
+                            arrayOf(
+                                intArrayOf(-android.R.attr.state_checked),
+                                intArrayOf(android.R.attr.state_checked)
+                            ),
+                            intArrayOf(
+                                ContextCompat.getColor(context, R.color.pome_grey_0),
+                                ContextCompat.getColor(context, R.color.pome_main)
+                            )
+                        )
+                        setTextColor(
+                            ColorStateList(
+                                arrayOf(
+                                    intArrayOf(-android.R.attr.state_checked),
+                                    intArrayOf(android.R.attr.state_checked)
+                                ),
+                                intArrayOf(
+                                    ContextCompat.getColor(context, R.color.pome_grey_5),
+                                    Color.WHITE
+                                )
+                            )
+                        )
+                        setOnClickListener {
+                            clickedChipPos = index
+                            initGoalDetail(tag.toString().toInt())
+                        }
+                        if (index == 0) {
+                            clickedChipPos = 0
+                            isChecked = true
+                            clickedChipId = tag.toString().toInt()
+                            initGoalDetail(tag.toString().toInt())
+                        }
+                    }
+                    binding.cgGoal.addView(chip)
                 }
-                configureCategory(categoryMap)
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
@@ -92,48 +138,26 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-    private fun configureCategory(category: MutableMap<String, Int>) {
-        val categoryName = mutableListOf<String>()
-        category.forEach { categoryName.add(it.key) }
-
-        categoryName.forEachIndexed { i, text ->
-            if (i == 0) binding.cgGoal.addView(createChip(text, true))
-            else binding.cgGoal.addView(createChip(text))
-        }
-    }
-
-    private fun createChip(text: String, isChecked: Boolean = false): Chip {
-        return (layoutInflater.inflate(R.layout.layout_chip, binding.cgGoal, false) as Chip).apply {
-            this.text = text
-            this.isChecked = isChecked
-            layoutParams = ChipGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
-    }
-
-    private fun getSelectedCategory(): String {
-        var selectedCategory = ""
-        binding.cgGoal.forEach {
-            if ((it as Chip).isChecked) selectedCategory = it.text.toString()
-        }
-        return selectedCategory
-    }
-
-    private fun initGoalDetail() {
-//        val chipText = getSelectedCategory()
-//        val goalId = categoryMap[chipText]
-//        Log.d("성공했니?", "$goalId")
-
-        val goalId = 24
+    private fun initGoalDetail(goalId: Int) {
         service.initGoalDetail(goalId).enqueueUtil(
             onSuccess = {
-                visibilityGone()
-                visibilityTrue()
+                visibilityGoalTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                setText()
+                when (it.data.rate) {
+                    999 -> {
+                        val over = 290
+                        binding.tvSeekbar.x = over.toFloat()
+                    }
+                    0 -> {
+                        val start = 20
+                        binding.tvSeekbar.x = start.toFloat()
+                    }
+                    else -> {
+                        binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
+                    }
+                }
+                initGoalRecord(goalId)
             },
             onError = {
                 requireContext().showToast("불러오기에 실패했습니다.")
@@ -141,35 +165,15 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         )
     }
 
-    private fun setText() {
-        binding.sbGoal.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val value = (progress * (seekBar?.width!! - 2 * seekBar.thumbOffset)) / seekBar.max
-                binding.tvSeekbar.x = seekBar.x + value + (seekBar.thumbOffset / 2)
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-
-        })
-    }
-
-    private fun visibilityGone() {
+    private fun visibilityGoalTrue() {
         binding.apply {
             iv3d.visibility = View.GONE
             tvNogoaltext.visibility = View.GONE
             btnMakegoal.visibility = View.GONE
-        }
-    }
-
-    private fun visibilityTrue() {
-        binding.apply {
             ivLock.visibility = View.VISIBLE
             tvTitle.visibility = View.VISIBLE
             btnMore.visibility = View.VISIBLE
+            tvDday.visibility = View.VISIBLE
             tvAmount.visibility = View.VISIBLE
             tvUseamount.visibility = View.VISIBLE
             tvSlash.visibility = View.VISIBLE
@@ -179,10 +183,20 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
+    private fun noDragSeekBar() {
+        binding.sbGoal.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (event?.action == MotionEvent.ACTION_DOWN) {
+                    return false
+                }
+                return true
+            }
+        })
+    }
+
     private fun initAdapter() {
         recordAdapter = RecordAdapter()
         binding.rvRecord.adapter = recordAdapter
-        addList()
         initDecoration()
     }
 
@@ -205,19 +219,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
-    private fun addList() {
-        recordAdapter.submitList(
-            listOf(
-                RecordData(1, "06.24", 1, "10,000원", "gg"),
-                RecordData(1, "06.25", 1, "100,000원", "gg"),
-                RecordData(1, "06.26", 1, "200,000원", "gg"),
-                RecordData(1, "06.27", 1, "300,000원", "gg"),
-                RecordData(1, "06.28", 1, "500,000원", "gg"),
-                RecordData(1, "06.29", 1, "1,000,000원", "gg")
-            )
-        )
-    }
-
     private fun noGoalClickEvent() {
         binding.fabWrite.setOnClickListener {
             if (binding.cgGoal.size != 0) {
@@ -235,7 +236,32 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
-    companion object {
-        val categoryMap = mutableMapOf<String, Int>()
+    private fun initGoalRecord(goalId: Int) {
+        recordService.initGoalRecord(goalId).enqueueUtil(
+            onSuccess = {
+                if (it.data?.records?.size != 0) {
+                    visibilityRecordTrue()
+                    recordAdapter.submitList(it.data?.records)
+                } else {
+                    visibilityRecordFalse()
+                }
+            }
+        )
+    }
+
+    private fun visibilityRecordTrue() {
+        binding.apply {
+            ivNothing.visibility = View.GONE
+            tvNothing.visibility = View.GONE
+            rvRecord.visibility = View.VISIBLE
+        }
+    }
+
+    private fun visibilityRecordFalse() {
+        binding.apply {
+            ivNothing.visibility = View.VISIBLE
+            tvNothing.visibility = View.VISIBLE
+            rvRecord.visibility = View.GONE
+        }
     }
 }

@@ -98,6 +98,7 @@
             android:background="@drawable/rectangle_grey_round_8"
             android:hint="걸어다니기/건강관리에는 아끼지 말자 (20자)"
             android:maxLength="20"
+            android:maxLines="1"
             android:paddingVertical="17dp"
             android:paddingStart="16dp"
             android:text="@={goalDetailViewModel.goalresolution}"

@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.data.remote.response.ResponseGoalCreate
 import com.teampome.pome.databinding.ItemGoalListBinding
-import com.teampome.pome.presentation.record.GoalListData
-import retrofit2.Response
 
 class GoalListAdapter(private val itemClick: (ResponseGoalCreate) -> Unit) :
     ListAdapter<ResponseGoalCreate, GoalListAdapter.GoalListViewHolder>(DiffUtil) {

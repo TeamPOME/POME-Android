@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class RecordWriteViewModel : ViewModel() {
     val goalchoice = MutableLiveData<String>()
-    val consumedate = MutableLiveData<String>()
     val consumeamount = MutableLiveData<String>()
     val consumerecord = MutableLiveData<String>()
 
