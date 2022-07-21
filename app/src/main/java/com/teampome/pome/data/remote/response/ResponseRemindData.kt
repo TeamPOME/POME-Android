@@ -1,8 +1,7 @@
 package com.teampome.pome.data.remote.response
 
 data class ResponseRemindData(
-    val goalMessage:String,
-    val isGoalPublic:Boolean,
+    val id:Int,
     val amount:Int,
     val content:String,
     val startEmotion:Int,
