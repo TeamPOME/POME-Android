@@ -14,6 +14,7 @@ import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.remind.RemindConsumeAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
+import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -130,6 +131,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private fun initClickReset() {
         binding.ivReset.setOnClickListener {
             initRemindData()
+            context?.showToast("초기화되었습니다.")
             //goal_id 넣어주기
         }
     }

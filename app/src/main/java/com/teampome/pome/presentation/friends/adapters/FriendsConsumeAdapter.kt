@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
@@ -76,6 +77,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvFriendprice.text = friendsConsumeData.amount.toString()
                 tvFriendtag.text = friendsConsumeData.goalMessage
                 tvRecordid.text = friendsConsumeData.id.toString()
+                ivFriendimage.load(friendsConsumeData.profileImage)
             }
 
             when (friendsConsumeData.startEmotion) {
