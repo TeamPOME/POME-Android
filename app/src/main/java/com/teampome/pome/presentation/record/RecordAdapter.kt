@@ -26,9 +26,7 @@ class RecordAdapter : ListAdapter<Records, RecordAdapter.RecordViewHolder>(DiffU
         private val binding: ItemRecordListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: Records) {
-            binding.tvDate.text = data.date
-            binding.tvAmount.text = data.amount.toString()
-            binding.tvDescription.text = data.content
+            binding.records = data
             when (data.startEmotion) {
                 1 -> binding.ivFirstemotion.setImageResource(R.drawable.ic_emoji_happy_mint_56_with_background)
                 2 -> binding.ivFirstemotion.setImageResource(R.drawable.ic_emoji_what_mint_56_with_background)
