@@ -24,6 +24,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private val reactionBottomSheet = RemindReactionBottomSheet()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
 
         initRemindConsumeAdapter()
         initAdapterDecoration()
