@@ -1,9 +1,10 @@
 package com.teampome.pome.presentation.remind.screens
 
-import android.content.Context
+import android.content.ContentValues.TAG
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
@@ -20,7 +21,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private val firstBottomSheet = RemindFirstBottomSheetFragment()
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
     private val remindList = mutableListOf<FriendsConsumeData>()
-    private val reactionBottomSheet=RemindReactionBottomSheet()
+    private val reactionBottomSheet = RemindReactionBottomSheet()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,93 +45,93 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.rvRemind.adapter = remindConsumeAdapter
     }
 
-    private fun initAddRemindConsume() {
-        remindConsumeAdapter.submitList(
-            listOf(
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                ),
-                FriendsConsumeData(
-                    name = "dwd",
-                    description = "와플은 맛잇다",
-                    price = "3900",
-                    tag = "간식",
-                    first_emotion = 1,
-                    second_emotion = 2,
-                    date = "0713",
-                    reaction = listOf(1,2,3)
-                )
-
-            )
-        )
-    }
+//    private fun initAddRemindConsume() {
+//        remindConsumeAdapter.submitList(
+//            listOf(
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                ),
+//                FriendsConsumeData(
+//                    name = "dwd",
+//                    description = "와플은 맛잇다",
+//                    price = "3900",
+//                    tag = "간식",
+//                    first_emotion = 1,
+//                    second_emotion = 2,
+//                    date = "0713",
+//                    reaction = listOf(1,2,3)
+//                )
+//
+//            )
+//        )
+//    }
 
     private fun initClickFirstEmotion() {
         binding.ivFirstEmotion.setOnClickListener {
@@ -183,11 +184,11 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
         val chip1 = Chip(context).apply {
             text = goal_tag
-            id = R.id.chip_1
+//            id = R.id.chip_1
         }
         val chip2 = Chip(context).apply {
             text = goal_tag
-            id = R.id.chip_1
+//            id = R.id.chip_1
         }
         binding.cgGoals.addView(chip1, 0)
         binding.cgGoals.addView(chip2, 1)
@@ -198,13 +199,16 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             text = goal_des
             setTextColor(Color.BLACK)
         }
+        binding.cgGoals.setOnCheckedStateChangeListener { group, checkedIds ->
+            Log.d(TAG, "RemindFragment - setNotEmptyGoal() called, checkedId=$checkedIds")
+        }
     }
 
     private fun setRemindList() {
         binding.cNogoal.visibility = View.GONE
         binding.rvRemind.visibility = View.VISIBLE
         binding.clRemindEmpty.visibility = View.INVISIBLE
-        initAddRemindConsume()
+        //initAddRemindConsume()
         val goal_tag = "커피"
         //받아온 목표
         val goal_des = "하루 한잔만 마시기"
@@ -219,15 +223,15 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
         val chip1 = Chip(context).apply {
             text = "1번 칩"
-            isCheckable=true
-            isCheckedIconVisible=false
+            isCheckable = true
+            isCheckedIconVisible = false
             id = R.id.c_remind0
             chipBackgroundColor = ColorStateList(
                 arrayOf(
                     intArrayOf(-android.R.attr.state_checked),
                     intArrayOf(android.R.attr.state_checked)
                 ),
-                intArrayOf(Color.WHITE, ContextCompat.getColor(context,R.color.pome_main))
+                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
             )
 
             //텍스트
@@ -243,15 +247,15 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
         val chip2 = Chip(context).apply {
             text = "2번 칩"
-            isCheckable=true
-            isCheckedIconVisible=false
+            isCheckable = true
+            isCheckedIconVisible = false
             id = R.id.c_remind1
             chipBackgroundColor = ColorStateList(
                 arrayOf(
                     intArrayOf(-android.R.attr.state_checked),
                     intArrayOf(android.R.attr.state_checked)
                 ),
-                intArrayOf(Color.WHITE, ContextCompat.getColor(context,R.color.pome_main))
+                intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
             )
 
             //텍스트
@@ -268,8 +272,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
         binding.cgGoals.addView(chip1)
         binding.cgGoals.addView(chip2)
-        binding.cgGoals.isSingleSelection=true
-        chip1.isChecked=true
+        binding.cgGoals.isSingleSelection = true
+        chip1.isChecked = true
 
         binding.ivLockCheck.setImageResource(R.drawable.ic_unlock)
         binding.tvGoal.apply {
@@ -277,11 +281,13 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             setTextColor(Color.BLACK)
         }
     }
-    fun reactClick(){
-        remindConsumeAdapter.setReactionClickListener(object:RemindConsumeAdapter.ReactionClickListener{
+
+    fun reactClick() {
+        remindConsumeAdapter.setReactionClickListener(object :
+            RemindConsumeAdapter.ReactionClickListener {
             override fun onClick(data: View, pos: Int) {
                 //친구들이 단 이모지 클릭하면 혹시 무슨 일이 있는지 알아보
-                if(!reactionBottomSheet.isAdded)
+                if (!reactionBottomSheet.isAdded)
                     reactionBottomSheet.show(
                         childFragmentManager,
                         reactionBottomSheet.tag

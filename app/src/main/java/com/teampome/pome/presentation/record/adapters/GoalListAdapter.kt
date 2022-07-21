@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.teampome.pome.data.remote.response.ResponseGoalCreate
 import com.teampome.pome.databinding.ItemGoalListBinding
 import com.teampome.pome.presentation.record.GoalListData
+import retrofit2.Response
 
-class GoalListAdapter(private val itemClick: (GoalListData) -> Unit) : ListAdapter<GoalListData, GoalListAdapter.GoalListViewHolder>(DiffUtil) {
+class GoalListAdapter(private val itemClick: (ResponseGoalCreate) -> Unit) :
+    ListAdapter<ResponseGoalCreate, GoalListAdapter.GoalListViewHolder>(DiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalListViewHolder {
         val binding =
@@ -22,10 +25,10 @@ class GoalListAdapter(private val itemClick: (GoalListData) -> Unit) : ListAdapt
 
     class GoalListViewHolder(
         private val binding: ItemGoalListBinding,
-        private val itemClick: (GoalListData) -> (Unit)
+        private val itemClick: (ResponseGoalCreate) -> (Unit)
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: GoalListData) {
-            binding.tvGoal.text = data.goal
+        fun onBind(data: ResponseGoalCreate) {
+            binding.tvGoal.text = data.category
             binding.root.setOnClickListener {
                 itemClick(data)
             }
@@ -33,12 +36,18 @@ class GoalListAdapter(private val itemClick: (GoalListData) -> Unit) : ListAdapt
     }
 
     companion object {
-        val DiffUtil = object : DiffUtil.ItemCallback<GoalListData>() {
-            override fun areItemsTheSame(oldItem: GoalListData, newItem: GoalListData): Boolean {
-                return oldItem.goal == newItem.goal
+        val DiffUtil = object : DiffUtil.ItemCallback<ResponseGoalCreate>() {
+            override fun areItemsTheSame(
+                oldItem: ResponseGoalCreate,
+                newItem: ResponseGoalCreate
+            ): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: GoalListData, newItem: GoalListData): Boolean {
+            override fun areContentsTheSame(
+                oldItem: ResponseGoalCreate,
+                newItem: ResponseGoalCreate
+            ): Boolean {
                 return oldItem == newItem
             }
         }

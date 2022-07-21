@@ -55,8 +55,13 @@ class RemindReactionBottomSheet : BottomSheetDialogFragment() {
                 RemindReactionData(2, "김수빈"),
                 RemindReactionData(4,"황연진"),
                 RemindReactionData(6, "김수빈"),
+                RemindReactionData(5, "김수빈"),
+                RemindReactionData(2, "김수빈"),
+                RemindReactionData(4,"황연진"),
+                RemindReactionData(6, "김수빈")
             )
         )
+        //remindReactionAdapter.is
     }
 
     override fun onDestroyView() {

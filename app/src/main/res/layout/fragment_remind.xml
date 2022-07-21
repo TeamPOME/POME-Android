@@ -36,13 +36,13 @@
                 android:id="@+id/cg_goals"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true">
 
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/c_nogoal"
-                    android:visibility="invisible"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,6 +51,7 @@
                     android:includeFontPadding="false"
                     android:text="@string/remind_nogoal"
                     android:textColor="@color/selector_chip_text_color"
+                    android:visibility="invisible"
                     app:chipBackgroundColor="@color/selector_chip_background_color"
                     app:chipMinHeight="33dp"
                     app:chipStrokeColor="@null"
@@ -138,8 +139,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="12dp"
             android:orientation="vertical"
-            android:visibility="invisible"
             android:overScrollMode="never"
+            android:visibility="invisible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
