@@ -26,14 +26,14 @@ class PomeDataStore @Inject constructor(
         )
 
     var userToken: String
-        set(value) = dataStore.edit { putString("USER_TOKEN", value) }
-        get() = dataStore.getString("USER_TOKEN", "") ?: ""
+        set(value) = dataStore.edit { putString("token", value) }
+        get() = dataStore.getString("token", "") ?: ""
 
     var refreshToken: String
         set(value) = dataStore.edit { putString("REFRESH_TOKEN", value) }
         get() = dataStore.getString("REFRESH_TOKEN", "") ?: ""
-
+/*
     var nickname: String
         set(value) = dataStore.edit { putString("NICKNAME", value) }
-        get() = dataStore.getString("NICKNAME", "") ?: ""
+        get() = dataStore.getString("NICKNAME", "") ?: ""*/
 }
