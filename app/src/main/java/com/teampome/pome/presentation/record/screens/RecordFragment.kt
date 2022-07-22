@@ -292,6 +292,7 @@ class RecordFragment : Fragment() {
             onSuccess = {
                 if (it.data?.records?.size != 0) {
                     visibilityRecordTrue()
+                    binding.records = it.data
                     recordAdapter.submitList(it.data?.records)
                 } else {
                     visibilityRecordFalse()
