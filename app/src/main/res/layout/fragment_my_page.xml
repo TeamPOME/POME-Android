@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="user"
+            type="com.teampome.pome.data.remote.response.ResponseMyUser" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,10 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="76dp"
-            android:src="@drawable/ic_friend_profile_full"
+            android:src="@{user.profileImage}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_friend_profile_full" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -39,10 +43,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="포포"
+            android:text="@{user.nickname}"
             app:layout_constraintEnd_toEndOf="@+id/iv_profile"
             app:layout_constraintStart_toStartOf="@+id/iv_profile"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+            tools:text="포포" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_box"
@@ -103,8 +108,8 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="6dp"
             android:layout_marginTop="14dp"
-            android:overScrollMode="never"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
