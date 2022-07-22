@@ -3,9 +3,8 @@ package com.teampome.pome.presentation.record.screens
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.teampome.pome.databinding.ActivityRecordLookBackBinding
-import com.teampome.pome.presentation.record.RecordAdapter
 import com.teampome.pome.presentation.record.RecordData
-import com.teampome.pome.presentation.record.RecordLookBackAdapter
+import com.teampome.pome.presentation.record.adapters.RecordLookBackAdapter
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.setOnSingleClickListener

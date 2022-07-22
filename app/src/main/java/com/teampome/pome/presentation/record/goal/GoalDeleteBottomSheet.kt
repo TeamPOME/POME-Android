@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record.screens
+package com.teampome.pome.presentation.record.goal
 
 import android.os.Bundle
 import android.view.LayoutInflater

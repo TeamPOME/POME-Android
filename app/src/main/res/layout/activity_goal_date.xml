@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
-        tools:context=".presentation.record.screens.GoalDateActivity">
+        tools:context=".presentation.record.goal.GoalDateActivity">
 
         <ImageButton
             android:id="@+id/btn_back"

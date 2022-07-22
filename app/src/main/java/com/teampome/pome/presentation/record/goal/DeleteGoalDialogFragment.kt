@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record.screens
+package com.teampome.pome.presentation.record.goal
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,20 +8,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.teampome.pome.R
-import com.teampome.pome.databinding.FragmentNoRecordDialogBinding
+import androidx.fragment.app.activityViewModels
+import com.teampome.pome.data.GoalService
+import com.teampome.pome.databinding.FragmentDeleteGoalDialogBinding
+import com.teampome.pome.presentation.record.viewmodels.GoalIdViewModel
 import com.teampome.pome.util.setOnSingleClickListener
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class NoRecordDialogFragment : DialogFragment() {
+@AndroidEntryPoint
+class DeleteGoalDialogFragment(private val goalId: Int) : DialogFragment() {
 
-    private var _binding: FragmentNoRecordDialogBinding? = null
+    @Inject
+    lateinit var service: GoalService
+    private val viewModel by activityViewModels<GoalIdViewModel>()
+    private var _binding: FragmentDeleteGoalDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNoRecordDialogBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDeleteGoalDialogBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -29,10 +37,18 @@ class NoRecordDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         cancelDialog()
         backgroundDesign()
+        deleteNetwork()
     }
 
     private fun cancelDialog() {
-        binding.btnCancel.setOnSingleClickListener {
+        binding.tvNo.setOnSingleClickListener {
+            dismiss()
+        }
+    }
+
+    private fun deleteNetwork() {
+        binding.tvDelete.setOnSingleClickListener {
+            viewModel.goalId.value = goalId
             dismiss()
         }
     }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bottomsheet_round"
-    tools:context=".presentation.record.screens.GoalDeleteBottomSheet">
+    tools:context=".presentation.record.goal.GoalDeleteBottomSheet">
 
     <TextView
         android:id="@+id/tv_title"

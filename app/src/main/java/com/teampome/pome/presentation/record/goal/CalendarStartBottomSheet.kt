@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record.screens
+package com.teampome.pome.presentation.record.goal
 
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +13,7 @@ import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentCalendarStartBottomSheetBinding
+import com.teampome.pome.presentation.record.viewmodels.CalendarViewModel
 import com.teampome.pome.util.decorate.MinMaxDecorator
 import com.teampome.pome.util.decorate.TodayDecorator
 import java.util.*

@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.databinding.ItemRecordListBinding
+import com.teampome.pome.presentation.record.RecordData
 
 class RecordLookBackAdapter :
     ListAdapter<RecordData, RecordLookBackAdapter.RecordLookBackViewHolder>(DiffUtil) {

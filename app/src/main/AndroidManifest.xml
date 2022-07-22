@@ -37,13 +37,13 @@
             android:name=".presentation.record.screens.RecordWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.record.screens.GoalAddActivity"
+            android:name=".presentation.record.goal.GoalAddActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.record.screens.GoalDetailActivity"
+            android:name=".presentation.record.goal.GoalDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.record.screens.GoalDateActivity"
+            android:name=".presentation.record.goal.GoalDateActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.login.screens.KakaoLoginActivity"

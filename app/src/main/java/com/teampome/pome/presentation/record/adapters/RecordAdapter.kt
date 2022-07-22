@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record
+package com.teampome.pome.presentation.record.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

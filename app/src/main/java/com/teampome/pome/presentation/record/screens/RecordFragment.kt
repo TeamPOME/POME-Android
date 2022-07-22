@@ -16,7 +16,8 @@ import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.data.RecordsService
 import com.teampome.pome.databinding.FragmentRecordBinding
-import com.teampome.pome.presentation.record.RecordAdapter
+import com.teampome.pome.presentation.record.adapters.RecordAdapter
+import com.teampome.pome.presentation.record.goal.*
 import com.teampome.pome.presentation.record.viewmodels.GoalIdViewModel
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator

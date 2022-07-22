@@ -1,4 +1,4 @@
-package com.teampome.pome.presentation.record.screens
+package com.teampome.pome.presentation.record.goal
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
@@ -14,8 +14,8 @@ import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentCalendarEndBottomSheetBinding
+import com.teampome.pome.presentation.record.viewmodels.CalendarViewModel
 import com.teampome.pome.util.decorate.MinMaxDecorator
-import timber.log.Timber
 import java.util.*
 import java.util.Calendar.*
 

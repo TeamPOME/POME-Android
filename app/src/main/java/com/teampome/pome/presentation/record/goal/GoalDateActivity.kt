@@ -1,15 +1,14 @@
-package com.teampome.pome.presentation.record.screens
+package com.teampome.pome.presentation.record.goal
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import com.teampome.pome.databinding.ActivityGoalDateBinding
+import com.teampome.pome.presentation.record.viewmodels.CalendarViewModel
 import com.teampome.pome.presentation.record.viewmodels.GoalDateViewModel
 import com.teampome.pome.util.setOnSingleClickListener
 import com.teampome.pome.util.setVisibility
-import timber.log.Timber
 import java.text.SimpleDateFormat
 
 class GoalDateActivity : AppCompatActivity() {
