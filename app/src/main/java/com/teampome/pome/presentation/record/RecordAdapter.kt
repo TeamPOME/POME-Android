@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.Records
-import com.teampome.pome.data.remote.response.ResponseRecordsLook
 import com.teampome.pome.databinding.ItemRecordListBinding
 
 class RecordAdapter : ListAdapter<Records, RecordAdapter.RecordViewHolder>(DiffUtil) {

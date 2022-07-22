@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.teampome.pome.presentation.main.MainActivity
 import com.teampome.pome.databinding.ActivityGoalAddBinding
+import com.teampome.pome.util.setOnSingleClickListener
 
 class GoalAddActivity : AppCompatActivity() {
 
@@ -20,7 +21,7 @@ class GoalAddActivity : AppCompatActivity() {
     }
 
     private fun goRecordFragment() {
-        binding.btnCheck.setOnClickListener {
+        binding.btnCheck.setOnSingleClickListener {
             //여기서 정보 다 보내고 프래그먼트 이동하고 액티비티 종료
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

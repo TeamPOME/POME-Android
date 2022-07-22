@@ -25,5 +25,5 @@ interface GoalService {
     @DELETE("goals/{goalId}")
     fun deleteGoal(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseGoalDetail>>
+    ): Call<BaseResponse<Unit>>
 }

@@ -16,6 +16,7 @@ import com.teampome.pome.databinding.FragmentRemindBinding
 import com.teampome.pome.presentation.remind.RemindConsumeAdapter
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
+import com.teampome.pome.util.setOnSingleClickListener
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -114,7 +115,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     }
 
     private fun initClickFirstEmotion() {
-        binding.ivFirstEmotion.setOnClickListener {
+        binding.ivFirstEmotion.setOnSingleClickListener {
             if (!firstBottomSheet.isAdded)
                 firstBottomSheet.show(
                     childFragmentManager, firstBottomSheet.tag
@@ -123,7 +124,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     }
 
     private fun initClickSecondEmotion() {
-        binding.ivSecondEmotion.setOnClickListener {
+        binding.ivSecondEmotion.setOnSingleClickListener {
             if (!secondBottomSheet.isAdded)
                 secondBottomSheet.show(
                     childFragmentManager, secondBottomSheet.tag
@@ -132,7 +133,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     }
 
     private fun initClickReset() {
-        binding.ivReset.setOnClickListener {
+        binding.ivReset.setOnSingleClickListener {
             initRemindData()
             context?.showToast("초기화되었습니다.")
             //goal_id 넣어주기
