@@ -150,7 +150,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                         binding.tvSeekbar.x = over.toFloat()
                     }
                     0 -> {
-                        val start = 20
+                        val start = changeToDp(20)
+
                         binding.tvSeekbar.x = start.toFloat()
                     }
                     else -> {
@@ -217,6 +218,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 )
             }
         }
+    }
+
+    private fun changeToDp(value:Int) : Int{
+        val displayMetrics = requireContext().resources.displayMetrics
+        val dp = Math.round(value * displayMetrics.density)
+        return dp
     }
 
     private fun noGoalClickEvent() {
