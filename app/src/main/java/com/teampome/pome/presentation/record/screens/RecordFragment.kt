@@ -73,7 +73,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
     private fun goGoalDateActivity() {
         binding.apply {
-            btnGoaladd.setOnClickListener {
+            btnGoaladd.setOnSingleClickListener {
                 if (cgGoal.size >= 11) {
                     showDialog()
                 } else {
@@ -81,7 +81,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                     startActivity(intent)
                 }
             }
-            btnMakegoal.setOnClickListener {
+            btnMakegoal.setOnSingleClickListener {
                 if (cgGoal.size >= 11) {
                     showDialog()
                 } else {
@@ -227,7 +227,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun goLookBackActivity() {
-        binding.clLookback.setOnClickListener {
+        binding.clLookback.setOnSingleClickListener {
 //            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
 //            startActivity(intent)
             val dialog = NoEmotionDialogFragment()
@@ -241,7 +241,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun noGoalClickEvent() {
-        binding.fabWrite.setOnClickListener {
+        binding.fabWrite.setOnSingleClickListener {
             if (binding.cgGoal.size != 0) {
                 val intent = Intent(requireContext(), RecordWriteActivity::class.java)
                 startActivity(intent)

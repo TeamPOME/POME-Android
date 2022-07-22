@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityRecordAddBinding
 import com.teampome.pome.presentation.main.MainActivity
+import com.teampome.pome.util.setOnSingleClickListener
 
 class RecordAddActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class RecordAddActivity : AppCompatActivity() {
     }
 
     private fun goRecordFragment() {
-        binding.btnCheck.setOnClickListener {
+        binding.btnCheck.setOnSingleClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             ActivityCompat.finishAffinity(this)

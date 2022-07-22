@@ -10,6 +10,7 @@ import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.adapters.GoalListAdapter
 import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -57,7 +58,7 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initClose() {
-        binding.btnCancel.setOnClickListener {
+        binding.btnCancel.setOnSingleClickListener {
             dismiss()
         }
     }

@@ -10,6 +10,7 @@ import com.teampome.pome.R
 import com.teampome.pome.data.remote.request.RequestFriendsData
 import com.teampome.pome.data.remote.response.ResponseFriendsData
 import com.teampome.pome.databinding.ItemFriendListBinding
+import com.teampome.pome.util.setOnSingleClickListener
 
 class AddFriendAdapter(
     private val itemClick: (ResponseFriendsData) -> Unit
@@ -34,7 +35,7 @@ class AddFriendAdapter(
         fun onBind(friendData: ResponseFriendsData) {
             binding.friend = friendData
             binding.ivProfile.load(friendData.profileImage)
-            binding.btnAdd.setOnClickListener {
+            binding.btnAdd.setOnSingleClickListener {
                 !binding.btnAdd.isClickable
                 binding.btnAdd.setImageResource(R.drawable.ic_add_complete)
                 itemClick(friendData)
