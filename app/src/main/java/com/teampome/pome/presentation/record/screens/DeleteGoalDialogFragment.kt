@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentDeleteGoalDialogBinding
+import com.teampome.pome.util.setOnSingleClickListener
 
 class DeleteGoalDialogFragment : DialogFragment() {
 
@@ -29,7 +30,7 @@ class DeleteGoalDialogFragment : DialogFragment() {
     }
 
     private fun cancelDialog() {
-        binding.tvNo.setOnClickListener {
+        binding.tvNo.setOnSingleClickListener {
             dismiss()
         }
     }

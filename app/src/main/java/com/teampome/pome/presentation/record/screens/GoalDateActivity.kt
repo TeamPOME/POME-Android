@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.teampome.pome.databinding.ActivityGoalDateBinding
 import com.teampome.pome.presentation.record.viewmodels.GoalDateViewModel
+import com.teampome.pome.util.setOnSingleClickListener
 import com.teampome.pome.util.setVisibility
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -38,11 +39,11 @@ class GoalDateActivity : AppCompatActivity() {
     }
 
     private fun calendarClickEvent() {
-        binding.btnStartcalendar.setOnClickListener {
+        binding.btnStartcalendar.setOnSingleClickListener {
             val bottomSheet = CalendarStartBottomSheet()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
-        binding.btnEndcalendar.setOnClickListener {
+        binding.btnEndcalendar.setOnSingleClickListener {
             val bottomSheet = CalendarEndBottomSheet()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
@@ -69,7 +70,7 @@ class GoalDateActivity : AppCompatActivity() {
     }
 
     private fun goGoalDetailActivity() {
-        binding.btnChoice.setOnClickListener {
+        binding.btnChoice.setOnSingleClickListener {
             if (binding.btnChoice.isSelected) {
                 val startDate = binding.tvGoalstartdate.text.toString()
                 val endDate = binding.tvGoalenddate.text.toString()

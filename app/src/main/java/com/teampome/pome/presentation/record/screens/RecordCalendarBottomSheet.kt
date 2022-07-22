@@ -16,6 +16,7 @@ import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentRecordCalendarBottomSheetBinding
 import com.teampome.pome.util.decorate.MinMaxDecorator
 import com.teampome.pome.util.decorate.TodayDecorator
+import com.teampome.pome.util.setOnSingleClickListener
 import java.util.*
 
 class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
@@ -91,7 +92,7 @@ class RecordCalendarBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun choiceDate() {
-        binding.btnChoicedate.setOnClickListener {
+        binding.btnChoicedate.setOnSingleClickListener {
             val date = binding.mcCalendar.selectedDate.date
             onListenerDate?.onReceiveDate(date)
             dismiss()
