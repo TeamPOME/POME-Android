@@ -142,7 +142,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private fun setEmptyGoal() {
         //chipNoGoal(), recyclerview은 안보임
         binding.clRemindEmpty.visibility=View.VISIBLE
-        binding.rvRemind.visibility=View.INVISIBLE
+        binding.rvRemind.visibility=View.GONE
     }
 
     private fun setGoals(data: List<ResponseRemindGoal>) {
