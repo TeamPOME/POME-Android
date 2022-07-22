@@ -80,7 +80,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 tvRecordid.text = friendsConsumeData.id.toString()
                 ivFriendimage.load(friendsConsumeData.profileImage)
                 if (friendsConsumeData.plusCount != 0)
-                    tvReactPlusCount.text = "+" + friendsConsumeData.plusCount.toString()
+                    tvReactPlusCount.text =friendsConsumeData.plusCount.toString()+"+"
             }
 
             when (friendsConsumeData.startEmotion) {

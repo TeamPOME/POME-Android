@@ -262,14 +262,12 @@
                         style="@style/PomeB12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:text="@{goaldetail.rate == 999 ? @string/over : @string/percent(goaldetail.rate)+'%'}"
                         android:textColor="@color/pome_white"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/sb_goal"
-                        app:layout_constraintStart_toStartOf="@id/sb_goal"
                         app:layout_constraintTop_toTopOf="@id/sb_goal"
-                        app:layout_constraintEnd_toEndOf="@id/sb_goal"/>
+                        />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -26,7 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
+class RecordFragment : Fragment() {
+    private var _binding :FragmentRecordBinding?=null
+    private val binding get() = _binding!!
 
     @Inject
     lateinit var service: GoalService
@@ -37,6 +39,16 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     private val viewModel by activityViewModels<GoalIdViewModel>()
     private var clickedChipPos: Int = -1
     private var clickedChipId: Int = -1
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentRecordBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -152,17 +164,35 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 visibilityGoalTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
+                binding.tvSeekbar.visibility=View.GONE
                 when (it.data.rate) {
+
                     999 -> {
                         val over = 290
-                        binding.tvSeekbar.x = over.toFloat()
+                        binding.tvSeekbar.x = changeToDp(over)*1.1.toFloat()
+                        binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_red,resources.newTheme())
+                        binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_red, resources.newTheme())
                     }
                     0 -> {
-                        val start = 20
+                        val over=20
+                        val start = changeToDp(20)
                         binding.tvSeekbar.x = start.toFloat()
+                        binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_green, resources.newTheme())
+                        binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_green, resources.newTheme())
                     }
                     else -> {
-                        binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
+                        if(it.data.rate>=70){
+                            //binding.tvSeekbar.x = changeToDp(it.data.rate).toFloat()
+                            binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_pink,resources.newTheme())
+                            binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_pink, resources.newTheme())
+                        }
+                        else{ // 0-70
+                           // binding.tvSeekbar.x=changeToDp(it.data.rate).toFloat()
+                           binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_green, resources.newTheme())
+                            binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_green, resources.newTheme())
+                        }
+                       // binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
+                        binding.tvSeekbar.x=changeToDp(it.data.rate)*3.3.toFloat()
                     }
                 }
                 val id = it.data.id
@@ -232,6 +262,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
     }
 
+    private fun changeToDp(value: Int) : Int{
+        val displayMetrics = requireContext().resources.displayMetrics
+        val dp = Math.round(value * displayMetrics.density)
+        return dp
+    }
+
     private fun noGoalClickEvent() {
         binding.fabWrite.setOnSingleClickListener {
             if (binding.cgGoal.size != 0) {
@@ -276,5 +312,10 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             tvNothing.visibility = View.VISIBLE
             rvRecord.visibility = View.GONE
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding=null
     }
 }
