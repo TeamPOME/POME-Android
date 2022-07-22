@@ -41,7 +41,7 @@ class DeleteGoalDialogFragment(private val goalId: Int) : DialogFragment() {
     }
 
     private fun cancelDialog() {
-        binding.tvNo.setOnClickListener {
+        binding.tvNo.setOnSingleClickListener {
             dismiss()
         }
     }

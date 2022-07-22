@@ -13,6 +13,7 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentGoalLimitDialogBinding
+import com.teampome.pome.util.setOnSingleClickListener
 
 class GoalLimitDialogFragment : DialogFragment() {
 
@@ -35,7 +36,7 @@ class GoalLimitDialogFragment : DialogFragment() {
     }
 
     private fun cancelDialog() {
-        binding.btnCancel.setOnClickListener {
+        binding.btnCancel.setOnSingleClickListener {
             dismiss()
         }
     }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teampome.pome.databinding.FragmentRemindFirstBottomSheetBinding
+import com.teampome.pome.util.setOnSingleClickListener
 
 class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentRemindFirstBottomSheetBinding? = null
@@ -33,7 +34,7 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initClose(){
-        binding.ivClose.setOnClickListener {
+        binding.ivClose.setOnSingleClickListener {
             dialog?.dismiss()
         }
     }
