@@ -10,6 +10,7 @@ import com.teampome.pome.data.remote.request.RequestGoalCreate
 import com.teampome.pome.databinding.ActivityGoalDetailBinding
 import com.teampome.pome.presentation.record.viewmodels.GoalDetailViewModel
 import com.teampome.pome.util.enqueueUtil
+import com.teampome.pome.util.setOnSingleClickListener
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -38,7 +39,7 @@ class GoalDetailActivity : AppCompatActivity() {
     }
 
     private fun goBack() {
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.setOnSingleClickListener {
             finish()
         }
     }
@@ -60,7 +61,7 @@ class GoalDetailActivity : AppCompatActivity() {
     }
 
     private fun goGoalAddActivity() {
-        binding.btnWrite.setOnClickListener {
+        binding.btnWrite.setOnSingleClickListener {
             if (binding.btnWrite.isSelected) {
                 goalCreateNetwork()
             }
