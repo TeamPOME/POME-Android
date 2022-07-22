@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.teampome.pome.R
 import com.teampome.pome.databinding.FragmentGoalDeleteBottomSheetBinding
 import com.teampome.pome.util.setOnSingleClickListener
 
