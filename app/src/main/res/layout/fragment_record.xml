@@ -266,9 +266,8 @@
                         android:textColor="@color/pome_white"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/sb_goal"
-                        app:layout_constraintStart_toStartOf="@id/sb_goal"
                         app:layout_constraintTop_toTopOf="@id/sb_goal"
-                        app:layout_constraintEnd_toEndOf="@id/sb_goal"/>
+                        />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

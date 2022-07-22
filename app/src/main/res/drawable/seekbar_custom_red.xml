@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/background_green">
+    <item android:id="@+id/background_red">
         <shape android:shape="rectangle">
-            <stroke android:color="@color/pome_grey_2"/>
-            <solid android:color="@color/pome_grey_2"/>
+            <stroke android:color="@color/pome_red"/>
+            <solid android:color="@color/pome_red"/>
             <corners android:radius="4dp"/>
         </shape>
     </item>
