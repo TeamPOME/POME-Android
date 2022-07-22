@@ -4,29 +4,23 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
-import android.widget.SeekBar
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.core.view.size
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.data.RecordsService
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
-import com.teampome.pome.presentation.record.RecordData
+import com.teampome.pome.presentation.record.viewmodels.GoalIdViewModel
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.setOnSingleClickListener
-import com.teampome.pome.util.setVisibility
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,6 +34,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     @Inject
     lateinit var recordService: RecordsService
     private lateinit var recordAdapter: RecordAdapter
+    private val viewModel by activityViewModels<GoalIdViewModel>()
     private var clickedChipPos: Int = -1
     private var clickedChipId: Int = -1
 
@@ -48,12 +43,24 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
 
         binding.lifecycleOwner = this
 
+        deleteGoalNetwork()
         noDragSeekBar()
         initGoalChip()
         goGoalDateActivity()
         initAdapter()
         noGoalClickEvent()
         goLookBackActivity()
+    }
+
+    private fun deleteGoalNetwork() {
+        viewModel.goalId.observe(viewLifecycleOwner) {
+            service.deleteGoal(it).enqueueUtil(
+                onSuccess = {
+                    binding.cgGoal.removeAllViews()
+                    initGoalChip()
+                }
+            )
+        }
     }
 
     private fun goGoalDateActivity() {
@@ -157,6 +164,11 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                     else -> {
                         binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
                     }
+                }
+                val id = it.data.id
+                binding.btnMore.setOnSingleClickListener {
+                    val bottomSheet = GoalDeleteBottomSheet(id)
+                    bottomSheet.show(childFragmentManager, bottomSheet.tag)
                 }
                 initGoalRecord(goalId)
             },
