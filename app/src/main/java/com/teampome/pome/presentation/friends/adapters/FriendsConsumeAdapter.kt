@@ -9,6 +9,7 @@ import coil.load
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ResponseFriendsAll
 import com.teampome.pome.databinding.ItemFriendConsumeListBinding
+import com.teampome.pome.util.setOnSingleClickListener
 
 class FriendsConsumeAdapter(val contextT: Context) :
     RecyclerView.Adapter<FriendsConsumeAdapter.FriendsConsumeViewHolder>() {
@@ -26,13 +27,13 @@ class FriendsConsumeAdapter(val contextT: Context) :
     }
 
     override fun onBindViewHolder(holder: FriendsConsumeViewHolder, position: Int) {
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnSingleClickListener {
             clicked_recordId = friendConsumeList[position].id
             listener.onClick(it, position, false, clicked_recordId)
 
         }
         holder.bind(friendConsumeList[position])
-        holder.addEmojiButton.setOnClickListener {
+        holder.addEmojiButton.setOnSingleClickListener {
             clicked_recordId = friendConsumeList[position].id
             listener.onClick(it, position, true, clicked_recordId)
         }
