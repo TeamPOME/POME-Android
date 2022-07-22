@@ -1,13 +1,15 @@
 package com.teampome.pome.presentation.record.screens
-
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.size
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.chip.Chip
 import com.teampome.pome.R
@@ -16,7 +18,6 @@ import com.teampome.pome.data.RecordsService
 import com.teampome.pome.databinding.FragmentRecordBinding
 import com.teampome.pome.presentation.record.RecordAdapter
 import com.teampome.pome.presentation.record.viewmodels.GoalIdViewModel
-import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
