@@ -157,6 +157,11 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                         binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
                     }
                 }
+                val id = it.data.id
+                binding.btnMore.setOnSingleClickListener {
+                    val bottomSheet = GoalDeleteBottomSheet(id)
+                    bottomSheet.show(childFragmentManager, bottomSheet.tag)
+                }
                 initGoalRecord(goalId)
             },
             onError = {
