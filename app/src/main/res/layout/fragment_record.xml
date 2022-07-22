@@ -262,7 +262,6 @@
                         style="@style/PomeB12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:text="@{goaldetail.rate == 999 ? @string/over : @string/percent(goaldetail.rate)+'%'}"
                         android:textColor="@color/pome_white"
                         android:visibility="gone"
