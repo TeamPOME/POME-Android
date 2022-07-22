@@ -8,6 +8,9 @@ import retrofit2.http.*
 interface FriendService {
     @GET("friends")
     suspend fun getAllFriends(): BaseResponse<List<ResponseFriendsProflie>>
+    //mypage user
+    @GET("users")
+    suspend fun getMyInfo(): BaseResponse<ResponseMyUser>
 
     @POST("friends")
     suspend fun setAddFriends(
