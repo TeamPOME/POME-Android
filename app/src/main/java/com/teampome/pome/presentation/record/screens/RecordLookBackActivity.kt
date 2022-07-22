@@ -8,6 +8,7 @@ import com.teampome.pome.presentation.record.RecordData
 import com.teampome.pome.presentation.record.RecordLookBackAdapter
 import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
+import com.teampome.pome.util.setOnSingleClickListener
 
 class RecordLookBackActivity : AppCompatActivity() {
 
@@ -49,7 +50,7 @@ class RecordLookBackActivity : AppCompatActivity() {
     }
     
     private fun goBack() {
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.setOnSingleClickListener {
             finish()
         }
     }

@@ -9,6 +9,7 @@ import com.teampome.pome.databinding.ActivityRecordWriteBinding
 import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
 import com.teampome.pome.presentation.record.emotion.BeforeSelectEmotionActivity
 import com.teampome.pome.presentation.record.viewmodels.RecordWriteViewModel
+import com.teampome.pome.util.setOnSingleClickListener
 import com.teampome.pome.util.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -38,7 +39,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     }
 
     private fun goBack() {
-        binding.btnBack.setOnClickListener {
+        binding.btnBack.setOnSingleClickListener {
             finish()
         }
     }
@@ -52,14 +53,14 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     }
 
     private fun goalClickEvent() {
-        binding.btnDown.setOnClickListener {
+        binding.btnDown.setOnSingleClickListener {
             val bottomSheet = GoalListBottomSheet()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }
 
     private fun calendarClickEvent() {
-        binding.btnCalendar.setOnClickListener {
+        binding.btnCalendar.setOnSingleClickListener {
             val bottomSheet = RecordCalendarBottomSheet()
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
@@ -82,7 +83,7 @@ class RecordWriteActivity : AppCompatActivity(), GoalListBottomSheet.OnListenerG
     }
 
     private fun goBeforeSelectEmotionActivity() {
-        binding.btnWrite.setOnClickListener {
+        binding.btnWrite.setOnSingleClickListener {
             if (binding.btnWrite.isSelected) {
                 val goalId = goalId
                 val consumeDate = if (!binding.tvDate.isVisible) {
