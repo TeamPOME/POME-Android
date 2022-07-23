@@ -4,6 +4,7 @@ import com.teampome.pome.data.remote.request.RequestRecordsCreate
 import com.teampome.pome.data.remote.response.BaseResponse
 import com.teampome.pome.data.remote.response.ResponseRecordsCreate
 import com.teampome.pome.data.remote.response.ResponseRecordsLook
+import com.teampome.pome.data.remote.response.ResponseRecordsLookBack
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,4 +21,9 @@ interface RecordsService {
     fun initGoalRecord(
         @Path("goalId") goalId: Int
     ): Call<BaseResponse<ResponseRecordsLook>>
+
+    @GET("records/incomplete/{goalId}")
+    fun initRecordList(
+        @Path("goalId") goalId: Int
+    ): Call<BaseResponse<ResponseRecordsLookBack>>
 }
