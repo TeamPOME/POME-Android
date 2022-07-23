@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="recordslookback"
+            type="com.teampome.pome.data.remote.response.ResponseRecordsLookBack" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="15dp"
                         android:layout_marginStart="16dp"
-                        android:src="@drawable/ic_lock_all"
+                        tools:src="@drawable/selector_lock"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -99,11 +102,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:text="술은 한달에 적당히 먹자"
                         android:textColor="@color/pome_grey_8"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/iv_lock"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="술은 한달에 적당히 먹자" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
@@ -112,32 +115,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="전체 0건"
+                    android:text="@{@string/total+@string/percent(recordslookback.total)+@string/number}"
                     android:textColor="@color/pome_grey_5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_goal" />
-
-                <ImageView
-                    android:id="@+id/iv_nothing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="136dp"
-                    android:src="@drawable/ic_nothing"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_total" />
-
-                <TextView
-                    android:id="@+id/tv_nothing"
-                    style="@style/PomeM14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="기록된 씀씀이가 없어요"
-                    android:textColor="@color/pome_grey_5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_nothing" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_record"
@@ -147,7 +128,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_total"
                     app:spanCount="2"
-                    tools:listitem="@layout/item_record_list" />
+                    tools:listitem="@layout/item_record_look_list" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
