@@ -1,8 +1,10 @@
 package com.teampome.pome.presentation.record.screens
+
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -29,7 +31,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class RecordFragment : Fragment() {
-    private var _binding :FragmentRecordBinding?=null
+    private var _binding: FragmentRecordBinding? = null
     private val binding get() = _binding!!
 
     @Inject
@@ -63,7 +65,6 @@ class RecordFragment : Fragment() {
         goGoalDateActivity()
         initAdapter()
         noGoalClickEvent()
-        goLookBackActivity()
     }
 
     private fun deleteGoalNetwork() {
@@ -166,35 +167,57 @@ class RecordFragment : Fragment() {
                 visibilityGoalTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
-                binding.tvSeekbar.visibility=View.GONE
+                binding.tvSeekbar.visibility = View.GONE
                 when (it.data.rate) {
 
                     999 -> {
                         val over = 290
-                        binding.tvSeekbar.x = changeToDp(over)*1.1.toFloat()
-                        binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_red,resources.newTheme())
-                        binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_red, resources.newTheme())
+                        binding.tvSeekbar.x = changeToDp(over) * 1.1.toFloat()
+                        binding.sbGoal.progressDrawable = resources.getDrawable(
+                            R.drawable.seekbar_custom_red,
+                            resources.newTheme()
+                        )
+                        binding.sbGoal.thumb = resources.getDrawable(
+                            R.drawable.seekbar_thumb_custom_red,
+                            resources.newTheme()
+                        )
                     }
                     0 -> {
-                        val over=20
                         val start = changeToDp(20)
                         binding.tvSeekbar.x = start.toFloat()
-                        binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_green, resources.newTheme())
-                        binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_green, resources.newTheme())
+                        binding.sbGoal.progressDrawable = resources.getDrawable(
+                            R.drawable.seekbar_custom_green,
+                            resources.newTheme()
+                        )
+                        binding.sbGoal.thumb = resources.getDrawable(
+                            R.drawable.seekbar_thumb_custom_green,
+                            resources.newTheme()
+                        )
                     }
                     else -> {
-                        if(it.data.rate>=70){
+                        if (it.data.rate >= 70) {
                             //binding.tvSeekbar.x = changeToDp(it.data.rate).toFloat()
-                            binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_pink,resources.newTheme())
-                            binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_pink, resources.newTheme())
+                            binding.sbGoal.progressDrawable = resources.getDrawable(
+                                R.drawable.seekbar_custom_pink,
+                                resources.newTheme()
+                            )
+                            binding.sbGoal.thumb = resources.getDrawable(
+                                R.drawable.seekbar_thumb_custom_pink,
+                                resources.newTheme()
+                            )
+                        } else { // 0-70
+                            // binding.tvSeekbar.x=changeToDp(it.data.rate).toFloat()
+                            binding.sbGoal.progressDrawable = resources.getDrawable(
+                                R.drawable.seekbar_custom_green,
+                                resources.newTheme()
+                            )
+                            binding.sbGoal.thumb = resources.getDrawable(
+                                R.drawable.seekbar_thumb_custom_green,
+                                resources.newTheme()
+                            )
                         }
-                        else{ // 0-70
-                           // binding.tvSeekbar.x=changeToDp(it.data.rate).toFloat()
-                           binding.sbGoal.progressDrawable=resources.getDrawable(R.drawable.seekbar_custom_green, resources.newTheme())
-                            binding.sbGoal.thumb=resources.getDrawable(R.drawable.seekbar_thumb_custom_green, resources.newTheme())
-                        }
-                       // binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
-                        binding.tvSeekbar.x=changeToDp(it.data.rate)*3.3.toFloat()
+                        // binding.tvSeekbar.x = (it.data.rate * 2.8).toFloat()
+                        binding.tvSeekbar.x = changeToDp(it.data.rate) * 3.3.toFloat()
                     }
                 }
                 val id = it.data.id
@@ -250,21 +273,8 @@ class RecordFragment : Fragment() {
         binding.rvRecord.addItemDecoration(VerticalItemDecorator(6))
     }
 
-    private fun goLookBackActivity() {
-        binding.clLookback.setOnSingleClickListener {
-//            val intent = Intent(requireContext(), RecordLookBackActivity::class.java)
-//            startActivity(intent)
-            val dialog = NoEmotionDialogFragment()
-            activity?.let { it1 ->
-                dialog.show(
-                    it1.supportFragmentManager,
-                    "NoEmotionDialogFragment"
-                )
-            }
-        }
-    }
 
-    private fun changeToDp(value: Int) : Int{
+    private fun changeToDp(value: Int): Int {
         val displayMetrics = requireContext().resources.displayMetrics
         val dp = Math.round(value * displayMetrics.density)
         return dp
@@ -292,13 +302,33 @@ class RecordFragment : Fragment() {
             onSuccess = {
                 if (it.data?.records?.size != 0) {
                     visibilityRecordTrue()
-                    binding.records = it.data
                     recordAdapter.submitList(it.data?.records)
+                    binding.records = it.data
+                    it.data?.incompleteTotal?.let { it1 -> goLookBackActivity(it1, goalId) }
                 } else {
                     visibilityRecordFalse()
                 }
             }
         )
+    }
+
+    private fun goLookBackActivity(incompleteTotal: Int, goalId: Int) {
+        binding.clLookback.setOnSingleClickListener {
+            if (incompleteTotal > 0) {
+                val intent = Intent(requireContext(), RecordLookBackActivity::class.java).apply {
+                    putExtra("goalId", goalId)
+                }
+                startActivity(intent)
+            } else {
+                val dialog = NoEmotionDialogFragment()
+                activity?.let { it1 ->
+                    dialog.show(
+                        it1.supportFragmentManager,
+                        "NoEmotionDialogFragment"
+                    )
+                }
+            }
+        }
     }
 
     private fun visibilityRecordTrue() {
@@ -319,6 +349,6 @@ class RecordFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding=null
+        _binding = null
     }
 }
