@@ -5,18 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.teampome.pome.R
+import com.teampome.pome.data.remote.response.RecordsBack
+import com.teampome.pome.data.remote.response.ResponseRecordsLookBack
 import com.teampome.pome.databinding.ItemRecordListBinding
+import com.teampome.pome.databinding.ItemRecordLookListBinding
 import com.teampome.pome.presentation.record.RecordData
 
 class RecordLookBackAdapter :
-    ListAdapter<RecordData, RecordLookBackAdapter.RecordLookBackViewHolder>(DiffUtil) {
+    ListAdapter<RecordsBack, RecordLookBackAdapter.RecordLookBackViewHolder>(DiffUtil) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): RecordLookBackViewHolder {
         val binding =
-            ItemRecordListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemRecordLookListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecordLookBackViewHolder(binding)
     }
 
@@ -25,22 +29,25 @@ class RecordLookBackAdapter :
     }
 
     class RecordLookBackViewHolder(
-        private val binding: ItemRecordListBinding
+        private val binding: ItemRecordLookListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: RecordData) {
-            binding.tvDate.text = data.date
-            binding.tvAmount.text = data.amount
-            binding.tvDescription.text = data.description
+        fun onBind(data: RecordsBack) {
+            binding.recordsback = data
+            when (data.startEmotion) {
+                1 -> binding.ivFirstemotion.setImageResource(R.drawable.ic_emoji_happy_mint_56_with_background)
+                2 -> binding.ivFirstemotion.setImageResource(R.drawable.ic_emoji_what_mint_56_with_background)
+                3 -> binding.ivFirstemotion.setImageResource(R.drawable.ic_emoji_sad_mint_56_with_background)
+            }
         }
     }
 
     companion object {
-        val DiffUtil = object : DiffUtil.ItemCallback<RecordData>() {
-            override fun areItemsTheSame(oldItem: RecordData, newItem: RecordData): Boolean {
+        val DiffUtil = object : DiffUtil.ItemCallback<RecordsBack>() {
+            override fun areItemsTheSame(oldItem: RecordsBack, newItem: RecordsBack): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: RecordData, newItem: RecordData): Boolean {
+            override fun areContentsTheSame(oldItem: RecordsBack, newItem: RecordsBack): Boolean {
                 return oldItem == newItem
             }
         }
