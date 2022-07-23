@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.teampome.pome.R
 import com.teampome.pome.databinding.ActivityAfterSelectEmotionBinding
-
+import com.teampome.pome.util.setOnSingleClickListener
 
 class AfterSelectEmotionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAfterSelectEmotionBinding
@@ -17,10 +17,16 @@ class AfterSelectEmotionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_after_select_emotion)
         setContentView(binding.root)
+        goBack()
         clickIcon()
         goToCompleteActivity()
     }
 
+    private fun goBack() {
+        binding.btnBack.setOnSingleClickListener {
+            finish()
+        }
+    }
 
     private fun clickIcon() {
         binding.btnHappy.setOnClickListener {
