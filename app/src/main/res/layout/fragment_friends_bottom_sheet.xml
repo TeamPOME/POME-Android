@@ -22,7 +22,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_all_view_emoji_34" />
+            android:src="@drawable/ic_emoji_whole_grey_34" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_heart" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_smile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_smile_mint_34" />
 
         <ImageView
             android:id="@+id/iv_emotion_fun"
@@ -39,32 +53,18 @@
             android:src="@drawable/ic_emoji_mint_flex" />
 
         <ImageView
-            android:id="@+id/iv_emotion_sad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_emoji_mint_sad" />
-
-        <ImageView
-            android:id="@+id/iv_emotion_smile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_emoji_smile_mint_34" />
-
-        <ImageView
-            android:id="@+id/iv_emotion_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_emoji_mint_heart" />
-
-        <ImageView
             android:id="@+id/iv_emotion_what"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_emoji_mint_what" />
+
+        <ImageView
+            android:id="@+id/iv_emotion_sad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_emoji_mint_sad" />
     </LinearLayout>
 
     <View
@@ -97,11 +97,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_friends_reaction"
             android:layout_width="match_parent"
-            app:spanCount="3"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
