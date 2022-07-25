@@ -9,21 +9,21 @@ import retrofit2.http.*
 
 interface GoalService {
     @POST("goals")
-    fun createGoal(
+    suspend fun createGoal(
         @Body body: RequestGoalCreate
-    ): Call<BaseResponse<ResponseGoalCreate>>
+    ): BaseResponse<ResponseGoalCreate>
 
     @GET("goals")
-    fun initGoalChip(
-    ): Call<BaseResponse<List<ResponseGoalCreate>>>
+    suspend fun initGoalChip(
+    ): BaseResponse<List<ResponseGoalCreate>>
 
     @GET("goals/{goalId}")
-    fun initGoalDetail(
+    suspend fun initGoalDetail(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseGoalDetail>>
+    ): BaseResponse<ResponseGoalDetail>
 
     @DELETE("goals/{goalId}")
-    fun deleteGoal(
+    suspend fun deleteGoal(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<Unit>>
+    ): BaseResponse<Unit>
 }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -13,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
@@ -25,8 +25,9 @@ import com.teampome.pome.util.decorate.CustomItemDecorator
 import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.setOnSingleClickListener
-import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,9 +49,8 @@ class RecordFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -69,12 +69,16 @@ class RecordFragment : Fragment() {
 
     private fun deleteGoalNetwork() {
         viewModel.goalId.observe(viewLifecycleOwner) {
-            service.deleteGoal(it).enqueueUtil(
-                onSuccess = {
+            lifecycleScope.launch {
+                runCatching {
+                    service.deleteGoal(it)
+                }.onSuccess {
                     binding.cgGoal.removeAllViews()
                     initGoalChip()
+                }.onFailure {
+                    Timber.d("$it")
                 }
-            )
+            }
         }
     }
 
@@ -110,8 +114,10 @@ class RecordFragment : Fragment() {
     }
 
     private fun initGoalChip() {
-        service.initGoalChip().enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                service.initGoalChip()
+            }.onSuccess {
                 it.data?.forEachIndexed { index, responseGoalCreate ->
                     val chip = Chip(context).apply {
                         tag = responseGoalCreate.id.toString()
@@ -154,16 +160,17 @@ class RecordFragment : Fragment() {
                     }
                     binding.cgGoal.addView(chip)
                 }
-            },
-            onError = {
-                requireContext().showToast("불러오기에 실패했습니다.")
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 
     private fun initGoalDetail(goalId: Int) {
-        service.initGoalDetail(goalId).enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                service.initGoalDetail(goalId)
+            }.onSuccess {
                 visibilityGoalTrue()
                 binding.goaldetail = it.data
                 binding.ivLock.isSelected = it.data?.isPublic ?: error("바인딩 에러")
@@ -226,11 +233,10 @@ class RecordFragment : Fragment() {
                     bottomSheet.show(childFragmentManager, bottomSheet.tag)
                 }
                 initGoalRecord(goalId)
-            },
-            onError = {
-                requireContext().showToast("불러오기에 실패했습니다.")
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 
     private fun visibilityGoalTrue() {
@@ -298,8 +304,10 @@ class RecordFragment : Fragment() {
     }
 
     private fun initGoalRecord(goalId: Int) {
-        recordService.initGoalRecord(goalId).enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                recordService.initGoalRecord(goalId)
+            }.onSuccess {
                 if (it.data?.records?.size != 0) {
                     visibilityRecordTrue()
                     recordAdapter.submitList(it.data?.records)
@@ -308,8 +316,10 @@ class RecordFragment : Fragment() {
                 } else {
                     visibilityRecordFalse()
                 }
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 
     private fun goLookBackActivity(incompleteTotal: Int, goalId: Int) {

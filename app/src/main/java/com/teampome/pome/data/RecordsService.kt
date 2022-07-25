@@ -13,17 +13,17 @@ import retrofit2.http.Path
 
 interface RecordsService {
     @POST("records")
-    fun createRecord(
+    suspend fun createRecord(
         @Body body: RequestRecordsCreate
-    ): Call<BaseResponse<ResponseRecordsCreate>>
+    ): BaseResponse<ResponseRecordsCreate>
 
     @GET("records/week/{goalId}")
-    fun initGoalRecord(
+    suspend fun initGoalRecord(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseRecordsLook>>
+    ): BaseResponse<ResponseRecordsLook>
 
     @GET("records/incomplete/{goalId}")
-    fun initRecordList(
+    suspend fun initRecordList(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseRecordsLookBack>>
+    ): BaseResponse<ResponseRecordsLookBack>
 }

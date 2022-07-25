@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.databinding.FragmentGoalListBottomSheetBinding
@@ -12,6 +13,8 @@ import com.teampome.pome.presentation.record.adapters.GoalListAdapter
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -72,11 +75,15 @@ class GoalListBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initGoalList() {
-        service.initGoalChip().enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                service.initGoalChip()
+            }.onSuccess {
                 goalListAdapter.submitList(it.data)
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 
 
