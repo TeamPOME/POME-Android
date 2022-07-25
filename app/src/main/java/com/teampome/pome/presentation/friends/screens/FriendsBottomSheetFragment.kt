@@ -70,22 +70,22 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         binding.ivEmotionHeart.setOnClickListener {
             emojiChange()
             binding.ivEmotionHeart.setImageResource(R.drawable.ic_emoji_heart_mint_34_click)
-            initReactionBottomSheet(2)
+            initReactionBottomSheet(1)
         }
         binding.ivEmotionSmile.setOnClickListener {
             emojiChange()
             binding.ivEmotionSmile.setImageResource(R.drawable.ic_emoji_smile_mint_34_click)
-            initReactionBottomSheet(1)
+            initReactionBottomSheet(2)
         }
         binding.ivEmotionFun.setOnClickListener {
             emojiChange()
             binding.ivEmotionFun.setImageResource(R.drawable.ic_emoji_funny_mint_34_click)
-            initReactionBottomSheet(6)
+            initReactionBottomSheet(3)
         }
         binding.ivEmotionFlex.setOnClickListener{
             emojiChange()
             binding.ivEmotionFlex.setImageResource(R.drawable.ic_emoji_flex_mint_34_click)
-            initReactionBottomSheet(3)
+            initReactionBottomSheet(4)
 
         }
         binding.ivEmotionWhat.setOnClickListener {
@@ -96,7 +96,7 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         binding.ivEmotionSad.setOnClickListener {
             emojiChange()
             binding.ivEmotionSad.setImageResource(R.drawable.ic_emoji_sad_mint_34_click)
-            initReactionBottomSheet(4)
+            initReactionBottomSheet(6)
         }
     }
 
@@ -127,6 +127,10 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
                 val data=it.data?.reactions
                 Log.d(TAG,"FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data")
                 binding.tvWhole.text="전체 "+it.data?.total
+                if(data?.size==0)
+                    binding.clNoemotion.visibility=View.VISIBLE
+                else
+                    binding.clNoemotion.visibility=View.INVISIBLE
                 friendsReactAdapter.submitList(data)
             }.onFailure {
                 Timber.d("$it")
