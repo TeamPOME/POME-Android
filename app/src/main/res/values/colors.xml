@@ -28,4 +28,6 @@
     <color name="pome_light_mint">#e2fce7</color>
     <color name="pome_light_pink">#fff4f3</color>
     <color name="pome_transparent">#00000000</color>
+    <color name="pome_middle_pink">#ffddda</color>
+    <color name="pome_middle_mint">#87e999</color>
 </resources>
