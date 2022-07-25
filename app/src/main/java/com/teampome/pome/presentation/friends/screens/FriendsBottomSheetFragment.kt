@@ -42,8 +42,8 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         initAdapter()
 
         getBundle() //recordId값 받아오기
+        initWholeData()
 
-        initReactionBottomSheet()
         //서버통신
 
     }
@@ -60,10 +60,15 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         friendsReactAdapter= FriendsReactAdapter()
         binding.rvFriendsReaction.adapter=friendsReactAdapter
     }
-    private fun initReactionBottomSheet(){
+
+    private fun initWholeData(){
+        initReactionBottomSheet(0)
+    }
+
+    private fun initReactionBottomSheet(type:Int){
         lifecycleScope.launch {
             runCatching {
-                service.getFriendsReaction(recordId = id.toInt(),type=0)
+                service.getFriendsReaction(recordId = id.toInt(),type=type)
                 //TYPE=0은 전체 조회
             }.onSuccess {
                 val data=it.data?.reactions
