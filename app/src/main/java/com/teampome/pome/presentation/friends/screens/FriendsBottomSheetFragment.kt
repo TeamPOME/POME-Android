@@ -3,13 +3,14 @@ package com.teampome.pome.presentation.friends.screens
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teampome.pome.R
 import com.teampome.pome.data.FriendService
 import com.teampome.pome.databinding.FragmentFriendsBottomSheetBinding
-import com.teampome.pome.presentation.friends.FriendReactionData
 import com.teampome.pome.presentation.friends.adapters.FriendsReactAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
     @Inject
     lateinit var service: FriendService
 
-    private lateinit var id:String
+    private lateinit var id: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,8 +50,8 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun emojiChange(){
-        binding.apply{
+    private fun emojiChange() {
+        binding.apply {
             ivWholeemotion.setImageResource(R.drawable.ic_emoji_whole_grey_34)
             ivEmotionFun.setImageResource(R.drawable.ic_emoji_mint_fun)
             ivEmotionFlex.setImageResource(R.drawable.ic_emoji_mint_flex)
@@ -61,7 +62,7 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun clickEmoji(){
+    private fun clickEmoji() {
 
         binding.ivWholeemotion.setOnClickListener {
             emojiChange()
@@ -82,7 +83,7 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
             binding.ivEmotionFun.setImageResource(R.drawable.ic_emoji_funny_mint_34_click)
             initReactionBottomSheet(3)
         }
-        binding.ivEmotionFlex.setOnClickListener{
+        binding.ivEmotionFlex.setOnClickListener {
             emojiChange()
             binding.ivEmotionFlex.setImageResource(R.drawable.ic_emoji_flex_mint_34_click)
             initReactionBottomSheet(4)
@@ -100,37 +101,40 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun getBundle(){
-        val bundle=arguments
-        if(bundle!=null){
-            id= bundle.getString("recordId").toString()
+    private fun getBundle() {
+        val bundle = arguments
+        if (bundle != null) {
+            id = bundle.getString("recordId").toString()
         }
-        Log.d(TAG,"FriendsBottomSheetFragment - getBundle() called, id=$id")
+        Log.d(TAG, "FriendsBottomSheetFragment - getBundle() called, id=$id")
     }
 
-    private fun initAdapter(){
-        friendsReactAdapter= FriendsReactAdapter()
-        binding.rvFriendsReaction.adapter=friendsReactAdapter
+    private fun initAdapter() {
+        friendsReactAdapter = FriendsReactAdapter()
+        binding.rvFriendsReaction.adapter = friendsReactAdapter
     }
 
-    private fun initWholeData(){
+    private fun initWholeData() {
         binding.ivWholeemotion.setImageResource(R.drawable.ic_all_view_emoji_34)
         initReactionBottomSheet(0)
     }
 
-    private fun initReactionBottomSheet(type:Int){
+    private fun initReactionBottomSheet(type: Int) {
         lifecycleScope.launch {
             runCatching {
-                service.getFriendsReaction(recordId = id.toInt(),type=type)
+                service.getFriendsReaction(recordId = id.toInt(), type = type)
                 //TYPE=0은 전체 조회
             }.onSuccess {
-                val data=it.data?.reactions
-                Log.d(TAG,"FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data")
-                binding.tvWhole.text="전체 "+it.data?.total
-                if(data?.size==0)
-                    binding.clNoemotion.visibility=View.VISIBLE
+                val data = it.data?.reactions
+                Log.d(
+                    TAG,
+                    "FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data"
+                )
+                binding.tvWhole.text = "전체 " + it.data?.total
+                if (data?.size == 0)
+                    binding.clNoemotion.visibility = View.VISIBLE
                 else
-                    binding.clNoemotion.visibility=View.INVISIBLE
+                    binding.clNoemotion.visibility = View.INVISIBLE
                 friendsReactAdapter.submitList(data)
             }.onFailure {
                 Timber.d("$it")

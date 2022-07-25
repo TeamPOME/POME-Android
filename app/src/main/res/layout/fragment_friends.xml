@@ -48,9 +48,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_friends"
                 android:layout_width="0dp"
-                android:overScrollMode="never"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -62,9 +62,9 @@
             android:layout_height="0dp"
             android:layout_marginTop="14dp"
             android:orientation="vertical"
+            android:overScrollMode="never"
             android:paddingHorizontal="16dp"
             android:visibility="invisible"
-            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_friendslist" />

@@ -7,40 +7,35 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teampome.pome.R
 import com.teampome.pome.data.remote.response.ReactInfo
-import com.teampome.pome.data.remote.response.ResponseFriendReaction
-import com.teampome.pome.data.remote.response.ResponseReaction
-import com.teampome.pome.databinding.ItemFriendsEmojiBinding
 import com.teampome.pome.databinding.ItemFriendsReactionBinding
-import com.teampome.pome.presentation.friends.FriendReactionData
-import com.teampome.pome.presentation.friends.FriendsConsumeData
 
 class FriendsReactAdapter :
-    ListAdapter<ReactInfo, FriendsReactAdapter.FriendsEmojiViewHolder>( DIFFUTIL) {
+    ListAdapter<ReactInfo, FriendsReactAdapter.FriendsEmojiViewHolder>(DIFFUTIL) {
     class FriendsEmojiViewHolder(
-        private val binding:ItemFriendsReactionBinding
-    ):RecyclerView.ViewHolder(binding.root) {
-        fun bind(friendReactionData: ReactInfo){
-            when(friendReactionData.emotion){
-                1-> {
+        private val binding: ItemFriendsReactionBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(friendReactionData: ReactInfo) {
+            when (friendReactionData.emotion) {
+                1 -> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_heart_fiter_54)
                 }
-                2->{
+                2 -> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_smile_react_54)
                 }
-                3-> {
+                3 -> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_funny_react_54)
                 }
-                4-> {
+                4 -> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_flex_react_54)
                 }
-                5->{
+                5 -> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_what_fiter_54)
                 }
-                6-> {
+                6 -> {
                     binding.ivFriendsReaction.setImageResource(R.drawable.ic_emoji_mint_sad_filter_54)
                 }
             }
-            binding.tvFriendsReaction.text=friendReactionData.nickname
+            binding.tvFriendsReaction.text = friendReactionData.nickname
 
         }
     }
@@ -50,8 +45,8 @@ class FriendsReactAdapter :
         parent: ViewGroup,
         viewType: Int
     ): FriendsEmojiViewHolder {
-        val binding=ItemFriendsReactionBinding.inflate(
-            LayoutInflater.from(parent.context),parent,false
+        val binding = ItemFriendsReactionBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
         )
         return FriendsEmojiViewHolder(binding)
     }
@@ -60,7 +55,7 @@ class FriendsReactAdapter :
         holder: FriendsEmojiViewHolder,
         position: Int
     ) {
-       holder.bind(getItem(position))
+        holder.bind(getItem(position))
     }
 
     companion object {
@@ -68,7 +63,7 @@ class FriendsReactAdapter :
             override fun areItemsTheSame(
                 oldItem: ReactInfo,
                 newItem: ReactInfo
-            ): Boolean = oldItem.emotion== newItem.emotion
+            ): Boolean = oldItem.emotion == newItem.emotion
 
             override fun areContentsTheSame(
                 oldItem: ReactInfo,
