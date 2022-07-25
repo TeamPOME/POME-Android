@@ -148,6 +148,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                 } else {
                     binding.ivEmotion2.visibility = View.VISIBLE
                     if (friendsConsumeData.plusCount == 0) {
+                        binding.tvReactPlusCount.visibility=View.GONE
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28)
                         } else if (friendsConsumeData.reactions[i] == 2) {
@@ -164,6 +165,7 @@ class FriendsConsumeAdapter(val contextT: Context) :
                             binding.ivEmotion2.visibility = View.GONE
                         }
                     } else {
+                        binding.tvReactPlusCount.visibility=View.VISIBLE
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 2) {
