@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.lifecycleScope
 import com.teampome.pome.R
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.data.RecordsService
@@ -16,6 +17,8 @@ import com.teampome.pome.util.decorate.VerticalItemDecorator
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -49,8 +52,10 @@ class RecordLookBackActivity : AppCompatActivity() {
     private fun initGoalName() {
         val intent = intent
         val goalId = intent.getIntExtra("goalId", 0)
-        goalservice.initGoalDetail(goalId).enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                goalservice.initGoalDetail(goalId)
+            }.onSuccess {
                 if (it.data?.isPublic == true) {
                     binding.ivLock.setImageResource(R.drawable.ic_unlock)
                 } else {
@@ -58,16 +63,22 @@ class RecordLookBackActivity : AppCompatActivity() {
                 }
                 binding.tvTitle.text = it.data?.message
                 initRecordList(goalId)
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 
     private fun initRecordList(goalId: Int) {
-        service.initRecordList(goalId).enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                service.initRecordList(goalId)
+            }.onSuccess {
                 recordLookBackAdapter.submitList(it.data?.records)
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 
     private fun initDecoration() {

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.teampome.pome.data.GoalService
 import com.teampome.pome.data.remote.request.RequestGoalCreate
 import com.teampome.pome.databinding.ActivityGoalDetailBinding
@@ -12,6 +13,8 @@ import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.setOnSingleClickListener
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -79,18 +82,15 @@ class GoalDetailActivity : AppCompatActivity() {
             isPublic = binding.swLock.isChecked
         )
 
-        service.createGoal(requestGoalCreate).enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                service.createGoal(requestGoalCreate)
+            }.onSuccess {
                 startActivity(Intent(this@GoalDetailActivity, GoalAddActivity::class.java))
                 if(!isFinishing) finish()
-            },
-            onError = {
-                when(it) {
-                    400 -> showToast("잘못된 요청 값입니다.")
-                    401 -> showToast("인증 되지 않은 요청입니다.")
-                    500 -> showToast("서버 내부 오류입니다.")
-                }
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 }

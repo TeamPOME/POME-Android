@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.teampome.pome.data.RecordsService
 import com.teampome.pome.data.remote.request.RequestRecordsCreate
 import com.teampome.pome.databinding.ActivityBeforeSelectEmotionBinding
@@ -11,6 +12,8 @@ import com.teampome.pome.presentation.record.screens.RecordAddActivity
 import com.teampome.pome.util.enqueueUtil
 import com.teampome.pome.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -103,18 +106,15 @@ class BeforeSelectEmotionActivity : AppCompatActivity() {
             startEmotion = emotion
         )
 
-        service.createRecord(requestRecordsCreate).enqueueUtil(
-            onSuccess = {
+        lifecycleScope.launch {
+            runCatching {
+                service.createRecord(requestRecordsCreate)
+            }.onSuccess {
                 startActivity(Intent(this@BeforeSelectEmotionActivity, RecordAddActivity::class.java))
                 if (!isFinishing) finish()
-            },
-            onError = {
-                when (it) {
-                    400 -> showToast("잘못된 요청 값입니다.")
-                    401 -> showToast("인증 되지 않은 요청입니다.")
-                    500 -> showToast("서버 내부 오류입니다.")
-                }
+            }.onFailure {
+                Timber.d("$it")
             }
-        )
+        }
     }
 }

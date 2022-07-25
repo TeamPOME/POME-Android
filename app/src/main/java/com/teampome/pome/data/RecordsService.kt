@@ -15,7 +15,7 @@ interface RecordsService {
     @POST("records")
     suspend fun createRecord(
         @Body body: RequestRecordsCreate
-    ):BaseResponse<ResponseRecordsCreate>
+    ): BaseResponse<ResponseRecordsCreate>
 
     @GET("records/week/{goalId}")
     suspend fun initGoalRecord(
