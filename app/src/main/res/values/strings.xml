@@ -27,6 +27,7 @@
     <string name="whole_friends">전체</string>
     <string name="empty_friends">아직 추가한 친구가 없어요</string>
     <string name="empty_records">아직 남길 기록이 없어요</string>
+    <string name="empty_noemotion">해당 감정을 남긴 친구가 없어요</string>
 
     <!--   RemindFragment -->
     <string name="remind_h1">씀씀이 돌아보기</string>
