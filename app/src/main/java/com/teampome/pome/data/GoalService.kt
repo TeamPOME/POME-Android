@@ -11,19 +11,19 @@ interface GoalService {
     @POST("goals")
     suspend fun createGoal(
         @Body body: RequestGoalCreate
-    ): Call<BaseResponse<ResponseGoalCreate>>
+    ): BaseResponse<ResponseGoalCreate>
 
     @GET("goals")
     suspend fun initGoalChip(
-    ): Call<BaseResponse<List<ResponseGoalCreate>>>
+    ): BaseResponse<List<ResponseGoalCreate>>
 
     @GET("goals/{goalId}")
     suspend fun initGoalDetail(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseGoalDetail>>
+    ): BaseResponse<ResponseGoalDetail>
 
     @DELETE("goals/{goalId}")
     suspend fun deleteGoal(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<Unit>>
+    ): BaseResponse<Unit>
 }

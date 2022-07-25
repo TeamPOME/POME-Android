@@ -15,15 +15,15 @@ interface RecordsService {
     @POST("records")
     suspend fun createRecord(
         @Body body: RequestRecordsCreate
-    ): Call<BaseResponse<ResponseRecordsCreate>>
+    ):BaseResponse<ResponseRecordsCreate>
 
     @GET("records/week/{goalId}")
     suspend fun initGoalRecord(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseRecordsLook>>
+    ): BaseResponse<ResponseRecordsLook>
 
     @GET("records/incomplete/{goalId}")
     suspend fun initRecordList(
         @Path("goalId") goalId: Int
-    ): Call<BaseResponse<ResponseRecordsLookBack>>
+    ): BaseResponse<ResponseRecordsLookBack>
 }
