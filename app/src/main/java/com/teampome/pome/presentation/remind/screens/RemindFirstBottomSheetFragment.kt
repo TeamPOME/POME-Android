@@ -30,17 +30,20 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun clickButton(){
-        var result=0
+        var result="0"
         binding.lvFirstHappy.setOnClickListener {
-            result=1
+            result="1"
+            setFragmentResult("requestKey", bundleOf("first_emotion" to result))
         }
         binding.lvFirstWhat.setOnClickListener {
-            result=2
+            result="2"
+            setFragmentResult("requestKey", bundleOf("first_emotion" to result))
         }
         binding.lvFirstSad.setOnClickListener {
-            result=3
+            result="3"
+            setFragmentResult("requestKey", bundleOf("first_emotion" to result))
         }
-        setFragmentResult("requestKey", bundleOf("first_emotion" to result))
+
     }
 
     private fun initSetHeight() {

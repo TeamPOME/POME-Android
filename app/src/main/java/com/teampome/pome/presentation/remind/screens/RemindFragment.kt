@@ -56,6 +56,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private fun initEmotion(){
         childFragmentManager.setFragmentResultListener("requestKey",viewLifecycleOwner){ _, bundle ->
             val result=bundle.getString("first_emotion")
+            Log.d(TAG,"RemindFragment - initEmotion() called, result=$result")
         }
     }
 
