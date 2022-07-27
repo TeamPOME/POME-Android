@@ -50,6 +50,13 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initClickReset()
 
         reactClick()
+
+        initEmotion()
+    }
+    private fun initEmotion(){
+        childFragmentManager.setFragmentResultListener("requestKey",viewLifecycleOwner){ _, bundle ->
+            val result=bundle.getString("first_emotion")
+        }
     }
 
     private fun initRemindGoal() {
