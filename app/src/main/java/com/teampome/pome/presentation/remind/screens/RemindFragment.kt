@@ -45,13 +45,14 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         initRemindConsumeAdapter()
         initAdapterDecoration()
 
-        initClickFirstEmotion()
-        initClickSecondEmotion()
+        initFirstBottomSheet()
+        initSecondBottomSheet()
         initClickReset()
 
         reactClick()
 
         initFirstEmotion()
+        initSecondEmotion()
     }
 
     private fun initFirstEmotion() {
@@ -67,6 +68,21 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             startEmotion=result.toInt()
             initRemindData(startEmotion, endEmotion)
             firstBottomSheet.dismiss()
+        }
+    }
+
+    private fun initSecondEmotion(){
+        childFragmentManager.setFragmentResultListener(
+            "requestKey",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val result = bundle.getString("second_emotion")
+            binding.ivSecondEmotion.visibility = View.GONE
+            binding.tvSecondEmotion.visibility = View.VISIBLE
+            binding.tvSecondEmotion.text = emotionToString(result!!)
+            endEmotion=result.toInt()
+            initRemindData(startEmotion, endEmotion)
+            secondBottomSheet.dismiss()
         }
     }
 
@@ -140,7 +156,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.rvRemind.adapter = remindConsumeAdapter
     }
 
-    private fun initClickFirstEmotion() {
+    private fun initFirstBottomSheet() {
         binding.clFirstEmotion.setOnSingleClickListener {
             if (!firstBottomSheet.isAdded)
                 firstBottomSheet.show(
@@ -149,7 +165,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
-    private fun initClickSecondEmotion() {
+    private fun initSecondBottomSheet() {
         binding.clSecondEmotion.setOnSingleClickListener {
             if (!secondBottomSheet.isAdded)
                 secondBottomSheet.show(
