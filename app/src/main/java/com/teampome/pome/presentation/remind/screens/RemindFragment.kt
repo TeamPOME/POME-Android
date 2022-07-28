@@ -30,6 +30,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     private val secondBottomSheet = RemindSecondBottomSheetFragment()
     private var clickedChipId = -1
     private var clickedChipPos = -1
+    private var startEmotion = 0
+    private var endEmotion = 0
     private val reactionBottomSheet = RemindReactionBottomSheet()
 
     @Inject
@@ -39,8 +41,6 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         binding.lifecycleOwner = this
 
         initRemindGoal()
-        //initRemindData()
-        //서버통신
 
         initRemindConsumeAdapter()
         initAdapterDecoration()
@@ -51,13 +51,31 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
         reactClick()
 
-        initEmotion()
+        initFirstEmotion()
     }
-    private fun initEmotion(){
-        childFragmentManager.setFragmentResultListener("requestKey",viewLifecycleOwner){ _, bundle ->
-            val result=bundle.getString("first_emotion")
-            Log.d(TAG,"RemindFragment - initEmotion() called, result=$result")
+
+    private fun initFirstEmotion() {
+        childFragmentManager.setFragmentResultListener(
+            "requestKey",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val result = bundle.getString("first_emotion")
+            Log.d(TAG, "RemindFragment - initEmotion() called, result=$result")
+            binding.ivFirstEmotion.visibility = View.GONE
+            binding.tvFirstEmotion.visibility = View.VISIBLE
+            binding.tvFirstEmotion.text = emotionToString(result!!)
+            startEmotion=result.toInt()
+            initRemindData(startEmotion, endEmotion)
             firstBottomSheet.dismiss()
+        }
+    }
+
+    private fun emotionToString(emotion: String): String {
+        return when (emotion) {
+            "1" -> return getString(R.string.remind_happy)
+            "2" -> return getString(R.string.remind_idk)
+            "3" -> return getString(R.string.remind_regret)
+            else -> return ""
         }
     }
 
@@ -70,12 +88,9 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 if (data!!.isEmpty()) {
                     binding.cNogoal.visibility = View.VISIBLE
                     binding.clRemindEmpty.visibility = View.VISIBLE
-                    //setEmptyGoal()
                 } else {
                     setGoals(data)
                     initNotEmpty(data[clickedChipPos].message, data[clickedChipPos].isPublic)
-                    //카테고리, 메세지, isPublic
-                    //setGoalMessage(data)
                 }
             }.onFailure {
                 Timber.d("$it")
@@ -83,7 +98,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
-    private fun initRemindData(startEmotion:Int, endEmotion:Int) {
+    private fun initRemindData(startEmotion: Int, endEmotion: Int) {
         lifecycleScope.launch {
             runCatching {
                 service.getRemindData(clickedChipId, startEmotion, endEmotion)
@@ -124,7 +139,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     }
 
     private fun initClickFirstEmotion() {
-        binding.ivFirstEmotion.setOnSingleClickListener {
+        binding.clFirstEmotion.setOnSingleClickListener {
             if (!firstBottomSheet.isAdded)
                 firstBottomSheet.show(
                     childFragmentManager, firstBottomSheet.tag
@@ -133,7 +148,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
     }
 
     private fun initClickSecondEmotion() {
-        binding.ivSecondEmotion.setOnSingleClickListener {
+        binding.clSecondEmotion.setOnSingleClickListener {
             if (!secondBottomSheet.isAdded)
                 secondBottomSheet.show(
                     childFragmentManager, secondBottomSheet.tag
@@ -141,18 +156,26 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
+    private fun visibleEmotion() {
+        binding.ivFirstEmotion.visibility = View.VISIBLE
+        binding.ivSecondEmotion.visibility = View.VISIBLE
+
+        binding.tvFirstEmotion.visibility = View.GONE
+        binding.tvSecondEmotion.visibility = View.GONE
+    }
+
     private fun initClickReset() {
         binding.ivReset.setOnSingleClickListener {
+            wholeEmotionZero()
             initRemindData(startEmotion = 0, endEmotion = 0)
             context?.showToast("초기화되었습니다.")
-            //goal_id 넣어주기
+            visibleEmotion()
         }
     }
 
     private fun setEmptyGoal() {
-        //chipNoGoal(), recyclerview은 안보임
-        binding.clRemindEmpty.visibility=View.VISIBLE
-        binding.rvRemind.visibility=View.GONE
+        binding.clRemindEmpty.visibility = View.VISIBLE
+        binding.rvRemind.visibility = View.GONE
     }
 
     private fun setGoals(data: List<ResponseRemindGoal>) {
@@ -191,7 +214,8 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     clickedChipPos = 0
                     isChecked = true
                     clickedChipId = tag.toString().toInt()
-                    initRemindData(startEmotion=0,endEmotion=0)
+                    wholeEmotionZero()
+                    initRemindData(startEmotion = 0, endEmotion = 0)
                 }
             }
             binding.cgGoals.addView(chip)
@@ -203,18 +227,19 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun clickChip(chip_id: Int) {
         clickedChipId = chip_id
+        wholeEmotionZero()
         initRemindData(startEmotion = 0, endEmotion = 0)
     }
 
-    fun reactClick() {
+    private fun reactClick() {
         remindConsumeAdapter.setReactionClickListener(object :
             RemindConsumeAdapter.ReactionClickListener {
-            override fun onClick(data: View, pos: Int, recordId:Int) {
-                //친구들이 단 이모지 클릭하면 혹시 무슨 일이 있는지 알아보
-                if (!reactionBottomSheet.isAdded){
+            override fun onClick(data: View, pos: Int, recordId: Int) {
+                if (!reactionBottomSheet.isAdded) {
                     var bundle = Bundle().apply {
-                        putString("recordId", recordId.toString())}
-                    reactionBottomSheet.arguments=bundle
+                        putString("recordId", recordId.toString())
+                    }
+                    reactionBottomSheet.arguments = bundle
                     reactionBottomSheet.show(
                         childFragmentManager,
                         reactionBottomSheet.tag
@@ -222,5 +247,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 }
             }
         })
+    }
+
+    private fun wholeEmotionZero(){
+        startEmotion=0
+        endEmotion=0
     }
 }
