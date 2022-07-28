@@ -1,9 +1,7 @@
 package com.teampome.pome.presentation.friends.screens
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +17,6 @@ import com.teampome.pome.presentation.friends.adapters.FriendsConsumeAdapter
 import com.teampome.pome.presentation.friends.adapters.FriendsProfileAdapter
 import com.teampome.pome.presentation.friends.adapters.FriendsReactAdapter
 import com.teampome.pome.presentation.login.screens.AddFriendActivity
-import com.teampome.pome.presentation.main.MainActivity
 import com.teampome.pome.util.base.BaseFragment
 import com.teampome.pome.util.decorate.FriendsConsumeItemDecorator
 import com.teampome.pome.util.decorate.FriendsProfileItemDecorator
@@ -33,7 +30,6 @@ import javax.inject.Inject
 class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_friends) {
     private lateinit var friendsConsumeAdapter: FriendsConsumeAdapter
     private lateinit var friendsProfileAdapter: FriendsProfileAdapter
-    private lateinit var friendsReactAdapter: FriendsReactAdapter
 
     @Inject
     lateinit var service: FriendService
@@ -43,7 +39,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
     private var list_position: Int = -1
     private var clickedPosition = -1
     private lateinit var emojiList: List<ImageView>
-    var friendsData = listOf<FriendsProfileData.friends>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +65,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     private fun goToAddFriend() {
         binding.ivPlusfriend.setOnSingleClickListener {
-            val intent = Intent(getActivity(), AddFriendActivity::class.java)
+            val intent = Intent(activity, AddFriendActivity::class.java)
             startActivity(intent)
         }
     }
@@ -121,7 +116,6 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
 
     private fun getFriendsData(data: List<ResponseFriendsAll>) {
         friendsConsumeAdapter.friendConsumeList.clear()
-        Log.d(TAG, "FriendsFragment - getFriendsData() called, data=$data")
         friendsConsumeAdapter.friendConsumeList.addAll(
             data.toMutableList()
         )
@@ -196,8 +190,7 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                     )
                 )
             }.onSuccess {
-                Log.d(TAG, "FriendsFragment - initSetEmoji() called, 잘넣었다!")
-                //Timber.d("${it.message}")
+                Timber.d("$it")
             }.onFailure {
                 Timber.d("$it")
             }
@@ -217,13 +210,11 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
         friendsConsumeAdapter.setConsumeListClickListener(object :
             FriendsConsumeAdapter.FriendsConsumeListInterface {
             override fun onClick(data: View, position: Int, addEmoji: Boolean, id: Int) {
-                //bottom sheet로 반응 나오게 하기
                 if (!addEmoji) {
                     if (!friendsBottomSheetFragment.isAdded) {
-                        var bundle = Bundle().apply {
+                        val bundle = Bundle().apply {
                             putString("recordId", id.toString())
                         }
-                        Log.d(TAG, "FriendsFragment - onClick() called, id=$id")
                         friendsBottomSheetFragment.arguments = bundle
                         friendsBottomSheetFragment.show(
                             childFragmentManager, friendsBottomSheetFragment.tag
@@ -232,11 +223,9 @@ class FriendsFragment : BaseFragment<FragmentFriendsBinding>(R.layout.fragment_f
                 } else {
                     list_position = position
                     clickedPosition = id
-                    Log.d(TAG, "FriendsFragment - onClick() called id=$id")
                     friendsEmojiBalloon.showAlignBottom(data)
                     addEmoji(list_position)
-                    //friendsEmojiBalloon.dismiss()
-                }//balloon을 띄우기 위해 현재 클릭된 data의 위치를 알려주고 해당 위치 밑에 balloon을 띄운다.
+                }
             }
         })
     }

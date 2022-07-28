@@ -55,10 +55,12 @@
                 android:src="@drawable/ic_emoji_mint_heart_fiter_54" />
 
             <TextView
+                style="@style/PomeM14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/remind_happy" />
+                android:text="@string/remind_happy"
+                android:textColor="@color/pome_grey_8" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,10 +81,12 @@
                 android:src="@drawable/ic_emoji_mint_what_fiter_54" />
 
             <TextView
+                style="@style/PomeM14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/remind_idk" />
+                android:text="@string/remind_idk"
+                android:textColor="@color/pome_grey_8" />
         </LinearLayout>
 
         <LinearLayout
@@ -103,10 +107,12 @@
                 android:src="@drawable/ic_emoji_mint_sad_filter_54" />
 
             <TextView
+                style="@style/PomeM14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/remind_regret" />
+                android:text="@string/remind_regret"
+                android:textColor="@color/pome_grey_8" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,8 +1,6 @@
 package com.teampome.pome.presentation.friends.screens
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +30,6 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentFriendsBottomSheetBinding.inflate(layoutInflater, container, false)
 
         return binding.root
@@ -43,11 +40,9 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         initSetHeight()
         initAdapter()
 
-        getBundle() //recordId값 받아오기
-        initWholeData() //처음 들어갈 때 0으로 설정
-        clickEmoji() //클릭한 이모지에 따른 감정 보여주기 설정
-        //서버통신
-
+        getBundle()
+        initWholeData()
+        clickEmoji()
     }
 
     private fun emojiChange() {
@@ -106,7 +101,6 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         if (bundle != null) {
             id = bundle.getString("recordId").toString()
         }
-        Log.d(TAG, "FriendsBottomSheetFragment - getBundle() called, id=$id")
     }
 
     private fun initAdapter() {
@@ -123,13 +117,8 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         lifecycleScope.launch {
             runCatching {
                 service.getFriendsReaction(recordId = id.toInt(), type = type)
-                //TYPE=0은 전체 조회
             }.onSuccess {
                 val data = it.data?.reactions
-                Log.d(
-                    TAG,
-                    "FriendsBottomSheetFragment - initReactionBottomSheet() called, data=$data"
-                )
                 binding.tvWhole.text = "전체 " + it.data?.total
                 if (data?.size == 0)
                     binding.clNoemotion.visibility = View.VISIBLE
@@ -143,7 +132,6 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initSetHeight() {
-        //360으로
         val height = resources.displayMetrics.heightPixels * 0.5
         val bottomSheet = binding.clWholebottomsheet
         bottomSheet.minHeight = height.toInt()

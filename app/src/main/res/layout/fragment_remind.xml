@@ -107,22 +107,70 @@
             android:layout_marginTop="13dp"
             app:layout_constraintTop_toBottomOf="@id/tv_remind_h1">
 
-            <ImageView
-                android:id="@+id/iv_first_emotion"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_first_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_first_emotion_filter"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_second_emotion"
+                <ImageView
+                    android:id="@+id/iv_first_emotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_first_emotion_filter"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_first_emotion"
+                    style="@style/PomeSb14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/textview_background_custom"
+                    android:drawableRight="@drawable/ic_arrow_down_17"
+                    android:drawablePadding="2dp"
+                    android:text="@string/remind_regret"
+                    android:textColor="@color/pome_sub"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_second_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:src="@drawable/ic_second_emotion_filter"
-                app:layout_constraintStart_toEndOf="@id/iv_first_emotion"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/cl_first_emotion"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_second_emotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@drawable/ic_second_emotion_filter"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_second_emotion"
+                    style="@style/PomeSb14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/textview_background_custom"
+                    android:drawableRight="@drawable/ic_arrow_down_17"
+                    android:drawablePadding="2dp"
+                    android:text="@string/remind_regret"
+                    android:textColor="@color/pome_sub"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:id="@+id/iv_reset"

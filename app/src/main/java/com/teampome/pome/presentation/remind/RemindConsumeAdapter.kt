@@ -75,7 +75,6 @@ class RemindConsumeAdapter :
                 }
             }
             for (i in 0 until friendsConsumeData.reactions.size) {
-                // 무조건 3개가 날라옴..  뒤에 애들이 0인 경우
                 if (i == 1) {
                     binding.ivEmotion1.visibility = View.VISIBLE
                     if (friendsConsumeData.reactions[i] == 1) {
@@ -113,6 +112,7 @@ class RemindConsumeAdapter :
                             binding.ivEmotion2.visibility = View.GONE
                         }
                     } else {
+                        binding.tvReactPlusCount.visibility=View.VISIBLE
                         if (friendsConsumeData.reactions[i] == 1) {
                             binding.ivEmotion2.setImageResource(R.drawable.ic_emoji_happy_mint_28_overlay)
                         } else if (friendsConsumeData.reactions[i] == 2) {
