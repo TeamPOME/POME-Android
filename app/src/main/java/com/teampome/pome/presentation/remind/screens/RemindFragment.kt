@@ -72,10 +72,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun emotionToString(emotion: String): String {
         return when (emotion) {
-            "1" -> return getString(R.string.remind_happy)
-            "2" -> return getString(R.string.remind_idk)
-            "3" -> return getString(R.string.remind_regret)
-            else -> return ""
+            "1" -> getString(R.string.remind_happy)
+            "2" -> getString(R.string.remind_idk)
+            "3" -> getString(R.string.remind_regret)
+            else -> ""
         }
     }
 
@@ -104,9 +104,11 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 service.getRemindData(clickedChipId, startEmotion, endEmotion)
             }.onSuccess {
                 val data = it.data
-                if (data!!.isEmpty())
+                if (data!!.isEmpty()){
                     setEmptyGoal()
+                }
                 else {
+                    binding.clRemindEmpty.visibility=View.GONE
                     binding.rvRemind.visibility = View.VISIBLE
                     remindConsumeAdapter.remindConsumeList.clear()
                     remindConsumeAdapter.remindConsumeList.addAll(data.toMutableList())
@@ -236,7 +238,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             RemindConsumeAdapter.ReactionClickListener {
             override fun onClick(data: View, pos: Int, recordId: Int) {
                 if (!reactionBottomSheet.isAdded) {
-                    var bundle = Bundle().apply {
+                    val bundle = Bundle().apply {
                         putString("recordId", recordId.toString())
                     }
                     reactionBottomSheet.arguments = bundle
