@@ -44,15 +44,15 @@ class RemindSecondBottomSheetFragment : BottomSheetDialogFragment() {
         var result="0"
         binding.lvSecondHappy.setOnClickListener {
             result="1"
-            setFragmentResult("requestKey", bundleOf("second_emotion" to result))
+            setFragmentResult("second_emotion", bundleOf("second_emotion" to result))
         }
         binding.lvSecondWhat.setOnClickListener {
             result="2"
-            setFragmentResult("requestKey", bundleOf("second_emotion" to result))
+            setFragmentResult("second_emotion", bundleOf("second_emotion" to result))
         }
         binding.lvSecondSad.setOnClickListener {
             result="3"
-            setFragmentResult("requestKey", bundleOf("second_emotion" to result))
+            setFragmentResult("second_emotion", bundleOf("second_emotion" to result))
         }
 
     }

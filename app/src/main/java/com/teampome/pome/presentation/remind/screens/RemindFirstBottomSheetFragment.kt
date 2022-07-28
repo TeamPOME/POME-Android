@@ -33,15 +33,15 @@ class RemindFirstBottomSheetFragment : BottomSheetDialogFragment() {
         var result="0"
         binding.lvFirstHappy.setOnClickListener {
             result="1"
-            setFragmentResult("requestKey", bundleOf("first_emotion" to result))
+            setFragmentResult("first_emotion", bundleOf("first_emotion" to result))
         }
         binding.lvFirstWhat.setOnClickListener {
             result="2"
-            setFragmentResult("requestKey", bundleOf("first_emotion" to result))
+            setFragmentResult("first_emotion", bundleOf("first_emotion" to result))
         }
         binding.lvFirstSad.setOnClickListener {
             result="3"
-            setFragmentResult("requestKey", bundleOf("first_emotion" to result))
+            setFragmentResult("first_emotion", bundleOf("first_emotion" to result))
         }
 
     }

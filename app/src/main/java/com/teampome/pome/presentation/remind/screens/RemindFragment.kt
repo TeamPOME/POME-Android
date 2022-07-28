@@ -57,11 +57,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun initFirstEmotion() {
         childFragmentManager.setFragmentResultListener(
-            "requestKey",
+            "first_emotion",
             viewLifecycleOwner
         ) { _, bundle ->
             val result = bundle.getString("first_emotion")
-            Log.d(TAG, "RemindFragment - initEmotion() called, result=$result")
             binding.ivFirstEmotion.visibility = View.GONE
             binding.tvFirstEmotion.visibility = View.VISIBLE
             binding.tvFirstEmotion.text = emotionToString(result!!)
@@ -73,7 +72,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun initSecondEmotion(){
         childFragmentManager.setFragmentResultListener(
-            "requestKey",
+            "second_emotion",
             viewLifecycleOwner
         ) { _, bundle ->
             val result = bundle.getString("second_emotion")
