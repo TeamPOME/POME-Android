@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teampome.pome.databinding.FragmentRemindSecondBottomSheetBinding
 
@@ -23,6 +25,7 @@ class RemindSecondBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         initSetHeight()
         initClose()
+        clickButton()
     }
 
     private fun initSetHeight() {
@@ -36,5 +39,21 @@ class RemindSecondBottomSheetFragment : BottomSheetDialogFragment() {
         binding.ivClose.setOnClickListener {
             dialog?.dismiss()
         }
+    }
+    private fun clickButton(){
+        var result="0"
+        binding.lvSecondHappy.setOnClickListener {
+            result="1"
+            setFragmentResult("requestKey", bundleOf("second_emotion" to result))
+        }
+        binding.lvSecondWhat.setOnClickListener {
+            result="2"
+            setFragmentResult("requestKey", bundleOf("second_emotion" to result))
+        }
+        binding.lvSecondSad.setOnClickListener {
+            result="3"
+            setFragmentResult("requestKey", bundleOf("second_emotion" to result))
+        }
+
     }
 }
