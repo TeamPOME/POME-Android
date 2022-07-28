@@ -57,6 +57,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         childFragmentManager.setFragmentResultListener("requestKey",viewLifecycleOwner){ _, bundle ->
             val result=bundle.getString("first_emotion")
             Log.d(TAG,"RemindFragment - initEmotion() called, result=$result")
+            firstBottomSheet.dismiss()
         }
     }
 
@@ -82,10 +83,10 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
         }
     }
 
-    private fun initRemindData() {
+    private fun initRemindData(startEmotion:Int, endEmotion:Int) {
         lifecycleScope.launch {
             runCatching {
-                service.getRemindData(clickedChipId, 0, 0)
+                service.getRemindData(clickedChipId, startEmotion, endEmotion)
             }.onSuccess {
                 val data = it.data
                 if (data!!.isEmpty())
@@ -142,7 +143,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun initClickReset() {
         binding.ivReset.setOnSingleClickListener {
-            initRemindData()
+            initRemindData(startEmotion = 0, endEmotion = 0)
             context?.showToast("초기화되었습니다.")
             //goal_id 넣어주기
         }
@@ -190,7 +191,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     clickedChipPos = 0
                     isChecked = true
                     clickedChipId = tag.toString().toInt()
-                    initRemindData()
+                    initRemindData(startEmotion=0,endEmotion=0)
                 }
             }
             binding.cgGoals.addView(chip)
@@ -202,7 +203,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
 
     private fun clickChip(chip_id: Int) {
         clickedChipId = chip_id
-        initRemindData()
+        initRemindData(startEmotion = 0, endEmotion = 0)
     }
 
     fun reactClick() {
