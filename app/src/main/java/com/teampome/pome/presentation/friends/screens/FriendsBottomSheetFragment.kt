@@ -30,7 +30,6 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentFriendsBottomSheetBinding.inflate(layoutInflater, container, false)
 
         return binding.root
@@ -41,9 +40,9 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         initSetHeight()
         initAdapter()
 
-        getBundle() //recordId값 받아오기
-        initWholeData() //처음 들어갈 때 0으로 설정
-        clickEmoji() //클릭한 이모지에 따른 감정 보여주기 설정
+        getBundle()
+        initWholeData()
+        clickEmoji()
     }
 
     private fun emojiChange() {
@@ -118,7 +117,6 @@ class FriendsBottomSheetFragment : BottomSheetDialogFragment() {
         lifecycleScope.launch {
             runCatching {
                 service.getFriendsReaction(recordId = id.toInt(), type = type)
-                //TYPE=0은 전체 조회
             }.onSuccess {
                 val data = it.data?.reactions
                 binding.tvWhole.text = "전체 " + it.data?.total

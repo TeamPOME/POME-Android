@@ -143,7 +143,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
             binding.ivLockCheck.setImageResource(R.drawable.ic_lock_all)
         }
         binding.tvGoal.text = goal_msg
-
+        binding.tvGoal.setTextColor(resources.getColor(R.color.pome_grey_8,null))
     }
 
     private fun initAdapterDecoration() {
@@ -203,7 +203,7 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                 isCheckable = true
                 isCheckedIconVisible = false
                 tag = responseRemindGoal.id.toString()
-
+                rippleColor=null
                 chipBackgroundColor = ColorStateList(
                     arrayOf(
                         intArrayOf(-android.R.attr.state_checked),
@@ -211,15 +211,13 @@ class RemindFragment : BaseFragment<FragmentRemindBinding>(R.layout.fragment_rem
                     ),
                     intArrayOf(Color.WHITE, ContextCompat.getColor(context, R.color.pome_main))
                 )
-
-                //텍스트
                 setTextColor(
                     ColorStateList(
                         arrayOf(
                             intArrayOf(-android.R.attr.state_checked),
                             intArrayOf(android.R.attr.state_checked)
                         ),
-                        intArrayOf(Color.BLACK, Color.WHITE)
+                        intArrayOf(ContextCompat.getColor(context,R.color.pome_grey_5), ContextCompat.getColor(context, R.color.pome_grey_0))
                     )
                 )
                 setOnClickListener {
